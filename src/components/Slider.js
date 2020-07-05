@@ -6,6 +6,8 @@ import '../plugins/animate/animate.css'
 import '../plugins/aos/aos.css'
 import '../plugins/venobox/venobox.css'
 import '../css/style.css'
+import 'slick'
+// eslint-disable-next-line no-unused-vars
 import preloader from '../images/preloader.gif'
 import Slide from './Slide';
 import bg from '../images/banner/banner-1.jpg';

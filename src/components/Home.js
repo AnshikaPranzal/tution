@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/img-redundant-alt */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import '../plugins/bootstrap/bootstrap.min.css'
 import '../plugins/slick/slick.css'
@@ -23,7 +26,7 @@ const Home = () =>{
   </div> */}
   {/* <!-- preloader end --> */}
 
-<Header></Header>
+
 
 <ResgisterModal></ResgisterModal>
 <LoginModal></LoginModal>

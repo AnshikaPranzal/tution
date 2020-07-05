@@ -7,7 +7,7 @@ const Header = () => {
         <React.Fragment>
             <header className="fixed-top header">
   {/* <!-- top header --> */}
-      <TopHeader></TopHeader>
+      {/* <TopHeader></TopHeader> */}
   {/* <!-- navbar --> */}
       <Navbar></Navbar>
 </header>
