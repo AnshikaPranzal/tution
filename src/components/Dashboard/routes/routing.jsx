@@ -16,50 +16,50 @@ var ThemeRoutes = [
     icon: 'ti-loop', 
     component: Starter 
   },
+  // {
+  //   path: '/alert',
+  //   name: 'Profile',
+  //   icon: 'mdi mdi-comment-processing-outline',
+  //   component: Alerts
+  // },
+  // {
+  //   path: '/badge',
+  //   name: 'Badges',
+  //   icon: 'mdi mdi-arrange-send-backward',
+  //   component: Badges
+  // },
+  // {
+  //   path: '/button',
+  //   name: 'Buttons',
+  //   icon: 'mdi mdi-toggle-switch',
+  //   component: Buttons
+  // },
   {
-    path: '/alert',
-    name: 'Alerts',
-    icon: 'mdi mdi-comment-processing-outline',
-    component: Alerts
-  },
-  {
-    path: '/badge',
-    name: 'Badges',
-    icon: 'mdi mdi-arrange-send-backward',
-    component: Badges
-  },
-  {
-    path: '/button',
-    name: 'Buttons',
-    icon: 'mdi mdi-toggle-switch',
-    component: Buttons
-  },
-  {
-    path: '/card',
-    name: 'Cards',
+    path: '/payment',
+    name: 'Payment',
     icon: 'mdi mdi-credit-card-multiple',
     component: Cards
   },
+  // {
+  //   path: '/grid',
+  //   name: 'Grid',
+  //   icon: 'mdi mdi-apps',
+  //   component: LayoutComponent
+  // },
+  // {
+  //   path: '/pagination',
+  //   name: 'Pagination',
+  //   icon: 'mdi mdi-priority-high',
+  //   component: PaginationComponent
+  // },
+  // {
+  //   path: '/popover',
+  //   name: 'Popover',
+  //   icon: 'mdi mdi-pencil-circle',
+  //   component: PopoverComponent
+  // },
   {
-    path: '/grid',
-    name: 'Grid',
-    icon: 'mdi mdi-apps',
-    component: LayoutComponent
-  },
-  {
-    path: '/pagination',
-    name: 'Pagination',
-    icon: 'mdi mdi-priority-high',
-    component: PaginationComponent
-  },
-  {
-    path: '/popover',
-    name: 'Popover',
-    icon: 'mdi mdi-pencil-circle',
-    component: PopoverComponent
-  },
-  {
-    path: '/ui-components/tooltip',
+    path: '/settings',
     name: 'Toltips',
     icon: 'mdi mdi-image-filter-vintage',
     component: TooltipComponent

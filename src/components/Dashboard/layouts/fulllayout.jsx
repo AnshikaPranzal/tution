@@ -31,7 +31,7 @@ const Fulllayout = (props) => {
         const updateDimensions = () => {
             let element = document.getElementById('main-wrapper');
             setWidth(window.innerWidth)
-            if (width) {
+            if (width<1170) {
                 element.setAttribute("data-sidebartype", "mini-sidebar");
                 element.classList.add("mini-sidebar");
             } else {
@@ -59,7 +59,7 @@ const Fulllayout = (props) => {
             data-sidebar-position="fixed"
             data-header-position="fixed"
             data-boxed-layout="full"
-            style={{paddingTop:"10em"}}
+            style={{paddingTop:"2em"}}
         >
             {/*--------------------------------------------------------------------------------*/}
             {/* Header                                                                         */}
@@ -68,11 +68,11 @@ const Fulllayout = (props) => {
             {/*--------------------------------------------------------------------------------*/}
             {/* Sidebar                                                                        */}
             {/*--------------------------------------------------------------------------------*/}
-            
+            <Sidebar {...props} routes={ThemeRoutes} />
             {/*--------------------------------------------------------------------------------*/}
             {/* Page Main-Content                                                              */}
             {/*--------------------------------------------------------------------------------*/}
-            <div className="d-block">
+            <div className="page-wrapper d-block">
                 <div className="page-content container-fluid">
                     <Switch>
                         {ThemeRoutes.map((prop, key) => {
