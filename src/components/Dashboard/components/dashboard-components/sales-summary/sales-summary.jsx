@@ -37,16 +37,16 @@ const SalesSummary = () => {
             <CardBody>
                 <div className="d-flex align-items-center">
                     <div>
-                        <CardTitle>Sales Summary</CardTitle>
+                        <CardTitle>Performance Summary</CardTitle>
                         <CardSubtitle>summary of the month</CardSubtitle>
                     </div>
                     <div className="ml-auto d-flex align-items-center">
                         <ul className="list-inline font-12 dl mr-3 mb-0">
                             <li className="border-0 p-0 text-info list-inline-item">
-                                <i className="fa fa-circle"></i> Iphone
+                                <i className="fa fa-circle"></i> Quizzes
 								</li>
                             <li className="border-0 p-0 text-primary list-inline-item">
-                                <i className="fa fa-circle"></i> Ipad
+                                <i className="fa fa-circle"></i> Classes
 								</li>
                         </ul>
                     </div>

@@ -24,8 +24,18 @@ const Projects = () => {
             <CardBody>
                 <div className="d-flex align-items-center">
                     <div>
-                        <CardTitle>Projects of the Month</CardTitle>
-                        <CardSubtitle>Overview of Latest Month</CardSubtitle>
+                        <CardTitle>Your Classes</CardTitle>
+                        <CardSubtitle>Click on them to join</CardSubtitle>
+                    </div>
+                    <div className="ml-auto d-flex align-items-center">
+                        <ul className="list-inline font-12 dl mr-3 mb-0">
+                            <li className="border-0 p-0 text-orange list-inline-item">
+                                <i className="fa fa-circle"></i> Regular Class
+								</li>
+                            <li className="border-0 p-0 text-success list-inline-item">
+                                <i className="fa fa-circle"></i> Doubt Class
+								</li>
+                        </ul>
                     </div>
                     <div className="ml-auto d-flex no-block align-items-center">
                         <div className="dl">
@@ -41,12 +51,12 @@ const Projects = () => {
                 <Table className="no-wrap v-middle" responsive>
                     <thead>
                         <tr className="border-0">
-                            <th className="border-0">Team Lead</th>
-                            <th className="border-0">Project</th>
+                            <th className="border-0">Teacher</th>
+                            <th className="border-0">Subject</th>
 
-                            <th className="border-0">Status</th>
-                            <th className="border-0">Weeks</th>
-                            <th className="border-0">Budget</th>
+                            <th className="border-0">Category</th>
+                            <th className="border-0">Time</th>
+                            <th className="border-0">Duration</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,14 +68,14 @@ const Projects = () => {
                                         <h5 className="mb-0 font-16 font-medium">Hanna Gover</h5><span>hgover@gmail.com</span></div>
                                 </div>
                             </td>
-                            <td>Elite Admin</td>
+                            <td>Chemistry</td>
 
                             <td>
                                 <i className="fa fa-circle text-orange" id="tlp1"></i>
 
                             </td>
-                            <td>35</td>
-                            <td className="blue-grey-text  text-darken-4 font-medium">$96K</td>
+                            <td>12:00 PM</td>
+                            <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
                         </tr>
                         <tr>
                             <td>
@@ -75,14 +85,14 @@ const Projects = () => {
                                         <h5 className="mb-0 font-16 font-medium">Daniel Kristeen</h5><span>Kristeen@gmail.com</span></div>
                                 </div>
                             </td>
-                            <td>Elite Admin</td>
+                            <td>Chemistry</td>
 
                             <td>
                                 <i className="fa fa-circle text-success" id="tlp2"></i>
 
                             </td>
-                            <td>35</td>
-                            <td className="blue-grey-text  text-darken-4 font-medium">$96K</td>
+                            <td>12;00 PM</td>
+                            <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
                         </tr>
                         <tr>
                             <td>
@@ -92,14 +102,14 @@ const Projects = () => {
                                         <h5 className="mb-0 font-16 font-medium">Julian Josephs</h5><span>Josephs@gmail.com</span></div>
                                 </div>
                             </td>
-                            <td>Elite Admin</td>
+                            <td>Chemistry</td>
 
                             <td>
                                 <i className="fa fa-circle text-success" id="tlp3"></i>
 
                             </td>
-                            <td>35</td>
-                            <td className="blue-grey-text  text-darken-4 font-medium">$96K</td>
+                            <td>12;00 PM</td>
+                            <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
                         </tr>
                         <tr>
                             <td>
@@ -109,14 +119,14 @@ const Projects = () => {
                                         <h5 className="mb-0 font-16 font-medium">Jan Petrovic</h5><span>hgover@gmail.com</span></div>
                                 </div>
                             </td>
-                            <td>Elite Admin</td>
+                            <td>Chemistry</td>
 
                             <td>
                                 <i className="fa fa-circle text-orange" id="tlp4"></i>
 
                             </td>
-                            <td>35</td>
-                            <td className="blue-grey-text  text-darken-4 font-medium">$96K</td>
+                            <td>12;00 PM</td>
+                            <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
                         </tr>
                     </tbody>
                 </Table>
