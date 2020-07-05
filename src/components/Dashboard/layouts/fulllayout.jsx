@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import $ from 'jquery'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from '../components/header/header.jsx';
 import Sidebar from '../components/sidebar/sidebar.jsx';
@@ -6,6 +7,20 @@ import Footer from '../components/footer/footer.jsx';
 import ThemeRoutes from '../routes/routing.jsx';
 import '../assets/scss/style.css'
 const Fulllayout = (props) => {
+
+    $(window).scroll(function () {
+		var height = 0;
+		if ($('header').offset().top > 10) {
+			$('.top-header').addClass('hide');
+			$('.navigation').addClass('nav-bg');
+			$('.navigation').css('margin-top', '-' + height + 'px');
+		} else {
+			$('.top-header').removeClass('hide');
+			$('.navigation').removeClass('nav-bg');
+			$('.navigation').css('margin-top', '-' + 0 + 'px');
+		}
+	});
+
     /*--------------------------------------------------------------------------------*/
     /*Change the layout settings [HEADER,SIDEBAR && DARK LAYOUT] from here            */
     /*--------------------------------------------------------------------------------*/

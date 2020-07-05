@@ -991,6 +991,11 @@ link:focus,
   padding-top: 275px;
 }
 
+.newsfooter {
+  border-color: #494a43 !important;
+  padding-top: 275px;
+}
+
 /* /footer */
 .filter-controls li {
   cursor: pointer;

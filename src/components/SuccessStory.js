@@ -2,9 +2,14 @@ import React from 'react';
 import Success_pic from '../images/backgrounds/success-story.jpg'
 
 const SuccessStory = () => {
+    var sectionStyle = {
+        width: "100%",
+        height: "700px",
+        backgroundImage: `url(${Success_pic})`
+      };
     return(
         <React.Fragment>
-            <section className="section bg-cover" data-background={Success_pic}>
+            <section className="section bg-cover" style={ sectionStyle } >
             <div className="container">
                 <div className="row">
                 <div className="col-lg-6 col-sm-4 position-relative success-video">

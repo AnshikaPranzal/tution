@@ -2,6 +2,7 @@
 import React from 'react';
 import logo from '../images/logo.png'
 import { Link } from 'react-router-dom';
+import {NavBar} from 'reactstrap';
 
 
 function App() {
@@ -10,14 +11,14 @@ function App() {
       <div className="navigation w-100">
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-dark p-0">
-        {/* <a className="navbar-brand" href="/"><img src={logo} alt="logo"></img></a>
+         <a className="navbar-brand" href="/"><img src={logo} alt="logo"></img></a>
         <button className="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
-        </button> */}
+        </button> 
 
         <div className="collapse navbar-collapse" id="navigation">
-          <ul className="navbar-nav text-center">
+          <ul className="navbar-nav ml-auto text-center">
             <li className="nav-item active">
               <Link className="nav-link" to="/">HOME</Link>
             </li>
