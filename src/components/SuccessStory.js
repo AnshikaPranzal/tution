@@ -1,9 +1,10 @@
 import React from 'react';
+import Success_pic from '../images/backgrounds/success-story.jpg'
 
 const SuccessStory = () => {
     return(
         <React.Fragment>
-            <section className="section bg-cover" data-background="images/backgrounds/success-story.jpg">
+            <section className="section bg-cover" data-background={Success_pic}>
             <div className="container">
                 <div className="row">
                 <div className="col-lg-6 col-sm-4 position-relative success-video">

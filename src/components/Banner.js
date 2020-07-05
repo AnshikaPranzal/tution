@@ -1,5 +1,6 @@
 import React from 'react';
 import BannerItem from './BannerItem';
+import Banner_pic from '../images/banner/banner-feature.png' 
 
 const Banner = () => {
     return(
@@ -8,7 +9,7 @@ const Banner = () => {
   <div className="container-fluid p-0">
     <div className="row no-gutters">
       <div className="col-xl-4 col-lg-5 align-self-end">
-        <img className="img-fluid w-100" src="images/banner/banner-feature.png" alt="banner-feature"></img>
+        <img className="img-fluid w-100" src={Banner_pic} alt="banner-feature"></img>
       </div>
       <div className="col-xl-8 col-lg-7">
         <div className="row feature-blocks bg-gray justify-content-between">

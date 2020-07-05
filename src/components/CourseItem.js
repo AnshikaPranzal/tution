@@ -5,7 +5,7 @@ const CourseItem = (props) => {
         <React.Fragment>
              <div className="col-lg-4 col-sm-6 mb-5">
     <div className="card p-0 border-primary rounded-0 hover-shadow">
-      <img className="card-img-top rounded-0" src={`../images/courses/${props.image}.jpg`} alt="course thumb"></img>
+      <img className="card-img-top rounded-0" src={props.image} alt="course thumb"></img>
       <div className="card-body">
         <ul className="list-inline mb-2">
           <li className="list-inline-item"><i className="ti-calendar mr-1 text-color"></i>{props.date}</li>

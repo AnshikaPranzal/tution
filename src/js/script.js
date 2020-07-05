@@ -1,4 +1,4 @@
-(function ($) {
+export default (function ($) {
 	'use strict';
 
 	// Preloader js    

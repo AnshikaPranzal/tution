@@ -15,7 +15,7 @@ import bg from '../images/banner/banner-1.jpg';
 const Slider = () => {
     return(
         <React.Fragment>
-            <section className="hero-section overlay bg-cover" dataBackground={bg}>
+            <section className="hero-section overlay bg-cover" data-background={bg}>
             <div className="container">
             <div className="hero-slider">
                 <Slide heading="Your bright future is our mission" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

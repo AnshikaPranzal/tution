@@ -1,4 +1,5 @@
 import React from 'react';
+import About_pic from '../images/about/about-us.jpg'
 
 const AboutUs = () => {
     return(
@@ -13,7 +14,7 @@ const AboutUs = () => {
         <a href="about.html" className="btn btn-primary-outline">Learn more</a>
       </div>
       <div className="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
-        <img className="img-fluid w-100" src="images/about/about-us.jpg" alt="about image"></img>
+        <img className="img-fluid w-100" src={About_pic} alt="about image"></img>
       </div>
     </div>
   </div>
@@ -21,3 +22,5 @@ const AboutUs = () => {
         </React.Fragment>
     )
 }
+
+export default AboutUs;
