@@ -12,7 +12,8 @@ import '../plugins/venobox/venobox.css'
 import '../css/style.css'
 import preloader from '../images/preloader.gif'
 import logo from '../images/logo.png'
-import Header from './Header'
+import TopHeader from './TopHeader.js';
+import Navbar from './Navbar.js';
 import ResgisterModal from './RegisterModal'
 import LoginModal from './LoginModal'
 import SliderList from './Slider'
@@ -44,33 +45,7 @@ const Home = () =>{
 		}
 	});
 
-	// Background-images
-	$('[data-background]').each(function () {
-		$(this).css({
-			'background-image': 'url(' + $(this).data('background') + ')'
-		});
-  });
-
-
-  	//Hero Slider
-	// $('.hero-slider').slick({
-	// 	autoplay: true,
-	// 	autoplaySpeed: 7500,
-	// 	pauseOnFocus: false,
-	// 	pauseOnHover: false,
-	// 	infinite: true,
-	// 	arrows: true,
-	// 	fade: true,
-	// 	prevArrow: '<button type=\'button\' class=\'prevArrow\'><i class=\'ti-angle-left\'></i></button>',
-	// 	nextArrow: '<button type=\'button\' class=\'nextArrow\'><i class=\'ti-angle-right\'></i></button>',
-	// 	dots: true
-	// });
-	// $('.hero-slider').slickAnimation();
-
-	// // venobox popup
-	// $(document).ready(function () {
-	// 	$('.venobox').venobox();
-	// });
+	
 
 
 	// filter
@@ -87,38 +62,48 @@ const Home = () =>{
 		});
 	});
 
+  $(window).on('load', function () {
+		$('.preloader').fadeOut(700);
+	});
 
     return(
         <React.Fragment>
              {/* <!-- preloader start --> */}
-  {/* <div className="preloader">
-    <img src={preloader} alt="preloader"></img>
-  </div> */}
-  {/* <!-- preloader end --> */}
+            {/* <div className="preloader">
+              <img src={preloader} alt="preloader"></img>
+            </div> */}
+            {/* <!-- preloader end --> */}
 
 
-<Header></Header>
-<ResgisterModal></ResgisterModal>
-<LoginModal></LoginModal>
+            <header className="fixed-top header">
+            {/* <!-- top header --> */}
+                <TopHeader></TopHeader>
+            {/* <!-- navbar --> */}
+                <Navbar home="active"></Navbar>
+          </header>
+          {/* <!-- /header --> */}
 
-<SliderList></SliderList>
+          <ResgisterModal></ResgisterModal>
+          
 
-<Banner></Banner>
+          <SliderList></SliderList>
 
-<AboutUs></AboutUs>
+          <Banner></Banner>
 
-<Courses></Courses>
+          <AboutUs></AboutUs>
 
-<Cta></Cta>
+          <Courses></Courses>
 
-<SuccessStory></SuccessStory>
+          <Cta></Cta>
 
-<Events></Events>
+          <SuccessStory></SuccessStory>
 
-<TeacherList></TeacherList>
+          <Events></Events>
+
+          <TeacherList></TeacherList>
 
 
-<Footer></Footer>
+          <Footer></Footer>
         </React.Fragment>
     )
 }

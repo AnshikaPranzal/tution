@@ -1,5 +1,6 @@
 import React from 'react';
 import CourseList from './CourseList';
+import { Link } from 'react-router-dom';
 
 const Courses = () =>{
     return(
@@ -12,7 +13,7 @@ const Courses = () =>{
                         <h2 className="mb-0 text-nowrap mr-3">Our Course</h2>
                         <div className="border-top w-100 border-primary d-none d-sm-block"></div>
                         <div>
-                            <a href="courses.html" className="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">see all</a>
+                            <Link to='/course' className="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">see all</Link>
                         </div>
                         </div>
                     </div>
@@ -21,7 +22,7 @@ const Courses = () =>{
                     {/*<!--start mobile see all button -->*/}
                     <div className="row">
                     <div className="col-12 text-center">
-                        <a href="courses.html" className="btn btn-sm btn-primary-outline d-sm-none d-inline-block">see all</a>
+                        <Link to='/course' className="btn btn-sm btn-primary-outline d-sm-none d-inline-block">see all</Link>
                     </div>
                     </div>
                     {/*<!--end mobile see all button -->*/}

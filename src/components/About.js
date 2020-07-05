@@ -1,12 +1,15 @@
 import React from 'react';
+import $ from 'jquery';
 import TopHeader from './TopHeader.js';
 import Navbar from './Navbar.js';
-import $ from 'jquery';
-import Title from './Title.js';
-import ContactSection from './ContactSection.js';
 import Footer from './Footer.js';
+import About_pic from '../images/about/about-us.jpg'
+import Title from './Title.js';
+import AboutSection from './AboutSection.js';
+import SuccessStory from './SuccessStory.js';
+import TeacherList from './TeacherList.js';
 
-const Home = () =>{
+const About = () => {
 
     // Sticky Menu
 	$(window).scroll(function () {
@@ -22,21 +25,28 @@ const Home = () =>{
 		}
 	});
 
-
     return(
         <React.Fragment>
-            <header className="fixed-top header">
+           <header className="fixed-top header">
             {/* <!-- top header --> */}
                 <TopHeader></TopHeader>
             {/* <!-- navbar --> */}
-                <Navbar contact="active"></Navbar>
+                <Navbar about="active"></Navbar>
           </header>
           {/* <!-- /header --> */}
 
-          <Title title="Contact Us" body="Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible."></Title>
-          <ContactSection></ContactSection>
-          <Footer></Footer>
+        <Title title="About Us" body="Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others."></Title>
+
+        <AboutSection></AboutSection>
+
+        <SuccessStory></SuccessStory>
+
+        <TeacherList></TeacherList>
+
+        <Footer></Footer>
+        
         </React.Fragment>
     )
 }
-export default Home;
+
+export default About;

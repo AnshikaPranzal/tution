@@ -1,12 +1,12 @@
 import React from 'react';
+import $ from 'jquery';
 import TopHeader from './TopHeader.js';
 import Navbar from './Navbar.js';
-import $ from 'jquery';
-import Title from './Title.js';
-import ContactSection from './ContactSection.js';
 import Footer from './Footer.js';
+import AllCourseList from './AllCourseList.js';
+import Title from './Title.js';
 
-const Home = () =>{
+const CoursePage = () => {
 
     // Sticky Menu
 	$(window).scroll(function () {
@@ -20,8 +20,9 @@ const Home = () =>{
 			$('.navigation').removeClass('nav-bg');
 			$('.navigation').css('margin-top', '-' + 0 + 'px');
 		}
-	});
-
+    });
+    
+    
 
     return(
         <React.Fragment>
@@ -29,14 +30,14 @@ const Home = () =>{
             {/* <!-- top header --> */}
                 <TopHeader></TopHeader>
             {/* <!-- navbar --> */}
-                <Navbar contact="active"></Navbar>
+                <Navbar courses="active"></Navbar>
           </header>
           {/* <!-- /header --> */}
-
-          <Title title="Contact Us" body="Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible."></Title>
-          <ContactSection></ContactSection>
+          <Title title="Our Courses" body="Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others."></Title>
+          <AllCourseList></AllCourseList>
           <Footer></Footer>
         </React.Fragment>
     )
 }
-export default Home;
+
+export default CoursePage;

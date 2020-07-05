@@ -30,10 +30,13 @@ const SliderList = () => {
     cssEase: 'linear',
     autoplay: true,
     autoplaySpeed: 5000,
+    pauseOnFocus: false,
+    pauseOnHover: false,
     arrows: false,
     initialSlide: 0, 
   };
 
+  
 
     return(
         <React.Fragment>

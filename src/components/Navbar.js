@@ -1,46 +1,43 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React from 'react'
+import {NavDropdown, Nav, Navbar} from 'react-bootstrap'
+import { Line } from 'react-chartjs-2'
+import { Link } from 'react-router-dom'
 import logo from '../images/logo.png'
-import { Link } from 'react-router-dom';
-import {NavBar} from 'reactstrap';
 
 
-function App() {
-  return (
-    <div>
+const NavBar =(props) => {
+  return(
+    <React.Fragment>
       <div className="navigation w-100">
     <div className="container">
-      <nav className="navbar navbar-expand-lg navbar-dark p-0">
-         <a className="navbar-brand" href="/"><img src={logo} alt="logo"></img></a>
-        <button className="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation"
-          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button> 
-
-        <div className="collapse navbar-collapse" id="navigation">
+    <Navbar collapseOnSelect expand="lg">
+    <Navbar.Brand href="#home"><a className="navbar-brand" href="/"><img src={logo} alt="logo"></img></a></Navbar.Brand>
+    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <div className="mr-auto">
           <ul className="navbar-nav ml-auto text-center">
-            <li className="nav-item active">
+            <li className={`nav-item ${props.home}`}>
               <Link className="nav-link" to="/">HOME</Link>
             </li>
-            <li className="nav-item @@about">
+            <li className={`nav-item ${props.about}`}>
             <Link className="nav-link" to="/about">ABOUT</Link>
               
             </li>
-            <li className="nav-item @@courses">
-            <Link className="nav-link" to="/about">COURSES</Link>
+            <li className={`nav-item ${props.courses}`}>
+            <Link className="nav-link" to="/course">COURSES</Link>
 
             </li>
-            <li className="nav-item @@events">
-            <Link className="nav-link" to="/about">EVENTS</Link>
+            <li className={`nav-item ${props.events}`}>
+            <Link className="nav-link" to="/event">EVENTS</Link>
             </li>
-            <li className="nav-item @@blog">
+            <li className={`nav-item ${props.dashboard}`}>
             <Link className="nav-link" to="/dashboard">DASHBOARD</Link>
 
             </li>
-            <li className="nav-item dropdown view">
+            <li className={`nav-item dropdown view ${props.pages}`}>
               
             <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" to="/about">PAGES</Link>
+                aria-haspopup="true" aria-expanded="false" >PAGES</Link>
                 
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a className="dropdown-item" href="teacher.html">Teacher</a>
@@ -54,16 +51,17 @@ function App() {
                 <a className="dropdown-item" href="blog-single.html">Blog Details</a>
               </div>
             </li>
-            <li className="nav-item @@contact">
-            <Link className="nav-link" to="/about">CONTACT</Link>
+            <li className={`nav-item ${props.contact}`}>
+            <Link className="nav-link" to="/contact">CONTACT</Link>
             </li>
           </ul>
         </div>
-      </nav>
+        </Navbar.Collapse>
+        
+      </Navbar>
     </div>
   </div>
-    </div>
-  );
-}
+</React.Fragment>
+  )}
 
-export default App;
+  export default NavBar

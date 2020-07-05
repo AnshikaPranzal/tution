@@ -3,6 +3,7 @@ import Eitem from './Eitem'
 import Event_pic1 from '../images/events/event-1.jpg'
 import Event_pic2 from '../images/events/event-2.jpg'
 import Event_pic3 from '../images/events/event-3.jpg'
+import { Link } from 'react-router-dom';
 
 const Home = () =>{
     return(
@@ -15,7 +16,7 @@ const Home = () =>{
                     <h2 className="mb-0 text-nowrap mr-3">Upcoming Events</h2>
                     <div className="border-top w-100 border-primary d-none d-sm-block"></div>
                     <div>
-                        <a href="events.html" className="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">see all</a>
+                        <Link to='/event' className="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">see all</Link>
                     </div>
                     </div>
                 </div>
@@ -27,7 +28,7 @@ const Home = () =>{
                 </div>
                 <div class="row">
                 <div class="col-12 text-center">
-                    <a href="course.html" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">sell all</a>
+                    <Link to='/event' class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">sell all</Link>
                 </div>
                 </div>
                 </div>

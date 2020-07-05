@@ -3,7 +3,7 @@ import React from 'react';
 const LoginModal = () =>{
     return(
         <React.Fragment>
-            <div className="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div className="modal fade show" id="signupModal" tabindex="-1" role="dialog" style={{display: 'block'}}>
     <div className="modal-dialog modal-lg" role="document">
         <div className="modal-content rounded-0 border-0 p-4">
             <div className="modal-header border-0">

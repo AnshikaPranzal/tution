@@ -1,13 +1,13 @@
 import React from 'react';
+import $ from 'jquery';
 import TopHeader from './TopHeader.js';
 import Navbar from './Navbar.js';
-import $ from 'jquery';
-import Title from './Title.js';
-import ContactSection from './ContactSection.js';
 import Footer from './Footer.js';
 
-const Home = () =>{
+import Title from './Title.js';
+import AllEvents from './AllEvents.js';
 
+const EventPage = () => {
     // Sticky Menu
 	$(window).scroll(function () {
 		var height = 0;
@@ -20,23 +20,24 @@ const Home = () =>{
 			$('.navigation').removeClass('nav-bg');
 			$('.navigation').css('margin-top', '-' + 0 + 'px');
 		}
-	});
-
-
+    });
     return(
         <React.Fragment>
             <header className="fixed-top header">
             {/* <!-- top header --> */}
                 <TopHeader></TopHeader>
             {/* <!-- navbar --> */}
-                <Navbar contact="active"></Navbar>
+                <Navbar events="active"></Navbar>
           </header>
           {/* <!-- /header --> */}
+          <Title title='Upcoming Events' body='Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.'></Title>
 
-          <Title title="Contact Us" body="Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible."></Title>
-          <ContactSection></ContactSection>
-          <Footer></Footer>
+        <AllEvents></AllEvents>
+
+        <Footer></Footer>
+        
         </React.Fragment>
     )
 }
-export default Home;
+ 
+export default EventPage;
