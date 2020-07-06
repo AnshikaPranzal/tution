@@ -5,7 +5,7 @@ import bg from '../images/backgrounds/page-title.jpg'
 const Title = (props) => {
   var sectionStyle = {
     width: "100%",
-    height: "450px",
+    height: "500px",
     backgroundImage: `url(${bg})`
   };
     return(

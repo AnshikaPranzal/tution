@@ -76,7 +76,7 @@ const Fulllayout = (props) => {
             data-sidebar-position="fixed"
             data-header-position="fixed"
             data-boxed-layout="full"
-            style={{paddingTop: "78.750px"}}
+            style={{paddingTop: "7em"}}
         >
             {/*--------------------------------------------------------------------------------*/}
             {/* Header                                                                         */}
