@@ -44,15 +44,15 @@ const SliderList = () => {
             <div className="container">
             <div className="hero-slider">
             <Slider {...settings}>
-            <Slide heading="Your bright future is our mission" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            <Slide heading="Your bright future is our mission!" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
               tempor
               incididunt ut labore et
               dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exer"></Slide>
-              <Slide heading="Your bright future is our mission" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              <Slide heading="We are here for you!" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
               tempor
               incididunt ut labore et
               dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exer"></Slide>
-              <Slide heading="Your bright future is our mission" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              <Slide heading="Your can count on us." body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
               tempor
               incididunt ut labore et
               dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exer"></Slide>

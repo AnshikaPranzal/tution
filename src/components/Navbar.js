@@ -8,7 +8,7 @@ import logo from '../images/logo.png'
 const NavBar =(props) => {
   return(
     <React.Fragment>
-      <div className="navigation w-100">
+      <div className={`navigation w-100 ${props.active}`} >
     <div className="container">
     <Navbar collapseOnSelect expand="lg">
     <Navbar.Brand href="#home"><a className="navbar-brand" href="/"><img src={logo} alt="logo"></img></a></Navbar.Brand>

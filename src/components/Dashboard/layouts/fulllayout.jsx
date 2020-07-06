@@ -12,10 +12,7 @@ const Fulllayout = (props) => {
 
     var height1 = $('.header').innerHeight() + 'px';
 
-    $(window).on('load', function () {
-        $('.navigation').addClass('nav-bg');
 
-	});
 
     
 
@@ -67,7 +64,7 @@ const Fulllayout = (props) => {
         <React.Fragment>
         
         <header className="fixed-top header">
-                <Navbar dashboard="active"></Navbar>
+                <Navbar dashboard="active" active="nav-bg"></Navbar>
           </header>
           
         <div
