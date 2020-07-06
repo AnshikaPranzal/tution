@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import $ from 'jquery'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from '../components/header/header.jsx';
 import Sidebar from '../components/sidebar/sidebar.jsx';
 import Footer from '../components/footer/footer.jsx';
-import ThemeRoutes from '../routes/routing.jsx';
+import ThemeRoutes from '../routes/routing2.jsx';
 import '../assets/scss/style.css'
 const Fulllayout = (props) => {
 

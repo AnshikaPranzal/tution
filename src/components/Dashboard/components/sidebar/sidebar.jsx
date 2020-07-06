@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -27,7 +28,7 @@ const Sidebar = (props) => {
                     <div className="row">
                         <div className="col-2"></div>
                         <div className="col-8" style={{alignItems:"center"}}>
-                        <img className="img-fluid w-60" style={{borderRadius: "50%", width:"10rem", height:"10rem", marginTop:"5em", marginBottom:"1em"}} src={profile} alt="about image"></img>
+                        <img className="img-fluid w-60" style={{borderRadius: "50%", width:"10rem", height:"10rem", marginTop:"7em", marginBottom:"1em"}} src={profile} alt="about image"></img>
                         <h4 style={{textAlign:"center"}}>Hello, Pengy</h4>
                         </div>
                     </div>
