@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import Starter from '../views/starter/starter.jsx';
+import Starter from '../views/starter/starter-teacher.jsx';
 // ui components
 import Alerts from '../views/ui-components/alert.jsx';
 import Badges from '../views/ui-components/badge.jsx';
@@ -14,7 +14,7 @@ import TooltipComponent from '../views/ui-components/tooltip.jsx';
 
 var ThemeRoutes = [
   { 
-    path: '/dashboard', 
+    path: '/dashboard-teacher', 
     name: 'Dashboard', 
     icon: 'ti-loop', 
     component: Starter 
@@ -67,6 +67,6 @@ var ThemeRoutes = [
     icon: 'mdi mdi-image-filter-vintage',
     component: TooltipComponent
   },
-  { path: '/', pathTo: '/dashboard', name: 'Dashboard', redirect: true }
+  { path: '/', pathTo: '/dashboard-teacher', name: 'Dashboard', redirect: true }
 ];
 export default ThemeRoutes;
