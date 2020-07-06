@@ -17,7 +17,7 @@ const TopHeader = () =>{
 
     return(
         <React.Fragment>
-            <div className="top-header py-2 bg-white">
+            <div className="top-header bg-white" style={{lineHeight: "0", paddingTop: "2px"}}>
     <div className="container">
       <div className="row no-gutters">
         <div className="col-lg-4 text-center text-lg-left">
@@ -29,10 +29,10 @@ const TopHeader = () =>{
             <li className="list-inline-item mx-0"><a className="d-inline-block p-2 text-color" href="#"><i className="ti-instagram"></i></a></li>
           </ul>
         </div>
-        <div className="col-lg-8 text-center text-lg-right">
-          <ul className="list-inline">
-            <li className="list-inline-item"><Link className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowlogin} data-toggle="modal" data-target="#loginModal">login</Link></li>
-            <li className="list-inline-item"><Link className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowsignup} data-toggle="modal" data-target="#signupModal">register</Link></li>
+        <div className="col-lg-8 text-center text-lg-right" >
+          <ul className="list-inline" style={{marginBottom: "0", paddingTop: '5px'}}>
+            <li className="list-inline-item"><Link className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowlogin} data-toggle="modal" data-target="#loginModal">Login</Link></li>
+            <li className="list-inline-item"><Link className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowsignup} data-toggle="modal" data-target="#signupModal">Register</Link></li>
           </ul>
         </div>
       </div>

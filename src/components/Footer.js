@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../images/logo.png'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return(
@@ -26,7 +27,7 @@ const Footer = () => {
                 <div className="row">
                     <div className="col-lg-4 col-sm-8 mb-5 mb-lg-0">
                     {/* <!-- logo --> */}
-                    <a className="logo-footer" ><img className="img-fluid mb-4" src={logo} alt="logo"></img></a>
+                    <Link className="logo-footer" to='/'><img className="img-fluid mb-4" src={logo} alt="logo"></img></Link>
                     <ul className="list-unstyled">
                         <li className="mb-2">23621 15 Mile Rd #C104, Clinton MI, 48035, New York, USA</li>
                         <li className="mb-2">+1 (2) 345 6789</li>
@@ -38,20 +39,18 @@ const Footer = () => {
                     <div className="col-lg-2 col-md-3 col-sm-4 col-6 mb-5 mb-md-0">
                     <h4 className="text-white mb-5">COMPANY</h4>
                     <ul className="list-unstyled">
-                        <li className="mb-3"><a className="text-color" href="about.html">About Us</a></li>
-                        <li className="mb-3"><a className="text-color" href="teacher.html">Our Teacher</a></li>
-                        <li className="mb-3"><a className="text-color" href="contact.html">Contact</a></li>
-                        <li className="mb-3"><a className="text-color" href="blog.html">Blog</a></li>
+                        <li className="mb-3"><Link className="text-color" to='/about'>About Us</Link></li>
+                        <li className="mb-3"><Link className="text-color" to='/contact'>Contact</Link></li>
+
                     </ul>
                     </div>
                     {/* <!-- links --> */}
                     <div className="col-lg-2 col-md-3 col-sm-4 col-6 mb-5 mb-md-0">
                     <h4 className="text-white mb-5">LINKS</h4>
                     <ul className="list-unstyled">
-                        <li className="mb-3"><a className="text-color" href="courses.html">Courses</a></li>
-                        <li className="mb-3"><a className="text-color" href="event.html">Events</a></li>
-                        <li className="mb-3"><a className="text-color" href="gallary.html">Gallary</a></li>
-                        <li className="mb-3"><a className="text-color" href="faqs.html">FAQs</a></li>
+                        <li className="mb-3"><Link className="text-color" to='/course'>Courses</Link></li>
+                        <li className="mb-3"><Link className="text-color" to='/event'>Events</Link></li>
+
                     </ul>
                     </div>
                     {/* <!-- support --> */}
@@ -62,16 +61,6 @@ const Footer = () => {
                         <li className="mb-3"><a className="text-color" href="#">Documentation</a></li>
                         <li className="mb-3"><a className="text-color" href="#">Language</a></li>
                         <li className="mb-3"><a className="text-color" href="#">Release Status</a></li>
-                    </ul>
-                    </div>
-                    {/* <!-- support --> */}
-                    <div className="col-lg-2 col-md-3 col-sm-4 col-6 mb-5 mb-md-0">
-                    <h4 className="text-white mb-5">RECOMMEND</h4>
-                    <ul className="list-unstyled">
-                        <li className="mb-3"><a className="text-color" href="#">WordPress</a></li>
-                        <li className="mb-3"><a className="text-color" href="#">LearnPress</a></li>
-                        <li className="mb-3"><a className="text-color" href="#">WooCommerce</a></li>
-                        <li className="mb-3"><a className="text-color" href="#">bbPress</a></li>
                     </ul>
                     </div>
                 </div>
@@ -87,7 +76,7 @@ const Footer = () => {
                         var CurrentYear = new Date().getFullYear()
                         document.write(CurrentYear)
                         </script> 
-                        © themefisher</p>
+                        © </p>
                     </div>
                     <div className="col-sm-5 text-sm-right text-center">
                     <ul className="list-inline">
