@@ -17,7 +17,7 @@ import bg from '../images/banner/banner-1.jpg';
 const SliderList = () => {
   var sectionStyle = {
     width: "100%",
-    height: "750px",
+    height: "600px",
     backgroundImage: `url(${bg})`
   };
   var settings = {
