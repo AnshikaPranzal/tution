@@ -13,7 +13,7 @@ const Footer = () => {
                     <form action="#">
                         <div className="input-wrapper">
                         <input type="email" className="form-control border-0" id="newsletter" name="newsletter" placeholder="Enter Your Email..."></input>
-                        <button type="submit" value="send" className="btn btn-primary">Join</button>
+                        <button type="submit" value="send" className="btn btn-primary-outline">Join</button>
                         </div>
                     </form>
                     </div>

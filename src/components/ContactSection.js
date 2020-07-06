@@ -17,7 +17,7 @@ const ContactSection = () => {
           <input type="email" className="form-control mb-3" id="mail" name="mail" placeholder="Your Email"></input>
           <input type="text" className="form-control mb-3" id="subject" name="subject" placeholder="Subject"></input>
           <textarea name="message" id="message" className="form-control mb-3" placeholder="Your Message"></textarea>
-          <button type="submit" value="send" className="btn btn-primary">SEND MESSAGE</button>
+          <button type="submit" value="send" className="btn btn-primary-outline">SEND MESSAGE</button>
         </form>
       </div>
       <div className="col-lg-5">

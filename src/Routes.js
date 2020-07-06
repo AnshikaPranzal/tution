@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import About from './components/About';
 import CoursePage from './components/CoursePage';
 import EventPage from './components/EventPage';
+import NoticePage from './components/NoticePage';
 
 function Routes() {
   return (
@@ -27,6 +28,7 @@ function Routes() {
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/course" component={CoursePage} />
             <Route exact path="/event" component={EventPage} />
+            <Route exact path='/notice' component={NoticePage}/>
             <Route exact path="/register" component={()=> <div>Join Us</div>} />
           </Switch>
         {/* <Footer></Footer> */}

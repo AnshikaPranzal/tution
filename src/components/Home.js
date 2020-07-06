@@ -83,7 +83,6 @@ const Home = () =>{
           </header>
           {/* <!-- /header --> */}
 
-          <ResgisterModal></ResgisterModal>
           
 
           <SliderList></SliderList>
@@ -94,7 +93,7 @@ const Home = () =>{
 
           <Courses></Courses>
 
-          <Cta></Cta>
+          {/* <Cta></Cta> */}
 
           <SuccessStory></SuccessStory>
 

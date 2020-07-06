@@ -22,7 +22,7 @@ const Slide = (props) => {
           <div className="col-md-8">
            <h1 className="text-white" dataAnimationOut="fadeOutDown" dataDelayOut="5" dataDurationIn=".3" dataAnimation-in="fadeInUp" dataDelayIn=".1">{props.heading}</h1>
             <p className="text-muted mb-4" dataAnimationOut="fadeOutDown" dataDelayOut="5" dataDurationIn=".3" dataAnimationIn="fadeInUp" dataDelayIn=".4">{props.body}</p>
-            <a href="contact.html" className="btn btn-primary" dataAnimationOut="fadeOutDown" dataDelayOut="5" dataDurationIn=".3" dataAnimationIn="zoomIn" dataDelayIn=".7">Apply now</a>
+            <a href="contact.html" className="btn btn-primary-outline" dataAnimationOut="fadeOutDown" dataDelayOut="5" dataDurationIn=".3" dataAnimationIn="zoomIn" dataDelayIn=".7">Apply now</a>
           </div>
         </div>
       </div>

@@ -30,6 +30,11 @@ const NavBar =(props) => {
             <li className={`nav-item ${props.events}`}>
             <Link className="nav-link" to="/event">EVENTS</Link>
             </li>
+
+            <li className={`nav-item ${props.notice}`}>
+            <Link className="nav-link" to="/notice">NOTICE</Link>
+            </li>
+
             <li className={`nav-item ${props.dashboard}`}>
             <Link className="nav-link" to="/dashboard">DASHBOARD</Link>
 

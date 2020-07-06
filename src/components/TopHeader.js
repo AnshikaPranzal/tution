@@ -31,7 +31,7 @@ const TopHeader = () =>{
         </div>
         <div className="col-lg-8 text-center text-lg-right">
           <ul className="list-inline">
-            <li className="list-inline-item"><a className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="notice.html">notice</a></li>
+            <li className="list-inline-item"><Link className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" to='/notice'>notice</Link></li>
             <li className="list-inline-item"><a className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="research.html">research</a></li>
             <li className="list-inline-item"><a className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="scholarship.html">SCHOLARSHIP</a></li>
             <li className="list-inline-item"><Link className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowlogin} data-toggle="modal" data-target="#loginModal">login</Link></li>
@@ -66,17 +66,17 @@ const TopHeader = () =>{
                                     <input type="password" className="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password"></input>
                                 </div>
                                 <div className="col-12">
-                                    <button type="submit" className="btn btn-primary">SIGN UP</button>
+                                    <button type="submit" className="btn btn-primary-outline">SIGN UP</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                     </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClosesignup}>
+          {/* <Button variant="secondary" onClick={handleClosesignup}>
             Close
           </Button>
-          
+           */}
         </Modal.Footer>
       </Modal>
 
@@ -100,16 +100,16 @@ const TopHeader = () =>{
                         <input type="password" className="form-control mb-3" id="loginPassword" name="loginPassword" placeholder="Password"></input>
                     </div>
                     <div className="col-12">
-                        <button type="submit" className="btn btn-primary">LOGIN</button>
+                        <button type="submit" className="btn btn-primary-outline">LOGIN</button>
                     </div>
                 </form>
             </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloselogin}>
+          {/* <Button variant="secondary" onClick={handleCloselogin}>
             Close
           </Button>
-          
+           */}
         </Modal.Footer>
       </Modal>
 
