@@ -103,7 +103,7 @@ const LoginModal = () =>{
                             <input type="password" className="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password" onChange={handleChange("password")} value={password}></input>
                         </div>
                         <div className="col-12">
-                                    <button type="submit" onClick={onSubmit} className="btn btn-primary-outline">LOG IN</button>
+                                    <button type="submit" onClick={onSubmit} className="hvr-bounce-to-top">LOG IN</button>
                         </div>
                     </form>
                 </div>
