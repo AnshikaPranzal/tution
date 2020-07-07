@@ -52,6 +52,27 @@ const Starter = () => {
                                     placeholder="Enter link here.."
                                     value={video}
                                     onChange={e=> setvideo(e.target.value)}
+                                    style={{marginTop:"1rem"}}
+                                   
+                                    ></Input>
+                                    <Input
+                                    type="text"
+                                    name="video"
+                                    id="video"
+                                    placeholder="Topic.."
+                                    value={video}
+                                    onChange={e=> setvideo(e.target.value)}
+                                    style={{marginTop:"1rem"}}
+                                   
+                                    ></Input>
+                                    <Input
+                                    type="text"
+                                    name="video"
+                                    id="video"
+                                    placeholder="Description.."
+                                    value={video}
+                                    onChange={e=> setvideo(e.target.value)}
+                                    style={{marginTop:"1rem"}}
                                    
                                     ></Input>
                             <Button style={{marginTop:"1rem"}}>Button</Button>
@@ -73,7 +94,27 @@ const Starter = () => {
                                     id="file"
                                     placeholder=" : "
                                     onChange={e=> setfile(e.target.files[0])}
-                                    style={{marginLeft:"28%"}}
+                                    style={{marginLeft:"28%",marginTop:"1rem"}}
+                                    ></Input>
+                                    <Input
+                                    type="text"
+                                    name="video"
+                                    id="video"
+                                    placeholder="Topic.."
+                                    value={video}
+                                    onChange={e=> setvideo(e.target.value)}
+                                    style={{marginTop:"1rem"}}
+                                   
+                                    ></Input>
+                                    <Input
+                                    type="text"
+                                    name="video"
+                                    id="video"
+                                    placeholder="Description.."
+                                    value={video}
+                                    onChange={e=> setvideo(e.target.value)}
+                                    style={{marginTop:"1rem"}}
+                                   
                                     ></Input>
                             <Button style={{marginTop:"1.4rem"}}>Upload</Button>
                         </CardBody>

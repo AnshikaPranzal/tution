@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Modal, Button } from 'react-bootstrap';
+import ResgisterModal from './RegisterModal'
 
 const TopHeader = () =>{
 
@@ -40,42 +41,8 @@ const TopHeader = () =>{
   </div>
   {/*SIGN UP MODAL*/}
   <Modal show={show} onHide={handleClosesignup}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <div className="modal-header border-0">
-                <h3>Register</h3>
-              </div>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body><div className="modal-body">
-                        <div className="login">
-                            <form action="#" className="row">
-                                <div className="col-12">
-                                    <input type="text" className="form-control mb-3" id="signupPhone" name="signupPhone" placeholder="Phone"></input>
-                                </div>
-                                <div className="col-12">
-                                    <input type="text" className="form-control mb-3" id="signupName" name="signupName" placeholder="Name"></input>
-                                </div>
-                                <div className="col-12">
-                                    <input type="email" className="form-control mb-3" id="signupEmail" name="signupEmail" placeholder="Email"></input>
-                                </div>
-                                <div className="col-12">
-                                    <input type="password" className="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password"></input>
-                                </div>
-                                <div className="col-12">
-                                    <button type="submit" className="btn btn-primary-outline">SIGN UP</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    </Modal.Body>
-        <Modal.Footer>
-          {/* <Button variant="secondary" onClick={handleClosesignup}>
-            Close
-          </Button>
-           */}
-        </Modal.Footer>
-      </Modal>
+        <ResgisterModal></ResgisterModal>
+  </Modal>
 
 {/*LOGIN MODAL*/}
       <Modal show={showlogin} onHide={handleCloselogin}>

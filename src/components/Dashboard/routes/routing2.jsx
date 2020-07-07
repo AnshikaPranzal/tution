@@ -43,12 +43,7 @@ var ThemeRoutes = [
     icon: 'mdi mdi-credit-card-multiple',
     component: Cards
   },
-  // {
-  //   path: '/grid',
-  //   name: 'Grid',
-  //   icon: 'mdi mdi-apps',
-  //   component: LayoutComponent
-  // },
+
   // {
   //   path: '/pagination',
   //   name: 'Pagination',

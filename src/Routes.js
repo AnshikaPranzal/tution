@@ -27,6 +27,7 @@ function Routes() {
             <Route exact path="/about" component={About} />
             <Route exact path="/dashboard" component={Fulllayout} />
             <Route exact path="/payment" component={Fulllayout} />
+            <Route exact path="/material" component={Fulllayout} />
             <Route exact path="/dashboard-teacher" component={FulllayoutTeacher} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/course" component={CoursePage} />

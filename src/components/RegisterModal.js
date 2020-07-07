@@ -1,41 +1,119 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Modal, Button } from 'react-bootstrap';
+import { signup1 } from './helper/index'
 
 const RegisterModal = () =>{
+    const [values,setValues] = useState({
+        name:"",
+        mob:"",
+        email:"",
+        password:"",
+        error:"",
+        success: false
+    })
+    
+    const {name, mob,email, password, error, success} = values;
+
+    const handleChange = name => event => {
+        setValues({
+            ...values,error: false, [name]: event.target.value
+        })
+    }
+
+    const onSubmit = event => {
+        event.preventDefault();
+        setValues({
+            ...values,error: false
+        });
+        signup1({name,email,password,mob})
+            .then( (data) =>{
+                console.log(data)
+                if(data.error){
+                   
+                    setValues({
+                        ...values,
+                        error: data.error,
+                        success: false
+                    })
+                }
+                else{
+                    setValues({
+                        ...values,
+                        name:"",
+                        mob:"",
+                        email:"",
+                        password:"",
+                        error:"",
+                        success: true
+                    })
+                }
+            })
+            .catch(console.log("Error in signup"))
+    }
+
+    const successMessage = () =>(
+        <div className="row ">
+                <div className="col-md-6 offset-sm-3 text-left">
+                    <div className="alert alert-success" style={{display: success ? "" : "none"}}>
+                        Congratulations!!!You are registered with us. Start now{" "}<Link to="/signin">here</Link>
+                    </div>
+                </div>
+        </div>
+    )
+
+    const errorMessage = () =>{
+       
+    return(
+        <div className="row ">
+        <div className="col-md-6 offset-sm-3 text-left">
+        <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
+            {error}
+        </div>
+        </div>
+        </div>
+    )}
+        
+        const signup = () =>(
+            <React.Fragment>
+                <Modal.Header closeButton>
+                        <Modal.Title>
+                            <div className="modal-header border-0">
+                                <h3>Register</h3>
+                            </div>
+                        </Modal.Title>
+                </Modal.Header>
+                <Modal.Body><div className="modal-body">
+                        <div className="login">
+                            <form action="#" className="row">
+                                <div className="col-12">
+                                    <input type="text" className="form-control mb-3" id="signupPhone" name="signupPhone" placeholder="Phone" onChange={handleChange("mob")} value={mob}></input>
+                                </div>
+                                <div className="col-12">
+                                    <input type="text" className="form-control mb-3" id="signupName" name="signupName" placeholder="Name" onChange={handleChange("name")} value={name}></input>
+                                </div>
+                                <div className="col-12">
+                                    <input type="email" className="form-control mb-3" id="signupEmail" name="signupEmail" placeholder="Email" onChange={handleChange("email")} value={email}></input>
+                                </div>
+                                <div className="col-12">
+                                    <input type="password" className="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password" onChange={handleChange("password")} value={password}></input>
+                                </div>
+                                <div className="col-12">
+                                    <button type="submit" onClick={onSubmit} className="btn btn-primary-outline">SIGN UP</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </React.Fragment>
+        )
     return(
         <React.Fragment>
-            <div className="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div className="modal-dialog modal-lg" role="document">
-        <div className="modal-content rounded-0 border-0 p-4">
-            <div className="modal-header border-0">
-                <h3>Register</h3>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div className="modal-body">
-                <div className="login">
-                    <form action="#" className="row">
-                        <div className="col-12">
-                            <input type="text" className="form-control mb-3" id="signupPhone" name="signupPhone" placeholder="Phone"></input>
-                        </div>
-                        <div className="col-12">
-                            <input type="text" className="form-control mb-3" id="signupName" name="signupName" placeholder="Name"></input>
-                        </div>
-                        <div className="col-12">
-                            <input type="email" className="form-control mb-3" id="signupEmail" name="signupEmail" placeholder="Email"></input>
-                        </div>
-                        <div className="col-12">
-                            <input type="password" className="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password"></input>
-                        </div>
-                        <div className="col-12">
-                            <button type="submit" className="btn btn-primary">SIGN UP</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+             {successMessage()}
+            {errorMessage()}
+            {signup()}
+            <p class="text-success text-center">j{JSON.stringify(values)}</p>
         </React.Fragment>
         )
     };

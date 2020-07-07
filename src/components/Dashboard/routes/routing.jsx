@@ -19,6 +19,12 @@ var ThemeRoutes = [
     icon: 'ti-loop', 
     component: Starter 
   },
+  {
+    path: '/material',
+    name: 'Video/Documents',
+    icon: 'mdi mdi-apps',
+    component: Cards
+  },
   // {
   //   path: '/alert',
   //   name: 'Profile',
