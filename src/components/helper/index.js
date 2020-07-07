@@ -16,6 +16,22 @@ export const signup1 = user =>{
     })
 }
 
+export const classes = classes =>{
+    return fetch(`${API}/class/create`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json',
+            "Content-Type" : 'application/json'
+        },
+        body: JSON.stringify(classes)
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {console.log(err);
+    })
+}
+
 export const signin = user =>{
     return fetch(`${API}/signin`,{
         method:"POST",
@@ -68,4 +84,3 @@ export const isAuthenticated = () =>{
         return false;
     }
 }
-export default signup1

@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react';
+import { Link,Redirect } from 'react-router-dom';
+
 import { v4 } from 'uuid';
 import { TodoContext } from '../../context/TodoContext';
 import { ADD_TODO } from '../../context/action.types';
@@ -7,6 +9,8 @@ import img1 from '../../../assets/images/users/1.jpg';
 import img2 from '../../../assets/images/users/2.jpg';
 import img3 from '../../../assets/images/users/3.jpg';
 import img4 from '../../../assets/images/users/4.jpg';
+
+import { classes,isAuthenticated } from '../../../../helper/index'
 
 import {
     Card,
@@ -18,35 +22,83 @@ import {
 } from 'reactstrap';
 
 const Projects = () => {
-    const [todoString, setTodoString] = useState("")
-    const [time, setTime] = useState("12:00")
-    const [duration, setDuration] = useState("1 hr.")
+
+ 
+
+    const successMessage = () =>(
+        <div className="row ">
+                <div className="col-md-6 offset-sm-3 text-left">
+                    <div className="alert alert-success" style={{display: success ? "" : "none"}}>
+                        Congratulations!!!You are registered with us. Start now{" "}<Link to="/signin">here</Link>
+                    </div>
+                </div>
+        </div>
+    )
+
+    const errorMessage = () =>{
+       
+    return(
+        <div className="row ">
+        <div className="col-md-6 offset-sm-3 text-left">
+        <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
+            {error}
+        </div>
+        </div>
+        </div>
+    )}
     // const {dispatch} = useContext(TodoContext)
     const [project, setProject] = useState({
         classLink: "",
         subject: "",
         category: "",
+        standard:"",
         time: "",
-        duration: ""
+        date: "",
+        error:"",
+        success: false
     })
-    const handleSubmit = e =>{
-        e.preventDefault();
-        if (todoString === "") {
-            return alert("Dimag hi nii h mtlb");
-        }
+    const {classLink, subject,standard,time ,date,success,error} = project;
+    const user = isAuthenticated();
 
-        const todo = {
-            todoString,
-            id: v4()
-        }
-        // dispatch({
-        //     type: ADD_TODO,
-        //     payload: todo
-        // })
-
-        setTodoString("")
-    };
-    return (
+    const handleChange = name => event => {
+        setProject({
+            ...project,error: false, [name]: event.target.value
+        })
+    }
+    const onSubmit = event => {
+        event.preventDefault();
+        setProject({
+            ...project,error: false
+        });
+        classes({classLink,user,subject,standard,time,date})
+            .then( (data) =>{
+                console.log(data)
+                if(data.error){
+                   
+                    setProject({
+                        ...project,
+                        error: data.error,
+                        success: false
+                    })
+                }
+                else{
+                    setProject({
+                        ...project,
+                        classLink: "",
+                        subject: "",
+                        category: "",
+                        standard:"",
+                        time: "",
+                        date: "",
+                        error:"",
+                        success: true
+                    })
+                }
+            })
+            .catch(console.log("Error in classes"))
+    }
+   
+    const dashboard = ()=> (
         /*--------------------------------------------------------------------------------*/
         /* Used In Dashboard-4 [General]                                                  */
         /*--------------------------------------------------------------------------------*/
@@ -80,15 +132,17 @@ const Projects = () => {
                         </div>
                     </div> */}
                 </div>
+                {successMessage()}
+                {errorMessage()}
                 <Table className="no-wrap v-middle" responsive>
                     <thead>
                         <tr className="border-0">
                             <th className="border-0">Class</th>
                             <th className="border-0">Subject</th>
                             <th className="border-0">Group/Section</th>
-                            <th className="border-0">Category</th>
+                            
                             <th className="border-0">Time</th>
-                            <th className="border-0">Duration</th>
+                            <th className="border-0">date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -98,76 +152,68 @@ const Projects = () => {
                                     <div className="">
                                     <Input
                                     type="text"
-                                    name={project.classLink}
-                                    id={project.classLink}
+                                    name={classLink}
+                                    id={classLink}
                                     placeholder="Class link here.."
-                                    value={project.classLink}
-                                    onChange={e=> setProject({
-                                        classLink: "e.target.value"
-                                    })}
+                                    value={classLink}
+                                    onChange={handleChange("classLink")}
                                     ></Input></div>
                                 </div>
                             </td>
-                            <td><Input type="select" className="custom-select">
-                                <option value="0">Physics</option>
-                                <option value="1">Chemistry</option>
-                                <option value="2">Maths</option>
-                                <option value="3">Computer</option>
+                            <td><Input type="select" className="custom-select" value={subject}
+                                    onChange={handleChange("subject")}>
+                                <option value="0">Select</option>
+                                <option value="1">Physics</option>
+                                <option value="2">Chemistry</option>
+                                <option value="3">Maths</option>
+                                <option value="4">Computer</option>
                             </Input></td>
 
                             <td>
-                            <Input type="select" className="custom-select">
-                                <option value="0">9</option>
-                                <option value="1">10</option>
-                                <option value="1">11</option>
-                                <option value="1">12</option>
+                            <Input type="select" className="custom-select" value={standard}
+                                    onChange={handleChange("standard")}>
+                                <option value="0">Select</option>
+                                <option value="1">9</option>
+                                <option value="2">10</option>
+                                <option value="3">11</option>
+                                <option value="4">12</option>
                             </Input>
                                 
 
                             </td>
-                            <td>
-                            <Input type="select" className="custom-select">
-                                <option value="0">Regular Class</option>
-                                <option value="1">Doubt Class</option>
-                            </Input>
-                                
-
-                            </td>
+                            
                             <td><Input
                                     type="time"
                                     name="todo"
                                     id="todo"
                                     placeholder=" : "
                                     value={time}
-                                    onChange={e=> setTime(e.target.value)}
+                                    onChange={handleChange("time")}
                                     style={{maxWidth:"100px"}}
                                     ></Input></td>
                             <td className="blue-grey-text  text-darken-4 font-medium"><Input
-                                    type="text"
-                                    name="duration"
-                                    id="duration"
+                                    type="date"
+                                    name="date"
+                                    id="date"
                                     placeholder="1 hr."
-                                    value={time}
-                                    onChange={e=> setDuration(e.target.value)}
-                                    style={{maxWidth:"100px"}}
+                                    value={date}
+                                    onChange={handleChange("date")}
+                                    style={{maxWidth:"200px"}}
                                     ></Input></td>
-                                    <td><i class="fa fa-plus text-success" aria-hidden="true"></i></td>
+                                    <td><button type="submit"  onClick={onSubmit}><i class="fa fa-plus text-success" aria-hidden="true"></i></button></td>
                         </tr>
                         <tr>
                             <td>
                                 <div className="d-flex no-block align-items-center">
                                     
                                     <div className="">
-                                        <h5 className="mb-0 font-16 font-medium"><span><a href={project.classLink} target="_blank">Start Class</a></span></h5></div>
+                                        <h5 className="mb-0 font-16 font-medium"><span><a href={classLink} target="_blank">Start Class</a></span></h5></div>
                                 </div>
                             </td>
                             <td>Chemistry</td>
                             <td>10</td>
 
-                            <td>
-                                <i className="fa fa-circle text-success" id="tlp3"></i>
-
-                            </td>
+                            
                             <td>12;00 PM</td>
                             <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
                             <td><i class="fa fa-trash text-orange" aria-hidden="true"></i></td>
@@ -176,15 +222,12 @@ const Projects = () => {
                             <td>
                                 <div className="d-flex no-block align-items-center">
                                     <div className="">
-                                    <h5 className="mb-0 font-16 font-medium"><span><a href={project.classLink} target="_blank">Start Class</a></span></h5></div>
+                                    <h5 className="mb-0 font-16 font-medium"><span><a href={classLink} target="_blank">Start Class</a></span></h5></div>
                                 </div>
                             </td>
                             <td>Chemistry</td>
                             <td>10</td>
-                            <td>
-                                <i className="fa fa-circle text-orange" id="tlp4"></i>
-
-                            </td>
+                           
                             <td>12:00 PM</td>
                             <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
                             <td><i class="fa fa-trash text-orange" aria-hidden="true"></i></td>
@@ -194,6 +237,13 @@ const Projects = () => {
             </CardBody>
         </Card >
     );
+    return(
+        <React.Fragment>
+           
+            {dashboard()}
+            
+        </React.Fragment>
+    )
 }
 
 export default Projects;

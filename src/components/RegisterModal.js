@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import { signup1 } from './helper/index'
 
@@ -13,7 +13,7 @@ const RegisterModal = () =>{
         error:"",
         success: false
     })
-    
+
     const {name, mob,email, password, error, success} = values;
 
     const handleChange = name => event => {
