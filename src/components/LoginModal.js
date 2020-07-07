@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import { signin, authenticate, isAuthenticated } from './helper'
+import { Modal, Button } from 'react-bootstrap';
 
 const LoginModal = () =>{
     const [values,setValues] = useState({
@@ -50,11 +52,11 @@ const LoginModal = () =>{
         signin({email,password})
             .then( (data) =>{
                 
-                if(data.erroris){
+                if(data.error){
                    
                     setValues({
                         ...values,
-                        error: data.erroris,
+                        error: data.error,
                         loading: false
                     })
                 }
@@ -74,46 +76,46 @@ const LoginModal = () =>{
         if(didRedirect){
            
             if(user && user.role === 1){
-                return <Redirect to="/admin/dashboard"></Redirect>
+                return <Redirect to="/dashboard-teacher"></Redirect>
             }
             else{
-                return <Redirect to="/user/dashboard"></Redirect>
+                return <Redirect to="/dashboard"></Redirect>
             }
         }
         if(isAuthenticated()){
             return <Redirect to="/"></Redirect>
         }
     }
+    const login = ()=>(
+        <React.Fragment>
+             <Modal.Header closeButton>
+                    <Modal.Title><div className="modal-header border-0">
+                            <h3>Login</h3>
+                        </div></Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <div className="modal-body">
+                    <form action="#" className="row">
+                        <div className="col-12">
+                            <input type="email" className="form-control mb-3" id="signupEmail" name="signupEmail" placeholder="Email" onChange={handleChange("email")} value={email}></input>
+                        </div>
+                        <div className="col-12">
+                            <input type="password" className="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password" onChange={handleChange("password")} value={password}></input>
+                        </div>
+                        <div className="col-12">
+                                    <button type="submit" onClick={onSubmit} className="btn btn-primary-outline">LOG IN</button>
+                        </div>
+                    </form>
+                </div>
+            </Modal.Body>
+        </React.Fragment>
+    )
     return(
         <React.Fragment>
-            <div className="modal fade show" id="signupModal" tabindex="-1" role="dialog" style={{display: 'block'}}>
-    <div className="modal-dialog modal-lg" role="document">
-        <div className="modal-content rounded-0 border-0 p-4">
-            <div className="modal-header border-0">
-                <h3>Login</h3>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div className="modal-body">
-                <form action="#" className="row">
-                    <div className="col-12">
-                        <input type="text" className="form-control mb-3" id="loginPhone" name="loginPhone" placeholder="Phone"></input>
-                    </div>
-                    <div className="col-12">
-                        <input type="text" className="form-control mb-3" id="loginName" name="loginName" placeholder="Name"></input>
-                    </div>
-                    <div className="col-12">
-                        <input type="password" className="form-control mb-3" id="loginPassword" name="loginPassword" placeholder="Password"></input>
-                    </div>
-                    <div className="col-12">
-                        <button type="submit" className="btn btn-primary">LOGIN</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+            {loadingMessage()}
+            {errorMessage()}
+            {login()}
+            {performRedirect()}
         </React.Fragment>
         )
     };

@@ -134,7 +134,7 @@ const Projects = () => {
 
                             </td>
                             <td><Input
-                                    type="text"
+                                    type="time"
                                     name="todo"
                                     id="todo"
                                     placeholder=" : "

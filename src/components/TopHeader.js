@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { Modal, Button } from 'react-bootstrap';
 import ResgisterModal from './RegisterModal'
+import LoginModal from './LoginModal'
 
 const TopHeader = () =>{
 
@@ -46,35 +47,7 @@ const TopHeader = () =>{
 
 {/*LOGIN MODAL*/}
       <Modal show={showlogin} onHide={handleCloselogin}>
-        <Modal.Header closeButton>
-          <Modal.Title><div className="modal-header border-0">
-                <h3>Login</h3>
-            </div></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        <div className="modal-body">
-                <form action="#" className="row">
-                    <div className="col-12">
-                        <input type="text" className="form-control mb-3" id="loginPhone" name="loginPhone" placeholder="Phone"></input>
-                    </div>
-                    <div className="col-12">
-                        <input type="text" className="form-control mb-3" id="loginName" name="loginName" placeholder="Name"></input>
-                    </div>
-                    <div className="col-12">
-                        <input type="password" className="form-control mb-3" id="loginPassword" name="loginPassword" placeholder="Password"></input>
-                    </div>
-                    <div className="col-12">
-                        <button type="submit" className="btn btn-primary-outline">LOGIN</button>
-                    </div>
-                </form>
-            </div>
-        </Modal.Body>
-        <Modal.Footer>
-          {/* <Button variant="secondary" onClick={handleCloselogin}>
-            Close
-          </Button>
-           */}
-        </Modal.Footer>
+       <LoginModal></LoginModal>
       </Modal>
 
 
