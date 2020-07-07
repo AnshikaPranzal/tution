@@ -19,27 +19,31 @@ const NavBar =(props) => {
             <li className={`nav-item ${props.home}`}>
               <Link className="nav-link" to="/">HOME</Link>
             </li>
-            <li className={`nav-item ${props.about}`}>
-            <Link className="nav-link" to="/about">ABOUT</Link>
-              
-            </li>
+            
             <li className={`nav-item ${props.courses}`}>
             <Link className="nav-link" to="/course">COURSES</Link>
 
+            </li>
+
+            <li className={`nav-item ${props.notice}`}>
+            <Link className="nav-link" to="/notice">NOTICE</Link>
+            </li>
+            
+            <li className={`nav-item ${props.about}`}>
+            <Link className="nav-link" to="/about">ABOUT</Link>
+              
             </li>
             {/* <li className={`nav-item ${props.events}`}>
             <Link className="nav-link" to="/event">EVENTS</Link>
             </li> */}
 
-            <li className={`nav-item ${props.notice}`}>
-            <Link className="nav-link" to="/notice">NOTICE</Link>
-            </li>
+            
 
             <li className={`nav-item ${props.dashboard}`}>
             <Link className="nav-link" to="/dashboard">DASHBOARD</Link>
 
             </li>
-            <li className={`nav-item dropdown view ${props.pages}`}>
+            {/* <li className={`nav-item dropdown view ${props.pages}`}>
               
             <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" >PAGES</Link>
@@ -55,7 +59,7 @@ const NavBar =(props) => {
                 <a className="dropdown-item" href="event-single.html">Event Details</a>
                 <a className="dropdown-item" href="blog-single.html">Blog Details</a>
               </div>
-            </li>
+            </li> */}
             <li className={`nav-item ${props.contact}`}>
             <Link className="nav-link" to="/contact">CONTACT</Link>
             </li>

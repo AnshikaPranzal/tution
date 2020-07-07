@@ -995,7 +995,7 @@ link:focus,
 /* /teacher */
 /* footer */
 .newsletter {
-  background-image: linear-gradient(to right, transparent 50%, #68d8d6 50%);
+  
   margin-bottom: -170px;
   position: relative;
   z-index: 1;
