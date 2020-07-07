@@ -6,14 +6,14 @@ const Teacher = (props) => {
       };
     return(
         <React.Fragment>
-            <div className="col-lg-4 col-sm-6 mb-5 mb-lg-0" style={display}>
+            <div className="col" style={display}>
             <div className="card border-0 rounded-0 hover-shadow">
             <img className="card-img-top rounded-0" src={props.image} alt="teacher"></img>
             <div className="card-body">
                 <a href="teacher-single.html">
                 <h4 className="card-title">{props.name}</h4>
                 </a>
-                <p>Teacher</p>
+                <p>{props.subject}</p>
                 <ul className="list-inline">
                 <li className="list-inline-item"><a className="text-color" href="#"><i className="ti-facebook"></i></a></li>
                 <li className="list-inline-item"><a className="text-color" href="#"><i className="ti-twitter-alt"></i></a></li>

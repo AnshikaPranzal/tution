@@ -1,5 +1,5 @@
 import React from 'react';
-import About_pic from '../images/about/about-us.jpg'
+import About_pic from '../images/about/about3.jpg'
 import { Link } from 'react-router-dom';
 
 const AboutUs = () => {
@@ -15,7 +15,7 @@ const AboutUs = () => {
         <Link to='/about' className="btn btn-primary-outline">Learn more</Link>
       </div>
       <div className="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
-        <img className="img-fluid w-100" src={About_pic} alt="about image"></img>
+        <img className="img-fluid w-100" src={About_pic} alt="about image" style={{borderRadius: '10px'}}></img>
       </div>
     </div>
   </div>

@@ -27,9 +27,9 @@ const NavBar =(props) => {
             <Link className="nav-link" to="/course">COURSES</Link>
 
             </li>
-            <li className={`nav-item ${props.events}`}>
+            {/* <li className={`nav-item ${props.events}`}>
             <Link className="nav-link" to="/event">EVENTS</Link>
-            </li>
+            </li> */}
 
             <li className={`nav-item ${props.notice}`}>
             <Link className="nav-link" to="/notice">NOTICE</Link>

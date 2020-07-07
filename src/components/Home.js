@@ -97,7 +97,7 @@ const Home = () =>{
 
           <SuccessStory></SuccessStory>
 
-          <Events></Events>
+          {/* <Events></Events> */}
 
           <TeacherList></TeacherList>
 

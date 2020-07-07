@@ -15,7 +15,7 @@ const CourseItem = (props) => {
           <h4 className="card-title">{props.topic}</h4>
         </a>
         <p className="card-text mb-4"> {props.des}</p>
-        <a href="course-single.html" className="hvr-bounce-to-top">Apply now</a>
+        <a href="course-single.html" className="hvr-bounce-to-top">Enroll</a>
       </div>
     </div>
   </div>
