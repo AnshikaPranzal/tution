@@ -100,7 +100,7 @@ const RegisterModal = () =>{
                                     <input type="password" className="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password" onChange={handleChange("password")} value={password}></input>
                                 </div>
                                 <div className="col-12">
-                                    <button type="submit" onClick={onSubmit} className="btn btn-primary-outline">SIGN UP</button>
+                                    <button type="submit" onClick={onSubmit} className="hvr-bounce-to-top">SIGN UP</button>
                                 </div>
                             </form>
                         </div>
@@ -113,7 +113,7 @@ const RegisterModal = () =>{
              {successMessage()}
             {errorMessage()}
             {signup()}
-            <p class="text-success text-center">j{JSON.stringify(values)}</p>
+            {/* <p class="text-success text-center">j{JSON.stringify(values)}</p> */}
         </React.Fragment>
         )
     };

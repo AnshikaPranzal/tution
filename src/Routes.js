@@ -5,7 +5,7 @@ import Contact from './components/Contact';
 import Fulllayout from './components/Dashboard/layouts/fulllayout';
 import TopHeader from './components/TopHeader';
 import Navbar from './components/Navbar';
-import About from './components/About';
+import About from './components/AboutPage';
 import CoursePage from './components/CoursePage';
 import EventPage from './components/EventPage';
 import NoticePage from './components/NoticePage';

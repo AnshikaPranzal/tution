@@ -49,7 +49,7 @@ const Footer = () => {
                     <h4 className="text-white mb-5">LINKS</h4>
                     <ul className="list-unstyled">
                         <li className="mb-3"><Link className="text-color" to='/course'>Courses</Link></li>
-                        <li className="mb-3"><Link className="text-color" to='/event'>Events</Link></li>
+                        {/* <li className="mb-3"><Link className="text-color" to='/event'>Events</Link></li> */}
 
                     </ul>
                     </div>
