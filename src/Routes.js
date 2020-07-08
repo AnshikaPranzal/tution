@@ -1,5 +1,6 @@
-import React from 'react';
-import { BrowserRouter,Switch,Route } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter,Switch,Route } from 'react-router-dom';
+
 import Home from './components/Home';
 import Contact from './components/Contact';
 import Fulllayout from './components/Dashboard/layouts/fulllayout';
@@ -10,10 +11,18 @@ import CoursePage from './components/CoursePage';
 import EventPage from './components/EventPage';
 import NoticePage from './components/NoticePage';
 import FulllayoutTeacher from './components/Dashboard/layouts/fulllayout -teacher';
+import preloader from './images/preload.gif';
 
 
 
 function Routes() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+    
+  })
   return (
     
       <BrowserRouter>
@@ -21,7 +30,10 @@ function Routes() {
                 <TopHeader></TopHeader>
                 <Navbar ></Navbar>
           </header> */}
-          
+          {loading?<div className="preloader">
+            <img src={preloader}></img>
+          </div>:
+        
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
@@ -34,7 +46,7 @@ function Routes() {
             <Route exact path="/event" component={EventPage} />
             <Route exact path='/notice' component={NoticePage}/>
             <Route exact path="/register" component={()=> <div>Join Us</div>} />
-          </Switch>
+          </Switch>}
         {/* <Footer></Footer> */}
     </BrowserRouter>
    
