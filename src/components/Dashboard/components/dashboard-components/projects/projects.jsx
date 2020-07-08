@@ -85,9 +85,8 @@ const Projects = () => {
                     </thead>
                     <tbody>
                         {
-                            
                             classO.map((obj,index)=>{
-                                console.log(obj)
+                            //    if(obj.subject === "Maths")
                                 return(
                                 <tr key={index}>
                                     <td>
