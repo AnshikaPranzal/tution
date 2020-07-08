@@ -1,9 +1,13 @@
-import React from "react";
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable no-unused-vars */
+import React ,{useEffect,useState} from "react";
 
 import img1 from '../../../assets/images/users/1.jpg';
 import img2 from '../../../assets/images/users/2.jpg';
 import img3 from '../../../assets/images/users/3.jpg';
 import img4 from '../../../assets/images/users/4.jpg';
+
+import { getAllClasses } from '../../../../helper/index'
 
 import {
     Card,
@@ -13,13 +17,34 @@ import {
     Input,
     Table
 } from 'reactstrap';
+import { Link } from "react-router-dom";
 
 const Projects = () => {
+    const [classO, setclassO] = useState([])
+  const [error, seterror] = useState(false)
+
+
+  const loadAllclasses = () =>{
+    getAllClasses().then(data =>{
+        console.log(data)
+      if(data.error){
+        seterror(data.error)
+      }
+      else{
+        setclassO(data)
+      }
+    })
+  }
+  
+  useEffect (() => {
+    loadAllclasses()
+    },[])
+
     return (
         /*--------------------------------------------------------------------------------*/
         /* Used In Dashboard-4 [General]                                                  */
         /*--------------------------------------------------------------------------------*/
-
+        
         <Card>
             <CardBody>
                 <div className="d-flex align-items-center">
@@ -30,10 +55,10 @@ const Projects = () => {
                     <div className="ml-auto d-flex align-items-center">
                         <ul className="list-inline font-12 dl mr-3 mb-0">
                             <li className="border-0 p-0 text-orange list-inline-item">
-                                <i className="fa fa-circle"></i> Regular Class
+                                <i className="fa fa-circle"></i> Regular ClassO
 								</li>
                             <li className="border-0 p-0 text-success list-inline-item">
-                                <i className="fa fa-circle"></i> Doubt Class
+                                <i className="fa fa-circle"></i> Doubt ClassO
 								</li>
                         </ul>
                     </div>
@@ -54,80 +79,35 @@ const Projects = () => {
                             <th className="border-0">Teacher</th>
                             <th className="border-0">Subject</th>
 
-                            <th className="border-0">Category</th>
                             <th className="border-0">Time</th>
-                            <th className="border-0">Duration</th>
+                            <th className="border-0">Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div className="d-flex no-block align-items-center">
-                                    <div className="mr-2"><img src={img1} alt="user" className="rounded-circle" width="45" /></div>
-                                    <div className="">
-                                        <h5 className="mb-0 font-16 font-medium">Hanna Gover</h5><span>hgover@gmail.com</span></div>
-                                </div>
-                            </td>
-                            <td>Chemistry</td>
-
-                            <td>
-                                <i className="fa fa-circle text-orange" id="tlp1"></i>
-
-                            </td>
-                            <td>12:00 PM</td>
-                            <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div className="d-flex no-block align-items-center">
-                                    <div className="mr-2"><img src={img2} alt="user" className="rounded-circle" width="45" /></div>
-                                    <div className="">
-                                        <h5 className="mb-0 font-16 font-medium">Daniel Kristeen</h5><span>Kristeen@gmail.com</span></div>
-                                </div>
-                            </td>
-                            <td>Chemistry</td>
-
-                            <td>
-                                <i className="fa fa-circle text-success" id="tlp2"></i>
-
-                            </td>
-                            <td>12;00 PM</td>
-                            <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div className="d-flex no-block align-items-center">
-                                    <div className="mr-2"><img src={img3} alt="user" className="rounded-circle" width="45" /></div>
-                                    <div className="">
-                                        <h5 className="mb-0 font-16 font-medium">Julian Josephs</h5><span>Josephs@gmail.com</span></div>
-                                </div>
-                            </td>
-                            <td>Chemistry</td>
-
-                            <td>
-                                <i className="fa fa-circle text-success" id="tlp3"></i>
-
-                            </td>
-                            <td>12;00 PM</td>
-                            <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div className="d-flex no-block align-items-center">
-                                    <div className="mr-2"><img src={img4} alt="user" className="rounded-circle" width="45" /></div>
-                                    <div className="">
-                                        <h5 className="mb-0 font-16 font-medium">Jan Petrovic</h5><span>hgover@gmail.com</span></div>
-                                </div>
-                            </td>
-                            <td>Chemistry</td>
-
-                            <td>
-                                <i className="fa fa-circle text-orange" id="tlp4"></i>
-
-                            </td>
-                            <td>12;00 PM</td>
-                            <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
-                        </tr>
+                        {
+                            
+                            classO.map((obj,index)=>{
+                                console.log(obj)
+                                return(
+                                <tr key={index}>
+                                    <td>
+                                        <div className="d-flex no-block align-items-center">
+                                            <div className="mr-2"><img src={img1} alt="user" className="rounded-circle" width="45" /></div>
+                                            <div className="">
+                                                <h5 className="mb-0 font-16 font-medium">{obj.name}</h5><span>{obj.email}</span></div>
+                                        </div>
+                                    </td>
+                                    <td>{obj.subject}</td>
+                                    <td>{obj.time}</td>
+                                    <td className="blue-grey-text  text-darken-4 font-medium">{obj.date.substring(8, 10)}{obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}</td>
+                                    <td>
+                                        <a href={obj.classLink} target="_blank">Click to open</a>
+                                    </td>
+                                </tr>
+                            )})
+                        }
+                        
+                       
                     </tbody>
                 </Table>
             </CardBody>

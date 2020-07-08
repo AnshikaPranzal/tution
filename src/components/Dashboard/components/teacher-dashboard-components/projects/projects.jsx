@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react';
 import { Link,Redirect } from 'react-router-dom';
@@ -10,7 +11,7 @@ import img2 from '../../../assets/images/users/2.jpg';
 import img3 from '../../../assets/images/users/3.jpg';
 import img4 from '../../../assets/images/users/4.jpg';
 
-import { classes,isAuthenticated } from '../../../../helper/index'
+import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass} from '../../../../helper/index'
 
 import {
     Card,
@@ -20,16 +21,35 @@ import {
     Input,
     Table
 } from 'reactstrap';
+import { useEffect } from 'react';
 
 const Projects = () => {
 
  
-
+    const [classO, setclassO] = useState([])
+    const [errorF, seterrorF] = useState(false)
+  
+  
+    const loadAllclasses = () =>{
+      getAllClasses().then(data =>{
+          console.log(data)
+        if(data.error){
+          seterrorF(data.error)
+        }
+        else{
+          setclassO(data)
+        }
+      })
+    }
+    
+    useEffect (() => {
+      loadAllclasses()
+      },[])
     const successMessage = () =>(
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
                     <div className="alert alert-success" style={{display: success ? "" : "none"}}>
-                        Congratulations!!!You are registered with us. Start now{" "}<Link to="/signin">here</Link>
+                        Congratulations!!! Class is added.
                     </div>
                 </div>
         </div>
@@ -47,19 +67,23 @@ const Projects = () => {
         </div>
     )}
     // const {dispatch} = useContext(TodoContext)
+    const {user} = isAuthenticated();
+    const nameT = user.name;
+    const emailT = user.email;
     const [project, setProject] = useState({
         classLink: "",
+        name:nameT,
+        email:emailT,
         subject: "",
-        category: "",
+        Class: "",
         standard:"",
         time: "",
         date: "",
         error:"",
         success: false
     })
-    const {classLink, subject,standard,time ,date,success,error} = project;
-    const user = isAuthenticated();
-
+    const {classLink,name,email, subject,standard,time ,date,success,error} = project;
+   
     const handleChange = name => event => {
         setProject({
             ...project,error: false, [name]: event.target.value
@@ -70,9 +94,11 @@ const Projects = () => {
         setProject({
             ...project,error: false
         });
-        classes({classLink,user,subject,standard,time,date})
+        
+        classes({classLink,name,email,subject,standard,time,date})
             .then( (data) =>{
                 console.log(data)
+                console.log(project)
                 if(data.error){
                    
                     setProject({
@@ -86,18 +112,84 @@ const Projects = () => {
                         ...project,
                         classLink: "",
                         subject: "",
-                        category: "",
+                        Class: "",
                         standard:"",
                         time: "",
                         date: "",
                         error:"",
                         success: true
                     })
+                    setrefresh(!refresh)
                 }
             })
             .catch(console.log("Error in classes"))
     }
-   
+    const deleteaClass = catuctId => {
+        deleteClass(catuctId).then(data=>{
+            console.log(data)
+            if(data.error)
+            {
+                console.log(data.error)
+                // setValues({...values,error:data.error})
+            }
+            else{
+               setrefresh(!refresh)
+            }
+        })
+    }
+    const getClass = classId => {
+        getAClass(classId).then(data=>{
+            console.log(data)
+            if(data.error)
+            {
+                console.log(data.error)
+                // setValues({...values,error:data.error})
+            }
+            else{
+                setProject({
+                    ...project,
+                    classLink: data.classLink,
+                    subject: data.subject,
+                    standard:data.standard,
+                    time: data.time,
+                    date: data.date
+                })
+                setrefresh(!refresh)
+            }
+        })
+    }
+    const updateaClass = catuctId => {
+        updateClass(catuctId).then(data=>{
+            console.log(data)
+            if(data.error)
+            {
+                console.log(data.error)
+                // setValues({...values,error:data.error})
+            }
+            else{
+                setProject({
+                    ...project,
+                    classLink: "",
+                    subject: "",
+                    Class: "",
+                    standard:"",
+                    time: "",
+                    date: "",
+                    error:"",
+                    success: true
+                })
+                setrefresh(!refresh)
+            }
+        })
+    }
+
+   useEffect(() => {
+       handleChange("name")
+   })
+   const [refresh, setrefresh] = useState(true)
+   useEffect(() => {
+       loadAllclasses()
+   }, [refresh])
     const dashboard = ()=> (
         /*--------------------------------------------------------------------------------*/
         /* Used In Dashboard-4 [General]                                                  */
@@ -110,7 +202,7 @@ const Projects = () => {
                         <CardTitle>Add Classes</CardTitle>
                         <CardSubtitle>Click on them to join</CardSubtitle>
                     </div>
-                    <div className="ml-auto d-flex align-items-center">
+                    {/* <div className="ml-auto d-flex align-items-center">
                         <ul className="list-inline font-12 dl mr-3 mb-0">
                             <li className="border-0 p-0 text-orange list-inline-item">
                                 <i className="fa fa-circle"></i>
@@ -120,7 +212,7 @@ const Projects = () => {
                                 <i className="fa fa-circle"></i> Doubt Class
 								</li>
                         </ul>
-                    </div>
+                    </div> */}
                     {/* <div className="ml-auto d-flex no-block align-items-center">
                         <div className="dl">
                             <Input type="select" className="custom-select">
@@ -157,29 +249,36 @@ const Projects = () => {
                                     placeholder="Class link here.."
                                     value={classLink}
                                     onChange={handleChange("classLink")}
-                                    ></Input></div>
+                                    ></Input>
+                                     {/* <Input
+                                    type="text"
+                                    name={name}
+                                    id={name}
+                                    placeholder="Class link here.."
+                                    value={name}
+                                    onChange={handleChange("name")}
+                                    // style={{display: "none"}}
+                                    ></Input> */}
+                                    </div>
                                 </div>
                             </td>
                             <td><Input type="select" className="custom-select" value={subject}
                                     onChange={handleChange("subject")}>
                                 <option value="0">Select</option>
-                                <option value="1">Physics</option>
-                                <option value="2">Chemistry</option>
-                                <option value="3">Maths</option>
-                                <option value="4">Computer</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Maths">Maths</option>
                             </Input></td>
 
                             <td>
                             <Input type="select" className="custom-select" value={standard}
                                     onChange={handleChange("standard")}>
                                 <option value="0">Select</option>
-                                <option value="1">9</option>
-                                <option value="2">10</option>
-                                <option value="3">11</option>
-                                <option value="4">12</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
                             </Input>
-                                
-
                             </td>
                             
                             <td><Input
@@ -202,36 +301,24 @@ const Projects = () => {
                                     ></Input></td>
                                     <td><button type="submit"  onClick={onSubmit}><i class="fa fa-plus text-success" aria-hidden="true"></i></button></td>
                         </tr>
-                        <tr>
+                        {classO.map((obj,i)=>(
+                            <tr key={i}>
                             <td>
                                 <div className="d-flex no-block align-items-center">
-                                    
-                                    <div className="">
-                                        <h5 className="mb-0 font-16 font-medium"><span><a href={classLink} target="_blank">Start Class</a></span></h5></div>
+                                <div className="">
+                                        <h5 className="mb-0 font-16 font-medium"><span><a href={obj.classLink} target="_blank">Start Class</a></span></h5></div>
                                 </div>
                             </td>
-                            <td>Chemistry</td>
-                            <td>10</td>
-
-                            
-                            <td>12;00 PM</td>
-                            <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
-                            <td><i class="fa fa-trash text-orange" aria-hidden="true"></i></td>
+                            <td>{obj.subject}</td>
+                            <td>{obj.standard}</td>
+                            <td>{obj.time}</td>
+                            <td className="blue-grey-text  text-darken-4 font-medium">{obj.date.substring(8, 10)}{obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}</td>
+                            <td><i class="fa fa-pencil text-orange" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{deleteaClass(obj._id)}} aria-hidden="true"></i>
+                            <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClass(obj._id)}} aria-hidden="true"></i></td>
                         </tr>
-                        <tr>
-                            <td>
-                                <div className="d-flex no-block align-items-center">
-                                    <div className="">
-                                    <h5 className="mb-0 font-16 font-medium"><span><a href={classLink} target="_blank">Start Class</a></span></h5></div>
-                                </div>
-                            </td>
-                            <td>Chemistry</td>
-                            <td>10</td>
-                           
-                            <td>12:00 PM</td>
-                            <td className="blue-grey-text  text-darken-4 font-medium">1 hr.</td>
-                            <td><i class="fa fa-trash text-orange" aria-hidden="true"></i></td>
-                        </tr>
+                        ))}
+                        
+                        
                     </tbody>
                 </Table>
             </CardBody>

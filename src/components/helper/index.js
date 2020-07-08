@@ -84,3 +84,65 @@ export const isAuthenticated = () =>{
         return false;
     }
 }
+
+export const getAllClasses = ()=>{
+    
+    return fetch(`${API}/classes`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the Classes")
+    })
+}
+
+export const getAClass = classId=>{
+    
+    return fetch(`${API}/class/${classId}`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the Class")
+    })
+}
+
+export const deleteClass = (classId)=>{
+    
+    return fetch(`${API}/class/delete/${classId}`,{
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            // Authorization: `Bearer ${token}` 
+        }
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in deleting the Class")
+    })
+}
+
+export const updateClass = (classId,classO)=>{
+    
+    return fetch(`${API}/class/update/${classId}`,{
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(classO)
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in updating class")
+    })
+}
