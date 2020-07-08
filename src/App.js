@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Cube } from 'styled-loaders-react'
 // import './plugins/jQuery/jquery.min.js'
 // import './plugins/bootstrap/bootstrap.min.js'
 // import './plugins/slick/slick.min.js'
@@ -11,9 +12,17 @@ import React from 'react';
 import Home from './components/Home'
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    
+  })
   return (
     <div className="App">
-      <Home></Home>
+      {loading?<Cube color="red" size="60px" duration="5s"></Cube>:
+        <Home></Home>}
     </div>
   );
 }
