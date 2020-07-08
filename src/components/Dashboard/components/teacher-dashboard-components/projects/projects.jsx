@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable array-callback-return */
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react';
@@ -197,7 +199,7 @@ const Projects = () => {
     setProject({
         ...project,error: false, name: nameT, email: emailT
     })
-   },[])
+   })
    const [refresh, setrefresh] = useState(true)
    useEffect(() => {
        loadAllclasses()
