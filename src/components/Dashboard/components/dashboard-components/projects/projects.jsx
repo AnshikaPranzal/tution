@@ -52,16 +52,7 @@ const Projects = () => {
                         <CardTitle>Your Classes</CardTitle>
                         <CardSubtitle>Click on them to join</CardSubtitle>
                     </div>
-                    <div className="ml-auto d-flex align-items-center">
-                        <ul className="list-inline font-12 dl mr-3 mb-0">
-                            <li className="border-0 p-0 text-orange list-inline-item">
-                                <i className="fa fa-circle"></i> Regular ClassO
-								</li>
-                            <li className="border-0 p-0 text-success list-inline-item">
-                                <i className="fa fa-circle"></i> Doubt ClassO
-								</li>
-                        </ul>
-                    </div>
+                  
                     <div className="ml-auto d-flex no-block align-items-center">
                         <div className="dl">
                             <Input type="select" className="custom-select">

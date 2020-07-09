@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter,Switch,Route } from 'react-router-dom';
 
@@ -11,6 +12,7 @@ import CoursePage from './components/CoursePage';
 import EventPage from './components/EventPage';
 import NoticePage from './components/NoticePage';
 import FulllayoutTeacher from './components/Dashboard/layouts/fulllayout -teacher';
+import FulllayoutAdmin from './components/Dashboard/layouts/fulllayout -admin';
 import preloader from './images/preload.gif';
 
 
@@ -31,7 +33,7 @@ function Routes() {
                 <Navbar ></Navbar>
           </header> */}
           {loading?<div className="preloader">
-            <img src={preloader}></img>
+            <img src={preloader} alt="Loading..."></img>
           </div>:
         
           <Switch>
@@ -41,6 +43,7 @@ function Routes() {
             <Route exact path="/payment" component={Fulllayout} />
             <Route exact path="/material" component={Fulllayout} />
             <Route exact path="/dashboard-teacher" component={FulllayoutTeacher} />
+            <Route exact path="/dashboard-admin" component={FulllayoutAdmin} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/course" component={CoursePage} />
             <Route exact path="/event" component={EventPage} />

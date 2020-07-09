@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from '../../Navbar';
 import Sidebar from '../components/sidebar/sidebar.jsx';
 import Footer from '../components/footer/footer.jsx';
-import ThemeRoutes from '../routes/routing-teacher.jsx';
+import ThemeRoutes from '../routes/routing-admin.jsx';
 import '../assets/scss/style.css'
 const Fulllayout = (props) => {
 

@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Nav } from 'reactstrap';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import profile from '../../assets/images/big/img3.jpg'
+import { isAuthenticated } from '../../../helper/index'
 const Sidebar = (props) => {
 
     /*--------------------------------------------------------------------------------*/
@@ -20,16 +21,16 @@ const Sidebar = (props) => {
     const activeRoute = (routeName) => {
         return props.location.pathname.indexOf(routeName) > -1 ? 'selected' : '';
     }
-
+    const { user } = isAuthenticated()
     return (
         <aside className="left-sidebar" id="sidebarbg" data-sidebarbg="skin6" onMouseEnter={expandLogo.bind(null)} onMouseLeave={expandLogo.bind(null)}>
             <div className="scroll-sidebar">
                 <PerfectScrollbar className="sidebar-nav">
                     <div className="row">
-                        <div className="col-2"></div>
-                        <div className="col-8" style={{alignItems:"center"}}>
-                        <img className="img-fluid w-60" style={{borderRadius: "50%", width:"10rem", height:"10rem", marginTop:"7em", marginBottom:"1em"}} src={profile} alt="about image"></img>
-                        <h4 style={{textAlign:"center"}}>Hello, Pengy</h4>
+                        <div className="col-3"></div>
+                        <div className="col-6" style={{alignItems:"center"}}>
+                        <img className="img-fluid w-60" style={{borderRadius: "50%", width:"100%",height:"6vw", marginTop:"7em", marginBottom:"1em"}} src={profile} alt="about image"></img>
+                        <h4 style={{textAlign:"center",fontSize:"1rem"}}>Hello, {user.name}</h4>
                         </div>
                     </div>
                 
