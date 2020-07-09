@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CourseItem = (props) => {
     return(
@@ -9,7 +10,7 @@ const CourseItem = (props) => {
       <div className="card-body">
         <ul className="list-inline mb-2">
           <li className="list-inline-item"><i className="ti-calendar mr-1 text-color"></i>{props.date}</li>
-          <li className="list-inline-item"><a className="text-color" href="#">{props.subject}</a></li>
+          <li className="list-inline-item">{props.subject}</li>
         </ul>
         <a href="course-single.html">
           <h4 className="card-title">{props.topic}</h4>

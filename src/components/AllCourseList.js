@@ -4,6 +4,8 @@ import course_pic1  from '../images/courses/physics2.png';
 import course_pic2  from '../images/courses/chemistry3.png';
 import course_pic3  from '../images/courses/maths.png';
 
+
+
 const AllCourseList = () => {
     return(
         <React.Fragment>
