@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NoticeItem from './NoticeItem';
+import { getAllNotices } from './helper';
 
 const AllNoticeList = () => {
+
+    const [noticeO, setnoticeO] = useState([])
+  const [error, seterror] = useState(false)
+
+
+  const loadAllnotices = () =>{
+    getAllNotices().then(data =>{
+        console.log(data)
+      if(data.error){
+        seterror(data.error)
+      }
+      else{
+        setnoticeO(data)
+      }
+    })
+  }
+  
+  useEffect (() => {
+    loadAllnotices()
+    },[])
+    
     return(
         <React.Fragment>
             <section class="section">
@@ -9,34 +31,21 @@ const AllNoticeList = () => {
                     <div class="row">
                     <div class="col-12">
                         <ul class="list-unstyled">
-                            <NoticeItem 
-                            date="30" 
-                            month="APRIL" 
-                            year="2019" 
-                            title="Teaching Materials and Testing Methods" 
-                            des=">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt perferendis saepe omnis officia! Doloribus quae maiores laboriosam praesentium enim fugiat ipsam laudantium assumenda!">
-                            </NoticeItem>
-                            <NoticeItem 
+                            {
+                            
+                            noticeO.map((obj, index) => {
+                                return(
+                                    <NoticeItem 
                             date="30" 
                             month="MAY" 
                             year="2020" 
-                            title="Teaching Materials and Testing Methods" 
-                            des=">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt perferendis saepe omnis officia! Doloribus quae maiores laboriosam praesentium enim fugiat ipsam laudantium assumenda!">
+                            title={obj.title} 
+                            des={obj.description}>
                             </NoticeItem>
-                            <NoticeItem 
-                            date="25" 
-                            month="JAUARY" 
-                            year="2020" 
-                            title="Teaching Materials and Testing Methods" 
-                            des=">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt perferendis saepe omnis officia! Doloribus quae maiores laboriosam praesentium enim fugiat ipsam laudantium assumenda!">
-                            </NoticeItem>
-                            <NoticeItem 
-                            date="13" 
-                            month="APRIL" 
-                            year="2020" 
-                            title="Teaching Materials and Testing Methods" 
-                            des=">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt perferendis saepe omnis officia! Doloribus quae maiores laboriosam praesentium enim fugiat ipsam laudantium assumenda!">
-                            </NoticeItem>
+                                )
+                            })
+
+                            }
                         </ul>
                     </div>
                     </div>

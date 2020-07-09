@@ -146,3 +146,65 @@ export const updateClass = (classId,classO)=>{
         console.log("Error in updating class")
     })
 }
+
+export const getAllNotices = ()=>{
+    
+    return fetch(`${API}/notices`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the Notices")
+    })
+}
+
+export const getANotice = noticeId=>{
+    
+    return fetch(`${API}/notice/${noticeId}`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the Notice")
+    })
+}
+
+export const deleteNotice = (noticeId)=>{
+    
+    return fetch(`${API}/notice/delete/${noticeId}`,{
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            // Authorization: `Bearer ${token}` 
+        }
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in deleting the Notice")
+    })
+}
+
+export const updateNotice = (noticeId,NoticeO)=>{
+    
+    return fetch(`${API}/notice/update/${noticeId}`,{
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(NoticeO)
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in updating Notice")
+    })
+}
