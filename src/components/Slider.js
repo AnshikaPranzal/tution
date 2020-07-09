@@ -17,11 +17,12 @@ import bg from '../images/banner/banner-1.jpg';
 const SliderList = () => {
   var sectionStyle = {
     width: "100%",
-    height: "600px",
-    backgroundImage: `url(${bg})`
+    height: "90vh",
+    backgroundImage: `url(${bg})`,
+    padding: "33vh 0 25vh"
   };
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,

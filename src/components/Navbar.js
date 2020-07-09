@@ -11,10 +11,10 @@ const NavBar =(props) => {
       <div className={`navigation w-100 ${props.active}`} >
     <div className="container">
     <Navbar collapseOnSelect expand="lg">
-    <Navbar.Brand href="#home"><a className="navbar-brand" href="/"><img src={logo} alt="logo"></img></a></Navbar.Brand>
+    <Navbar.Brand href="#home"><a className="navbar-brand" href="/"><img src={logo} alt="logo" style={{width: "10rem"}}></img></a></Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
-    <div className="mr-auto">
+    <div className="mr-auto"style={{lineHeight: "0"}}>
           <ul className="navbar-nav ml-auto text-center">
             <li className={`nav-item ${props.home}`}>
               <Link className="nav-link" to="/">HOME</Link>

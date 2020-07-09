@@ -4,7 +4,7 @@ const NoticeItem = (props) => {
     return(
         <React.Fragment>
             <li class="d-md-table mb-4 w-100 border-bottom hover-shadow">
-            <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0" style={{width: "246px"}}><span class="h2 d-block">{props.date}</span> {props.month}, {props.year}</div>
+            <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0" style={{width: "15rem"}}><span class="h2 d-block">{props.date}</span> {props.month}, {props.year}</div>
             <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
               <a href="notice-single.html" class="h4 mb-3 d-block">{props.title}</a>
               <p class="mb-0">{props.des}</p>
