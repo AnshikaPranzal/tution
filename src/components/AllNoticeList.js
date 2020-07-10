@@ -24,6 +24,7 @@ const AllNoticeList = () => {
     loadAllnotices()
     },[])
     
+    const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     return(
         <React.Fragment>
             <section class="section">
@@ -36,9 +37,9 @@ const AllNoticeList = () => {
                             noticeO.map((obj, index) => {
                                 return(
                                     <NoticeItem 
-                            date="30" 
-                            month="MAY" 
-                            year="2020" 
+                            date={obj.date.substring(8,10)} 
+                            month={Month[parseInt(obj.date.substring(5,7)-1)]} 
+                            year={obj.date.substring(0,4)} 
                             title={obj.title} 
                             des={obj.description}>
                             </NoticeItem>
