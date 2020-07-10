@@ -27,6 +27,7 @@ const Projects = () => {
     const loadAllclasses = () =>{
       getAllClasses().then(data =>{
           console.log(data)
+        if(data)
         if(data.error){
           seterrorF(data.error)
         }

@@ -16,18 +16,21 @@ import {
 
 const Projects = () => {
     const [classO, setclassO] = useState([])
-  const [, seterror] = useState(false)
+  // eslint-disable-next-line no-unused-vars
+  const [error, seterror] = useState(false)
 
 
   const loadAllclasses = () =>{
     getAllClasses().then(data =>{
         console.log(data)
+        if(data){
       if(data.error){
         seterror(data.error)
       }
       else{
         setclassO(data)
       }
+    }
     })
   }
   
