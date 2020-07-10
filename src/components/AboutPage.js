@@ -3,7 +3,6 @@ import $ from 'jquery';
 import TopHeader from './TopHeader.js';
 import Navbar from './Navbar.js';
 import Footer from './Footer.js';
-import About_pic from '../images/about/about-us.jpg'
 import Title from './Title.js';
 import AboutSection from './AboutSection.js';
 import SuccessStory from './SuccessStory.js';

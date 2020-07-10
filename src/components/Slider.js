@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery'
 import '../plugins/bootstrap/bootstrap.min.css'
 import '../plugins/slick/slick.css'
 import '../plugins/themify-icons/themify-icons.css'

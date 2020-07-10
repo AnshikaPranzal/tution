@@ -1,11 +1,7 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable no-unused-vars */
+
 import React ,{useEffect,useState} from "react";
 
 import img1 from '../../../assets/images/users/1.jpg';
-import img2 from '../../../assets/images/users/2.jpg';
-import img3 from '../../../assets/images/users/3.jpg';
-import img4 from '../../../assets/images/users/4.jpg';
 
 import { getAllClasses } from '../../../../helper/index'
 
@@ -17,11 +13,10 @@ import {
     Input,
     Table
 } from 'reactstrap';
-import { Link } from "react-router-dom";
 
 const Projects = () => {
     const [classO, setclassO] = useState([])
-  const [error, seterror] = useState(false)
+  const [, seterror] = useState(false)
 
 
   const loadAllclasses = () =>{
@@ -91,7 +86,7 @@ const Projects = () => {
                                     <td>{obj.time}</td>
                                     <td className="blue-grey-text  text-darken-4 font-medium">{obj.date.substring(8, 10)}{obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}</td>
                                     <td>
-                                        <a href={obj.classLink} target="_blank">Click to open</a>
+                                        <a href={obj.classLink} target="blank" rel='noreferrer'>Click to open</a>
                                     </td>
                                 </tr>
                             )})

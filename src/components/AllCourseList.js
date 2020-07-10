@@ -9,7 +9,7 @@ import course_pic3  from '../images/courses/maths.png';
 const AllCourseList = () => {
     return(
         <React.Fragment>
-              <section class="section">
+              <section className="section">
               <div className='container'>
             <div className="row justify-content-center">
             <CourseItem image={course_pic1} date="02-14-2018" subject="Science" topic="Physics" des=" Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor

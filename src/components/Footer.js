@@ -62,10 +62,10 @@ const Footer = () => {
                     {/* <div className="col-lg-2 col-md-3 col-sm-4 col-6 mb-5 mb-md-0">
                     <h4 className="text-white mb-5">SUPPORT</h4>
                     <ul className="list-unstyled">
-                        <li className="mb-3"><a className="text-color" href="#">Forums</a></li>
-                        <li className="mb-3"><a className="text-color" href="#">Documentation</a></li>
-                        <li className="mb-3"><a className="text-color" href="#">Language</a></li>
-                        <li className="mb-3"><a className="text-color" href="#">Release Status</a></li>
+                        <li className="mb-3"><a className="text-color" href="/">Forums</a></li>
+                        <li className="mb-3"><a className="text-color" href="/">Documentation</a></li>
+                        <li className="mb-3"><a className="text-color" href="/">Language</a></li>
+                        <li className="mb-3"><a className="text-color" href="/">Release Status</a></li>
                     </ul>
                     </div> */}
                 </div>
@@ -92,10 +92,10 @@ const Footer = () => {
                     </div>
                     <div className="col-sm-4 text-sm-right text-center">
                     <ul className="list-inline">
-                        <li className="list-inline-item"><a className="d-inline-block p-2" href="#"><i className="ti-facebook text-primary"></i></a></li>
-                        <li className="list-inline-item"><a className="d-inline-block p-2" href="#"><i className="ti-twitter-alt text-primary"></i></a></li>
-                        <li className="list-inline-item"><a className="d-inline-block p-2" href="#"><i className="ti-linkedin text-primary"></i></a></li>
-                        <li className="list-inline-item"><a className="d-inline-block p-2" href="#"><i className="ti-instagram text-primary"></i></a></li>
+                        <li className="list-inline-item"><a className="d-inline-block p-2" href="/"><i className="ti-facebook text-primary"></i></a></li>
+                        <li className="list-inline-item"><a className="d-inline-block p-2" href="/"><i className="ti-twitter-alt text-primary"></i></a></li>
+                        <li className="list-inline-item"><a className="d-inline-block p-2" href="/"><i className="ti-linkedin text-primary"></i></a></li>
+                        <li className="list-inline-item"><a className="d-inline-block p-2" href="/"><i className="ti-instagram text-primary"></i></a></li>
                     </ul>
                     </div>
                 </div>

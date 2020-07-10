@@ -5,6 +5,7 @@ import { getAllNotices } from './helper';
 const AllNoticeList = () => {
 
     const [noticeO, setnoticeO] = useState([])
+  // eslint-disable-next-line no-unused-vars
   const [error, seterror] = useState(false)
 
 

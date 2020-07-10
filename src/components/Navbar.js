@@ -1,6 +1,5 @@
 import React from 'react'
-import {NavDropdown, Nav, Navbar} from 'react-bootstrap'
-import { Line } from 'react-chartjs-2'
+import {Navbar} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import logo from '../images/logo.png'
 
@@ -11,7 +10,7 @@ const NavBar =(props) => {
       <div className={`navigation w-100 ${props.active}`} >
     <div className="container">
     <Navbar collapseOnSelect expand="lg">
-    <Navbar.Brand href="#home"><a className="navbar-brand" href="/"><img src={logo} alt="logo" style={{width: "10rem"}}></img></a></Navbar.Brand>
+    <Navbar.Brand ><a className="navbar-brand" href="/"><img src={logo} alt="logo" style={{width: "10rem"}}></img></a></Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <div className="mr-auto"style={{lineHeight: "0"}}>

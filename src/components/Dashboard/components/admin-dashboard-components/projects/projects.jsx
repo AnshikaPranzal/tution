@@ -1,17 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable array-callback-return */
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable no-unused-vars */
-import React, { useContext, useState } from 'react';
-import { Link,Redirect } from 'react-router-dom';
 
-import { v4 } from 'uuid';
-import { TodoContext } from '../../context/TodoContext';
-import { ADD_TODO } from '../../context/action.types';
+import React, { useState } from 'react';
+
 import img1 from '../../../assets/images/users/1.jpg';
-import img2 from '../../../assets/images/users/2.jpg';
-import img3 from '../../../assets/images/users/3.jpg';
-import img4 from '../../../assets/images/users/4.jpg';
 
 import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass} from '../../../../helper/index'
 
@@ -29,7 +19,7 @@ const Projects = () => {
 
  
     const [classO, setclassO] = useState([])
-    const [errorF, seterrorF] = useState(false)
+    const [, seterrorF] = useState(false)
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
   
@@ -199,7 +189,7 @@ const Projects = () => {
     setProject({
         ...project,error: false, name: nameT, email: emailT
     })
-   })
+   }, [project, nameT, emailT])
    const [refresh, setrefresh] = useState(true)
    useEffect(() => {
        loadAllclasses()

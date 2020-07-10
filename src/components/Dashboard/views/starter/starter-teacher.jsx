@@ -1,8 +1,6 @@
 import React,{useState} from 'react';
 import {
     Card,
-    CardImg,
-    CardText,
     CardBody,
     CardTitle,
     CardSubtitle,
@@ -13,12 +11,9 @@ import {
 } from 'reactstrap';
 import { SalesSummary, Projects, Feeds } from '../../components/teacher-dashboard-components';
 
-import img1 from '../../assets/images/big/img1.jpg';
-import img2 from '../../assets/images/big/img2.jpg';
-import img3 from '../../assets/images/big/img3.jpg';
 
 const Starter = () => {
-   const [file, setfile] = useState("choose")
+   const [, setfile] = useState("choose")
    const [video, setvideo] = useState("")
     return (
         <div className="text-center">

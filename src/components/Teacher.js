@@ -15,10 +15,10 @@ const Teacher = (props) => {
                 </a>
                 <p>{props.subject}</p>
                 <ul className="list-inline">
-                <li className="list-inline-item"><a className="text-color" href="#"><i className="ti-facebook"></i></a></li>
-                <li className="list-inline-item"><a className="text-color" href="#"><i className="ti-twitter-alt"></i></a></li>
-                <li className="list-inline-item"><a className="text-color" href="#"><i className="ti-google"></i></a></li>
-                <li className="list-inline-item"><a className="text-color" href="#"><i className="ti-linkedin"></i></a></li>
+                <li className="list-inline-item"><a className="text-color" href="/"><i className="ti-facebook"></i></a></li>
+                <li className="list-inline-item"><a className="text-color" href="/"><i className="ti-twitter-alt"></i></a></li>
+                <li className="list-inline-item"><a className="text-color" href="/"><i className="ti-google"></i></a></li>
+                <li className="list-inline-item"><a className="text-color" href="/"><i className="ti-linkedin"></i></a></li>
                 </ul>
             </div>
             </div>

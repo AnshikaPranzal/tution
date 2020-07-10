@@ -1,17 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable array-callback-return */
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable no-unused-vars */
-import React, { useContext, useState } from 'react';
-import { Link,Redirect } from 'react-router-dom';
 
-import { v4 } from 'uuid';
-import { TodoContext } from '../../context/TodoContext';
-import { ADD_TODO } from '../../context/action.types';
-import img1 from '../../../assets/images/users/1.jpg';
-import img2 from '../../../assets/images/users/2.jpg';
-import img3 from '../../../assets/images/users/3.jpg';
-import img4 from '../../../assets/images/users/4.jpg';
+import React, { useState } from 'react';
+
 
 import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass} from '../../../../helper/index'
 
@@ -29,7 +18,7 @@ const Projects = () => {
 
  
     const [classO, setclassO] = useState([])
-    const [errorF, seterrorF] = useState(false)
+    const [, seterrorF] = useState(false)
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
   
@@ -199,7 +188,7 @@ const Projects = () => {
     setProject({
         ...project,error: false, name: nameT, email: emailT
     })
-   })
+   }, [project, nameT, emailT])
    const [refresh, setrefresh] = useState(true)
    useEffect(() => {
        loadAllclasses()
@@ -315,14 +304,14 @@ const Projects = () => {
                                     ></Input></td>
                                     <td>{update === true ? (<i onClick={e=>{updateaClass(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} class="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} class="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
                         </tr>
-                        {classO.map((obj,i)=>{
+                        {classO.map((obj,i) => {
                             if(obj.email === emailT){
                             return(
                             <tr key={i}>
                             <td>
                                 <div className="d-flex no-block align-items-center">
                                 <div className="">
-                                        <h5 className="mb-0 font-16 font-medium"><span><a href={obj.classLink} target="_blank">Start Class</a></span></h5></div>
+                                        <h5 className="mb-0 font-16 font-medium"><span><a href={obj.classLink} target="blank">Start Class</a></span></h5></div>
                                 </div>
                             </td>
                             <td>{obj.subject}</td>
@@ -333,6 +322,7 @@ const Projects = () => {
                             <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClass(obj._id)}} aria-hidden="true"></i></td>
                         </tr>
                         )}
+                        return(<span></span>)
                     })}
                         
                         

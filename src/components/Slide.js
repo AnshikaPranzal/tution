@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery'
 import '../plugins/bootstrap/bootstrap.min.css'
 import '../plugins/slick/slick.css'
 import '../plugins/themify-icons/themify-icons.css'
@@ -7,8 +6,6 @@ import '../plugins/animate/animate.css'
 import '../plugins/aos/aos.css'
 import '../plugins/venobox/venobox.css'
 import '../css/style.css'
-import preloader from '../images/preloader.gif'
-import bg from '../images/banner/banner-1.jpg';
 import { Link } from 'react-router-dom';
 
 const Slide = (props) => {
