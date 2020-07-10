@@ -31,8 +31,8 @@ const TopHeader = () =>{
         </div>
         <div className="col-lg-8 text-center text-lg-right" >
           <ul className="list-inline" style={{marginBottom: "0", paddingTop: '5px'}}>
-            <li className="list-inline-item"><span className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowlogin} data-toggle="modal" data-target="#loginModal">Login</span></li>
-            <li className="list-inline-item"><span className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowsignup} data-toggle="modal" data-target="#signupModal">Register</span></li>
+            <li className="list-inline-item"><span className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowlogin} data-toggle="modal" data-target="#loginModal" style={{cursor: "pointer"}}>Login</span></li>
+            <li className="list-inline-item"><span className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowsignup} data-toggle="modal" data-target="#signupModal" style={{cursor: "pointer"}}>Register</span></li>
           </ul>
         </div>
       </div>

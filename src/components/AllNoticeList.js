@@ -28,16 +28,16 @@ const AllNoticeList = () => {
     const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     return(
         <React.Fragment>
-            <section class="section">
-                <div class="container">
-                    <div class="row">
-                    <div class="col-12">
-                        <ul class="list-unstyled">
+            <section className="section">
+                <div className="container">
+                    <div className="row">
+                    <div className="col-12">
+                        <ul className="list-unstyled">
                             {
                             
                             noticeO.map((obj, index) => {
                                 return(
-                                    <NoticeItem 
+                                    <NoticeItem key={index}  
                             date={obj.date.substring(8,10)} 
                             month={Month[parseInt(obj.date.substring(5,7)-1)]} 
                             year={obj.date.substring(0,4)} 
