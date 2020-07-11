@@ -18,14 +18,14 @@ const Projects = () => {
 
  
     const [classO, setclassO] = useState([])
-    const [, seterrorF] = useState(false)
+    const [errorF, seterrorF] = useState(false)
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
   
   
     const loadAllclasses = () =>{
       getAllClasses().then(data =>{
-          console.log(data)
+        //   console.log(data)
         if(data)
         if(data.error){
           seterrorF(data.error)
@@ -62,7 +62,7 @@ const Projects = () => {
     )}
     // const {dispatch} = useContext(TodoContext)
     const { user } = isAuthenticated();
-    console.log(user)
+    // console.log(user)
     const nameT = user.name;
     const emailT = user.email;
     const [project, setProject] = useState({
@@ -80,6 +80,7 @@ const Projects = () => {
     const {classLink,name,email, subject,standard,time ,date,success,error} = project;
    
     const handleChange = name => event => {
+        console.log("inside change")
         setProject({
             ...project,error: false, [name]: event.target.value
         })
@@ -185,11 +186,11 @@ const Projects = () => {
         })
     }
 
-   useEffect(() => {
-    setProject({
-        ...project,error: false, name: nameT, email: emailT
-    })
-   }, [project, nameT, emailT])
+//    useEffect(() => {
+//     setProject({
+//         ...project,error: false, name: nameT, email: emailT
+//     })
+//    }, [project, nameT, emailT])
    const [refresh, setrefresh] = useState(true)
    useEffect(() => {
        loadAllclasses()
@@ -303,7 +304,7 @@ const Projects = () => {
                                     onChange={handleChange("date")}
                                     style={{maxWidth:"200px"}}
                                     ></Input></td>
-                                    <td>{update === true ? (<i onClick={e=>{updateaClass(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} class="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} class="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
+                                    <td>{update === true ? (<i onClick={e=>{updateaClass(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} className="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} className="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
                         </tr>
                         {classO.map((obj,i) => {
                             if(obj.email === emailT){
@@ -323,7 +324,7 @@ const Projects = () => {
                             <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClass(obj._id)}} aria-hidden="true"></i></td>
                         </tr>
                         )}
-                        return(<span></span>)
+                        return(<tr key={i}></tr>)
                     })}
                         
                         
