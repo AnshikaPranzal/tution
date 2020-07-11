@@ -18,14 +18,14 @@ const Projects = () => {
 
  
     const [classO, setclassO] = useState([])
-    const [, seterrorF] = useState(false)
+    const [errorF, seterrorF] = useState(false)
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
   
   
     const loadAllclasses = () =>{
       getAllClasses().then(data =>{
-          console.log(data)
+        //   console.log(data)
         if(data)
         if(data.error){
           seterrorF(data.error)
@@ -62,7 +62,7 @@ const Projects = () => {
     )}
     // const {dispatch} = useContext(TodoContext)
     const { user } = isAuthenticated();
-    console.log(user)
+    // console.log(user)
     const nameT = user.name;
     const emailT = user.email;
     const [project, setProject] = useState({
@@ -184,13 +184,12 @@ const Projects = () => {
             }
         })
     }
-
-
 //    useEffect(() => {
 //     setProject({
 //         ...project,error: false, name: nameT, email: emailT
 //     })
-//    }, [project, nameT, emailT])
+//    })
+
    useEffect(() => {
     setProject({
         ...project,error: false, name: nameT, email: emailT
@@ -330,7 +329,7 @@ const Projects = () => {
                             <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClass(obj._id)}} aria-hidden="true"></i></td>
                         </tr>
                         )}
-                        return(<span></span>)
+                        return(<tr key={i}></tr>)
                     })}
                         
                         
