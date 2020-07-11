@@ -80,7 +80,6 @@ const Projects = () => {
     const {classLink,name,email, subject,standard,time ,date,success,error} = project;
    
     const handleChange = name => event => {
-        console.log("inside change")
         setProject({
             ...project,error: false, [name]: event.target.value
         })
@@ -190,7 +189,7 @@ const Projects = () => {
 //     setProject({
 //         ...project,error: false, name: nameT, email: emailT
 //     })
-//    }, [project, nameT, emailT])
+//    })
    const [refresh, setrefresh] = useState(true)
    useEffect(() => {
        loadAllclasses()
@@ -320,8 +319,8 @@ const Projects = () => {
                             <td>{obj.standard}</td>
                             <td>{obj.time}</td>
                             <td className="blue-grey-text  text-darken-4 font-medium">{obj.date.substring(8, 10)}{obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}</td>
-                            <td><i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClass(obj._id)}} aria-hidden="true"></i>
-                            <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClass(obj._id)}} aria-hidden="true"></i></td>
+                            <td><i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClass(obj._id)}} aria-hidden="true"></i>
+                            <i className="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClass(obj._id)}} aria-hidden="true"></i></td>
                         </tr>
                         )}
                         return(<tr key={i}></tr>)

@@ -186,11 +186,11 @@ const Projects = () => {
         })
     }
 
-   useEffect(() => {
-    setProject({
-        ...project,error: false, name: nameT, email: emailT
-    })
-   }, [project, nameT, emailT])
+//    useEffect(() => {
+//     setProject({
+//         ...project,error: false, name: nameT, email: emailT
+//     })
+//    }, [project, nameT, emailT])
    const [refresh, setrefresh] = useState(true)
    useEffect(() => {
        loadAllclasses()
