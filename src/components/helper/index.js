@@ -32,6 +32,22 @@ export const classes = classes =>{
     })
 }
 
+export const notices = notices =>{
+    return fetch(`${API}/notice/create`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json',
+            "Content-Type" : 'application/json'
+        },
+        body: JSON.stringify(notices)
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {console.log(err);
+    })
+}
+
 export const signin = user =>{
     return fetch(`${API}/signin`,{
         method:"POST",
