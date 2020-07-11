@@ -89,7 +89,7 @@ const Home = () =>{
 
           <Banner></Banner>
 
-          <AboutUs></AboutUs>
+          <AboutUs topic="Educenter"></AboutUs>
 
           <Courses></Courses>
 

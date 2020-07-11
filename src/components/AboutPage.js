@@ -7,6 +7,7 @@ import Title from './Title.js';
 import AboutSection from './AboutSection.js';
 import SuccessStory from './SuccessStory.js';
 import TeacherList from './TeacherList.js';
+import AboutUs from './AboutUs.js';
 
 const About = () => {
 
@@ -36,7 +37,8 @@ const About = () => {
 
         <Title title="About Us" body="Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others."></Title>
 
-        <AboutSection></AboutSection>
+        {/* <AboutSection></AboutSection> */}
+        <AboutUs topic="Us"></AboutUs>
 
         <SuccessStory></SuccessStory>
 
