@@ -78,7 +78,7 @@ const Projects = () => {
         error:"",
         success: false
     })
-    const {classLink, name, email, subject, standard, time, date, success, error} = project;
+    const {classLink,name,email, subject,standard,time ,date,success,error} = project;
    
     const handleChange = name => event => {
         setProject({
@@ -186,11 +186,11 @@ const Projects = () => {
         })
     }
 
-//    useEffect(() => {
-//     setProject({
-//         ...project,error: false, name: nameT, email: emailT
-//     })
-//    }, [project, nameT, emailT])
+   useEffect(() => {
+    setProject({
+        ...project,error: false, name: nameT, email: emailT
+    })
+   }, [project, nameT, emailT])
    const [refresh, setrefresh] = useState(true)
    useEffect(() => {
        loadAllclasses()
@@ -265,7 +265,6 @@ const Projects = () => {
                                 <option value="Physics">Physics</option>
                                 <option value="Chemistry">Chemistry</option>
                                 <option value="Maths">Maths</option>
-                                <option value="Biology">Biology</option>
                             </Input></td>
 
                             <td>
