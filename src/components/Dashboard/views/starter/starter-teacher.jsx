@@ -13,7 +13,7 @@ import { SalesSummary, Projects, Feeds } from '../../components/teacher-dashboar
 
 
 const Starter = () => {
-   const [, setfile] = useState("choose")
+   const [file, setfile] = useState("choose")
    const [video, setvideo] = useState("")
     return (
         <div className="text-center">
@@ -43,7 +43,7 @@ const Starter = () => {
                             <Input
                                     type="text"
                                     name="video"
-                                    id="video"
+                                    id="video1"
                                     placeholder="Enter link here.."
                                     value={video}
                                     onChange={e=> setvideo(e.target.value)}
@@ -53,7 +53,7 @@ const Starter = () => {
                                     <Input
                                     type="text"
                                     name="video"
-                                    id="video"
+                                    id="video2"
                                     placeholder="Topic.."
                                     value={video}
                                     onChange={e=> setvideo(e.target.value)}
@@ -63,7 +63,7 @@ const Starter = () => {
                                     <Input
                                     type="text"
                                     name="video"
-                                    id="video"
+                                    id="video3"
                                     placeholder="Description.."
                                     value={video}
                                     onChange={e=> setvideo(e.target.value)}
@@ -86,7 +86,7 @@ const Starter = () => {
                             <Input
                                     type="file"
                                     name="file"
-                                    id="file"
+                                    id="file1"
                                     placeholder=" : "
                                     onChange={e=> setfile(e.target.files[0])}
                                     style={{marginLeft:"28%",marginTop:"1rem"}}
@@ -104,7 +104,7 @@ const Starter = () => {
                                     <Input
                                     type="text"
                                     name="video"
-                                    id="video"
+                                    id="video4"
                                     placeholder="Description.."
                                     value={video}
                                     onChange={e=> setvideo(e.target.value)}

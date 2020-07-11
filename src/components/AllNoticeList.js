@@ -12,6 +12,7 @@ const AllNoticeList = () => {
   const loadAllnotices = () =>{
     getAllNotices().then(data =>{
         console.log(data)
+      if(data)
       if(data.error){
         seterror(data.error)
       }
