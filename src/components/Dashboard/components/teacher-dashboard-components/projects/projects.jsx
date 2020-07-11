@@ -80,7 +80,6 @@ const Projects = () => {
     const {classLink,name,email, subject,standard,time ,date,success,error} = project;
    
     const handleChange = name => event => {
-        console.log("inside change")
         setProject({
             ...project,error: false, [name]: event.target.value
         })
@@ -192,6 +191,12 @@ const Projects = () => {
 //         ...project,error: false, name: nameT, email: emailT
 //     })
 //    }, [project, nameT, emailT])
+   useEffect(() => {
+    setProject({
+        ...project,error: false, name: nameT, email: emailT
+    })
+   }, [project, nameT, emailT])
+
    const [refresh, setrefresh] = useState(true)
    useEffect(() => {
        loadAllclasses()
