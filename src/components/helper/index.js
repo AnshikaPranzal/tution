@@ -224,3 +224,31 @@ export const updateNotice = (noticeId,NoticeO)=>{
         console.log("Error in updating Notice")
     })
 }
+
+export const getAllUSers = ()=>{
+    
+    return fetch(`${API}/users`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the Users")
+    })
+}
+
+export const getAUser = userId=>{
+    
+    return fetch(`${API}/user/${userId}`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the User")
+    })
+}

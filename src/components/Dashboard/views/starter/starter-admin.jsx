@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react';
-import {notices,isAuthenticated,getAllNotices,deleteNotice,updateNotice ,getANotice} from '../../../helper/index'
+import {notices,isAuthenticated,getAllNotices,deleteNotice,updateNotice ,getANotice, getAllUSers} from '../../../helper/index'
 import {
     Card,
     CardImg,
@@ -27,11 +27,21 @@ const Starter = () => {
    const [emailA, setemailA] = useState("")
 
    const [noticeO, setnoticeO] = useState([])
-    const [, seterrorF] = useState(false)
+   const [userO, setuserO] =useState([])
+   var students = 0
+   var studentsarray = []
+   var weekstudents = 0
+   var weekstudentsarray = []
+   var monthstudents = 0
+   var monthstudentsarray = []
+   var difference = 0
+   var usercreation = ""
+    const [errorF, seterrorF] = useState(false)
+    const [errorU, seterrorU] = useState(false)
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
   
-  
+    
     const loadAllnotices = () =>{
       getAllNotices().then(data =>{
           console.log(data)
@@ -41,13 +51,33 @@ const Starter = () => {
         }
         else{
           setnoticeO(data)
+          
         }
       })
     }
+    const loadAllusers = () =>{
+        getAllUSers().then(data =>{
+            console.log(data)
+          if(data)
+          if(data.error){
+            seterrorF(data.error)
+          }
+          else{
+            setuserO(data)
+            
+            
+          }
+        })
+      }
+     
+     
     
     useEffect (() => {
       loadAllnotices()
       },[])
+      useEffect (() => {
+        loadAllusers()
+        },[])
     const successMessage = () =>(
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
@@ -187,6 +217,9 @@ const Starter = () => {
    useEffect(() => {
        loadAllnotices()
    }, [refresh])
+   useEffect(() => {
+    loadAllusers()
+}, [refresh])
 
     return (
         <div >
@@ -341,7 +374,7 @@ const Starter = () => {
                 </Col>
                 
             </Row>
-            <Row>
+            <Row className="text-center" style={{paddingBottom:"5vmin"}}>
             <Card style={{margin: "auto"}}>
             <CardBody>
                 <div className="d-flex align-items-center">
@@ -431,6 +464,85 @@ const Starter = () => {
                 </Table>
             </CardBody>
         </Card >
+            </Row>
+            <Row className="text-center">
+            {
+                                userO.map((obj,i) => {
+                                    if(obj.role === 0){
+                                        students = students + 1
+                                        studentsarray[students-1] = obj
+                                        usercreation = `${obj.createdAt.substring(5,7)}/${obj.createdAt.substring(8,10)}/${obj.createdAt.substring(0,4)}`
+                                         difference = Math.floor(((new Date().getTime())-(new Date(usercreation).getTime()))/(1000 * 3600 * 24))
+                                         console.log(difference)
+                                        if(difference === 1)
+                                        {
+                                            weekstudents= weekstudents + 1
+                                            weekstudentsarray[weekstudents - 1] = obj
+                                        }
+                                        if(difference <= 30){
+                                            monthstudents= monthstudents + 1
+                                            monthstudentsarray[monthstudents-1] = obj
+                                        }
+                                        
+                                    }
+                                })
+                            }
+            <Col xs="12" md="4">
+            
+                    {/*--------------------------------------------------------------------------------*/}
+                    {/*Card-1*/}
+                    {/*--------------------------------------------------------------------------------*/}
+                    <Card style={{borderRadius: "10px", backgroundColor: "cornflowerblue", color: "white"}}>
+                        {/* <CardImg top width="100%" src={img2} /> */}
+                        <CardBody>
+                            <CardTitle>Total Registered Students</CardTitle>
+                           
+                            <h4>{students}</h4>
+                            {
+                                studentsarray.map((obj,i) => {
+                                    return(
+                                    <p>{obj.name}</p>
+                                    )
+                                })
+                            }
+                        </CardBody>
+                    </Card>
+                    
+                </Col>
+                <Col xs="12" md="4">
+                <Card style={{borderRadius: "10px", backgroundColor: "red", color: "white"}}>
+                        {/* <CardImg top width="100%" src={img2} /> */}
+                        <CardBody>
+                            <CardTitle>Students registered in last 1 week</CardTitle>
+                            
+                <h4>{weekstudents}</h4>
+                {
+                                weekstudentsarray.map((obj,i) => {
+                                    return(
+                                    <p>{obj.name}</p>
+                                    )
+                                })
+                            }
+                        </CardBody>
+                    </Card>
+                </Col>
+                <Col xs="12" md="4">
+                <Card style={{borderRadius: "10px", backgroundColor: "green", color: "white"}}>
+                        {/* <CardImg top width="100%" src={img2} /> */}
+                        <CardBody>
+                            <CardTitle>Students regidtered in last 30 days</CardTitle>
+                            
+                <h4>{monthstudents}</h4>
+                {
+                                monthstudentsarray.map((obj,i) => {
+                                    return(
+                                    <p>{obj.name}</p>
+                                    )
+                                })
+                            }
+                        </CardBody>
+                    </Card>
+                </Col>
             </Row>
         </div>
     );
