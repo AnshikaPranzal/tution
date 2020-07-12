@@ -18,6 +18,7 @@ const Projects = () => {
 
  
     const [classO, setclassO] = useState([])
+    // eslint-disable-next-line no-unused-vars
     const [errorF, seterrorF] = useState(false)
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")

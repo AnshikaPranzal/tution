@@ -224,3 +224,12 @@ export const updateNotice = (noticeId,NoticeO)=>{
         console.log("Error in updating Notice")
     })
 }
+export const payment = () =>{
+    return fetch(`${API}/payment`,{
+        method:"POST"
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => console.log(err))
+}
