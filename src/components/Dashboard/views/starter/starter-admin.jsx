@@ -15,12 +15,50 @@ import {
     Table
 } from 'reactstrap';
 import { SalesSummary, Projects, Feeds } from '../../components/admin-dashboard-components';
+import $ from 'jquery'
 
 import img1 from '../../assets/images/big/img1.jpg';
 import img2 from '../../assets/images/big/img2.jpg';
 import img3 from '../../assets/images/big/img3.jpg';
 
 const Starter = () => {
+
+    $(document).ready(()=>{
+        $('.sl').addClass('hide');
+    })
+    $('.bsm').click(() => {
+        $('.sm').addClass('hide');
+        $('.sl').removeClass('hide');
+    })
+    $('.bsl').click(() =>{
+        $('.sl').addClass('hide')
+        $('.sm').removeClass('hide')
+    })
+    
+    $(document).ready(()=>{
+        $('.wsl').addClass('hide');
+    })
+    $('.bwsm').click(() => {
+        $('.wsm').addClass('hide');
+        $('.wsl').removeClass('hide');
+    })
+    $('.bwsl').click(() =>{
+        $('.wsl').addClass('hide')
+        $('.wsm').removeClass('hide')
+    })
+
+    $(document).ready(()=>{
+        $('.msl').addClass('hide');
+    })
+    $('.bmsm').click(() => {
+        $('.msm').addClass('hide');
+        $('.msl').removeClass('hide');
+    })
+    $('.bmsl').click(() =>{
+        $('.msl').addClass('hide')
+        $('.msm').removeClass('hide')
+    })
+
    const [file, setfile] = useState("choose")
    const [video, setvideo] = useState("")
    const [emailT, setemailT] = useState("")
@@ -474,7 +512,7 @@ const Starter = () => {
                                         usercreation = `${obj.createdAt.substring(5,7)}/${obj.createdAt.substring(8,10)}/${obj.createdAt.substring(0,4)}`
                                          difference = Math.floor(((new Date().getTime())-(new Date(usercreation).getTime()))/(1000 * 3600 * 24))
                                          console.log(difference)
-                                        if(difference === 1)
+                                        if(difference <= 7)
                                         {
                                             weekstudents= weekstudents + 1
                                             weekstudentsarray[weekstudents - 1] = obj
@@ -498,13 +536,20 @@ const Starter = () => {
                             <CardTitle>Total Registered Students</CardTitle>
                            
                             <h4>{students}</h4>
+                            <div className="see-more sm"><text className="see-more-button bsm" >See more</text></div>
+                            <div class="see-less sl">
                             {
                                 studentsarray.map((obj,i) => {
                                     return(
-                                    <p>{obj.name}</p>
+                                        <>
+                                    <text>{obj.name}</text>
+                                    <br></br>
+                                    </>
                                     )
                                 })
                             }
+                            <text className="see-less-button bsl" >See less</text>
+                            </div>
                         </CardBody>
                     </Card>
                     
@@ -516,13 +561,20 @@ const Starter = () => {
                             <CardTitle>Students registered in last 1 week</CardTitle>
                             
                 <h4>{weekstudents}</h4>
+                <div className="see-more wsm"><text className="see-more-button bwsm" >See more</text></div>
+                            <div class="see-less wsl">
                 {
                                 weekstudentsarray.map((obj,i) => {
                                     return(
-                                    <p>{obj.name}</p>
+                                        <>
+                                    <text>{obj.name}</text>
+                                    <br></br>
+                                    </>
                                     )
                                 })
                             }
+                            <text className="see-less-button bwsl" >See less</text>
+                            </div>
                         </CardBody>
                     </Card>
                 </Col>
@@ -533,13 +585,20 @@ const Starter = () => {
                             <CardTitle>Students regidtered in last 30 days</CardTitle>
                             
                 <h4>{monthstudents}</h4>
+                <div className="see-more msm"><text className="see-more-button bmsm" >See more</text></div>
+                            <div class="see-less msl">
                 {
                                 monthstudentsarray.map((obj,i) => {
                                     return(
-                                    <p>{obj.name}</p>
+                                        <>
+                                    <text>{obj.name}</text>
+                                    <br></br>
+                                    </>
                                     )
                                 })
                             }
+                            <text className="see-less-button bmsl" >See less</text>
+                            </div>
                         </CardBody>
                     </Card>
                 </Col>
