@@ -1072,5 +1072,22 @@ link:focus,
 .filter-controls li:hover {
   color: #68d8d6;
 }
+.see-more-button{
+  font-size: smaller;
+  color: rgba(255, 255, 255, 0.63);
+cursor: pointer; 
+
+}
+.see-less-button{
+  font-size: smaller;
+  color: rgba(255, 255, 255, 0.63);
+  cursor: pointer;
+}
+.see-less{
+  text-align: center;
+}
+.see-more{
+  text-align: right;
+}
 
 /*# sourceMappingURL=maps/style.css.map */
