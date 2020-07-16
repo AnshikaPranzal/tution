@@ -1,4 +1,5 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
+import {classrooms, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated} from '../../../helper/index'
 import {
     Card,
     CardBody,
@@ -7,7 +8,8 @@ import {
     Button,
     Row,
     Col,
-    Input
+    Input,
+    Table
 } from 'reactstrap';
 import { SalesSummary, Projects, Feeds } from '../../components/teacher-dashboard-components';
 
@@ -15,6 +17,162 @@ import { SalesSummary, Projects, Feeds } from '../../components/teacher-dashboar
 const Starter = () => {
    const [file, setfile] = useState("choose")
    const [video, setvideo] = useState("")
+   const [classroomO, setclassroomO] = useState([])
+    const [update, setupdate] = useState(false)
+    const [uid, setuid] = useState("")
+    const [errorF, seterrorF] = useState(false)
+
+    const loadAllclassroooms = () =>{
+        getAllClassrooms().then(data =>{
+            console.log(data)
+          if(data)
+          if(data.error){
+            seterrorF(data.error)
+          }
+          else{
+            setclassroomO(data)
+            
+          }
+        })
+      }
+      useEffect (() => {
+        loadAllclassroooms()
+        },[])
+
+        const successMessage = () =>(
+            <div className="row ">
+                    <div className="col-md-6 offset-sm-3 text-left">
+                        <div className="alert alert-success" style={{display: success ? "" : "none"}}>
+                            Congratulations!!! Classroom is added.
+                        </div>
+                    </div>
+            </div>
+        )
+    
+        const errorMessage = () =>{
+           
+        return(
+            <div className="row ">
+            <div className="col-md-6 offset-sm-3 text-left">
+            <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
+                {error}
+            </div>
+            </div>
+            </div>
+        )}
+
+        const { user } = isAuthenticated();
+
+        const [project, setProject] = useState({
+            name: "",
+            description: "",
+            subject: "",
+            error:"",
+            success: false
+        })
+        const {name, description , subject, success, error} = project;
+       
+        const handleChange = name => event => {
+            setProject({
+                ...project,error: false, [name]: event.target.value
+            })
+        }
+        const onclassroomSubmit = event => {
+            event.preventDefault();
+            setProject({
+                ...project,error: false
+            });
+            
+            classrooms({name, description, subject})
+                .then( (data) =>{
+                    console.log(data)
+                    console.log(project)
+                    if(data.error){
+                       
+                        setProject({
+                            ...project,
+                            error: data.error,
+                            success: false
+                        })
+                    }
+                    else{
+                        setProject({
+                            ...project,
+                            name: "",
+                            description: "",
+                            subject: "",
+                            error:"",
+                            success: true
+                        })
+                        setrefresh(!refresh)
+                    }
+                })
+                .catch(console.log("Error in Classrooms"))
+        }
+        const deleteaClassroom = catuctId => {
+            deleteClassroom(catuctId).then(data=>{
+                console.log(data)
+                if(data.error)
+                {
+                    console.log(data.error)
+                    // setValues({...values,error:data.error})
+                }
+                else{
+                   setrefresh(!refresh)
+                }
+            })
+        }
+        const getClassroom = catuctId => {
+            getAClassroom(catuctId).then(data=>{
+                
+                if(data.error)
+                {
+                    console.log(data.error)
+                    // setValues({...values,error:data.error})
+                }
+                else{
+                    setProject({
+                        ...project,
+                        name: data.name,
+                        description: data.description,
+                        subject: data.subject
+                    })
+                    setuid(data._id)
+                    setupdate(true)
+                    setrefresh(!refresh)
+                }
+            })
+        }
+        const updateaClassroom = (event,cid) => {
+            event.preventDefault();
+            setProject({
+                ...project,error: false
+            });
+            updateClassroom(cid,{name,description,subject}).then(data=>{
+                console.log(data)
+                if(data.error)
+                {
+                    console.log(data.error)
+                    // setValues({...values,error:data.error})
+                }
+                else{
+                    setProject({
+                        ...project,
+                        name: "",
+                        description: "",
+                        subject: "",
+                        error:"",
+                        success: true
+                    })
+                    setrefresh(!refresh)
+                    setupdate(false)
+                }
+            })
+        }
+        const [refresh, setrefresh] = useState(true)
+        useEffect(() => {
+            loadAllclassroooms()
+        }, [refresh])
     return (
         <div className="text-center">
             <Row>
@@ -117,6 +275,111 @@ const Starter = () => {
                 </Col>
                 
             </Row>
+            
+            <Row className="text-center" style={{paddingBottom:"5vmin"}}>
+            <Card style={{margin: "auto"}}>
+            <CardBody>
+                <div className="d-flex align-items-center">
+                    <div>
+                        <CardTitle>Add Classroom</CardTitle>
+                        <CardSubtitle>Enter Name Description and choose Subject</CardSubtitle>
+                    </div>
+                    
+                </div>
+                {successMessage()}
+                {errorMessage()}
+                <Table className="no-wrap v-middle" responsive>
+                    <thead>
+                        <tr className="border-0">
+                            <th className="border-0">Name</th>
+                            <th className="border-0">Description</th>
+                            <th className="border-0">Subject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div className="d-flex no-block align-items-center">
+                                    <div className="">
+                                    <Input
+                                    type="text"
+                                    name={name}
+                                    id={name}
+                                    placeholder="Name"
+                                    value={name}
+                                    onChange={handleChange("name")}
+                                    ></Input>
+                                     
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div className="d-flex no-block align-items-center">
+                                    <div className="">
+                                    <Input
+                                    type="text"
+                                    name={description}
+                                    id={description}
+                                    placeholder="Description"
+                                    value={description}
+                                    onChange={handleChange("description")}
+                                    ></Input>
+                                     
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            
+                            <td><Input type="select" className="custom-select" value={subject}
+                                    onChange={handleChange("subject")}>
+                                <option value="0">Select</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Maths">Maths</option>
+                                <option value="Biology">Biology</option>
+                            </Input></td>
+                                    <td>{update === true ? (<i onClick={e=>{updateaClassroom(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} className="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onclassroomSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} className="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
+                        </tr>
+                        
+                        
+                        
+                    </tbody>
+                </Table>
+            </CardBody>
+        </Card >
+            </Row>
+            <Row>
+                        {classroomO.map((obj,i)=>{
+                            return(
+                            // <tr key={i}>
+                            <Col xs="12" md="4">
+                                <Card key={i}>
+                                    <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
+
+                                        <CardTitle>{obj.name}</CardTitle>
+                                        <CardSubtitle>{obj.subject}</CardSubtitle>
+                                        <CardBody>{obj.description}</CardBody>
+                                        <div> <i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClassroom(obj._id)}} aria-hidden="true"></i>
+                                        <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClassroom(obj._id)}} aria-hidden="true"></i></div>
+                                </Card>
+                                </Col>)
+                            {/* <td>
+                                    <div className="d-flex no-block align-items-center">
+                                            
+                                            <div className="">
+                                                <h5 className="mb-0 font-16 font-medium">{obj.name}</h5>
+                                            </div>
+                                    </div>
+                            </td>
+                            <td>{obj.description}</td>
+                            
+                            <td className="blue-grey-text  text-darken-4 font-medium">{obj.subject}</td>
+                            <td><i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClassroom(obj._id)}} aria-hidden="true"></i>
+                            <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClassroom(obj._id)}} aria-hidden="true"></i></td> */}
+                        // </tr>
+                        
+                    })}
+                        </Row>
         </div>
     );
 }
