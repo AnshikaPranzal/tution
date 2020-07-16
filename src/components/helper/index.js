@@ -224,9 +224,14 @@ export const updateNotice = (noticeId,NoticeO)=>{
         console.log("Error in updating Notice")
     })
 }
-export const payment = () =>{
+export const payment = (amt) =>{
     return fetch(`${API}/payment`,{
-        method:"POST"
+        method:"POST",
+        headers:{
+            Accept: 'application/json',
+            "Content-Type" : 'application/json'
+        },
+        body: JSON.stringify(amt)
     })
     .then(response => {
         return response.json()
@@ -248,16 +253,145 @@ export const getAllUSers = ()=>{
     })
 }
 
-export const getAUser = userId=>{
+export const getAUser = (userId,token)=>{
     
     return fetch(`${API}/user/${userId}`,{
         method: "GET",
-        
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}` 
+        },
     }).then(response => {
        console.log(response);
         return response.json();
     })
-    .catch(()=>{
-        console.log("Error in getting the User")
+    .catch((err)=>{
+        console.log("Error in getting the User",err)
     })
 }
+
+export const updateUser = (userId,token,user)=>{
+    
+    return fetch(`${API}/update/${userId}`,{
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(user)
+    }).then(response => {
+       
+        return response.json()
+    })
+    .catch((err)=>{
+        console.log("Error in updating user"+err)
+    })
+}
+
+export const addItemToCart = (item,next)=>{
+    let cart = []
+    if(typeof window!== undefined){
+        if(localStorage.getItem("cart")){
+            cart=JSON.parse(localStorage.getItem("cart"))
+        }
+        cart.push({
+            ...item
+        })
+    }
+    localStorage.setItem("cart",JSON.stringify(cart))
+    
+}
+
+export const updateItemInCart = (i)=>{
+    let cart = []
+    if(typeof window!== undefined){
+        if(localStorage.getItem("cart")){
+            cart=JSON.parse(localStorage.getItem("cart"))
+        }
+        cart.map((prod,index)=>{
+            
+                if(i === prod[0].name)
+                {
+                    prod[0].count+=1 
+                }
+            
+          })
+    }
+    localStorage.setItem("cart",JSON.stringify(cart))
+    return cart;
+}
+export const decreaseItemInCart = (i)=>{
+    let cart = []
+    if(typeof window!== undefined){
+        if(localStorage.getItem("cart")){
+            cart=JSON.parse(localStorage.getItem("cart"))
+        }
+        cart.map((prod,index)=>{
+            
+                if(i === prod[0].name)
+                {
+                    prod[0].count-=1 
+                }
+            
+          })
+    }
+    localStorage.setItem("cart",JSON.stringify(cart))
+    return cart;
+}
+export const findItemInCart = (i)=>{
+    let cart = []
+    let t = 2
+    if(typeof window!== undefined){
+        if(localStorage.getItem("cart")){
+            cart=JSON.parse(localStorage.getItem("cart"))
+        }
+        cart.map((prod,index)=>{
+            
+                if(i === prod[0].name)
+                {
+                    console.log(i,prod[0].name,"dekh",i === prod[0].name,prod[0].count)
+                   t = prod[0].count ;
+                }
+            
+          })
+    }
+    return t;
+}
+
+export const removeItemFromCart = (i)=>{
+    let cart = []
+    if(typeof window!== undefined){
+        if(localStorage.getItem("cart")){
+            cart=JSON.parse(localStorage.getItem("cart"))
+        }
+        cart.map((prod,index)=>{
+            
+                if(i === prod[0].name)
+                {
+                    cart.splice(index,1)
+                }
+            
+          })
+    }
+    localStorage.setItem("cart",JSON.stringify(cart))
+    return cart;
+}
+
+export const loadCart = () =>{
+    if(typeof window!== undefined){
+        if(localStorage.getItem("cart")){
+            return JSON.parse(localStorage.getItem("cart"))
+        }
+    }
+}
+
+
+export const cartEmpty = next =>{
+    
+    if(typeof window!== undefined){
+        localStorage.removeItem("cart")
+    next()
+    }
+    }

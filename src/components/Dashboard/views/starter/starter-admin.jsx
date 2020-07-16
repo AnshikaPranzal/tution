@@ -261,19 +261,120 @@ const Starter = () => {
 
     return (
         <div >
-            <Row>
-                <Col sm={6} lg={8}>
-                    <SalesSummary />
+        <Row className="text-center">
+            {
+                                userO.map((obj,i) => {
+                                    if(obj.role === 0){
+                                        students = students + 1
+                                        studentsarray[students-1] = obj
+                                        usercreation = `${obj.createdAt.substring(5,7)}/${obj.createdAt.substring(8,10)}/${obj.createdAt.substring(0,4)}`
+                                         difference = Math.floor(((new Date().getTime())-(new Date(usercreation).getTime()))/(1000 * 3600 * 24))
+                                         console.log(difference)
+                                        if(difference <= 7)
+                                        {
+                                            weekstudents= weekstudents + 1
+                                            weekstudentsarray[weekstudents - 1] = obj
+                                        }
+                                        if(difference <= 30){
+                                            monthstudents= monthstudents + 1
+                                            monthstudentsarray[monthstudents-1] = obj
+                                        }
+                                        
+                                    }
+                                })
+                            }
+            <Col xs="12" md="4">
+            
+                    {/*--------------------------------------------------------------------------------*/}
+                    {/*Card-1*/}
+                    {/*--------------------------------------------------------------------------------*/}
+                    <Card style={{borderRadius: "10px", backgroundColor: "cornflowerblue", color: "white"}}>
+                        {/* <CardImg top width="100%" src={img2} /> */}
+                        <CardBody>
+                            <CardTitle>Total Registered Students</CardTitle>
+                           
+                            <h4>{students}</h4>
+                            <div className="see-more sm"><text className="see-more-button bsm" >See more</text></div>
+                            <div class="see-less sl">
+                            {
+                                studentsarray.map((obj,i) => {
+                                    return(
+                                        <>
+                                    <text>{obj.name}</text>
+                                    <br></br>
+                                    </>
+                                    )
+                                })
+                            }
+                            <text className="see-less-button bsl" >See less</text>
+                            </div>
+                        </CardBody>
+                    </Card>
+                    
                 </Col>
-                <Col sm={6} lg={4}>
-                    <Feeds />
+                <Col xs="12" md="4">
+                <Card style={{borderRadius: "10px", backgroundColor: "red", color: "white"}}>
+                        {/* <CardImg top width="100%" src={img2} /> */}
+                        <CardBody>
+                            <CardTitle>Students registered in last 1 week</CardTitle>
+                            
+                <h4>{weekstudents}</h4>
+                <div className="see-more wsm"><text className="see-more-button bwsm" >See more</text></div>
+                            <div class="see-less wsl">
+                {
+                                weekstudentsarray.map((obj,i) => {
+                                    return(
+                                        <>
+                                    <text>{obj.name}</text>
+                                    <br></br>
+                                    </>
+                                    )
+                                })
+                            }
+                            <text className="see-less-button bwsl" >See less</text>
+                            </div>
+                        </CardBody>
+                    </Card>
+                </Col>
+                <Col xs="12" md="4">
+                <Card style={{borderRadius: "10px", backgroundColor: "green", color: "white"}}>
+                        {/* <CardImg top width="100%" src={img2} /> */}
+                        <CardBody>
+                            <CardTitle>Students regidtered in last 30 days</CardTitle>
+                            
+                <h4>{monthstudents}</h4>
+                <div className="see-more msm"><text className="see-more-button bmsm" >See more</text></div>
+                            <div class="see-less msl">
+                {
+                                monthstudentsarray.map((obj,i) => {
+                                    return(
+                                        <>
+                                    <text>{obj.name}</text>
+                                    <br></br>
+                                    </>
+                                    )
+                                })
+                            }
+                            <text className="see-less-button bmsl" >See less</text>
+                            </div>
+                        </CardBody>
+                    </Card>
                 </Col>
             </Row>
-            <Row>
+        <Row>
+            <Col sm={6} lg={8}>
+                <SalesSummary />
+            </Col>
+            <Col sm={6} lg={4}>
+                <Feeds />
+            </Col>
+        </Row>
+        <Row>
                 <Col sm={12}>
                     <Projects />
                 </Col>
             </Row>
+            
             <Row className="text-center">
                 <Col xs="12" md="6">
                     {/*--------------------------------------------------------------------------------*/}
@@ -503,106 +604,7 @@ const Starter = () => {
             </CardBody>
         </Card >
             </Row>
-            <Row className="text-center">
-            {
-                                userO.map((obj,i) => {
-                                    if(obj.role === 0){
-                                        students = students + 1
-                                        studentsarray[students-1] = obj
-                                        usercreation = `${obj.createdAt.substring(5,7)}/${obj.createdAt.substring(8,10)}/${obj.createdAt.substring(0,4)}`
-                                         difference = Math.floor(((new Date().getTime())-(new Date(usercreation).getTime()))/(1000 * 3600 * 24))
-                                         console.log(difference)
-                                        if(difference <= 7)
-                                        {
-                                            weekstudents= weekstudents + 1
-                                            weekstudentsarray[weekstudents - 1] = obj
-                                        }
-                                        if(difference <= 30){
-                                            monthstudents= monthstudents + 1
-                                            monthstudentsarray[monthstudents-1] = obj
-                                        }
-                                        
-                                    }
-                                })
-                            }
-            <Col xs="12" md="4">
-            
-                    {/*--------------------------------------------------------------------------------*/}
-                    {/*Card-1*/}
-                    {/*--------------------------------------------------------------------------------*/}
-                    <Card style={{borderRadius: "10px", backgroundColor: "cornflowerblue", color: "white"}}>
-                        {/* <CardImg top width="100%" src={img2} /> */}
-                        <CardBody>
-                            <CardTitle>Total Registered Students</CardTitle>
-                           
-                            <h4>{students}</h4>
-                            <div className="see-more sm"><text className="see-more-button bsm" >See more</text></div>
-                            <div class="see-less sl">
-                            {
-                                studentsarray.map((obj,i) => {
-                                    return(
-                                        <>
-                                    <text>{obj.name}</text>
-                                    <br></br>
-                                    </>
-                                    )
-                                })
-                            }
-                            <text className="see-less-button bsl" >See less</text>
-                            </div>
-                        </CardBody>
-                    </Card>
-                    
-                </Col>
-                <Col xs="12" md="4">
-                <Card style={{borderRadius: "10px", backgroundColor: "red", color: "white"}}>
-                        {/* <CardImg top width="100%" src={img2} /> */}
-                        <CardBody>
-                            <CardTitle>Students registered in last 1 week</CardTitle>
-                            
-                <h4>{weekstudents}</h4>
-                <div className="see-more wsm"><text className="see-more-button bwsm" >See more</text></div>
-                            <div class="see-less wsl">
-                {
-                                weekstudentsarray.map((obj,i) => {
-                                    return(
-                                        <>
-                                    <text>{obj.name}</text>
-                                    <br></br>
-                                    </>
-                                    )
-                                })
-                            }
-                            <text className="see-less-button bwsl" >See less</text>
-                            </div>
-                        </CardBody>
-                    </Card>
-                </Col>
-                <Col xs="12" md="4">
-                <Card style={{borderRadius: "10px", backgroundColor: "green", color: "white"}}>
-                        {/* <CardImg top width="100%" src={img2} /> */}
-                        <CardBody>
-                            <CardTitle>Students regidtered in last 30 days</CardTitle>
-                            
-                <h4>{monthstudents}</h4>
-                <div className="see-more msm"><text className="see-more-button bmsm" >See more</text></div>
-                            <div class="see-less msl">
-                {
-                                monthstudentsarray.map((obj,i) => {
-                                    return(
-                                        <>
-                                    <text>{obj.name}</text>
-                                    <br></br>
-                                    </>
-                                    )
-                                })
-                            }
-                            <text className="see-less-button bmsl" >See less</text>
-                            </div>
-                        </CardBody>
-                    </Card>
-                </Col>
-            </Row>
+
         </div>
     );
 }

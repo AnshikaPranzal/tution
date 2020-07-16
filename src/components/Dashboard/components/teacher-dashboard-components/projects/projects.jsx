@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 
@@ -22,6 +21,7 @@ const Projects = () => {
     const [errorF, seterrorF] = useState(false)
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
+    const [reload, setreload] = useState(false)
   
   
     const loadAllclasses = () =>{
@@ -36,19 +36,27 @@ const Projects = () => {
         }
       })
     }
+   const [refresh, setrefresh] = useState(true)
     
     useEffect (() => {
       loadAllclasses()
-      },[])
-    const successMessage = () =>(
+      },[refresh])
+
+
+      
+
+    const successMessage = () =>{
+        
+        return(
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
                     <div className="alert alert-success" style={{display: success ? "" : "none"}}>
                         Congratulations!!! Class is added.
+                        
                     </div>
                 </div>
         </div>
-    )
+    )}
 
     const errorMessage = () =>{
        
@@ -83,6 +91,11 @@ const Projects = () => {
     const handleChange = name => event => {
         setProject({
             ...project,error: false, [name]: event.target.value
+        })
+    }
+    const reloading = ()=>{
+        setProject({
+            ...project,error: false, name: nameT, email: emailT
         })
     }
     const onSubmit = event => {
@@ -191,16 +204,9 @@ const Projects = () => {
 //     })
 //    })
 
-   useEffect(() => {
-    setProject({
-        ...project,error: false, name: nameT, email: emailT
-    })
-   }, [project, nameT, emailT])
 
-   const [refresh, setrefresh] = useState(true)
-   useEffect(() => {
-       loadAllclasses()
-   }, [refresh])
+
+ 
     const dashboard = ()=> (
         /*--------------------------------------------------------------------------------*/
         /* Used In Dashboard-4 [General]                                                  */
@@ -213,27 +219,7 @@ const Projects = () => {
                         <CardTitle>Add Classes</CardTitle>
                         <CardSubtitle>Click on them to join</CardSubtitle>
                     </div>
-                    {/* <div className="ml-auto d-flex align-items-center">
-                        <ul className="list-inline font-12 dl mr-3 mb-0">
-                            <li className="border-0 p-0 text-orange list-inline-item">
-                                <i className="fa fa-circle"></i>
-                                Regular Class
-								</li>
-                            <li className="border-0 p-0 text-success list-inline-item">
-                                <i className="fa fa-circle"></i> Doubt Class
-								</li>
-                        </ul>
-                    </div> */}
-                    {/* <div className="ml-auto d-flex no-block align-items-center">
-                        <div className="dl">
-                            <Input type="select" className="custom-select">
-                                <option value="0">Monthly</option>
-                                <option value="1">Daily</option>
-                                <option value="2">Weekly</option>
-                                <option value="3">Yearly</option>
-                            </Input>
-                        </div>
-                    </div> */}
+                    
                 </div>
                 {successMessage()}
                 {errorMessage()}

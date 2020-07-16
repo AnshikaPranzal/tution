@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import $ from 'jquery';
 import TopHeader from './TopHeader.js';
 import Navbar from './Navbar.js';
 import Footer from './Footer.js';
 import AllCourseList from './AllCourseList.js';
 import Title from './Title.js';
+import { loadCart } from './helper/index.js';
 
 const CoursePage = () => {
 
@@ -22,7 +23,7 @@ const CoursePage = () => {
 		}
     });
     
-    
+
 
     return(
         <React.Fragment>

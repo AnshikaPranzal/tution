@@ -1,22 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react';
-import { isAuthenticated,payment } from './helper';
-
-const loadScript = (src)=>{
-  return new Promise(resolve=>{
-    const script = document.createElement('script')
-    script.src = src
-    script.onload = ()=>{
-      resolve(true);
-    }
-    script.onerror = ()=>{
-      resolve(false);
-    }
-    document.body.appendChild(script);
-  })
-}
-
-const __DEV__ = document.domain === 'localhost'
+import React, { useState, useEffect } from 'react';
+import CartModal from './CartModal';
+import { Modal } from 'react-bootstrap';
+import { isAuthenticated,addItemToCart,loadCart, removeItemFromCart, updateItemInCart } from './helper';
 
 // if(document.domain === 'localhost'){
 //   //development
@@ -26,48 +13,63 @@ const __DEV__ = document.domain === 'localhost'
 // }
 
 const CourseItem = (props) => {
-  const {user} = isAuthenticated()
-  const [name, setname] = useState(user.name)
-  const [email, setEmail] = useState(user.email)
+
   var display = {
     display: `inline-block`
   };
+  const { user,token } = isAuthenticated()
+  const [flag, setflag] = useState(0)
+  const [amount, setamount] = useState(0);
+  const [sub, setsub] = useState(2)
+  const [product, setproduct] = useState([{"name":props.topic,"count":1}])
+  const [cart, setcart] = useState(loadCart())
+    
 
-  const displayRazorPay = async ()=>{
-    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
-
-    if(!res){
-      alert('RazorPay SDK failed to load. Are you online?')
-      return
+  const addProductToCart = () => {
+    var i;
+    
+    if(cart === undefined)
+    {
+      console.log("pppp",product)
+      
+      
+        addItemToCart(product,()=>{
+          setcart(loadCart())
+        })
+        setcart(loadCart())
+      
+      }
+      else
+      {
+      console.log("sub")
+    for(i=0;i<cart.length;i++){
+      console.log(i === cart.length)
+        if(cart[i][0].name === props.topic){ 
+          updateItemInCart(props.topic)
+          i=cart.length
+          break;
+        }
+        if(i === cart.length-1){
+          console.log("bhkk")
+          
+          addItemToCart(product)
+          break;
+        }
     }
-    const data = await payment();
-    console.log(data)
-    const options = {
-      "key": __DEV__?"rzp_test_BauetMNElZ2N7N":'API_NA', 
-      "amount": data.amount.toString(), 
-      "currency": data.currency,
-      "name": "Some Tutions",
-      "description": "Thanks for enrolling with the best!",
-      "image": "http://localhost:5000/logo.svg",
-      "order_id": data.id, 
-      "handler": function (response){
-          alert(response.razorpay_payment_id);
-          alert(response.razorpay_order_id);
-          alert(response.razorpay_signature)
-      },
-      "prefill": {
-          name,email
-      },
-      // "notes": {
-      //     "address": "Razorpay Corporate Office"
-      // },
-      // "theme": {
-      //     "color": "#F37254"
-      // }
-  };
-  var paymentObject = new window.Razorpay(options);
-  paymentObject.open()
   }
+    
+    
+    setshowlogin(true)
+}
+
+  const [show, setShow] = useState(false);
+  const [showlogin, setshowlogin] = useState(false);
+
+  const handleCloselogin = () => {
+    console.log("----k")
+    setshowlogin(false)
+  };
+
 
     return(
         <React.Fragment>
@@ -83,10 +85,13 @@ const CourseItem = (props) => {
           <h4 className="card-title">{props.topic}</h4>
         </a>
         <p className="card-text mb-4"> {props.des}</p>
-        <a  onClick={displayRazorPay} className="hvr-bounce-to-top">Enroll</a>
+        <a  data-toggle="modal" data-target="#signinModal" className="hvr-bounce-to-top" topic={props.topic} onClick={addProductToCart}>Enroll</a>
       </div>
     </div>
   </div>
+      <Modal show={showlogin} onHide={handleCloselogin}>
+       <CartModal></CartModal>
+      </Modal>
         </React.Fragment>
     )
 }
