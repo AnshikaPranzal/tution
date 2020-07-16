@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react';
-import {notices,isAuthenticated,getAllNotices,deleteNotice,updateNotice ,getANotice, getAllUSers} from '../../../helper/index'
+import {notices,isAuthenticated,getAllNotices,deleteNotice,updateNotice ,getANotice, getAllUSers, } from '../../../helper/index'
 import {
     Card,
     CardImg,
@@ -113,7 +113,7 @@ const Starter = () => {
     useEffect (() => {
       loadAllnotices()
       },[])
-      useEffect (() => {
+    useEffect (() => {
         loadAllusers()
         },[])
     const successMessage = () =>(

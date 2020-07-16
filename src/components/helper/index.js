@@ -48,6 +48,22 @@ export const notices = notices =>{
     })
 }
 
+export const classrooms = classrooms =>{
+    return fetch(`${API}/classroom/create`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json',
+            "Content-Type" : 'application/json'
+        },
+        body: JSON.stringify(classrooms)
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {console.log(err);
+    })
+}
+
 export const signin = user =>{
     return fetch(`${API}/signin`,{
         method:"POST",
@@ -395,3 +411,64 @@ export const cartEmpty = next =>{
     next()
     }
     }
+export const getAllClassrooms = ()=>{
+    
+    return fetch(`${API}/classrooms`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the Classrooms")
+    })
+}
+
+export const getAClassroom = classroomId=>{
+    
+    return fetch(`${API}/classroom/${classroomId}`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the Classroom")
+    })
+}
+
+export const deleteClassroom = (classroomId)=>{
+    
+    return fetch(`${API}/classroom/delete/${classroomId}`,{
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            // Authorization: `Bearer ${token}` 
+        }
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in deleting the Classroom")
+    })
+}
+
+export const updateClassroom = (classroomId,classroomO)=>{
+    
+    return fetch(`${API}/classroom/update/${classroomId}`,{
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(classroomO)
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in updating classroom")
+    })
+}
