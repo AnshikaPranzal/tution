@@ -16,6 +16,9 @@ import FulllayoutAdmin from './components/Dashboard/layouts/fulllayout -admin';
 import preloader from './images/preload.gif';
 import AdminRoute from './auth-routes/AdminRoutes';
 import PrivateRoute from './auth-routes/PrivateRoutes';
+import TeacherRoute from './auth-routes/TeacherRoute';
+
+
 
 
 
@@ -44,13 +47,12 @@ function Routes() {
             <PrivateRoute exact path="/dashboard" component={Fulllayout} />
             <PrivateRoute exact path="/payment" component={Fulllayout} />
             <PrivateRoute exact path="/material" component={Fulllayout} />
-            <Route exact path="/dashboard-teacher" component={FulllayoutTeacher} />
+            <TeacherRoute exact path="/dashboard-teacher" component={FulllayoutTeacher} />
             <AdminRoute exact path="/dashboard-admin" component={FulllayoutAdmin} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/course" component={CoursePage} />
-            <Route exact path="/event" component={EventPage} />
-            <Route exact path='/notice' component={NoticePage}/>
-            <Route exact path="/register" component={()=> <div>Join Us</div>} />
+            <PrivateRoute exact path="/event" component={EventPage} />
+            <PrivateRoute exact path='/notice' component={NoticePage}/>
           </Switch>}
         {/* <Footer></Footer> */}
     </BrowserRouter>
