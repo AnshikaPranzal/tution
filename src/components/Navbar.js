@@ -2,6 +2,7 @@ import React from 'react'
 import {Navbar} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import logo from '../images/logo.png'
+import { isAuthenticated } from './helper'
 
 
 const NavBar =(props) => {
@@ -23,10 +24,12 @@ const NavBar =(props) => {
             <Link className="nav-link" to="/course">COURSES</Link>
 
             </li>
-
-            <li className={`nav-item ${props.notice}`}>
-            <Link className="nav-link" to="/notice">NOTICE</Link>
-            </li>
+           {isAuthenticated() && (
+              <li className={`nav-item ${props.notice}`}>
+              <Link className="nav-link" to="/notice">NOTICE</Link>
+              </li>
+           )}
+            
             
             <li className={`nav-item ${props.about}`}>
             <Link className="nav-link" to="/about">ABOUT</Link>
@@ -37,28 +40,26 @@ const NavBar =(props) => {
             </li> */}
 
             
-
-            <li className={`nav-item ${props.dashboard}`}>
-            <Link className="nav-link" to="/dashboard">DASHBOARD</Link>
-
-            </li>
-            {/* <li className={`nav-item dropdown view ${props.pages}`}>
-              
-            <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" >PAGES</Link>
-                
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="teacher.html">Teacher</a>
-                <a className="dropdown-item" href="teacher-single.html">Teacher Single</a>
-                <a className="dropdown-item" href="notice.html">Notice</a>
-                <a className="dropdown-item" href="notice-single.html">Notice Details</a>
-                <a className="dropdown-item" href="research.html">Research</a>
-                <a className="dropdown-item" href="scholarship.html">Scholarship</a>
-                <a className="dropdown-item" href="course-single.html">Course Details</a>
-                <a className="dropdown-item" href="event-single.html">Event Details</a>
-                <a className="dropdown-item" href="blog-single.html">Blog Details</a>
-              </div>
-            </li> */}
+            {isAuthenticated() && isAuthenticated().user.role === 0 &&(
+               <li className={`nav-item ${props.dashboard}`}>
+               <Link className="nav-link" to="/dashboard">DASHBOARD</Link>
+   
+               </li>
+            )}
+            {isAuthenticated() && isAuthenticated().user.role === 1 && (
+               <li className={`nav-item ${props.dashboard}`}>
+               <Link className="nav-link" to="/dashboard-teacher">DASHBOARD</Link>
+   
+               </li>
+            )}
+            {isAuthenticated() && isAuthenticated().user.role === 2 &&(
+               <li className={`nav-item ${props.dashboard}`}>
+               <Link className="nav-link" to="/dashboard-admin">DASHBOARD</Link>
+   
+               </li>
+            )}
+           
+            
             <li className={`nav-item ${props.contact}`}>
             <Link className="nav-link" to="/contact">CONTACT</Link>
             </li>

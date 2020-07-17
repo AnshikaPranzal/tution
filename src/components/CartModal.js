@@ -2,7 +2,7 @@
 import React, { useState,useEffect } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import { Modal, Button} from 'react-bootstrap';
-import { signup1, cartEmpty, addItemToCart, updateItemInCart, updateUser, findItemInCart, getAUser } from './helper/index'
+import { signup1, cartEmpty, addItemToCart, updateItemInCart, updateUser, findItemInCart, getAUser,decreaseItemInCart } from './helper/index'
 import { isAuthenticated,payment,loadCart } from './helper';
 import { Input,Table } from 'reactstrap';
 
@@ -67,7 +67,7 @@ const CartModal = (props) =>{
                 }})
                 .catch(console.log("Error in updation"))
             }
-        })
+        }).catch(err=>console.log(err))
        
        
             }
@@ -96,9 +96,9 @@ const CartModal = (props) =>{
           "handler": function (response){
               // alert(response.razorpay_payment_id);
               // alert(response.razorpay_order_id);
-              // alert(response.razorpay_signature)
-            purchaseCount()
               
+            purchaseCount()
+            alert("Congratulations your payment was successful!!")
               
           },
           "prefill": {
@@ -151,7 +151,7 @@ const CartModal = (props) =>{
                                     return(
                                         <tr key={index}>
                                         <td>{prod[0].name}</td>
-                                        <td><span onClick={()=>{updateItemInCart(prod[0].name) ;setreload(!reload)}} style={{cursor: "pointer"}}>+  </span>{s}<span>  -</span></td>
+                                        <td><span onClick={()=>{decreaseItemInCart(prod[0].name) ;setreload(!reload)}} style={{cursor: "pointer"}}>-  </span>{s}<span onClick={()=>{updateItemInCart(prod[0].name) ;setreload(!reload)}} style={{cursor: "pointer"}}>  +</span></td>
                                         </tr>
                                     )
                                 })}

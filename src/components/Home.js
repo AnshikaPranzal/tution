@@ -79,7 +79,7 @@ const Home = () =>{
             {/* <!-- top header --> */}
                 <TopHeader></TopHeader>
             {/* <!-- navbar --> */}
-                <Navbar home="active"></Navbar>
+                
           </header>
           {/* <!-- /header --> */}
 

@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 import { Modal } from 'react-bootstrap';
 import ResgisterModal from './RegisterModal'
 import LoginModal from './LoginModal'
+import { isAuthenticated, signout } from './helper';
+import Navbar from './Navbar';
 
 const TopHeader = () =>{
 
   const [show, setShow] = useState(false);
   const [showlogin, setshowlogin] = useState(false);
-
+  const [reload, setreload] = useState()
   const handleClosesignup = () => setShow(false);
   const handleShowsignup = () => setShow(true);
 
   const handleCloselogin = () => setshowlogin(false);
   const handleShowlogin = () => setshowlogin(true);
-
+  const logout= ()=>{
+    signout()
+    setreload(true)
+  }
+  useEffect(() => {
+    return () => {
+      setreload(false)
+    };
+  }, [reload])
     return(
         <React.Fragment>
             <div className="top-header bg-white" style={{lineHeight: "0", paddingTop: "2px"}}>
@@ -31,8 +41,16 @@ const TopHeader = () =>{
         </div>
         <div className="col-lg-8 text-center text-lg-right" >
           <ul className="list-inline" style={{marginBottom: "0", paddingTop: '5px'}}>
-            <li className="list-inline-item"><span className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowlogin} data-toggle="modal" data-target="#loginModal" style={{cursor: "pointer"}}>Login</span></li>
-            <li className="list-inline-item"><span className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowsignup} data-toggle="modal" data-target="#signupModal" style={{cursor: "pointer"}}>Register</span></li>
+            { isAuthenticated() ? (
+            <li className="list-inline-item"><span className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={logout} data-toggle="modal" data-target="#signupModal" style={{cursor: "pointer"}}>Log Out</span></li>
+            ) : (
+              <span>
+              <li className="list-inline-item"><span className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowlogin} data-toggle="modal" data-target="#loginModal" style={{cursor: "pointer"}}>Login</span></li>
+              <li className="list-inline-item"><span className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" onClick={handleShowsignup} data-toggle="modal" data-target="#signupModal" style={{cursor: "pointer"}}>Register</span></li>
+              </span>
+            )}
+
+
           </ul>
         </div>
       </div>
@@ -48,7 +66,7 @@ const TopHeader = () =>{
        <LoginModal></LoginModal>
       </Modal>
 
-
+      <Navbar home="active"></Navbar>
         </React.Fragment>
         )
     };
