@@ -16,7 +16,7 @@ import FulllayoutAdmin from './components/Dashboard/layouts/fulllayout -admin';
 import preloader from './images/preload.gif';
 import AdminRoute from './auth-routes/AdminRoutes';
 import PrivateRoute from './auth-routes/PrivateRoutes';
-import TeacherRoute from './auth-routes/TeacherRoute';
+import TeacherRoute from './auth-routes/TeacherRoutes';
 
 
 

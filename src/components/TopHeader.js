@@ -66,7 +66,7 @@ const TopHeader = () =>{
        <LoginModal></LoginModal>
       </Modal>
 
-      <Navbar home="active"></Navbar>
+      
         </React.Fragment>
         )
     };
