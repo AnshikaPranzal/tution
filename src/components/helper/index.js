@@ -472,3 +472,15 @@ export const updateClassroom = (classroomId,classroomO)=>{
         console.log("Error in updating classroom")
     })
 }
+
+export const uploadDocumment = documents =>{
+    return fetch(`${API}/document/upload`,{
+        method:"POST",
+        body: JSON.stringify(documents)
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {console.log(err);
+    })
+}
