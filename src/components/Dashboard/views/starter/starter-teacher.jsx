@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react';
 import {classrooms, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated} from '../../../helper/index'
 import {
@@ -363,20 +364,7 @@ const Starter = () => {
                                         <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClassroom(obj._id)}} aria-hidden="true"></i></div>
                                 </Card>
                                 </Col>)
-                            {/* <td>
-                                    <div className="d-flex no-block align-items-center">
-                                            
-                                            <div className="">
-                                                <h5 className="mb-0 font-16 font-medium">{obj.name}</h5>
-                                            </div>
-                                    </div>
-                            </td>
-                            <td>{obj.description}</td>
-                            
-                            <td className="blue-grey-text  text-darken-4 font-medium">{obj.subject}</td>
-                            <td><i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClassroom(obj._id)}} aria-hidden="true"></i>
-                            <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClassroom(obj._id)}} aria-hidden="true"></i></td> */}
-                        // </tr>
+                           
                         
                     })}
                         </Row>

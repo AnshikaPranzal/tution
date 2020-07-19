@@ -363,7 +363,7 @@ export const findItemInCart = (i)=>{
         if(localStorage.getItem("cart")){
             cart=JSON.parse(localStorage.getItem("cart"))
         }
-        cart.map((prod,index)=>{
+        cart.map((prod,index) =>{
             
                 if(i === prod[0].name)
                 {
