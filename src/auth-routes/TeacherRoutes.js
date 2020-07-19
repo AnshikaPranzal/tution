@@ -13,7 +13,7 @@ const TeacherRoute= ({ component: Component, ...rest }) => {
           ) : (
             <Redirect
               to={{
-                pathname: "/signin",
+                pathname: "/",
                 state: { from: props.location }
               }}
             />

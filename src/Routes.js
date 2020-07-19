@@ -14,9 +14,7 @@ import NoticePage from './components/NoticePage';
 import FulllayoutTeacher from './components/Dashboard/layouts/fulllayout -teacher';
 import FulllayoutAdmin from './components/Dashboard/layouts/fulllayout -admin';
 import preloader from './images/preload.gif';
-import AdminRoute from './auth-routes/AdminRoutes';
 import PrivateRoute from './auth-routes/PrivateRoutes';
-import TeacherRoute from './auth-routes/TeacherRoute';
 
 
 
@@ -44,15 +42,16 @@ function Routes() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
-            <PrivateRoute exact path="/dashboard" component={Fulllayout} />
-            <PrivateRoute exact path="/payment" component={Fulllayout} />
-            <PrivateRoute exact path="/material" component={Fulllayout} />
-            <TeacherRoute exact path="/dashboard-teacher" component={FulllayoutTeacher} />
-            <AdminRoute exact path="/dashboard-admin" component={FulllayoutAdmin} />
+            <Route exact path="/dashboard" component={Fulllayout} />
+            <Route exact path="/payment" component={Fulllayout} />
+            <Route exact path="/material" component={Fulllayout} />
+            <Route exact path="/settings" component={Fulllayout} />
+            <Route exact path="/dashboard-teacher" component={FulllayoutTeacher} />
+            <Route exact path="/dashboard-admin" component={FulllayoutAdmin} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/course" component={CoursePage} />
-            <PrivateRoute exact path="/event" component={EventPage} />
-            <PrivateRoute exact path='/notice' component={NoticePage}/>
+            <Route exact path="/event" component={EventPage} />
+            <Route exact path='/notice' component={NoticePage}/>
           </Switch>}
         {/* <Footer></Footer> */}
     </BrowserRouter>

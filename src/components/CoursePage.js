@@ -29,7 +29,6 @@ const CoursePage = () => {
         <React.Fragment>
             <header className="fixed-top header">
             {/* <!-- top header --> */}
-                <TopHeader></TopHeader>
             {/* <!-- navbar --> */}
                 <Navbar courses="active"></Navbar>
           </header>
