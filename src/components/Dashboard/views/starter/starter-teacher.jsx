@@ -23,13 +23,15 @@ const Starter = () => {
     const [uid, setuid] = useState("")
     const [errorF, seterrorF] = useState(false)
 
-    const uploadFiles = (event, file1) => {
+    const uploadFiles = (event, file) => {
         event.preventDefault();
-        console.log('I was here')
-        // if(!file1){
-        //     console.log("no file selected");
-        // }
-        // uploadDocument(file);
+    console.log(file)
+    console.log('I was here')
+        if(!file){
+            console.log("no file selected");
+        }
+        uploadDocument(file[0]);
+        console.log("uyfg")
     }
 
     const loadAllclassroooms = () =>{
