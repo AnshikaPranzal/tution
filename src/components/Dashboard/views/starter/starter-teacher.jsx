@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react';
-import {classrooms, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated} from '../../../helper/index'
+import {uploadDocument ,classrooms, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated} from '../../../helper/index'
 import {
     Card,
     CardBody,
@@ -16,12 +16,21 @@ import { SalesSummary, Projects, Feeds } from '../../components/teacher-dashboar
 
 
 const Starter = () => {
-   const [file, setfile] = useState("choose")
+   const [file, setfile] = useState()
    const [video, setvideo] = useState("")
    const [classroomO, setclassroomO] = useState([])
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
     const [errorF, seterrorF] = useState(false)
+
+    const uploadFiles = (event, file1) => {
+        event.preventDefault();
+        console.log('I was here')
+        // if(!file1){
+        //     console.log("no file selected");
+        // }
+        // uploadDocument(file);
+    }
 
     const loadAllclassroooms = () =>{
         getAllClassrooms().then(data =>{
@@ -247,10 +256,10 @@ const Starter = () => {
                                     name="file"
                                     id="file1"
                                     placeholder=" : "
-                                    onChange={e=> setfile(e.target.files[0])}
+                                    onChange={e=> setfile(e.target.files)}
                                     style={{marginLeft:"28%",marginTop:"1rem"}}
                                     ></Input>
-                                    <Input
+                                    {/* <Input
                                     type="text"
                                     name="video"
                                     id="video"
@@ -269,8 +278,8 @@ const Starter = () => {
                                     onChange={e=> setvideo(e.target.value)}
                                     style={{marginTop:"1rem"}}
                                    
-                                    ></Input>
-                            <Button style={{marginTop:"1.4rem"}}>Upload</Button>
+                                    ></Input> */}
+                            <Button style={{marginTop:"1.4rem"}} onClick={e => uploadFiles(e,file)}>Upload</Button>
                         </CardBody>
                     </Card>
                 </Col>
