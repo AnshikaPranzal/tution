@@ -113,7 +113,7 @@ const AddDocument = ()=> {
     const catForm =() =>(
         <form >
         <div className="form-group">
-          <label className="btn btn-block btn-success">
+          <label className="btn btn-block btn-info">
             <input
               onChange={handleChange("photo")}
               type="file"
