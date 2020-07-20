@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react';
-import {uploadDocument ,classrooms, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated} from '../../../helper/index'
+import {uploadDocument ,classrooms, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAUser} from '../../../helper/index'
 import {
     Card,
     CardBody,
@@ -13,7 +13,8 @@ import {
     Table
 } from 'reactstrap';
 import { SalesSummary, Projects, Feeds } from '../../components/teacher-dashboard-components';
-
+import { useRef } from 'react';
+import AddDocument from '../ui-components/document'
 
 const Starter = () => {
    const [file, setfile] = useState()
@@ -22,17 +23,35 @@ const Starter = () => {
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
     const [errorF, seterrorF] = useState(false)
+    const [values, setvalues] = useState({
+        formData: "",
+        hello:""
+    })
 
-    const uploadFiles = (event, file) => {
+    const [refresh, setrefresh] = useState(true)
+
+    const {formData}=values
+    useEffect(()=>{
+        
+    },[refresh])
+    const uploadFiles = (event,file) => {
+        console.log(file)
         event.preventDefault();
-    console.log(file)
-    console.log('I was here')
-        if(!file){
-            console.log("no file selected");
-        }
-        uploadDocument(file[0]);
-        console.log("uyfg")
+            setvalues({
+                ...values,formData: new FormData()
+            })
+            console.log(values, event.target.files)
+        // formData.set(name,event.target.files[0])
+            // setvalues({
+            //     ...values,formData: event.target.files[0]
+            // })
+            console.log(values)
+        console.log('I was here')
+        // uploadDocument(formData);
+        // console.log("uyfg")
     }
+
+
 
     const loadAllclassroooms = () =>{
         getAllClassrooms().then(data =>{
@@ -82,13 +101,27 @@ const Starter = () => {
             error:"",
             success: false
         })
+
         const {name, description , subject, success, error} = project;
        
         const handleChange = name => event => {
+            const v = name === "formData"? event.target.files[0]:event.target.value
+
+            formData.set(name,v)
             setProject({
                 ...project,error: false, [name]: event.target.value
             })
         }
+        
+        // const handleChange2 = name => event => {
+        //     const v = name === "formData"? event.target.files[0]:event.target.value
+
+        //     formData.set(name,event.target.files[0])
+        //     setvalues({
+        //         ...values,formData: event.target.files[0]
+        //     })
+        //     console.log(v,"hi")
+        // }
         const onclassroomSubmit = event => {
             event.preventDefault();
             setProject({
@@ -181,10 +214,17 @@ const Starter = () => {
                 }
             })
         }
-        const [refresh, setrefresh] = useState(true)
         useEffect(() => {
             loadAllclassroooms()
         }, [refresh])
+        const handleChange2 = name=> event =>{
+            const v = name === "formData"? event.target.files[0]:event.target.value
+
+            formData.set(name,v)
+             setvalues({...values,[name]:v});
+            
+        }
+        const [file2, setfile2] = useState([])
     return (
         <div className="text-center">
             <Row>
@@ -251,37 +291,7 @@ const Starter = () => {
                     <Card>
                         {/* <CardImg top width="100%" src={img2} /> */}
                         <CardBody>
-                            <CardTitle>Add Documents</CardTitle>
-                            <CardSubtitle>Upload the notes/assignments here.</CardSubtitle>
-                            <Input
-                                    type="file"
-                                    name="file"
-                                    id="file1"
-                                    placeholder=" : "
-                                    onChange={e=> setfile(e.target.files)}
-                                    style={{marginLeft:"28%",marginTop:"1rem"}}
-                                    ></Input>
-                                    {/* <Input
-                                    type="text"
-                                    name="video"
-                                    id="video"
-                                    placeholder="Topic.."
-                                    value={video}
-                                    onChange={e=> setvideo(e.target.value)}
-                                    style={{marginTop:"1rem"}}
-                                   
-                                    ></Input>
-                                    <Input
-                                    type="text"
-                                    name="video"
-                                    id="video4"
-                                    placeholder="Description.."
-                                    value={video}
-                                    onChange={e=> setvideo(e.target.value)}
-                                    style={{marginTop:"1rem"}}
-                                   
-                                    ></Input> */}
-                            <Button style={{marginTop:"1.4rem"}} onClick={e => uploadFiles(e,file)}>Upload</Button>
+                            <AddDocument></AddDocument>
                         </CardBody>
                     </Card>
                 </Col>

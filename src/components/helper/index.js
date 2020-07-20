@@ -474,11 +474,14 @@ export const updateClassroom = (classroomId,classroomO)=>{
 }
 
 export const uploadDocument = documents =>{
-    console.log(documents)
-    return fetch(`${API}/document/upload`,{
+    for (var key of documents.entries()) {
+        console.log(key[0] + ', ' + key[1])
+    }
+    return fetch(`${API}/document/upload2`,{
         method:"POST",
         headers: {
-            "Content-Type": "application/json"},
+            Accept: "application/json"
+        },
         body: documents
         
     })
