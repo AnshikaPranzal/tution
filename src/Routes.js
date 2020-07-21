@@ -9,6 +9,7 @@ import TopHeader from './components/TopHeader';
 import Navbar from './components/Navbar';
 import About from './components/AboutPage';
 import CoursePage from './components/CoursePage';
+import ClassRoom from './components/ClassRoom';
 import EventPage from './components/EventPage';
 import NoticePage from './components/NoticePage';
 import FulllayoutTeacher from './components/Dashboard/layouts/fulllayout -teacher';
@@ -26,7 +27,7 @@ function Routes() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 3000);
     
   })
   return (
@@ -53,6 +54,7 @@ function Routes() {
             <Route exact path="/course" component={CoursePage} />
             <Route exact path="/event" component={EventPage} />
             <Route exact path='/notice' component={NoticePage}/>
+            <Route exact path='/dashboard-teacher/classroom-teacher/:handle' component={ClassRoom}/>
           </Switch>}
         {/* <Footer></Footer> */}
     </BrowserRouter>

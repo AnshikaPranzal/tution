@@ -35,7 +35,7 @@ const TopHeader = () =>{
           <ul className="list-inline d-inline">
             <li className="list-inline-item mx-0"><a className="d-inline-block p-2 text-color" href="/"><i className="ti-facebook"></i></a></li>
             <li className="list-inline-item mx-0"><a className="d-inline-block p-2 text-color" href="/"><i className="ti-twitter-alt"></i></a></li>
-            <li className="list-inline-item mx-0"><a className="d-inline-block p-2 text-color" href="/"><i className="ti-spanedin"></i></a></li>
+            {/* <li className="list-inline-item mx-0"><a className="d-inline-block p-2 text-color" href="/"><i className="ti-spanedin"></i></a></li> */}
             <li className="list-inline-item mx-0"><a className="d-inline-block p-2 text-color" href="/"><i className="ti-instagram"></i></a></li>
           </ul>
         </div>

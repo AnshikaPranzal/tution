@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react';
+import { Link } from 'react-router-dom'
 import {uploadDocument ,classrooms, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAUser} from '../../../helper/index'
 import {
     Card,
@@ -105,9 +106,9 @@ const Starter = () => {
         const {name, description , subject, success, error} = project;
        
         const handleChange = name => event => {
-            const v = name === "formData"? event.target.files[0]:event.target.value
+            // const v = name === "formData"? event.target.files[0]:event.target.value
 
-            formData.set(name,v)
+            // formData.set(name,v)
             setProject({
                 ...project,error: false, [name]: event.target.value
             })
@@ -381,7 +382,13 @@ const Starter = () => {
                                         <CardTitle>{obj.name}</CardTitle>
                                         <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody>
-                                        <div> <i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClassroom(obj._id)}} aria-hidden="true"></i>
+                                        <div>
+                                        {isAuthenticated() && (
+                                            <p>
+                                            <Link classid="Hello" to={`/dashboard-teacher/classroom-teacher/${obj._id}`}>See More</Link>
+                                            </p>
+                                        )}
+                                             <i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClassroom(obj._id)}} aria-hidden="true"></i>
                                         <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClassroom(obj._id)}} aria-hidden="true"></i></div>
                                 </Card>
                                 </Col>)

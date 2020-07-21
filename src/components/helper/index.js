@@ -493,3 +493,24 @@ export const uploadDocument = documents =>{
         
     })
 }
+
+export const classroomUploadDocument = (classroomId,documents) =>{
+    for (var key of documents.entries()) {
+        console.log(key[0] + ', ' + key[1])
+    }
+    return fetch(`${API}/classroom/${classroomId}/upload/document`,{
+        method:"PUT",
+        headers: {
+            Accept: "application/json"
+        },
+        body: documents
+        
+    })
+    .then(response => {
+    console.log("Response doc")
+    return response.json(); 
+    })
+    .catch(err => {console.log(err);
+        
+    })
+}
