@@ -1,25 +1,32 @@
 import React, {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { uploadDocument, getAllUSers,isAuthenticated } from '../../../helper/index';
+import { uploadQuiz, getAllUSers,isAuthenticated } from '../../../helper/index';
 
-const AddDocument = ()=> {
-
+const AddQuiz = ()=> {
+    const [qArray, setqArray] = useState([])
     const [values, setValues] = useState({
-        name:"",
-        type:"",
-        price:"",
-        stock:"",
-        photo:"",
-        categories:[],
+        subject:"",
+        title:"",
+        questions:[{
+          title:"",
+          img:"",
+          hasImage:"",
+          start: [{
+            optionValue: "",
+            isCorrect: false
+          }]
+        }],
+        end:"",
+        start:[],
         category:"",
         loading:false,
         error:"",
         getRedirect: false,
-        createdDocument:"",
+        createdQuiz:"",
         formData:""
     })
     
-    const { name,type,price, stock,photo,categories,category,loading,error,getRedirect,createdDocument,formData} = values;
+    const { subject,title,questions, end, loading,error,getRedirect,createdQuiz,formData} = values;
     const{user, token} = isAuthenticated();
 
     const preload = () => {
@@ -48,12 +55,12 @@ const AddDocument = ()=> {
     );
 
     const successMessage = () =>{
-        console.log(createdDocument)
+        console.log(createdQuiz)
         return(
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
-                    <div className="alert alert-success" style={{display: createdDocument ? "" : "none"}}>
-                        Document Added to DB.
+                    <div className="alert alert-success" style={{display: createdQuiz ? "" : "none"}}>
+                        Quiz Added to DB.
                     </div>
                 </div>
         </div>
@@ -71,9 +78,9 @@ const AddDocument = ()=> {
         </div>
     )}
         const handleChange = name=> event =>{
-          const v = name === "photo"? event.target.files[0]:event.target.value
+          const v = name === "img"? event.target.files[0]:event.target.value
             console.log(name,event.target.files[0])
-          formData.append(name,v,'photo.png')
+          formData.append(name,v,'img.png')
           for (var key of formData.entries()) {
 			console.log(key[0] + ', ' + key[1])
 		}
@@ -85,7 +92,7 @@ const AddDocument = ()=> {
         const Submit = event =>{
             event.preventDefault();
             setValues({...values,error:"",loading: true})
-            uploadDocument(formData)
+            uploadQuiz(formData)
             .then( data =>{
                
                 if(data.error){
@@ -94,18 +101,18 @@ const AddDocument = ()=> {
                 else{
                     setValues({
                         ...values,
-                        name:"",
-                        type:"",
-                        price:"",
-                        stock:"",
-                        photo:"",
+                        subject:"",
+                        title:"",
+                        questions:"",
+                        end:"",
+                        img:"",
                         loading:false,
-                        createdDocument: true,
+                        createdQuiz: true,
                     })
                 }
             })
             .catch(()=>{
-                console.log("Error in creating Document")
+                console.log("Error in creating Quiz")
             })
         }
 
@@ -114,9 +121,9 @@ const AddDocument = ()=> {
         <div className="form-group">
           <label className="btn btn-block btn-info">
             <input
-              onChange={handleChange("photo")}
-              type="file"
-              name="photo"
+              onChange={handleChange("img")}
+              title="file"
+              name="img"
               accept="image"
               placeholder="choose a file"
             />
@@ -124,29 +131,29 @@ const AddDocument = ()=> {
         </div>
         <div className="form-group">
           <input
-            onChange={handleChange("name")}
-            name="photo"
+            onChange={handleChange("subject")}
+            name="img"
             className="form-control"
-            placeholder="Name"
-            value={name}
+            placeholder="subject"
+            value={subject}
           />
         </div>
         <div className="form-group">
           <textarea
-            onChange={handleChange("type")}
-            name="photo"
+            onChange={handleChange("title")}
+            name="img"
             className="form-control"
-            placeholder="type"
-            value={type}
+            placeholder="title"
+            value={title}
           />
         </div>
         <div className="form-group">
           <input
-            onChange={handleChange("price")}
-            type="number"
+            onChange={handleChange("questions")}
+            title="number"
             className="form-control"
-            placeholder="Price"
-            value={price}
+            placeholder="questions"
+            value={questions}
           />
         </div>
         <div className="form-group">
@@ -165,16 +172,16 @@ const AddDocument = ()=> {
         </div>
         <div className="form-group">
           <input
-            onChange={handleChange("stock")}
-            type="number"
+            onChange={handleChange("end")}
+            title="number"
             className="form-control"
-            placeholder="Stock"
-            value={stock}
+            placeholder="end"
+            value={end}
           />
         </div>
         
-        <button type="submit" onClick={Submit} className="btn ">
-          Create Document
+        <button title="submit" onClick={Submit} className="btn ">
+          Create Quiz
         </button>
       </form>
     );
@@ -189,4 +196,4 @@ const AddDocument = ()=> {
   );
 }
 
-export default AddDocument;
+export default AddQuiz;
