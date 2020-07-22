@@ -1,7 +1,18 @@
 import React, {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+  Row,
+  Col,
+  Input,
+  Table
+} from 'reactstrap';
 import $ from 'jquery';
-import { classroomUploadAssignment, getAllUSers,isAuthenticated } from './helper/index';
+import { getAClassroom, classroomUploadAssignment, getAllUSers,isAuthenticated } from './helper/index';
 
 const AddAssignment = (props)=> {
     const crid = props.id;
@@ -20,7 +31,19 @@ const AddAssignment = (props)=> {
         createdAssignment:"",
         formData:""
     })
-    
+    const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
+    const [project, setProject] = useState({
+        name: "",
+        description: "",
+        subject: "",
+        error:"",
+        members:[],
+        doc:[],
+        success: false
+    })
+    const refresh1 = true;
+    const [refresh, setrefresh] = useState(true)
     const { name,type,price, stock,photo,categories,category,loading,error,getRedirect,createdAssignment,formData} = values;
     const{user, token} = isAuthenticated();
 
@@ -40,7 +63,34 @@ const AddAssignment = (props)=> {
 
     useEffect(()=>{
         preload();
-    },[])
+    },[refresh1])
+
+    const getClassroom = cid => {
+      getAClassroom(cid).then(data=>{
+          
+          if(data.error)
+          {
+              console.log(data.error)
+              // setValues({...values,error:data.error})
+          }
+          else{
+              setProject({
+                  ...project,
+                  name: data.name,
+                  description: data.description,
+                  subject: data.subject,
+                  members: data.members,
+                  doc:data.doc,
+                  assignment: data.assignment,
+              });
+              setrefresh(false)
+          }
+      })}
+
+      useEffect (() => {
+          getClassroom(crid)
+          },[refresh])
+
 
     const goBack = () =>(
         
@@ -93,7 +143,7 @@ const AddAssignment = (props)=> {
             })
         }
         
-        if(values.photo === ""){
+        if((values.photo === "")&&(values.name === "")){
           $('.submitA').addClass('hide');
           console.log(values.photo)
       }else{
@@ -119,6 +169,7 @@ const AddAssignment = (props)=> {
                         loading:false,
                         createdAssignment: true,
                     })
+                    setrefresh(true)
                 }
             })
             .catch(()=>{
@@ -128,6 +179,7 @@ const AddAssignment = (props)=> {
 
     const catForm =() =>(
         <form >
+          <h2>Upload Assignments</h2>
         <div className="form-group">
           <label className="btn btn-block btn-info">
             <input
@@ -193,6 +245,49 @@ const AddAssignment = (props)=> {
         <button type="submit" onClick={Submit} className="btn submitA">
           Create Assignment
         </button>
+        
+                            <Table>
+                                <th>Assignments</th>
+                                <th>Date</th>
+                        {(project.assignment === undefined)?"":
+                        (project.assignment.map((obj,i)=>{
+                            return(
+                            // <tr key={i}>
+                            
+                                <tr key={i}>
+
+                                        <td>{obj.name}</td>
+                                        <td>{obj.date.substring(8,10)} {Month[parseInt(obj.date.substring(5,7)-1)]}, {obj.date.substring(0,4)}</td>
+                                        {/* <CardSubtitle>{obj.subject}</CardSubtitle>
+                                        <CardBody>{obj.description}</CardBody> */}
+                                        <h2>Assignment answers</h2>
+                            <Table>
+                                <th>Answers</th>
+                                <th>Date</th>
+                        {(obj.answers === undefined)?"":
+                        obj.answers.map((ans,i)=>{
+                            return(
+                            // <tr key={i}>
+                            
+                                <tr key={i}>
+
+                                        <td>{ans.name}</td>
+                                        <td>{ans.date.substring(8,10)} {Month[parseInt(ans.date.substring(5,7)-1)]}, {ans.date.substring(0,4)}</td>
+                                        {/* <CardSubtitle>{obj.subject}</CardSubtitle>
+                                        <CardBody>{obj.description}</CardBody> */}
+
+                                </tr>
+                                )
+                           
+                        
+                    })}
+                        </Table>
+                                </tr>
+                                )
+                           
+                        
+                    }))}
+                        </Table>
       </form>
     );
   return (

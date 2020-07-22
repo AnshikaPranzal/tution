@@ -63,11 +63,7 @@ var ThemeRoutes = [
     icon: 'mdi mdi-image-filter-vintage',
     component: TooltipComponent
   },
-  {
-    path: '/questions',
-    pathTo: '/questions/:question',
-    component: Questions
-  },
+
   { path: '/', pathTo: '/dashboard-teacher', name: 'Dashboard', redirect: true },
   { path: '/classroom-teacher', pathTo: '/dashboard-teacher/classroom-teacher/:handle', name: 'Dashboard', redirect: true },
   { path: '/questions', pathTo: '/questions/:question', name: 'Dashboard', redirect: true }

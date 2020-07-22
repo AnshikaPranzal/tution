@@ -50,7 +50,7 @@ const ClassRoom = (props) => {
         success: false
     })
     const [refresh, setrefresh] = useState(true)
-    useEffect(()=>{},[refresh])
+
     const getClassroom = cid => {
         getAClassroom(cid).then(data=>{
             
@@ -68,8 +68,8 @@ const ClassRoom = (props) => {
                     members: data.members,
                     doc:data.doc,
                     assignment: data.assignment,
-                })
-                setrefresh(!refresh)
+                });
+                setrefresh(false);
             }
         })}
 
@@ -124,30 +124,6 @@ const ClassRoom = (props) => {
                         
                         </Row>
 
-                        <Row>
-                        <Col xs="12" md="6">
-                            <Table>
-                                <th>Notes</th>
-                                <th>Date</th>
-                        {project.doc.map((obj,i)=>{
-                            return(
-                            // <tr key={i}>
-                            
-                                <tr key={i}>
-
-                                        <td>{obj.name}</td>
-                                        <td>{obj.date.substring(8,10)} {Month[parseInt(obj.date.substring(5,7)-1)]}, {obj.date.substring(0,4)}</td>
-                                        {/* <CardSubtitle>{obj.subject}</CardSubtitle>
-                                        <CardBody>{obj.description}</CardBody> */}
-
-                                </tr>
-                                )
-                           
-                        
-                    })}
-                        </Table>
-                        </Col>
-                        </Row>
                         </div>
     </React.Fragment>)
 }
