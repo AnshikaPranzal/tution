@@ -299,6 +299,7 @@ const Projects = () => {
                                     <td>{update === true ? (<i onClick={e=>{updateaClass(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} class="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} class="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
                         </tr>
                         {classO.map((obj,i) => {
+                            console.log(classO)
                             if(obj.email === emailT){
                             return(
                             <tr key={i}>

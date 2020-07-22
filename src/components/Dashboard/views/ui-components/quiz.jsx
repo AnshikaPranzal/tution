@@ -1,51 +1,66 @@
 import React, {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { uploadQuiz, getAllUSers,isAuthenticated } from '../../../helper/index';
+import { uploadDocument, getAllUSers,isAuthenticated, createQuiz, getQuiz } from '../../../helper/index';
 
-const AddQuiz = ()=> {
-    const [qArray, setqArray] = useState([])
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+  Row,
+  Col,
+  Input,
+  Table
+} from 'reactstrap';
+
+const AddQuiz = ({c})=> {
+    const [show, setshow] = useState(1)
+    const [count, setcount] = useState([1])
     const [values, setValues] = useState({
         subject:"",
         title:"",
-        questions:[{
-          title:"",
-          img:"",
-          hasImage:"",
-          start: [{
-            optionValue: "",
-            isCorrect: false
-          }]
-        }],
-        end:"",
-        start:[],
-        category:"",
+        endTime: "",
+        start:"",
+        teacher:"",
         loading:false,
         error:"",
         getRedirect: false,
         createdQuiz:"",
         formData:""
     })
-    
-    const { subject,title,questions, end, loading,error,getRedirect,createdQuiz,formData} = values;
     const{user, token} = isAuthenticated();
 
-    const preload = () => {
-        getAllUSers().then(data=>{
-            console.log(data)
-            if(data.error)
-            {
-                setValues({...values,error:data.error})
-            }
-            else{
-                setValues({...values,categories:data, formData: new FormData()});
-                console.log(categories);
-            }
-        })
+    const [quizzes, setquizzes] = useState([])
+    const [refresh, setrefresh] = useState(true)
+    const loadAllMyQuizzes = ()=>{
+      console.log(user._id,"heyy")
+      getQuiz(user._id).then(data=>{
+        console.log(data,"quizdata")
+        if(data){
+          if(data.error){
+            console.log(error)
+          }
+          else{
+            setquizzes(data)
+          }
+        }
+      })
     }
 
-    useEffect(()=>{
-        preload();
-    },[])
+    useEffect(() => {
+      loadAllMyQuizzes()
+    },[refresh])
+    
+    const { subject,title,endTime,start, loading,error,getRedirect,createdQuiz,formData,teacher} = values;
+
+    const addQues = ()=>{
+      
+    }
+
+    const endTimeQuiz = ()=>{
+      setshow(0)
+    }
 
     const goBack = () =>(
         
@@ -77,35 +92,33 @@ const AddQuiz = ()=> {
         </div>
         </div>
     )}
-        const handleChange = name=> event =>{
+      const handleChange = name=> event =>{
           const v = name === "img"? event.target.files[0]:event.target.value
-            console.log(name,event.target.files[0])
-          formData.append(name,v,'img.png')
-          for (var key of formData.entries()) {
-			console.log(key[0] + ', ' + key[1])
-		}
+
            setValues({...values,[name]: v});
            console.log(values)
           
       }
+
         
         const Submit = event =>{
             event.preventDefault();
-            setValues({...values,error:"",loading: true})
-            uploadQuiz(formData)
-            .then( data =>{
-               
+            console.log("Insideeee",values)
+            setValues({...values,error:"",loading: true,teacher:user._id})
+            createQuiz({title,subject,endTime,start,teacher}).then(data =>{
+                console.log(data)
                 if(data.error){
+                  console.log(data.error)
                     setValues({...values,error:data.error})
                 }
                 else{
+                  console.log(data,"quiz")
                     setValues({
                         ...values,
                         subject:"",
                         title:"",
-                        questions:"",
-                        end:"",
-                        img:"",
+                        endTime:"",
+                        start:"",
                         loading:false,
                         createdQuiz: true,
                     })
@@ -118,82 +131,109 @@ const AddQuiz = ()=> {
 
     const catForm =() =>(
         <form >
-        <div className="form-group">
-          <label className="btn btn-block btn-info">
-            <input
-              onChange={handleChange("img")}
-              title="file"
-              name="img"
-              accept="image"
-              placeholder="choose a file"
-            />
-          </label>
-        </div>
-        <div className="form-group">
-          <input
-            onChange={handleChange("subject")}
-            name="img"
-            className="form-control"
-            placeholder="subject"
-            value={subject}
-          />
-        </div>
-        <div className="form-group">
-          <textarea
-            onChange={handleChange("title")}
-            name="img"
-            className="form-control"
-            placeholder="title"
-            value={title}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            onChange={handleChange("questions")}
-            title="number"
-            className="form-control"
-            placeholder="questions"
-            value={questions}
-          />
-        </div>
-        <div className="form-group">
-          <select
-            onChange={handleChange("category")}
-            className="form-control"
-            placeholder="Category"
-          >
-            <option>Select</option>
-            {categories && 
-            categories.map((cat,index)=>(
-                <option key={index} value={cat._id}>{cat.name}</option>
-            ))
-            }
-          </select>
-        </div>
-        <div className="form-group">
-          <input
-            onChange={handleChange("end")}
-            title="number"
-            className="form-control"
-            placeholder="end"
-            value={end}
-          />
-        </div>
+          <Row className="text-center" style={{paddingBottom:"5vmin"}}>
+            <Card style={{margin: "auto"}}>
+            <CardBody>
+                <div className="d-flex align-items-center">
+                    <div>
+                        <CardTitle>Add Quiz</CardTitle>
+                        <CardSubtitle>Click on them to add/update questions</CardSubtitle>
+                    </div>
+                    
+                </div>
+                {successMessage()}
+                {errorMessage()}
+                <Table className="no-wrap v-middle" responsive>
+                    <thead>
+                        <tr className="border-0">
+                            <th className="border-0">Name</th>
+                            <th className="border-0">Subject</th>
+                            <th className="border-0">Start</th>
+                            <th className="border-0">End</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                <tr>           
+                      <td>
+                      <div className="form-group">
+                        <input
+                          onChange={handleChange("title")}
+                          name="title"
+                          className="form-control"
+                          placeholder="title"
+                          value={title}
+                        />
+                      </div>
+                      </td>
+                      <td>
+                      <div className="form-group">
+                        <input
+                          onChange={handleChange("subject")}
+                          name="subject"
+                          className="form-control"
+                          placeholder="subject"
+                          value={subject}
+                        />
+                      </div>
+                      </td>
+                      <td>
+                      <div className="form-group">
+                        <input
+                          onChange={handleChange("start")}
+                          type="time"
+                          name="start"
+                          className="form-control"
+                          placeholder="Start Time"
+                          value={start}
+                        />
+                      </div>
+                      </td>
+                      <td>
+                      <div className="form-group">
+                        <input
+                          onChange={handleChange("endTime")}
+                          type="time"
+                          name="endTime"
+                          className="form-control"
+                          placeholder="End Time"
+                          value={endTime}
+                        />
+                      </div> 
+                      </td>
+           
         
-        <button title="submit" onClick={Submit} className="btn ">
-          Create Quiz
-        </button>
-      </form>
+        <td><i class="fa fa-plus text-success" style={{cursor:"pointer",marginRight:"20px", marginTop:"6px", fontSize:"20px"}} onClick={Submit} aria-hidden="true"></i>    </td>     
+      </tr>    
+            {quizzes && quizzes.map((obj,index) => (
+                
+              <tr key={index}>
+                  <td>{obj.title}</td>
+                  <td>{obj.subject}</td>
+                  <td>{obj.start}</td>
+                  <td>{obj.endTime}</td>
+                  <Link classId="Hello" to={`/questions/${obj._id}`} ><td>Add Questions</td></Link> 
+              </tr>
+            ))}  
+            {console.log(quizzes.data)}
+                    </tbody>
+                    </Table>
+            </CardBody>
+        </Card >
+    </Row>
+    <Row>
+
+    </Row>
+    </form>
     );
   return (
     
             <div class="col-md-8 offset-md-2">
-                {successMessage()}
-                {errorMessage()}
                 {catForm()}
             </div>
        
   );
 }
+
+
 
 export default AddQuiz;

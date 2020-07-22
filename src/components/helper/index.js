@@ -64,6 +64,47 @@ export const classrooms = classrooms =>{
     })
 }
 
+export const createQuiz = quiz =>{
+    return fetch(`${API}/quiz/create`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json',
+            "Content-Type" : 'application/json'
+        },
+        body: JSON.stringify(quiz)
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
+export const getQuiz = (uid) =>{
+    return fetch(`${API}/quizzes/${uid}`,{
+        method:"GET"
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
+export const getAQuiz = (qid) =>{
+    return fetch(`${API}/quiz/${qid}`,{
+        method:"GET"
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
 export const signin = user =>{
     return fetch(`${API}/signin`,{
         method:"POST",
@@ -402,7 +443,6 @@ export const loadCart = () =>{
         }
     }
 }
-
 
 export const cartEmpty = next =>{
     

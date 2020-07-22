@@ -18,16 +18,12 @@ import preloader from './images/preload.gif';
 import PrivateRoute from './auth-routes/PrivateRoutes';
 import TeacherRoute from './auth-routes/TeacherRoutes';
 
-
-
-
-
 function Routes() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 200);
     
   })
   return (
@@ -49,6 +45,7 @@ function Routes() {
             <Route exact path="/material" component={Fulllayout} />
             <Route exact path="/settings" component={Fulllayout} />
             <Route exact path="/dashboard-teacher" component={FulllayoutTeacher} />
+            <Route exact path="/questions/:handle" component={FulllayoutTeacher} />
             <Route exact path="/dashboard-admin" component={FulllayoutAdmin} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/course" component={CoursePage} />
