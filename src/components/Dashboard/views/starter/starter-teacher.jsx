@@ -16,6 +16,8 @@ import {
 import { SalesSummary, Projects, Feeds } from '../../components/teacher-dashboard-components';
 import { useRef } from 'react';
 // import AddDocument from '../ui-components/document'
+import AddDQuiz from '../ui-components/quiz'
+import AddQuiz from '../ui-components/quiz';
 
 const Starter = () => {
    const [file, setfile] = useState()
@@ -32,27 +34,6 @@ const Starter = () => {
     const [refresh, setrefresh] = useState(true)
 
     const {formData}=values
-    useEffect(()=>{
-        
-    },[refresh])
-    const uploadFiles = (event,file) => {
-        console.log(file)
-        event.preventDefault();
-            setvalues({
-                ...values,formData: new FormData()
-            })
-            console.log(values, event.target.files)
-        // formData.set(name,event.target.files[0])
-            // setvalues({
-            //     ...values,formData: event.target.files[0]
-            // })
-            console.log(values)
-        console.log('I was here')
-        // uploadDocument(formData);
-        // console.log("uyfg")
-    }
-
-
 
     const loadAllclassroooms = () =>{
         getAllClassrooms().then(data =>{
@@ -114,15 +95,6 @@ const Starter = () => {
             })
         }
         
-        // const handleChange2 = name => event => {
-        //     const v = name === "formData"? event.target.files[0]:event.target.value
-
-        //     formData.set(name,event.target.files[0])
-        //     setvalues({
-        //         ...values,formData: event.target.files[0]
-        //     })
-        //     console.log(v,"hi")
-        // }
         const onclassroomSubmit = event => {
             event.preventDefault();
             setProject({
@@ -361,21 +333,18 @@ const Starter = () => {
                                     <td>{update === true ? (<i onClick={e=>{updateaClassroom(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} className="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onclassroomSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} className="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
                         </tr>
                         
-                        
-                        
                     </tbody>
                 </Table>
             </CardBody>
         </Card >
-            </Row>
-            <Row>
-                        {classroomO.map((obj,i)=>{
-                            return(
-                            // <tr key={i}>
-                            <Col xs="12" md="4">
-                                <Card key={i}>
-                                    <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
-
+    </Row>
+    <Row>
+                {classroomO.map((obj,i)=>{
+                    return(
+                    // <tr key={i}>
+                    <Col xs="12" md="4">
+                        <Card key={i}>
+                            <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
                                         <CardTitle>{obj.name}</CardTitle>
                                         <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody>
@@ -395,6 +364,13 @@ const Starter = () => {
                         
                     })}
                         </Row>
+
+    <Row>  
+        <Col xs="12" md="12">
+           <AddDQuiz></AddDQuiz>          
+        </Col>
+    </Row>
+
         </div>
     );
 }

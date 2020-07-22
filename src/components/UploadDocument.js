@@ -77,12 +77,11 @@ const AddDocument = (props)=> {
         const handleChange = name=> event =>{
           const v = name === "photo"? event.target.files[0]:event.target.value;
             console.log(name,event.target.files[0]);
-          formData.append(name,v,'photo.png');
-          for (var key of formData.entries()) {
-			console.log(key[0] + ', ' + key[1])
-		}
+            formData.append(name,v,'photo.png');
+            for (var key of formData.entries()) {
+              console.log(key[0] + ', ' + key[1])
+            }
            setValues({...values,[name]: v});
-           setValues({...values,photo: v});
            console.log(values)
           
       }

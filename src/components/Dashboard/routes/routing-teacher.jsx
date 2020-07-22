@@ -9,6 +9,7 @@ import LayoutComponent from '../views/ui-components/layout.jsx';
 import PaginationComponent from '../views/ui-components/pagination.jsx';
 import PopoverComponent from '../views/ui-components/popover.jsx';
 import TooltipComponent from '../views/ui-components/tooltip.jsx';
+import Questions from '../views/ui-components/questions.jsx';
 
 
 
@@ -61,6 +62,10 @@ var ThemeRoutes = [
     name: 'Toltips',
     icon: 'mdi mdi-image-filter-vintage',
     component: TooltipComponent
+  },
+  {
+    path: '/questions',
+    component: Questions
   },
   { path: '/', pathTo: '/dashboard-teacher', name: 'Dashboard', redirect: true },
   { path: '/classroom-teacher', pathTo: '/dashboard-teacher/classroom-teacher/:handle', name: 'Dashboard', redirect: true }

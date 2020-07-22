@@ -78,7 +78,6 @@ const AddDocument = ()=> {
 			console.log(key[0] + ', ' + key[1])
 		}
            setValues({...values,[name]: v});
-           setValues({...values,photo: v});
            console.log(values)
           
       }
