@@ -65,9 +65,11 @@ var ThemeRoutes = [
   },
   {
     path: '/questions',
+    pathTo: '/questions/:question',
     component: Questions
   },
   { path: '/', pathTo: '/dashboard-teacher', name: 'Dashboard', redirect: true },
-  { path: '/classroom-teacher', pathTo: '/dashboard-teacher/classroom-teacher/:handle', name: 'Dashboard', redirect: true }
+  { path: '/classroom-teacher', pathTo: '/dashboard-teacher/classroom-teacher/:handle', name: 'Dashboard', redirect: true },
+  { path: '/questions', pathTo: '/questions/:question', name: 'Dashboard', redirect: true }
 ];
 export default ThemeRoutes;

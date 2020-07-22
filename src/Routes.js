@@ -8,6 +8,7 @@ import Fulllayout from './components/Dashboard/layouts/fulllayout';
 import TopHeader from './components/TopHeader';
 import Navbar from './components/Navbar';
 import About from './components/AboutPage';
+import Question from  './components/Question';
 import CoursePage from './components/CoursePage';
 import ClassRoom from './components/ClassRoom';
 import EventPage from './components/EventPage';
@@ -45,7 +46,7 @@ function Routes() {
             <Route exact path="/material" component={Fulllayout} />
             <Route exact path="/settings" component={Fulllayout} />
             <Route exact path="/dashboard-teacher" component={FulllayoutTeacher} />
-            <Route exact path="/questions/:handle" component={FulllayoutTeacher} />
+            <Route exact path="/questions/:question" component={Question} />
             <Route exact path="/dashboard-admin" component={FulllayoutAdmin} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/course" component={CoursePage} />

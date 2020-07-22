@@ -19,7 +19,7 @@ import {getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAQuiz
 
 const Questions = (props) => {
 
-    const qid= props.match.params.handle;
+    const qid= props.match.params.question;
     console.log(props)
     const [quiz, setquiz] = useState()
     const loadQuiz=()=>{
