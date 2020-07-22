@@ -15,7 +15,7 @@ import {
 } from 'reactstrap';
 import { SalesSummary, Projects, Feeds } from '../../components/teacher-dashboard-components';
 import { useRef } from 'react';
-import AddDocument from '../ui-components/document'
+// import AddDocument from '../ui-components/document'
 
 const Starter = () => {
    const [file, setfile] = useState()
@@ -241,12 +241,12 @@ const Starter = () => {
                     <Projects />
                 </Col>
             </Row>
-            <Row>
-                <Col xs="12" md="6">
+            <Row className="text-center" style={{paddingBottom:"5vmin"}}>
+                
                     {/*--------------------------------------------------------------------------------*/}
                     {/*Card-1*/}
                     {/*--------------------------------------------------------------------------------*/}
-                    <Card>
+                    <Card style={{margin: "auto"}}>
                         {/* <CardImg top width="100%" src={img1} /> */}
                         <CardBody>
                             <CardTitle>Add Video</CardTitle>
@@ -284,18 +284,15 @@ const Starter = () => {
                             <Button style={{marginTop:"1rem"}}>Button</Button>
                         </CardBody>
                     </Card>
-                </Col>
-                <Col xs="12" md="6">
-                    {/*--------------------------------------------------------------------------------*/}
-                    {/*Card-1*/}
-                    {/*--------------------------------------------------------------------------------*/}
+                
+                {/* <Col xs="12" md="6">
+                   
                     <Card>
-                        {/* <CardImg top width="100%" src={img2} /> */}
                         <CardBody>
                             <AddDocument></AddDocument>
                         </CardBody>
                     </Card>
-                </Col>
+                </Col> */}
                 
             </Row>
             
@@ -383,11 +380,13 @@ const Starter = () => {
                                         <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody>
                                         <div>
-                                        {isAuthenticated() && (
+                                        {isAuthenticated() 
+                                        // && isAuthenticated().user.role === 1
+                                        ?(
                                             <p>
                                             <Link classid="Hello" to={`/dashboard-teacher/classroom-teacher/${obj._id}`}>See More</Link>
                                             </p>
-                                        )}
+                                        ):""}
                                              <i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClassroom(obj._id)}} aria-hidden="true"></i>
                                         <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClassroom(obj._id)}} aria-hidden="true"></i></div>
                                 </Card>

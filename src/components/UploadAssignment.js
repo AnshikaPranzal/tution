@@ -1,9 +1,9 @@
 import React, {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import $ from 'jquery'
-import { classroomUploadDocument, getAllUSers,isAuthenticated } from './helper/index';
+import $ from 'jquery';
+import { classroomUploadAssignment, getAllUSers,isAuthenticated } from './helper/index';
 
-const AddDocument = (props)=> {
+const AddAssignment = (props)=> {
     const crid = props.id;
     console.log(crid)
     const [values, setValues] = useState({
@@ -17,14 +17,12 @@ const AddDocument = (props)=> {
         loading:false,
         error:"",
         getRedirect: false,
-        createdDocument:"",
+        createdAssignment:"",
         formData:""
     })
-    const [refresh, setrefresh] = useState(true)
-    const { name,type,price, stock,photo,categories,category,loading,error,getRedirect,createdDocument,formData} = values;
+    
+    const { name,type,price, stock,photo,categories,category,loading,error,getRedirect,createdAssignment,formData} = values;
     const{user, token} = isAuthenticated();
-
-    useEffect(()=>{},[refresh])
 
     const preload = () => {
         getAllUSers().then(data=>{
@@ -42,7 +40,7 @@ const AddDocument = (props)=> {
 
     useEffect(()=>{
         preload();
-    },[refresh])
+    },[])
 
     const goBack = () =>(
         
@@ -52,12 +50,12 @@ const AddDocument = (props)=> {
     );
 
     const successMessage = () =>{
-        console.log(createdDocument)
+        console.log(createdAssignment)
         return(
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
-                    <div className="alert alert-success" style={{display: createdDocument ? "" : "none"}}>
-                        Document Added to DB.
+                    <div className="alert alert-success" style={{display: createdAssignment ? "" : "none"}}>
+                        Assignment Added to DB.
                     </div>
                 </div>
         </div>
@@ -96,16 +94,15 @@ const AddDocument = (props)=> {
         }
         
         if(values.photo === ""){
-            $('.submitD').addClass('hide');
-            console.log(values.photo)
-        }else{
-            $('.submitD').removeClass('hide')
-          }
-
+          $('.submitA').addClass('hide');
+          console.log(values.photo)
+      }else{
+        $('.submitA').removeClass('hide')
+      }
         const Submit = event =>{
             event.preventDefault();
             setValues({...values,error:"",loading: true})
-            classroomUploadDocument(crid,formData)
+            classroomUploadAssignment(crid,formData)
             .then( data =>{
                
                 if(data.error){
@@ -120,12 +117,12 @@ const AddDocument = (props)=> {
                         stock:"",
                         photo:"",
                         loading:false,
-                        createdDocument: true,
+                        createdAssignment: true,
                     })
                 }
             })
             .catch(()=>{
-                console.log("Error in creating Document")
+                console.log("Error in creating Assignment")
             })
         }
 
@@ -182,8 +179,8 @@ const AddDocument = (props)=> {
             ))
             }
           </select>
-        </div>
-         <div className="form-group">
+        </div> */}
+        {/* <div className="form-group">
           <input
             onChange={handleChange("stock")}
             type="number"
@@ -193,8 +190,8 @@ const AddDocument = (props)=> {
           />
         </div> */}
         
-        <button type="submit" onClick={Submit} className="btn submitD">
-          Create Document
+        <button type="submit" onClick={Submit} className="btn submitA">
+          Create Assignment
         </button>
       </form>
     );
@@ -209,4 +206,4 @@ const AddDocument = (props)=> {
   );
 }
 
-export default AddDocument;
+export default AddAssignment;
