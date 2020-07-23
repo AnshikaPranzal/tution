@@ -94,11 +94,45 @@ export const getQuiz = (uid) =>{
 }
 
 export const getAQuiz = (qid) =>{
-    return fetch(`${API}/quiz/${qid}`,{
+    return fetch(`${API}${qid}`,{
         method:"GET"
     })
     .then(response => {
         return response.json(); 
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
+export const createQuestion = (qid,quiz) =>{
+    console.log(quiz,"q")
+    return fetch(`${API}/question/create${qid}`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json'
+        },
+        body:quiz
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
+export const createOption = (qid,quiz) =>{
+    console.log(quiz,"q")
+    return fetch(`${API}/question/create${qid}`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json'
+        },
+        body:quiz
+    })
+    .then(response => {
+        return response.json()
     })
     .catch(err => {
         console.log(err,"hello");

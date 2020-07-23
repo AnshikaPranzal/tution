@@ -211,7 +211,7 @@ const AddQuiz = ({c})=> {
                   <td>{obj.subject}</td>
                   <td>{obj.start}</td>
                   <td>{obj.endTime}</td>
-                  <Link classId="Hello" to={`/questions/${obj._id}`} ><td>Add Questions</td></Link> 
+                  <Link classId="Hello" to={`/quiz/${obj._id}`} ><td>Add Questions</td></Link> 
               </tr>
             ))}  
             {console.log(quizzes.data)}
