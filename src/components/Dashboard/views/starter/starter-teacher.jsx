@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react';
 import { Link } from 'react-router-dom'
-import {uploadDocument ,classrooms, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAUser} from '../../../helper/index'
+import {classrooms, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAUser, getAllSubjects} from '../../../helper/index'
 import {
     Card,
     CardBody,
@@ -35,6 +35,23 @@ const Starter = () => {
 
     const {formData}=values
 
+    const [sub, setsubject] = useState([])
+
+    const loadAllSubjects = () =>{
+        getAllSubjects().then(data =>{
+          //   console.log(data)
+          if(data)
+          if(data.error){
+            seterrorF(data.error)
+          }
+          else{
+            setsubject(data)
+          }
+        })
+      }
+      useEffect (() => {
+        loadAllSubjects()
+        },[])
     const loadAllclassroooms = () =>{
         getAllClassrooms().then(data =>{
             console.log(data)
@@ -80,11 +97,12 @@ const Starter = () => {
             name: "",
             description: "",
             subject: "",
+            standard: 0,
             error:"",
             success: false
         })
 
-        const {name, description , subject, success, error} = project;
+        const {name, description , subject, standard, success, error} = project;
        
         const handleChange = name => event => {
             // const v = name === "formData"? event.target.files[0]:event.target.value
@@ -101,7 +119,7 @@ const Starter = () => {
                 ...project,error: false
             });
             
-            classrooms({name, description, subject})
+            classrooms({name, description, subject, standard})
                 .then( (data) =>{
                     console.log(data)
                     console.log(project)
@@ -119,6 +137,7 @@ const Starter = () => {
                             name: "",
                             description: "",
                             subject: "",
+                            standard: 0,
                             error:"",
                             success: true
                         })
@@ -153,7 +172,8 @@ const Starter = () => {
                         ...project,
                         name: data.name,
                         description: data.description,
-                        subject: data.subject
+                        subject: data.subject,
+                        standard: data.standard,
                     })
                     setuid(data._id)
                     setupdate(true)
@@ -166,7 +186,7 @@ const Starter = () => {
             setProject({
                 ...project,error: false
             });
-            updateClassroom(cid,{name,description,subject}).then(data=>{
+            updateClassroom(cid,{name,description,subject, standard}).then(data=>{
                 console.log(data)
                 if(data.error)
                 {
@@ -179,6 +199,7 @@ const Starter = () => {
                         name: "",
                         description: "",
                         subject: "",
+                        standard: 0,
                         error:"",
                         success: true
                     })
@@ -274,7 +295,7 @@ const Starter = () => {
                 <div className="d-flex align-items-center">
                     <div>
                         <CardTitle>Add Classroom</CardTitle>
-                        <CardSubtitle>Enter Name Description and choose Subject</CardSubtitle>
+                        <CardSubtitle>Enter Name Description and choose Subject, Standard</CardSubtitle>
                     </div>
                     
                 </div>
@@ -286,6 +307,7 @@ const Starter = () => {
                             <th className="border-0">Name</th>
                             <th className="border-0">Description</th>
                             <th className="border-0">Subject</th>
+                            <th className="border-0">Standard</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -325,11 +347,22 @@ const Starter = () => {
                             <td><Input type="select" className="custom-select" value={subject}
                                     onChange={handleChange("subject")}>
                                 <option value="0">Select</option>
-                                <option value="Physics">Physics</option>
-                                <option value="Chemistry">Chemistry</option>
-                                <option value="Maths">Maths</option>
-                                <option value="Biology">Biology</option>
+                                {sub.map((obj,i) => {
+                                    return(<option key={i} value={obj._id}>{obj.name}</option>)
+                                })
+                                }
                             </Input></td>
+                            
+                            <td>
+                            <Input type="select" className="custom-select" value={standard}
+                                    onChange={handleChange("standard")}>
+                                <option value="0">Select</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </Input>
+                            </td>
                                     <td>{update === true ? (<i onClick={e=>{updateaClassroom(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} className="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onclassroomSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} className="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
                         </tr>
                         
@@ -346,7 +379,7 @@ const Starter = () => {
                         <Card key={i}>
                             <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
                                         <CardTitle>{obj.name}</CardTitle>
-                                        <CardSubtitle>{obj.subject}</CardSubtitle>
+                                        <CardSubtitle>Class {obj.standard}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody>
                                         <div>
                                         {isAuthenticated() 
