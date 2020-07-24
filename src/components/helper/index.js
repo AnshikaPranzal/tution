@@ -32,6 +32,22 @@ export const classes = classes =>{
     })
 }
 
+export const subjects = subjects =>{
+    return fetch(`${API}/subject/create`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json',
+            "Content-Type" : 'application/json'
+        },
+        body: JSON.stringify(subjects)
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {console.log(err);
+    })
+}
+
 export const notices = notices =>{
     return fetch(`${API}/notice/create`,{
         method:"POST",
@@ -622,5 +638,67 @@ export const classroomUploadAssignment = (classroomId,documents) =>{
     })
     .catch(err => {console.log(err);
         
+    })
+}
+
+export const getAllSubjects = ()=>{
+    
+    return fetch(`${API}/subjects`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the subjects")
+    })
+}
+
+export const getASubject = subjectId=>{
+    
+    return fetch(`${API}/subject/${subjectId}`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the subject")
+    })
+}
+
+export const deleteSubject = (subjectId)=>{
+    
+    return fetch(`${API}/subject/delete/${subjectId}`,{
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            // Authorization: `Bearer ${token}` 
+        }
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in deleting the subject")
+    })
+}
+
+export const updateSubject = (subjectId,subjectO)=>{
+    
+    return fetch(`${API}/subject/update/${subjectId}`,{
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(subjectO)
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in updating subject")
     })
 }

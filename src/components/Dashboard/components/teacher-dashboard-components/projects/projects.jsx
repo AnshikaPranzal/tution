@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass} from '../../../../helper/index'
+import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects} from '../../../../helper/index'
 
 import {
     Card,
@@ -22,7 +22,23 @@ const Projects = () => {
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
     const [reload, setreload] = useState(false)
-  
+    const [sub, setsubject] = useState([])
+
+    const loadAllSubjects = () =>{
+        getAllSubjects().then(data =>{
+          //   console.log(data)
+          if(data)
+          if(data.error){
+            seterrorF(data.error)
+          }
+          else{
+            setsubject(data)
+          }
+        })
+      }
+      useEffect (() => {
+        loadAllSubjects()
+        },[])
   
     const loadAllclasses = () =>{
       getAllClasses().then(data =>{
@@ -259,12 +275,14 @@ const Projects = () => {
                                     </div>
                                 </div>
                             </td>
+                            
                             <td><Input type="select" className="custom-select" value={subject}
                                     onChange={handleChange("subject")}>
                                 <option value="0">Select</option>
-                                <option value="Physics">Physics</option>
-                                <option value="Chemistry">Chemistry</option>
-                                <option value="Maths">Maths</option>
+                                {sub.map((obj,i) => {
+                                    return(<option key={i} value={obj._id}>{obj.name}</option>)
+                                })
+                                }
                             </Input></td>
 
                             <td>

@@ -1,7 +1,18 @@
 import React, {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+  Row,
+  Col,
+  Input,
+  Table
+} from 'reactstrap';
 import $ from 'jquery'
-import { classroomUploadDocument, getAllUSers,isAuthenticated } from './helper/index';
+import { classroomUploadDocument, getAllUSers,isAuthenticated, getAClassroom } from './helper/index';
 
 const AddDocument = (props)=> {
     const crid = props.id;
@@ -20,11 +31,21 @@ const AddDocument = (props)=> {
         createdDocument:"",
         formData:""
     })
+    const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
+    const [project, setProject] = useState({
+        name: "",
+        description: "",
+        subject: "",
+        error:"",
+        members:[],
+        doc:[],
+        success: false
+    })
+    const refresh1 = true;
     const [refresh, setrefresh] = useState(true)
     const { name,type,price, stock,photo,categories,category,loading,error,getRedirect,createdDocument,formData} = values;
     const{user, token} = isAuthenticated();
-
-    useEffect(()=>{},[refresh])
 
     const preload = () => {
         getAllUSers().then(data=>{
@@ -42,7 +63,34 @@ const AddDocument = (props)=> {
 
     useEffect(()=>{
         preload();
-    },[refresh])
+    },[refresh1])
+
+    const getClassroom = cid => {
+      getAClassroom(cid).then(data=>{
+          
+          if(data.error)
+          {
+              console.log(data.error)
+              // setValues({...values,error:data.error})
+          }
+          else{
+              setProject({
+                  ...project,
+                  name: data.name,
+                  description: data.description,
+                  subject: data.subject,
+                  members: data.members,
+                  doc:data.doc,
+                  assignment: data.assignment,
+              });
+              setrefresh(false)
+          }
+      })}
+
+      useEffect (() => {
+          getClassroom(crid)
+          },[refresh])
+
 
     const goBack = () =>(
         
@@ -52,7 +100,7 @@ const AddDocument = (props)=> {
     );
 
     const successMessage = () =>{
-        console.log(createdDocument)
+
         return(
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
@@ -76,13 +124,13 @@ const AddDocument = (props)=> {
     )}
         const handleChange = name=> event =>{
           const v = name === "photo"? event.target.files[0]:event.target.value;
-            console.log(name,event.target.files[0]);
+
             formData.append(name,v,'photo.png');
             for (var key of formData.entries()) {
               console.log(key[0] + ', ' + key[1])
             }
            setValues({...values,[name]: v});
-           console.log(values)
+
           
       }
       const handleChanger = name => event => {
@@ -94,9 +142,8 @@ const AddDocument = (props)=> {
             })
         }
         
-        if(values.photo === ""){
+        if((values.photo === "")&&(values.name === "")){
             $('.submitD').addClass('hide');
-            console.log(values.photo)
         }else{
             $('.submitD').removeClass('hide')
           }
@@ -121,6 +168,7 @@ const AddDocument = (props)=> {
                         loading:false,
                         createdDocument: true,
                     })
+                    setrefresh(true)
                 }
             })
             .catch(()=>{
@@ -130,6 +178,7 @@ const AddDocument = (props)=> {
 
     const catForm =() =>(
         <form >
+          <h2>Upload Notes</h2>
         <div className="form-group">
           <label className="btn btn-block btn-info">
             <input
@@ -195,6 +244,28 @@ const AddDocument = (props)=> {
         <button type="submit" onClick={Submit} className="btn submitD">
           Create Document
         </button>
+        
+                            <Table>
+                                <th>Notes</th>
+                                <th>Date</th>
+                        {(project.doc === undefined)? "" :
+                        (project.doc.map((obj,i)=>{
+                            return(
+                            // <tr key={i}>
+                            
+                                <tr key={i}>
+
+                                        <td>{obj.name}</td>
+                                        <td>{obj.date.substring(8,10)} {Month[parseInt(obj.date.substring(5,7)-1)]}, {obj.date.substring(0,4)}</td>
+                                        {/* <CardSubtitle>{obj.subject}</CardSubtitle>
+                                        <CardBody>{obj.description}</CardBody> */}
+
+                                </tr>
+                                )
+                           
+                        
+                    }))}
+                        </Table>
       </form>
     );
   return (

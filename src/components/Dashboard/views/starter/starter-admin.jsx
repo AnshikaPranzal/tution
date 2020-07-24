@@ -15,6 +15,7 @@ import {
     Table
 } from 'reactstrap';
 import { SalesSummary, Projects, Feeds } from '../../components/admin-dashboard-components';
+import Subject from '../ui-components/SubjectCRUD';
 import $ from 'jquery'
 
 import img1 from '../../assets/images/big/img1.jpg';
@@ -278,6 +279,15 @@ const Starter = () => {
                                         if(difference <= 30){
                                             monthstudents= monthstudents + 1
                                             monthstudentsarray[monthstudents-1] = obj
+                                        }
+                                        if(students === 0){
+                                            $('.bsm').addClass('hide')
+                                        }
+                                        if(weekstudents === 0){
+                                            $('.bwsm').addClass('hide')
+                                        }
+                                        if(monthstudents === 0){
+                                            $('.bmsm').addClass('hide')
                                         }
                                         
                                     }
@@ -551,8 +561,8 @@ const Starter = () => {
                                 </div>
                             </td>
                             <td>
-                                <div className="d-flex no-block align-items-center">
-                                    <div className="">
+                                {/* <div className="d-flex no-block align-items-center">
+                                    <div className=""> */}
                                     <Input
                                     type="text"
                                     name={description}
@@ -561,9 +571,9 @@ const Starter = () => {
                                     value={description}
                                     onChange={handleChange("description")}
                                     ></Input>
-                                     
+{/*                                      
                                     </div>
-                                </div>
+                                </div> */}
                             </td>
                             
                             
@@ -605,6 +615,7 @@ const Starter = () => {
         </Card >
             </Row>
 
+                    <Subject></Subject>
         </div>
     );
 }
