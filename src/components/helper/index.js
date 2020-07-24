@@ -105,6 +105,18 @@ export const getAQuiz = (qid) =>{
     })
 }
 
+export const getQuestions = (qid) =>{
+    return fetch(`${API}/allquiz${qid}`,{
+        method:"GET"
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
 export const createQuestion = (qid,quiz) =>{
     console.log(quiz,"q")
     return fetch(`${API}/question/create${qid}`,{
@@ -122,14 +134,15 @@ export const createQuestion = (qid,quiz) =>{
     })
 }
 
-export const createOption = (qid,quiz) =>{
-    console.log(quiz,"q")
-    return fetch(`${API}/question/create${qid}`,{
+export const createOption = (qid,option) =>{
+    console.log(option,"q")
+    return fetch(`${API}/options/create/${qid}`,{
         method:"POST",
         headers:{
-            Accept: 'application/json'
+            Accept: 'application/json',
+            "Content-Type" : 'application/json'
         },
-        body:quiz
+        body:JSON.stringify(option)
     })
     .then(response => {
         return response.json()

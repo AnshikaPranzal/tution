@@ -17,7 +17,7 @@ import {
 } from 'reactstrap';
 import $ from 'jquery'
 import UploadDocument from '../../../UploadDocument';
-import {getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAQuiz, createQuestion} from '../../../helper';
+import {getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAQuiz, createQuestion, createOption, getQuestions} from '../../../helper';
 
 
 const Questions = (props) => {
@@ -42,23 +42,27 @@ const Questions = (props) => {
 
     const loadQuiz=()=>{
         console.log(qid,"id")
-        getAQuiz(qid).then(data=>{
-            console.log(data,"quizdata")
-            if(data){
-              if(data.error){
-                console.log(data.error)
-              }
-              else{
-                setquiz(data)
-                console.log(data,"hwhe")
-                setqarray({
-                  ...qarray, formData: new FormData()
-                })
-              }
+
+        getQuestions(qid).then(data=>{
+          console.log(data,"all questions")
+          if(data){
+            if(data.error){
+              console.log(data.error)
             }
-          })
+            else{
+              setquiz(data.data[0])
+              setqarray({
+                ...qarray, formData: new FormData()
+              })
+             
+            }
+          }
+        })
+
          
     }
+    console.log(quiz,"qwqwww")
+
     const handleChange = name => event => {
       const v = event.target.value
 
@@ -134,21 +138,23 @@ const [quesId, setquesId] = useState({id: 0})
   })
   }
   const onOptionSubmit = ()=>{
-    setqarray({...qarray,options:options})
-    console.log(qarray)
-    createQuestion(qid,formData).then(data=>{console.log("f",data)
-       if(data){     
-      if(data.error)
-      {
-          console.log(data.error)
-          // setValues({...values,error:data.error})
-      }
-      else{
-        console.log("Options createdd XD<3")
-        handleAddClick()
-      }
-    }
-  })
+    options.map((x,i) =>{
+      console.log(x)
+      createOption(quesId.id,x).then(data=>{console.log("f",data)
+          if(data){     
+          if(data.error)
+          {
+              console.log(data.error)
+              // setValues({...values,error:data.error})
+          }
+          else{
+            console.log("Options createdd XD<3")
+           
+          }
+        }
+      })
+    })
+    
   }
  
     return(
@@ -218,10 +224,32 @@ const [quesId, setquesId] = useState({id: 0})
                               })}
                                </tbody>
                             </Table>
-                            {options.length === 0 && <button onClick={onSubmit}>Create Question</button>}
+                            {options.length === 0 ? (<button onClick={onSubmit}>Create Question</button>):(<button onClick={onOptionSubmit}>Save Options</button>)}
                             
                         </CardBody>
                     </Card>
+                </Col>
+                <Col xs="12" md="12">
+                  <Card>
+                    <CardBody>
+                      <Table>
+                        <thead>
+                          <th>Question</th>
+                          <th>Options</th>
+                        </thead>
+                        <tbody>
+                          {quiz.questions.map((x,i)=>(
+                            <tr>
+                              <td>{x.title}</td>
+                              <td>{x.options.map((y,j)=>(
+                                y.isCorrect ? (<span className="text-warning">{y.optionValue},</span>):(<span>{y.optionValue},</span>)
+                              ))}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </Table>
+                    </CardBody>
+                  </Card>
                 </Col>
             </Row>
           </div>
