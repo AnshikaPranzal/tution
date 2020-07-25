@@ -150,6 +150,22 @@ export const createQuestion = (qid,quiz) =>{
     })
 }
 
+export const deleteQuestion = (qId,quesId)=>{
+    
+    return fetch(`${API}/questions/delete${qId}/${quesId}`,{
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            // Authorization: `Bearer ${token}` 
+        }
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in deleting the Question")
+    })
+}
+
 export const createOption = (qid,option) =>{
     console.log(option,"q")
     return fetch(`${API}/options/create/${qid}`,{
@@ -162,6 +178,18 @@ export const createOption = (qid,option) =>{
     })
     .then(response => {
         return response.json()
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
+export const getAQuestion = (quesId) => {
+    return fetch(`${API}/question/${quesId}`,{
+        method:"GET"
+    })
+    .then(response => {
+        return response.json(); 
     })
     .catch(err => {
         console.log(err,"hello");

@@ -15,11 +15,13 @@ import {
     InputGroupAddon,
     InputGroupText
 } from 'reactstrap';
+import { Modal } from 'react-bootstrap';
 import $ from 'jquery'
 import UploadDocument from '../../../UploadDocument';
-import {getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAQuiz, createQuestion, createOption, getQuestions} from '../../../helper';
+import {getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAQuiz, createQuestion, createOption, getQuestions, deleteQuestion} from '../../../helper';
 
-
+import UpdateQuestion from '../../../UpdateQuestion'
+import ImageHelper from '../../../helper/ImageHelper';
 const Questions = (props) => {
 
     const qid= props.location.pathname;
@@ -64,12 +66,15 @@ const Questions = (props) => {
     console.log(quiz,"qwqwww")
 
     const handleChange = name => event => {
-      const v = event.target.value
-
+      const v = name === "img"? event.target.files[0]:event.target.value
+      console.log(event.target,v)
       formData.set(name,v)
+      if( name !== "img" )
       setqarray({
-          ...qarray, [name]: v
+          ...qarray, [name]:v
       })
+      if(name === "img")
+      formData.set("hasImg",true)
       console.log(qarray)
       for (var key of formData.entries()) {
         console.log(key[0] + ', ' + key[1]);
@@ -82,7 +87,13 @@ const Questions = (props) => {
         loadQuiz()
     }, [refresh])
     const [options, setoptions] = useState([]);
- 
+  const [zId, setzId] = useState()
+  const [show, setshow] = useState(false);
+  const handleClose = () => setshow(false);
+  const handleShow = (id) => {setshow(true);
+  setzId(id)
+  }
+
   // handle input change
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
@@ -149,17 +160,42 @@ const [quesId, setquesId] = useState({id: 0})
           }
           else{
             console.log("Options createdd XD<3")
-           
+            setoptions([])
+
+            setrefresh(!refresh)
+            setqarray([{...qarray,
+              title: "",
+              img:"",
+              hasImg:false,
+              formData:""
+          }])
           }
         }
       })
     })
     
   }
+
+  const deleteAQuestion = (questionId)=>{
+    deleteQuestion(qid,questionId).then(data=>{
+      if(data){
+        if(data.error){
+          console.log(data.error)
+        }
+        else{
+          setrefresh(!refresh)
+        }
+      }
+    })
+  }
+
+  const nextChar = (c,k)=> {
+    return String.fromCharCode(c.charCodeAt(0) + k);
+}
  
     return(
     <React.Fragment>
-          <div className="text-center">
+          <div >
             <Row>
                 <Col xs="12" md="12">
                     {/*--------------------------------------------------------------------------------*/}
@@ -171,7 +207,17 @@ const [quesId, setquesId] = useState({id: 0})
                             <CardTitle>{quiz.title}</CardTitle>
                             <CardSubtitle>{quiz.subject}</CardSubtitle>
                             {options.length === 0 ?
-                            (<Input
+                            (<React.Fragment>
+                              <Input
+                                    type="file"
+                                    name="img"
+                                    id="img"
+                                    onChange = {handleChange("img")}
+                                    value={img}
+                                    accept="image"
+                                    style={{marginTop:"1rem"}}
+                            ></Input>
+                              <Input
                                     type="text"
                                     name="title"
                                     id="title"
@@ -179,7 +225,9 @@ const [quesId, setquesId] = useState({id: 0})
                                     value={title}
                                     placeholder="Enter your question"
                                     style={{marginTop:"1rem"}}
-                            ></Input>):<div>{title}</div>
+                            ></Input>
+                            </React.Fragment>
+                            ):<div>{title}</div>
                             }
                             <Table className="no-wrap v-middle" responsive>
                                     <thead>
@@ -233,26 +281,41 @@ const [quesId, setquesId] = useState({id: 0})
                   <Card>
                     <CardBody>
                       <Table>
-                        <thead>
-                          <th>Question</th>
-                          <th>Options</th>
-                        </thead>
                         <tbody>
                           {quiz.questions.map((x,i)=>(
                             <tr>
-                              <td>{x.title}</td>
-                              <td>{x.options.map((y,j)=>(
-                                y.isCorrect ? (<span className="text-warning">{y.optionValue},</span>):(<span>{y.optionValue},</span>)
-                              ))}</td>
+                              {console.log(x,"hh")}
+                              <td>
+                            <React.Fragment>
+                              <div className="row">
+                              <span className="col-11">{i+1}. {x.title}{x.hasImg && <ImageHelper id={x._id}></ImageHelper>}</span>
+                            
+                            <span className="col-1 text-center"><i className="fa fa-plus text-info" onClick={()=>{handleShow(x._id)}} style={{cursor:"pointer",marginRight:"20px"}}  aria-hidden="true"></i>
+                            <i className="fa fa-trash text-orange" onClick={()=>{deleteAQuestion(x._id)}} style={{cursor:"pointer"}}  aria-hidden="true"></i></span>
+                            </div>
+                            
+                            <br></br>
+                            <div style={{marginLeft:"3em"}}>{x.options.map((y,j)=>(
+                                y.isCorrect ? (<span className="text-success">{nextChar('a',j)}. {y.optionValue}<i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i>
+                                <i className="fa fa-trash text-orange" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i><br></br></span>):(<span>{nextChar('a',j)}. {y.optionValue}<i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i>
+                                <i className="fa fa-trash text-orange" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i><br></br></span>)
+                              ))}</div>
+                              
+                            <Modal show={show} onHide={handleClose}>
+                                  <UpdateQuestion id={zId} ></UpdateQuestion>
+                            </Modal>
+                            </React.Fragment>
+                            </td>
                             </tr>
                           ))}
-                        </tbody>
-                      </Table>
+                          </tbody>
+                       </Table>
                     </CardBody>
                   </Card>
                 </Col>
             </Row>
           </div>
+          
     </React.Fragment>)
 }
 export default Questions;
