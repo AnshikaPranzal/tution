@@ -14,6 +14,7 @@ import {
     Input,
     Table
 } from 'reactstrap';
+import Search from '../ui-components/findUser'
 import { SalesSummary, Projects, Feeds } from '../../components/admin-dashboard-components';
 import Subject from '../ui-components/SubjectCRUD';
 import $ from 'jquery'
@@ -616,6 +617,7 @@ const Starter = () => {
             </Row>
 
                     <Subject></Subject>
+                    <Search></Search>
         </div>
     );
 }

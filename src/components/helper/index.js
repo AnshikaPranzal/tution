@@ -655,3 +655,20 @@ export const updateSubject = (subjectId,subjectO)=>{
         console.log("Error in updating subject")
     })
 }
+
+export const addSubject = (ids) => {
+    return fetch(`${API}/user/addSubject`,{
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(ids)
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in adding subject")
+    })
+}
