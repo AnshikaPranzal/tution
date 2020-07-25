@@ -46,7 +46,7 @@ function Routes() {
             <Route exact path="/material" component={Fulllayout} />
             <Route exact path="/settings" component={Fulllayout} />
             <Route exact path="/dashboard-teacher" component={FulllayoutTeacher} />
-            <Route exact path="/questions/:question" component={Question} />
+            <Route exact path="/quiz/:question" component={FulllayoutTeacher} />
             <Route exact path="/dashboard-admin" component={FulllayoutAdmin} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/course" component={CoursePage} />

@@ -110,7 +110,82 @@ export const getQuiz = (uid) =>{
 }
 
 export const getAQuiz = (qid) =>{
-    return fetch(`${API}/quiz/${qid}`,{
+    return fetch(`${API}${qid}`,{
+        method:"GET"
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
+export const getQuestions = (qid) =>{
+    return fetch(`${API}/allquiz${qid}`,{
+        method:"GET"
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
+export const createQuestion = (qid,quiz) =>{
+    console.log(quiz,"q")
+    return fetch(`${API}/question/create${qid}`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json'
+        },
+        body:quiz
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
+export const deleteQuestion = (qId,quesId)=>{
+    
+    return fetch(`${API}/questions/delete${qId}/${quesId}`,{
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            // Authorization: `Bearer ${token}` 
+        }
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in deleting the Question")
+    })
+}
+
+export const createOption = (qid,option) =>{
+    console.log(option,"q")
+    return fetch(`${API}/options/create/${qid}`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json',
+            "Content-Type" : 'application/json'
+        },
+        body:JSON.stringify(option)
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
+export const getAQuestion = (quesId) => {
+    return fetch(`${API}/question/${quesId}`,{
         method:"GET"
     })
     .then(response => {
