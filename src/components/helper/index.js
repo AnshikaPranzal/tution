@@ -470,6 +470,20 @@ export const addItemToCart = (item,next)=>{
     
 }
 
+export const addClickToAnswer = (item,next)=>{
+    let answer = []
+    if(typeof window!== undefined){
+        if(localStorage.getItem("answer")){
+            answer=JSON.parse(localStorage.getItem("answer"))
+        }
+        answer.push({
+            ...item
+        })
+    }
+    localStorage.setItem("cart",JSON.stringify(answer))
+    
+}
+
 export const updateItemInCart = (i)=>{
     let cart = []
     if(typeof window!== undefined){
@@ -517,7 +531,6 @@ export const findItemInCart = (i)=>{
             
                 if(i === prod[0].name)
                 {
-                    console.log(i,prod[0].name,"dekh",i === prod[0].name,prod[0].count)
                    t = prod[0].count ;
                 }
             
