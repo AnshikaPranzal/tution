@@ -9,6 +9,8 @@ import LayoutComponent from '../views/ui-components/layout.jsx';
 import PaginationComponent from '../views/ui-components/pagination.jsx';
 import PopoverComponent from '../views/ui-components/popover.jsx';
 import TooltipComponent from '../views/ui-components/tooltip.jsx';
+import QuizList from '../views/ui-components/quizlist.jsx';
+import QuizStudent from '../views/ui-components/quizstudent.jsx';
 
 
 
@@ -44,10 +46,14 @@ var ThemeRoutes = [
   //   component: Buttons
   // },
   {
+    path: '/start/quiz/:question',
+    component: QuizStudent
+  },
+  {
     path: '/payment',
-    name: 'Payment',
+    name: 'Quizzes',
     icon: 'mdi mdi-credit-card-multiple',
-    component: Cards
+    component: QuizList
   },
   // {
   //   path: '/grid',

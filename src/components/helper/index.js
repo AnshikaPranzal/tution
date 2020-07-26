@@ -150,6 +150,23 @@ export const createQuestion = (qid,quiz) =>{
     })
 }
 
+export const createResponse = (resp) =>{
+    console.log(resp,"q")
+    return fetch(`${API}/response/create`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json'
+        },
+        body: JSON.stringify( resp )
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        console.log(err,"hello");
+    })
+}
+
 export const deleteQuestion = (qId,quesId)=>{
     
     return fetch(`${API}/questions/delete${qId}/${quesId}`,{

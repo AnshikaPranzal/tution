@@ -42,7 +42,7 @@ const AddQuiz = ({c})=> {
             console.log(error)
           }
           else{
-            setquizzes(data)
+            setquizzes(data.data)
           }
         }
       })
@@ -211,7 +211,7 @@ const AddQuiz = ({c})=> {
                   <td>{obj.subject}</td>
                   <td>{obj.start}</td>
                   <td>{obj.endTime}</td>
-                  <Link classId="Hello" to={`/quiz/${obj._id}`} ><td>Add Questions</td></Link> 
+                  <Link to={`/quiz/${obj._id}`} ><td>Add Questions</td></Link> 
               </tr>
             ))}  
             {console.log(quizzes.data)}

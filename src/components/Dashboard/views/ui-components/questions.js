@@ -297,7 +297,8 @@ const [quesId, setquesId] = useState({id: 0})
                             <br></br>
                             <div style={{marginLeft:"3em"}}>{x.options.map((y,j)=>(
                                 y.isCorrect ? (<span className="text-success">{nextChar('a',j)}. {y.optionValue}<i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i>
-                                <i className="fa fa-trash text-orange" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i><br></br></span>):(<span>{nextChar('a',j)}. {y.optionValue}<i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i>
+                                <i className="fa fa-trash text-orange" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i><br></br></span>):(<span>{nextChar('a',j)}. {y.optionValue}
+                                <i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i>
                                 <i className="fa fa-trash text-orange" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i><br></br></span>)
                               ))}</div>
                               
