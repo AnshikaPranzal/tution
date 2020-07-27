@@ -29,7 +29,7 @@ const RegisterModal = () =>{
         });
         signup1({name,email,password,mob})
             .then( (data) =>{
-                console.log(data)
+                if(data){
                 if(data.error){
                    
                     setValues({
@@ -49,6 +49,7 @@ const RegisterModal = () =>{
                         success: true
                     })
                 }
+            }
             })
             .catch(console.log("Error in signup"))
     }
