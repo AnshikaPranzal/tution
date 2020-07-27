@@ -801,3 +801,40 @@ export const addSubject = (ids) => {
         console.log("Error in adding subject")
     })
 }
+
+export const subclassrooms = (ids) => {
+    console.log(ids)
+    return fetch(`${API}/user/subclassrooms`,{
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(ids)
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in geting Classrooms")
+    })
+}
+
+
+export const subclasses = (ids) => {
+    console.log(ids)
+    return fetch(`${API}/user/subclasses`,{
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(ids)
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in geting Classes")
+    })
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects} from '../../../../helper/index'
+import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getASubject} from '../../../../helper/index'
 
 import {
     Card,
@@ -23,6 +23,16 @@ const Projects = () => {
     const [uid, setuid] = useState("")
     const [reload, setreload] = useState(false)
     const [sub, setsubject] = useState([])
+    
+
+    const getClassName = (cid) => {
+        console.log(cid)
+        getASubject(cid)
+        .then( data => (data.name))
+        .catch (err => console.log(err))
+    }
+
+    
 
     const loadAllSubjects = () =>{
         getAllSubjects().then(data =>{
@@ -95,6 +105,7 @@ const Projects = () => {
         name:nameT,
         email:emailT,
         subject: "",
+        subjectname: "",
         Class: "",
         standard:"",
         time: "",
@@ -102,7 +113,7 @@ const Projects = () => {
         error:"",
         success: false
     })
-    const {classLink,name,email, subject,standard,time ,date,success,error} = project;
+    const {classLink,name,email, subject,subjectname,standard,time ,date,success,error} = project;
    
     const handleChange = name => event => {
         setProject({
@@ -116,11 +127,12 @@ const Projects = () => {
     }
     const onSubmit = event => {
         event.preventDefault();
+        console.log(project.subject)
         setProject({
-            ...project,error: false
+            ...project,error: false,
         });
         
-        classes({classLink,name,email,subject,standard,time,date})
+        classes({classLink,name,email,subject,subjectname,standard,time,date})
             .then( (data) =>{
                 console.log(data)
                 console.log(project)
@@ -137,6 +149,7 @@ const Projects = () => {
                         ...project,
                         classLink: "",
                         subject: "",
+                        subjectname: "",
                         Class: "",
                         standard:"",
                         time: "",
@@ -280,10 +293,12 @@ const Projects = () => {
                                     onChange={handleChange("subject")}>
                                 <option value="0">Select</option>
                                 {sub.map((obj,i) => {
-                                    return(<option key={i} value={obj._id}>{obj.name}</option>)
+                                    return(<option key={i} value={obj._id} >{obj.name}</option>)
                                 })
                                 }
                             </Input></td>
+
+
 
                             <td>
                             <Input type="select" className="custom-select" value={standard}
@@ -317,8 +332,9 @@ const Projects = () => {
                                     <td>{update === true ? (<i onClick={e=>{updateaClass(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} class="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} class="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
                         </tr>
                         {classO.map((obj,i) => {
-                            console.log(classO)
+                                                          
                             if(obj.email === emailT){
+                               
                             return(
                             <tr key={i}>
                             <td>
@@ -327,7 +343,8 @@ const Projects = () => {
                                         <h5 className="mb-0 font-16 font-medium"><span><a href={obj.classLink} target="blank">Start Class</a></span></h5></div>
                                 </div>
                             </td>
-                            <td>{obj.subject}</td>
+                            <td>{getClassName(obj.subject)}</td>
+                            
                             <td>{obj.standard}</td>
                             <td>{obj.time}</td>
                             <td className="blue-grey-text  text-darken-4 font-medium">{obj.date.substring(8, 10)}{obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}</td>

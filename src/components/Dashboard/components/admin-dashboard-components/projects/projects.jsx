@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import img1 from '../../../assets/images/users/1.jpg';
 
-import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass} from '../../../../helper/index'
+import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getASubject} from '../../../../helper/index'
 
 import {
     Card,
@@ -22,6 +22,12 @@ const Projects = () => {
     const [, seterrorF] = useState(false)
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
+    const getClassName = (cid) => {
+        console.log(cid)
+        getASubject(cid)
+        .then( data => (data.name))
+        .catch (err => console.log(err))
+    }
   
   
     const loadAllclasses = () =>{
@@ -243,7 +249,7 @@ const Projects = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        {/* <tr>
                             <td>
                                 <div className="d-flex no-block align-items-center">
                                     <div className="">
@@ -297,8 +303,9 @@ const Projects = () => {
                                     style={{maxWidth:"200px"}}
                                     ></Input></td>
                                     <td>{update === true ? (<i onClick={e=>{updateaClass(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} class="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} class="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
-                        </tr>
+                        </tr> */}
                         {classO.map((obj,i)=>{
+                            
                             return(
                             <tr key={i}>
                             <td>
@@ -309,7 +316,7 @@ const Projects = () => {
                                             </div>
                                     </div>
                             </td>
-                            <td>{obj.subject}</td>
+                            <td>{getClassName(obj.subject)}</td>
                             <td>{obj.standard}</td>
                             <td>{obj.time}</td>
                             <td className="blue-grey-text  text-darken-4 font-medium">{obj.date.substring(8, 10)}{obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}</td>
