@@ -3,7 +3,7 @@ import React ,{useEffect,useState} from "react";
 
 import img1 from '../../../assets/images/users/1.jpg';
 
-import { getAllClasses } from '../../../../helper/index'
+import { getAllClasses, subclassrooms, isAuthenticated, getAClass, getASubject,subclasses } from '../../../../helper/index'
 
 import {
     Card,
@@ -11,17 +11,26 @@ import {
     CardTitle,
     CardSubtitle,
     Input,
-    Table
+    Table,
+    Row,
+    Col
 } from 'reactstrap';
+import { Link } from "react-router-dom";
 
 const Projects = () => {
     const [classO, setclassO] = useState([])
   // eslint-disable-next-line no-unused-vars
   const [error, seterror] = useState(false)
+  const [errorF, seterrorF] = useState(false)
+  const [classroomO, setclassroomO] = useState([]);
+    const {user}= isAuthenticated();
+
+    
+    
 
 
   const loadAllclasses = () =>{
-    getAllClasses().then(data =>{
+    subclasses({user_id: user._id}).then(data =>{
         console.log(data)
         if(data){
       if(data.error){
@@ -38,11 +47,37 @@ const Projects = () => {
     loadAllclasses()
     },[])
 
+    const getClassName = (cid) => {
+        console.log(cid)
+        getASubject(cid)
+        .then( data => (data.name))
+        .catch (err => console.log(err))
+    }
+
+    const loadAllclassroooms = () =>{
+        console.log(user)
+        subclassrooms({user_id: user._id}).then(data =>{
+            console.log(data)
+          if(data)
+          if(data.error){
+            seterrorF(data.error)
+          }
+          else{
+            setclassroomO(data)
+            
+          }
+        })
+      }
+      useEffect (() => {
+        loadAllclassroooms()
+        },[])
+
+
     return (
         /*--------------------------------------------------------------------------------*/
         /* Used In Dashboard-4 [General]                                                  */
         /*--------------------------------------------------------------------------------*/
-        
+        <>
         <Card>
             <CardBody>
                 <div className="d-flex align-items-center">
@@ -76,7 +111,9 @@ const Projects = () => {
                         {
                             classO.map((obj,index)=>{
                             //    if(obj.subject === "Maths")
+                            
                                 return(
+                                
                                 <tr key={index}>
                                     <td>
                                         <div className="d-flex no-block align-items-center">
@@ -85,7 +122,7 @@ const Projects = () => {
                                                 <h5 className="mb-0 font-16 font-medium">{obj.name}</h5><span>{obj.email}</span></div>
                                         </div>
                                     </td>
-                                    <td>{obj.subject}</td>
+                                    <td>{getClassName(obj.subject)}</td>
                                     <td>{obj.time}</td>
                                     <td className="blue-grey-text  text-darken-4 font-medium">{obj.date.substring(8, 10)}{obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}</td>
                                     <td>
@@ -100,6 +137,32 @@ const Projects = () => {
                 </Table>
             </CardBody>
         </Card >
+        <Row>
+        {classroomO.map((obj,i)=>{
+            return(
+            // <tr key={i}>
+            <Col xs="12" md="4">
+                <Card key={i}>
+                    <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
+                                <CardTitle>{obj.name}</CardTitle>
+                                <CardSubtitle>Class {obj.standard}</CardSubtitle>
+                                <CardBody>{obj.description}</CardBody>
+                                <div>
+                                {isAuthenticated() 
+                                // && isAuthenticated().user.role === 1
+                                ?(
+                                    <p>
+                                    <Link classid="Hello" to={`/dashboard-teacher/classroom-teacher/${obj._id}`}>See More</Link>
+                                    </p>
+                                ):""}
+                            </div>
+                        </Card>
+                        </Col>)
+                   
+                
+            })}
+                </Row>
+</>
     );
 }
 

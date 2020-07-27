@@ -18,8 +18,7 @@ const Projects = () => {
 const[userO, setuserO] = useState([])
 const [sub, setsubject] = useState([])
 const [errorF, seterrorF] = useState(false)
-const[refresh, setRefresh] = useState(true)
-
+const [refresh, setRefresh] = useState(false)
 const loadAllusers = () =>{
     getAllUSers().then(data =>{
         console.log(data)
@@ -29,8 +28,7 @@ const loadAllusers = () =>{
       }
       else{
         setuserO(data)
-        
-        setRefresh(false)
+        setRefresh(!refresh)
       }
     })
   }
@@ -85,8 +83,8 @@ const onSubmit = event => {
             }
         }
     })
-    setRefresh(true)
-    loadAllusers()
+    console.log(!refresh)
+    setRefresh(!refresh)
     // $('.userlist').removeClass('hide')
 }
     
