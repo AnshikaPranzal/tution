@@ -1,7 +1,5 @@
 import React, {useState,useEffect} from 'react';
 
-import {
-    Card  } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 
     const Timer = (props) => {

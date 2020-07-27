@@ -1,15 +1,9 @@
-/* eslint-disable no-unused-vars */
+
 import Starter from '../views/starter/starter-teacher.jsx';
 // ui components
-import Alerts from '../views/ui-components/alert.jsx';
-import Badges from '../views/ui-components/badge.jsx';
-import Buttons from '../views/ui-components/button.jsx';
 import Cards from '../views/ui-components/cards.jsx';
-import LayoutComponent from '../views/ui-components/layout.jsx';
-import PaginationComponent from '../views/ui-components/pagination.jsx';
-import PopoverComponent from '../views/ui-components/popover.jsx';
 import TooltipComponent from '../views/ui-components/tooltip.jsx';
-import Questions from '../views/ui-components/questions.js';
+import Questions from '../views/ui-components/questions.jsx';
 
 
 

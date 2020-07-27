@@ -1,13 +1,7 @@
-/* eslint-disable no-unused-vars */
+
 import Starter from '../views/starter/starter.jsx';
 // ui components
-import Alerts from '../views/ui-components/alert.jsx';
-import Badges from '../views/ui-components/badge.jsx';
-import Buttons from '../views/ui-components/button.jsx';
 import Cards from '../views/ui-components/cards.jsx';
-import LayoutComponent from '../views/ui-components/layout.jsx';
-import PaginationComponent from '../views/ui-components/pagination.jsx';
-import PopoverComponent from '../views/ui-components/popover.jsx';
 import TooltipComponent from '../views/ui-components/tooltip.jsx';
 import QuizList from '../views/ui-components/quizlist.jsx';
 import QuizStudent from '../views/ui-components/quizstudent.jsx';
@@ -28,24 +22,6 @@ var ThemeRoutes = [
     icon: 'mdi mdi-apps',
     component: Cards
   },
-  // {
-  //   path: '/alert',
-  //   name: 'Profile',
-  //   icon: 'mdi mdi-comment-processing-outline',
-  //   component: Alerts
-  // },
-  // {
-  //   path: '/badge',
-  //   name: 'Badges',
-  //   icon: 'mdi mdi-arrange-send-backward',
-  //   component: Badges
-  // },
-  // {
-  //   path: '/button',
-  //   name: 'Buttons',
-  //   icon: 'mdi mdi-toggle-switch',
-  //   component: Buttons
-  // },
 
   {
     path: '/payment',
@@ -53,24 +29,6 @@ var ThemeRoutes = [
     icon: 'mdi mdi-credit-card-multiple',
     component: QuizList
   },
-  // {
-  //   path: '/grid',
-  //   name: 'Grid',
-  //   icon: 'mdi mdi-apps',
-  //   component: LayoutComponent
-  // },
-  // {
-  //   path: '/pagination',
-  //   name: 'Pagination',
-  //   icon: 'mdi mdi-priority-high',
-  //   component: PaginationComponent
-  // },
-  // {
-  //   path: '/popover',
-  //   name: 'Popover',
-  //   icon: 'mdi mdi-pencil-circle',
-  //   component: PopoverComponent
-  // },
   {
     path: '/settings',
     name: 'Toltips',

@@ -29,7 +29,6 @@ import { Link } from 'react-router-dom';
       })
 
     const loadQuiz=()=>{
-
         getQuestions(qid).then(data=>{
           if(data){
             if(data.error){
@@ -39,9 +38,7 @@ import { Link } from 'react-router-dom';
               setquiz(data.data[0])
             }
           }
-        })
-
-         
+        }) 
     }
     const {user} = isAuthenticated()
 

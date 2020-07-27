@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
+
 import React,{useState, useEffect} from 'react';
-import { Link } from 'react-router-dom'
 import {
     Card,
     CardBody,
     CardTitle,
     CardSubtitle,
-    Button,
     Row,
     Col,
     Input,
@@ -16,9 +14,7 @@ import {
     InputGroupText
 } from 'reactstrap';
 import { Modal } from 'react-bootstrap';
-import $ from 'jquery'
-import UploadDocument from '../../../UploadDocument';
-import {getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAQuiz, createQuestion, createOption, getQuestions, deleteQuestion} from '../../../helper';
+import {createQuestion, createOption, getQuestions, deleteQuestion} from '../../../helper';
 
 import UpdateQuestion from '../../../UpdateQuestion'
 import ImageHelper from '../../../helper/ImageHelper';
@@ -40,7 +36,7 @@ const Questions = (props) => {
       formData:""
   }])
 
-  const {title,img,hasImg,formData} = qarray
+  const {title,img,formData} = qarray
 
     const loadQuiz=()=>{
         console.log(qid,"id")
@@ -85,7 +81,7 @@ const Questions = (props) => {
 
     useEffect(() => {
         loadQuiz()
-    }, [refresh])
+    }, [loadQuiz, refresh])
     const [options, setoptions] = useState([]);
   const [zId, setzId] = useState()
   const [show, setshow] = useState(false);
@@ -96,7 +92,7 @@ const Questions = (props) => {
 
   // handle input change
   const handleInputChange = (e, index) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
     const list = [...options];
     list[index][name] = !list[index][name];
     setoptions(list);
@@ -109,15 +105,6 @@ const Questions = (props) => {
     setoptions(list);
     console.log(options)
   };
-
-//   const handleChange = name=> event =>{
-
-//      setoptions({...options,[name]: v});
-//      console.log(options)
-    
-// }
- 
-  // handle click event of the Remove button
   
   const handleRemoveClick = index => {
     const list = [...options];
@@ -149,7 +136,7 @@ const [quesId, setquesId] = useState({id: 0})
   })
   }
   const onOptionSubmit = ()=>{
-    options.map((x,i) =>{
+    options.map((x) =>{
       console.log(x)
       createOption(quesId.id,x).then(data=>{console.log("f",data)
           if(data){     

@@ -15,8 +15,6 @@ import {
 } from 'reactstrap';
 
 const AddQuiz = ({c})=> {
-    const [show, setshow] = useState(1)
-    const [count, setcount] = useState([1])
     const [values, setValues] = useState({
         subject:"",
         title:"",
@@ -53,21 +51,6 @@ const AddQuiz = ({c})=> {
     },[refresh])
     
     const { subject,title,endTime,start, loading,error,getRedirect,createdQuiz,formData,teacher} = values;
-
-    const addQues = ()=>{
-      
-    }
-
-    const endTimeQuiz = ()=>{
-      setshow(0)
-    }
-
-    const goBack = () =>(
-        
-     <div className="mt-5">
-         <Link className="btn btn-sm btn-success mb-3" to="/admin/dashboard">Go Back to Home</Link>
-     </div>
-    );
 
     const successMessage = () =>{
         console.log(createdQuiz)
