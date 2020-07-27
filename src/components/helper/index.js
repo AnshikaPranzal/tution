@@ -470,18 +470,41 @@ export const addItemToCart = (item,next)=>{
     
 }
 
-export const addClickToAnswer = (item,next)=>{
+export const addClickToAnswer = (item,c,next)=>{
     let answer = []
     if(typeof window!== undefined){
         if(localStorage.getItem("answer")){
             answer=JSON.parse(localStorage.getItem("answer"))
         }
-        answer.push({
-            ...item
-        })
+
+            answer.push({
+                ...item
+            })
+        
+        next()
+        
     }
-    localStorage.setItem("cart",JSON.stringify(answer))
+    localStorage.setItem("answer",JSON.stringify(answer))
     
+}
+
+export const findClickInAnswer = (i)=>{
+    let answer = []
+    let t
+    if(typeof window!== undefined){
+        if(localStorage.getItem("answer")){
+            answer=JSON.parse(localStorage.getItem("answer"))
+        }
+        // answer.map((prod,index) =>{
+            
+        //         if(i === index)
+        //         {
+        //            t = prod ;
+        //     console.log("t",t)
+        // }
+        //   })
+    }
+    return answer;
 }
 
 export const updateItemInCart = (i)=>{

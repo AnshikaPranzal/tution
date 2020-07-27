@@ -801,6 +801,13 @@ pre code {
     padding-left: 15px;
 }
 
+.no-col{
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
 .col {
     flex-basis: 0;
     flex-grow: 1;
@@ -820,7 +827,7 @@ pre code {
 
 .col-2 {
     flex: 0 0 16.66667%;
-    max-width: 16.66667%;
+    max-width: 26.66667%;
 }
 
 .col-3 {
@@ -5259,7 +5266,7 @@ input[type="button"].btn-block {
     display: flex;
     flex-direction: column;
     min-width: 0;
-    word-wrap: break-word;
+    word-wrap: normal;
     background-color: #fff;
     background-clip: border-box;
     border: 0px solid transparent;

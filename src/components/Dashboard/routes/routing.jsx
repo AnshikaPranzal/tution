@@ -11,6 +11,7 @@ import PopoverComponent from '../views/ui-components/popover.jsx';
 import TooltipComponent from '../views/ui-components/tooltip.jsx';
 import QuizList from '../views/ui-components/quizlist.jsx';
 import QuizStudent from '../views/ui-components/quizstudent.jsx';
+import QuizCompleted from '../views/ui-components/quizCompleted.jsx';
 
 
 
@@ -45,10 +46,7 @@ var ThemeRoutes = [
   //   icon: 'mdi mdi-toggle-switch',
   //   component: Buttons
   // },
-  {
-    path: '/start/quiz/:question',
-    component: QuizStudent
-  },
+
   {
     path: '/payment',
     name: 'Quizzes',
@@ -79,6 +77,15 @@ var ThemeRoutes = [
     icon: 'mdi mdi-image-filter-vintage',
     component: TooltipComponent
   },
-  { path: '/', pathTo: '/dashboard', name: 'Dashboard', redirect: true }
+  {
+    path: '/start/quiz/:question',
+    component: QuizStudent
+  },
+  {
+    path: '/quizcompleted',
+    component: QuizCompleted
+  },
+  { path: '/', pathTo: '/dashboard', name: 'Dashboard', redirect: true },
+
 ];
 export default ThemeRoutes;
