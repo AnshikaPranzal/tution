@@ -470,6 +470,43 @@ export const addItemToCart = (item,next)=>{
     
 }
 
+export const addClickToAnswer = (item,c,next)=>{
+    let answer = []
+    if(typeof window!== undefined){
+        if(localStorage.getItem("answer")){
+            answer=JSON.parse(localStorage.getItem("answer"))
+        }
+
+            answer.push({
+                ...item
+            })
+        
+        next()
+        
+    }
+    localStorage.setItem("answer",JSON.stringify(answer))
+    
+}
+
+export const findClickInAnswer = (i)=>{
+    let answer = []
+    let t
+    if(typeof window!== undefined){
+        if(localStorage.getItem("answer")){
+            answer=JSON.parse(localStorage.getItem("answer"))
+        }
+        // answer.map((prod,index) =>{
+            
+        //         if(i === index)
+        //         {
+        //            t = prod ;
+        //     console.log("t",t)
+        // }
+        //   })
+    }
+    return answer;
+}
+
 export const updateItemInCart = (i)=>{
     let cart = []
     if(typeof window!== undefined){
@@ -517,7 +554,6 @@ export const findItemInCart = (i)=>{
             
                 if(i === prod[0].name)
                 {
-                    console.log(i,prod[0].name,"dekh",i === prod[0].name,prod[0].count)
                    t = prod[0].count ;
                 }
             
