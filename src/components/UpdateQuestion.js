@@ -26,7 +26,6 @@ const RegisterModal = (props) =>{
                     setValues({
                         ...values,error: false, title:data.title, 
                     });
-                    console.log(data)
                 }
             }
         })

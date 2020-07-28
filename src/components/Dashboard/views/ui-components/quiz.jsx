@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { uploadDocument, getAllUSers,isAuthenticated, createQuiz, getQuiz } from '../../../helper/index';
+import { uploadDocument, getAllUSers,isAuthenticated, createQuiz, getQuiz,updateQuiz,deleteQuiz, getAQuiz } from '../../../helper/index';
 
 import {
   Card,
@@ -15,22 +15,26 @@ import {
 } from 'reactstrap';
 
 const AddQuiz = ({c})=> {
+    const{user, token} = isAuthenticated();
     const [values, setValues] = useState({
         subject:"",
         title:"",
         endTime: "",
         start:"",
-        teacher:"",
+        teacher:user._id,
+        hh:"",
+        mm:"",
+        duration:"",
         loading:false,
         error:"",
         getRedirect: false,
         createdQuiz:"",
         formData:""
     })
-    const{user, token} = isAuthenticated();
 
     const [quizzes, setquizzes] = useState([])
     const [refresh, setrefresh] = useState(true)
+    const [update, setupdate] = useState(false)
     const loadAllMyQuizzes = ()=>{
       console.log(user._id,"heyy")
       getQuiz(user._id).then(data=>{
@@ -45,15 +49,14 @@ const AddQuiz = ({c})=> {
         }
       })
     }
-
     useEffect(() => {
       loadAllMyQuizzes()
     },[refresh])
     
-    const { subject,title,endTime,start, loading,error,getRedirect,createdQuiz,formData,teacher} = values;
+    const { subject,title,endTime,start,duration, loading,error,getRedirect,createdQuiz,formData,teacher,hh,mm} = values;
 
     const successMessage = () =>{
-        console.log(createdQuiz)
+        // console.log(createdQuiz)
         return(
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
@@ -75,42 +78,107 @@ const AddQuiz = ({c})=> {
         </div>
         </div>
     )}
-      const handleChange = name=> event =>{
+    const handleChange = name=> event =>{
           const v = name === "img"? event.target.files[0]:event.target.value
 
            setValues({...values,[name]: v});
            console.log(values)
-          
-      }
+    }
 
         
-        const Submit = event =>{
-            event.preventDefault();
-            console.log("Insideeee",values)
-            setValues({...values,error:"",loading: true,teacher:user._id})
-            createQuiz({title,subject,endTime,start,teacher}).then(data =>{
-                console.log(data)
-                if(data.error){
-                  console.log(data.error)
-                    setValues({...values,error:data.error})
-                }
-                else{
-                  console.log(data,"quiz")
-                    setValues({
-                        ...values,
-                        subject:"",
-                        title:"",
-                        endTime:"",
-                        start:"",
-                        loading:false,
-                        createdQuiz: true,
-                    })
-                }
-            })
-            .catch(()=>{
-                console.log("Error in creating Quiz")
-            })
+    const Submit = event =>{
+        event.preventDefault();
+        setValues({...values,error:"",loading: true,teacher:user._id})
+        createQuiz({title,subject,endTime,start,teacher,mm}).then(data =>{
+            console.log(data)
+            if(data.error){
+              console.log(data.error)
+                setValues({...values,error:data.error})
+            }
+            else{
+              console.log(data,"quiz")
+                setValues({
+                    ...values,
+                    subject:"",
+                    title:"",
+                    endTime:"",
+                    start:"",
+                    hh:"",
+                    mm:"",
+                    duration:"",
+                    loading:false,
+                    createdQuiz: true,
+                })
+                setrefresh(!refresh)
+            }
+        })
+        .catch(()=>{
+            console.log("Error in creating Quiz")
+        })
+    }
+
+    const deleteAQuiz = (id)=>{
+      deleteQuiz(id).then(data=>{
+        if(data){
+          if(data.error){
+            console.log(data.error)
+          }
+          else{
+            setrefresh(!refresh)
+          }
         }
+      })
+    }
+
+    const getTheQuiz = (id)=>{
+      getAQuiz(`/quiz/${id}`).then(data=>{
+        if(data){
+            if(data.error){
+              console.log(data.error)
+            }
+            else{
+              setqid(id)
+              setupdate(!update)
+              setValues({
+                ...values,
+                subject:data.data[0].subject,
+                title:data.data[0].title,
+                mm:data.data[0].duration
+            })
+            }
+        }
+      })
+    }
+    const [qid, setqid] = useState(null)
+    const updateAquiz =  (id) =>{
+            updateQuiz(id,{title,subject,endTime,start,teacher,mm}).then(data =>{
+          console.log(data)
+          if(data.error){
+            console.log(data.error)
+              setValues({...values,error:data.error})
+          }
+          else{
+              setupdate(!update)
+              setValues({
+                  ...values,
+                  subject:"",
+                  title:"",
+                  endTime:"",
+                  start:"",
+                  hh:"",
+                  mm:"",
+                  duration:"",
+                  loading:false,
+                  createdQuiz: true,
+              })
+              setrefresh(!refresh)
+          }
+      })
+      .catch(()=>{
+          console.log("Error in creating Quiz")
+      })
+  }
+
 
     const catForm =() =>(
         <form >
@@ -131,8 +199,7 @@ const AddQuiz = ({c})=> {
                         <tr className="border-0">
                             <th className="border-0">Name</th>
                             <th className="border-0">Subject</th>
-                            <th className="border-0">Start</th>
-                            <th className="border-0">End</th>
+                            <th className="border-0">Test Duration</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -160,41 +227,32 @@ const AddQuiz = ({c})=> {
                       </div>
                       </td>
                       <td>
-                      <div className="form-group">
                         <input
-                          onChange={handleChange("start")}
-                          type="time"
+                          onChange={handleChange("mm")}
+                          type="number"
                           name="start"
                           className="form-control"
-                          placeholder="Start Time"
-                          value={start}
+                          placeholder="mm"
+                          // style={{width:"40%"}}
+                          value={mm}
                         />
-                      </div>
+               
                       </td>
-                      <td>
-                      <div className="form-group">
-                        <input
-                          onChange={handleChange("endTime")}
-                          type="time"
-                          name="endTime"
-                          className="form-control"
-                          placeholder="End Time"
-                          value={endTime}
-                        />
-                      </div> 
-                      </td>
+         
            
         
-        <td><i class="fa fa-plus text-success" style={{cursor:"pointer",marginRight:"20px", marginTop:"6px", fontSize:"20px"}} onClick={Submit} aria-hidden="true"></i>    </td>     
+                      <td>{update === true ? (<i onClick={e=>{updateAquiz(qid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} className="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={Submit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} className="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
+
       </tr>    
             {quizzes && quizzes.map((obj,index) => (
                 
               <tr key={index}>
                   <td>{obj.title}</td>
                   <td>{obj.subject}</td>
-                  <td>{obj.start}</td>
-                  <td>{obj.endTime}</td>
-                  <Link to={`/quiz/${obj._id}`} ><td>Add Questions</td></Link> 
+                  <td>{obj.duration}</td>
+                  <td><Link to={`/quiz/${obj._id}`} >Add Questions</Link> </td>
+                  <td><i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getTheQuiz(obj._id)}} aria-hidden="true"></i>
+                   <i className="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteAQuiz(obj._id)}} aria-hidden="true"></i></td>
               </tr>
             ))}  
             {console.log(quizzes.data)}
@@ -210,7 +268,7 @@ const AddQuiz = ({c})=> {
     );
   return (
     
-            <div class="col-md-8 offset-md-2">
+            <div className="col-md-8 offset-md-2">
                 {catForm()}
             </div>
        

@@ -1,232 +1,289 @@
 import { API } from '../../backend'
 
-export const signup1 = user =>{
-    return fetch(`${API}/signup`,{
-        method:"POST",
-        headers:{
-            Accept: 'application/json',
-            "Content-Type" : 'application/json'
-        },
-        body: JSON.stringify(user)
-    })
-    .then(response => {
-        return response.json(); 
-    })
-    .catch(err => {console.log(err);
-    })
+export const signup1 = async user =>{
+    try {
+        const response = await fetch(`${API}/signup`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(user)
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
-export const classes = classes =>{
-    return fetch(`${API}/class/create`,{
-        method:"POST",
-        headers:{
-            Accept: 'application/json',
-            "Content-Type" : 'application/json'
-        },
-        body: JSON.stringify(classes)
-    })
-    .then(response => {
-        return response.json(); 
-    })
-    .catch(err => {console.log(err);
-    })
+export const classes = async classes =>{
+    try {
+        const response = await fetch(`${API}/class/create`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(classes)
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
-export const subjects = subjects =>{
-    return fetch(`${API}/subject/create`,{
-        method:"POST",
-        headers:{
-            Accept: 'application/json',
-            "Content-Type" : 'application/json'
-        },
-        body: JSON.stringify(subjects)
-    })
-    .then(response => {
-        return response.json(); 
-    })
-    .catch(err => {console.log(err);
-    })
+export const subjects = async subjects =>{
+    try {
+        const response = await fetch(`${API}/subject/create`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(subjects)
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
-export const notices = notices =>{
-    return fetch(`${API}/notice/create`,{
-        method:"POST",
-        headers:{
-            Accept: 'application/json',
-            "Content-Type" : 'application/json'
-        },
-        body: JSON.stringify(notices)
-    })
-    .then(response => {
-        return response.json(); 
-    })
-    .catch(err => {console.log(err);
-    })
+export const notices = async notices =>{
+    try {
+        const response = await fetch(`${API}/notice/create`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(notices)
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
-export const classrooms = classrooms =>{
-    return fetch(`${API}/classroom/create`,{
-        method:"POST",
-        headers:{
-            Accept: 'application/json',
-            "Content-Type" : 'application/json'
-        },
-        body: JSON.stringify(classrooms)
-    })
-    .then(response => {
-        return response.json(); 
-    })
-    .catch(err => {console.log(err);
-    })
+export const classrooms = async classrooms =>{
+    try {
+        const response = await fetch(`${API}/classroom/create`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(classrooms)
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
-export const createQuiz = quiz =>{
-    return fetch(`${API}/quiz/create`,{
-        method:"POST",
-        headers:{
-            Accept: 'application/json',
-            "Content-Type" : 'application/json'
-        },
-        body: JSON.stringify(quiz)
-    })
-    .then(response => {
-        return response.json(); 
-    })
-    .catch(err => {
-        console.log(err,"hello");
-    })
+export const createQuiz = async quiz =>{
+    try {
+        const response = await fetch(`${API}/quiz/create`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(quiz)
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err, "hello");
+    }
 }
 
-export const getQuiz = (uid) =>{
-    return fetch(`${API}/quizzes/${uid}`,{
-        method:"GET"
-    })
-    .then(response => {
-        return response.json(); 
-    })
-    .catch(err => {
-        console.log(err,"hello");
-    })
+export const getQuiz = async (uid) =>{
+    try {
+        const response = await fetch(`${API}/quizzes/${uid}`, {
+            method: "GET"
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err, "hello");
+    }
 }
 
-export const getAQuiz = (qid) =>{
-    return fetch(`${API}${qid}`,{
-        method:"GET"
-    })
-    .then(response => {
-        return response.json(); 
-    })
-    .catch(err => {
-        console.log(err,"hello");
-    })
+export const getAQuiz = async (qid) =>{
+    try {
+        const response = await fetch(`${API}${qid}`, {
+            method: "GET"
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err, "error in getting quiz");
+    }
 }
 
-export const getQuestions = (qid) =>{
-    return fetch(`${API}/allquiz${qid}`,{
-        method:"GET"
-    })
-    .then(response => {
-        return response.json(); 
-    })
-    .catch(err => {
-        console.log(err,"hello");
-    })
+export const getQuestions = async (qid) =>{
+    try {
+        const response = await fetch(`${API}/allquiz${qid}`, {
+            method: "GET"
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err, "hello");
+    }
 }
 
-export const createQuestion = (qid,quiz) =>{
+export const createQuestion = async (qid,quiz) =>{
     console.log(quiz,"q")
-    return fetch(`${API}/question/create${qid}`,{
-        method:"POST",
-        headers:{
-            Accept: 'application/json'
-        },
-        body:quiz
-    })
-    .then(response => {
-        return response.json()
-    })
-    .catch(err => {
-        console.log(err,"hello");
-    })
+    try {
+        const response = await fetch(`${API}/question/create${qid}`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json'
+            },
+            body: quiz
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err, "hello");
+    }
 }
 
-export const createResponse = (resp) =>{
+export const createResponse = async (resp) =>{
     console.log(resp,"q")
-    return fetch(`${API}/response/create`,{
-        method:"POST",
-        headers:{
-            Accept: 'application/json',
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify( resp )
-    })
-    .then(response => {
-        return response.json()
-    })
-    .catch(err => {
-        console.log(err,"hello");
-    })
+    try {
+        const response = await fetch(`${API}/response/create`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(resp)
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err, "hello");
+    }
 }
 
-export const deleteQuestion = (qId,quesId)=>{
+export const deleteQuestion = async (qId,quesId)=>{
     
-    return fetch(`${API}/questions/delete${qId}/${quesId}`,{
-        method: "DELETE",
-        headers: {
-            Accept: "application/json",
-            // Authorization: `Bearer ${token}` 
-        }
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in deleting the Question")
-    })
+    try {
+        const response = await fetch(`${API}/questions/delete${qId}/${quesId}`, {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+            }
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in deleting the Question");
+    }
 }
 
-export const createOption = (qid,option) =>{
+export const deleteOption = async (oId,quesId)=>{
+    
+    try {
+        const response = await fetch(`${API}/option/delete${quesId}/${oId}`, {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+            }
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in deleting the Question");
+    }
+}
+
+export const deleteQuiz = async (qId)=>{
+    
+    try {
+        const response = await fetch(`${API}/quiz/delete/${qId}`, {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+            }
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in deleting the Quiz");
+    }
+}
+
+export const updateQuiz = async (qId,quiz)=>{
+    
+    try {
+        const response = await fetch(`${API}/quiz/update/${qId}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(quiz)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in updating class");
+    }
+}
+
+export const createOption = async (qid,option) =>{
     console.log(option,"q")
-    return fetch(`${API}/options/create/${qid}`,{
-        method:"POST",
-        headers:{
-            Accept: 'application/json',
-            "Content-Type" : 'application/json'
-        },
-        body:JSON.stringify(option)
-    })
-    .then(response => {
-        return response.json()
-    })
-    .catch(err => {
-        console.log(err,"hello");
-    })
+    try {
+        const response = await fetch(`${API}/options/create/${qid}`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(option)
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err, "hello");
+    }
 }
 
-export const getAQuestion = (quesId) => {
-    return fetch(`${API}/question/${quesId}`,{
-        method:"GET"
-    })
-    .then(response => {
-        return response.json(); 
-    })
-    .catch(err => {
-        console.log(err,"hello");
-    })
+export const getAQuestion = async (quesId) => {
+    try {
+        const response = await fetch(`${API}/question/${quesId}`, {
+            method: "GET"
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err, "hello");
+    }
 }
 
-export const signin = user =>{
-    return fetch(`${API}/signin`,{
-        method:"POST",
-        headers:{
-            Accept: 'application/json',
-            "Content-Type" : 'application/json'
-        },
-        body: JSON.stringify(user)
-    })
-    .then(response => {
-        return response.json(); 
-    })
-    .catch(err => console.log(err))
+export const signin = async user =>{
+    try {
+        const response = await fetch(`${API}/signin`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(user)
+        });
+        return response.json();
+    }
+    catch (err) {
+        return console.log(err);
+    }
 }
 
 export const authenticate = (data,next) =>{
@@ -237,19 +294,21 @@ export const authenticate = (data,next) =>{
     }
 }
 
-export const signout = next =>{
+export const signout = async next =>{
     if(typeof window !== "undefined")
     {
         localStorage.removeItem("jwt");
         
     }
-    return fetch(`${API}/signout`,{
-        method:"GET"
-    })
-    .then(response => {
-        console.log("SignOut Successful")
-    })
-    .catch(err => console.log(err))
+    try {
+        const response = await fetch(`${API}/signout`, {
+            method: "GET"
+        });
+        console.log("SignOut Successful");
+    }
+    catch (err) {
+        return console.log(err);
+    }
 }
 
 export const isAuthenticated = () =>{
@@ -267,193 +326,196 @@ export const isAuthenticated = () =>{
     }
 }
 
-export const getAllClasses = ()=>{
+export const getAllClasses = async ()=>{
     
-    return fetch(`${API}/classes`,{
-        method: "GET",
-        
-    }).then(response => {
-       console.log(response);
+    try {
+        const response = await fetch(`${API}/classes`, {
+            method: "GET",
+        });
+        console.log(response);
         return response.json();
-    })
-    .catch(()=>{
-        console.log("Error in getting the Classes")
-    })
+    }
+    catch (e) {
+        console.log("Error in getting the Classes");
+    }
 }
 
-export const getAClass = classId=>{
+export const getAClass = async classId=>{
     
-    return fetch(`${API}/class/${classId}`,{
-        method: "GET",
-        
-    }).then(response => {
-       console.log(response);
+    try {
+        const response = await fetch(`${API}/class/${classId}`, {
+            method: "GET",
+        });
+        console.log(response);
         return response.json();
-    })
-    .catch(()=>{
-        console.log("Error in getting the Class")
-    })
+    }
+    catch (e) {
+        console.log("Error in getting the Class");
+    }
 }
 
-export const deleteClass = (classId)=>{
+export const deleteClass = async (classId)=>{
     
-    return fetch(`${API}/class/delete/${classId}`,{
-        method: "DELETE",
-        headers: {
-            Accept: "application/json",
-            // Authorization: `Bearer ${token}` 
-        }
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in deleting the Class")
-    })
-}
-
-export const updateClass = (classId,classO)=>{
-    
-    return fetch(`${API}/class/update/${classId}`,{
-        method: "PUT",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}` 
-        },
-        body: JSON.stringify(classO)
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in updating class")
-    })
-}
-
-export const getAllNotices = ()=>{
-    
-    return fetch(`${API}/notices`,{
-        method: "GET",
-        
-    }).then(response => {
-       console.log(response);
+    try {
+        const response = await fetch(`${API}/class/delete/${classId}`, {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+            }
+        });
         return response.json();
-    })
-    .catch(()=>{
-        console.log("Error in getting the Notices")
-    })
+    }
+    catch (e) {
+        console.log("Error in deleting the Class");
+    }
 }
 
-export const getANotice = noticeId=>{
+export const updateClass = async (classId,classO)=>{
     
-    return fetch(`${API}/notice/${noticeId}`,{
-        method: "GET",
-        
-    }).then(response => {
-       console.log(response);
+    try {
+        const response = await fetch(`${API}/class/update/${classId}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(classO)
+        });
         return response.json();
-    })
-    .catch(()=>{
-        console.log("Error in getting the Notice")
-    })
+    }
+    catch (e) {
+        console.log("Error in updating class");
+    }
 }
 
-export const deleteNotice = (noticeId)=>{
+export const getAllNotices = async ()=>{
     
-    return fetch(`${API}/notice/delete/${noticeId}`,{
-        method: "DELETE",
-        headers: {
-            Accept: "application/json",
-            // Authorization: `Bearer ${token}` 
-        }
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in deleting the Notice")
-    })
-}
-
-export const updateNotice = (noticeId,NoticeO)=>{
-    
-    return fetch(`${API}/notice/update/${noticeId}`,{
-        method: "PUT",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}` 
-        },
-        body: JSON.stringify(NoticeO)
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in updating Notice")
-    })
-}
-export const payment = (amt) =>{
-    return fetch(`${API}/payment`,{
-        method:"POST",
-        headers:{
-            Accept: 'application/json',
-            "Content-Type" : 'application/json'
-        },
-        body: JSON.stringify(amt)
-    })
-    .then(response => {
-        return response.json()
-    })
-    .catch(err => console.log(err))
-}
-
-export const getAllUSers = ()=>{
-    
-    return fetch(`${API}/users`,{
-        method: "GET",
-        
-    }).then(response => {
-       console.log(response);
+    try {
+        const response = await fetch(`${API}/notices`, {
+            method: "GET",
+        });
+        console.log(response);
         return response.json();
-    })
-    .catch(()=>{
-        console.log("Error in getting the Users")
-    })
+    }
+    catch (e) {
+        console.log("Error in getting the Notices");
+    }
 }
 
-export const getAUser = (userId,token)=>{
+export const getANotice = async noticeId=>{
     
-    return fetch(`${API}/user/${userId}`,{
-        method: "GET",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}` 
-        },
-    }).then(response => {
-       console.log(response);
+    try {
+        const response = await fetch(`${API}/notice/${noticeId}`, {
+            method: "GET",
+        });
+        console.log(response);
         return response.json();
-    })
-    .catch((err)=>{
-        console.log("Error in getting the User",err)
-    })
+    }
+    catch (e) {
+        console.log("Error in getting the Notice");
+    }
 }
 
-export const updateUser = (userId,token,user)=>{
+export const deleteNotice = async (noticeId)=>{
     
-    return fetch(`${API}/update/${userId}`,{
-        method: "PUT",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}` 
-        },
-        body: JSON.stringify(user)
-    }).then(response => {
-       
-        return response.json()
-    })
-    .catch((err)=>{
-        console.log("Error in updating user"+err)
-    })
+    try {
+        const response = await fetch(`${API}/notice/delete/${noticeId}`, {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+            }
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in deleting the Notice");
+    }
+}
+
+export const updateNotice = async (noticeId,NoticeO)=>{
+    
+    try {
+        const response = await fetch(`${API}/notice/update/${noticeId}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(NoticeO)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in updating Notice");
+    }
+}
+export const payment = async (amt) =>{
+    try {
+        const response = await fetch(`${API}/payment`, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(amt)
+        });
+        return response.json();
+    }
+    catch (err) {
+        return console.log(err);
+    }
+}
+
+export const getAllUSers = async ()=>{
+    
+    try {
+        const response = await fetch(`${API}/users`, {
+            method: "GET",
+        });
+        console.log(response);
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in getting the Users");
+    }
+}
+
+export const getAUser = async (userId,token)=>{
+    
+    try {
+        const response = await fetch(`${API}/user/${userId}`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+        });
+        console.log(response);
+        return response.json();
+    }
+    catch (err) {
+        console.log("Error in getting the User", err);
+    }
+}
+
+export const updateUser = async (userId,token,user)=>{
+    
+    try {
+        const response = await fetch(`${API}/update/${userId}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(user)
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log("Error in updating user" + err);
+    }
 }
 
 export const addItemToCart = (item,next)=>{
@@ -596,245 +658,242 @@ export const cartEmpty = next =>{
     next()
     }
     }
-export const getAllClassrooms = ()=>{
+export const getAllClassrooms = async ()=>{
     
-    return fetch(`${API}/classrooms`,{
-        method: "GET",
-        
-    }).then(response => {
-       console.log(response);
+    try {
+        const response = await fetch(`${API}/classrooms`, {
+            method: "GET",
+        });
+        console.log(response);
         return response.json();
-    })
-    .catch(()=>{
-        console.log("Error in getting the Classrooms")
-    })
+    }
+    catch (e) {
+        console.log("Error in getting the Classrooms");
+    }
 }
 
-export const getAClassroom = classroomId=>{
+export const getAClassroom = async classroomId=>{
     
-    return fetch(`${API}/classroom/${classroomId}`,{
-        method: "GET",
-        
-    }).then(response => {
-       console.log(response);
+    try {
+        const response = await fetch(`${API}/classroom/${classroomId}`, {
+            method: "GET",
+        });
+        console.log(response);
         return response.json();
-    })
-    .catch(()=>{
-        console.log("Error in getting the Classroom")
-    })
+    }
+    catch (e) {
+        console.log("Error in getting the Classroom");
+    }
 }
 
-export const deleteClassroom = (classroomId)=>{
+export const deleteClassroom = async (classroomId)=>{
     
-    return fetch(`${API}/classroom/delete/${classroomId}`,{
-        method: "DELETE",
-        headers: {
-            Accept: "application/json",
-            // Authorization: `Bearer ${token}` 
-        }
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in deleting the Classroom")
-    })
+    try {
+        const response = await fetch(`${API}/classroom/delete/${classroomId}`, {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+            }
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in deleting the Classroom");
+    }
 }
 
-export const updateClassroom = (classroomId,classroomO)=>{
+export const updateClassroom = async (classroomId,classroomO)=>{
     
-    return fetch(`${API}/classroom/update/${classroomId}`,{
-        method: "PUT",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}` 
-        },
-        body: JSON.stringify(classroomO)
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in updating classroom")
-    })
+    try {
+        const response = await fetch(`${API}/classroom/update/${classroomId}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(classroomO)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in updating classroom");
+    }
 }
 
-export const uploadDocument = documents =>{
+export const uploadDocument = async documents =>{
     for (var key of documents.entries()) {
         console.log(key[0] + ', ' + key[1])
     }
-    return fetch(`${API}/document/upload2`,{
-        method:"POST",
-        headers: {
-            Accept: "application/json"
-        },
-        body: documents
-        
-    })
-    .then(response => {
-    console.log("Response doc")
-    return response.json(); 
-    })
-    .catch(err => {console.log(err);
-        
-    })
-}
-
-export const classroomUploadDocument = (classroomId,documents) =>{
-    for (var key of documents.entries()) {
-        console.log(key[0] + ', ' + key[1])
+    try {
+        const response = await fetch(`${API}/document/upload2`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json"
+            },
+            body: documents
+        });
+        console.log("Response doc");
+        return response.json();
     }
-    console.log(documents)
-    return fetch(`${API}/classroom/${classroomId}/upload/document`,{
-        method:"PUT",
-        headers: {
-            Accept: "application/json"
-        },
-        body: documents
-        
-    })
-    .then(response => {
-    console.log(response)
-    return response.json(); 
-    })
-    .catch(err => {console.log(err);
-        
-    })
+    catch (err) {
+        console.log(err);
+    }
 }
 
-export const classroomUploadAssignment = (classroomId,documents) =>{
+export const classroomUploadDocument = async (classroomId,documents) =>{
     for (var key of documents.entries()) {
         console.log(key[0] + ', ' + key[1])
     }
     console.log(documents)
-    return fetch(`${API}/classroom/${classroomId}/upload/assignment`,{
-        method:"PUT",
-        headers: {
-            Accept: "application/json"
-        },
-        body: documents
-        
-    })
-    .then(response => {
-    console.log(response)
-    return response.json(); 
-    })
-    .catch(err => {console.log(err);
-        
-    })
-}
-
-export const getAllSubjects = ()=>{
-    
-    return fetch(`${API}/subjects`,{
-        method: "GET",
-        
-    }).then(response => {
-       console.log(response);
+    try {
+        const response = await fetch(`${API}/classroom/${classroomId}/upload/document`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json"
+            },
+            body: documents
+        });
+        console.log(response);
         return response.json();
-    })
-    .catch(()=>{
-        console.log("Error in getting the subjects")
-    })
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
-export const getASubject = subjectId=>{
-    
-    return fetch(`${API}/subject/${subjectId}`,{
-        method: "GET",
-        
-    }).then(response => {
-       console.log(response);
+export const classroomUploadAssignment = async (classroomId,documents) =>{
+    for (var key of documents.entries()) {
+        console.log(key[0] + ', ' + key[1])
+    }
+    console.log(documents)
+    try {
+        const response = await fetch(`${API}/classroom/${classroomId}/upload/assignment`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json"
+            },
+            body: documents
+        });
+        console.log(response);
         return response.json();
-    })
-    .catch(()=>{
-        console.log("Error in getting the subject")
-    })
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
-export const deleteSubject = (subjectId)=>{
+export const getAllSubjects = async ()=>{
     
-    return fetch(`${API}/subject/delete/${subjectId}`,{
-        method: "DELETE",
-        headers: {
-            Accept: "application/json",
-            // Authorization: `Bearer ${token}` 
-        }
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in deleting the subject")
-    })
+    try {
+        const response = await fetch(`${API}/subjects`, {
+            method: "GET",
+        });
+        console.log(response);
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in getting the subjects");
+    }
 }
 
-export const updateSubject = (subjectId,subjectO)=>{
+export const getASubject = async subjectId=>{
     
-    return fetch(`${API}/subject/update/${subjectId}`,{
-        method: "PUT",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}` 
-        },
-        body: JSON.stringify(subjectO)
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in updating subject")
-    })
+    try {
+        const response = await fetch(`${API}/subject/${subjectId}`, {
+            method: "GET",
+        });
+        console.log(response);
+        return response.json();
+    }
+    catch (err) {
+        console.log("Error in getting the subject" + err);
+    }
 }
 
-export const addSubject = (ids) => {
-    return fetch(`${API}/user/addSubject`,{
-        method: "PUT",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}` 
-        },
-        body: JSON.stringify(ids)
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in adding subject")
-    })
+export const deleteSubject = async (subjectId)=>{
+    
+    try {
+        const response = await fetch(`${API}/subject/delete/${subjectId}`, {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+            }
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in deleting the subject");
+    }
 }
 
-export const subclassrooms = (ids) => {
+export const updateSubject = async (subjectId,subjectO)=>{
+    
+    try {
+        const response = await fetch(`${API}/subject/update/${subjectId}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(subjectO)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in updating subject");
+    }
+}
+
+export const addSubject = async (ids) => {
+    try {
+        const response = await fetch(`${API}/user/addSubject`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(ids)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in adding subject");
+    }
+}
+
+export const subclassrooms = async (ids) => {
     console.log(ids)
-    return fetch(`${API}/user/subclassrooms`,{
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}` 
-        },
-        body: JSON.stringify(ids)
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in geting Classrooms")
-    })
+    try {
+        const response = await fetch(`${API}/user/subclassrooms`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(ids)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in geting Classrooms");
+    }
 }
 
 
-export const subclasses = (ids) => {
+export const subclasses = async (ids) => {
     console.log(ids)
-    return fetch(`${API}/user/subclasses`,{
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}` 
-        },
-        body: JSON.stringify(ids)
-    }).then(response => {
-        return response.json()
-    })
-    .catch(()=>{
-        console.log("Error in geting Classes")
-    })
+    try {
+        const response = await fetch(`${API}/user/subclasses`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(ids)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in geting Classes");
+    }
 }

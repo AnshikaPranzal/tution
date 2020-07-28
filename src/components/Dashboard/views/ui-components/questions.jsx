@@ -42,7 +42,6 @@ const Questions = (props) => {
         console.log(qid,"id")
 
         getQuestions(qid).then(data=>{
-          console.log(data,"all questions")
           if(data){
             if(data.error){
               console.log(data.error)
@@ -81,7 +80,7 @@ const Questions = (props) => {
 
     useEffect(() => {
         loadQuiz()
-    }, [loadQuiz, refresh])
+    }, [refresh])
     const [options, setoptions] = useState([]);
   const [zId, setzId] = useState()
   const [show, setshow] = useState(false);
