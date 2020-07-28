@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react';
 import { Link } from 'react-router-dom'
-import {classrooms, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAUser, getAllSubjects} from '../../../helper/index'
+import {classrooms,getAllStandards, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAUser, getAllSubjects} from '../../../helper/index'
 import {
     Card,
     CardBody,
@@ -30,6 +30,8 @@ const Starter = () => {
         formData: "",
         hello:""
     })
+    const [std, setstandard] = useState([])
+    const [errorS, seterrorS] = useState(false)
 
     const [refresh, setrefresh] = useState(true)
 
@@ -52,6 +54,24 @@ const Starter = () => {
       useEffect (() => {
         loadAllSubjects()
         },[])
+
+        
+        const loadAllStandards = () =>{
+            getAllStandards().then(data =>{
+              //   console.log(data)
+              if(data)
+              if(data.error){
+                seterrorS(data.error)
+              }
+              else{
+                setstandard(data)
+              }
+            })
+          }
+          useEffect (() => {
+            loadAllStandards()
+            },[])
+
     const loadAllclassroooms = () =>{
         getAllClassrooms().then(data =>{
             console.log(data)
@@ -350,7 +370,7 @@ const Starter = () => {
                                     onChange={handleChange("subject")}>
                                 <option value="0">Select</option>
                                 {sub.map((obj,i) => {
-                                    return(<option key={i} value={obj._id}>{obj.name}</option>)
+                                    return(<option key={i} value={obj.name}>{obj.name}</option>)
                                 })
                                 }
                             </Input></td>
@@ -359,10 +379,10 @@ const Starter = () => {
                             <Input type="select" className="custom-select" value={standard}
                                     onChange={handleChange("standard")}>
                                 <option value="0">Select</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
+                                {std.map((obj,i) => {
+                                    return(<option key={i} value={obj.name} >{obj.name}</option>)
+                                })
+                                }
                             </Input>
                             </td>
                                     <td>{update === true ? (<i onClick={e=>{updateaClassroom(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} className="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onclassroomSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} className="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
@@ -381,7 +401,7 @@ const Starter = () => {
                         <Card key={i}>
                             <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
                                         <CardTitle>{obj.name}</CardTitle>
-                                        <CardSubtitle>Class {obj.standard}</CardSubtitle>
+                                        <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody>
                                         <div>
                                         {isAuthenticated() 

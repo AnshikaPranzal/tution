@@ -80,8 +80,6 @@ const ClassRoom = (props) => {
     return(
     <React.Fragment>
          <header className="fixed-top header">
-            {/* <!-- top header --> */}
-                <TopHeader></TopHeader>
             {/* <!-- navbar --> */}
 			<Navbar></Navbar>
           </header>

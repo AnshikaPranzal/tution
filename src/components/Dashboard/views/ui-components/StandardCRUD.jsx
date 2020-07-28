@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-import { isAuthenticated, subjects, getAllSubjects, getASubject, deleteSubject, updateSubject } from '../../../helper/index'
+import { isAuthenticated, standards, getAllStandards, getAStandard, deleteStandard, updateStandard } from '../../../helper/index'
 
 import {
     Card,
@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 const Projects = () => {
 
  
-    const [subject, setsubject] = useState([])
+    const [standard, setstandard] = useState([])
     // eslint-disable-next-line no-unused-vars
     const [errorF, seterrorF] = useState(false)
     const [update, setupdate] = useState(false)
@@ -24,22 +24,22 @@ const Projects = () => {
     const [reload, setreload] = useState(false)
   
   
-    const loadAllSubjects = () =>{
-      getAllSubjects().then(data =>{
+    const loadAllStandards = () =>{
+      getAllStandards().then(data =>{
         //   console.log(data)
         if(data)
         if(data.error){
           seterrorF(data.error)
         }
         else{
-          setsubject(data)
+          setstandard(data)
         }
       })
     }
    const [refresh, setrefresh] = useState(true)
     
     useEffect (() => {
-      loadAllSubjects()
+      loadAllStandards()
       },[refresh])
 
 
@@ -51,7 +51,7 @@ const Projects = () => {
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
                     <div className="alert alert-success" style={{display: success ? "" : "none"}}>
-                        Congratulations!!! Subject is added.
+                        Congratulations!!! Standard is added.
                         
                     </div>
                 </div>
@@ -74,12 +74,10 @@ const Projects = () => {
     // console.log(user)
     const [project, setProject] = useState({
         name: "",
-        price:0,
-        value:0,
         error:"",
         success: false
     })
-    const {name,price,value,success,error} = project;
+    const {name,success,error} = project;
    
     const handleChange = name => event => {
         setProject({
@@ -97,7 +95,7 @@ const Projects = () => {
             ...project,error: false
         });
         
-        subjects({name, price, value})
+        standards({name})
             .then( (data) =>{
                 console.log(data)
                 console.log(project)
@@ -113,18 +111,16 @@ const Projects = () => {
                     setProject({
                         ...project,
                         name:"",
-                        price:0,
-                        value:0,
                         error:"",
                         success: true
                     })
                     setrefresh(!refresh)
                 }
             })
-            .catch(console.log("Error in subjects"))
+            .catch(console.log("Error in standards"))
     }
-    const deleteaSubject = catuctId => {
-        deleteSubject(catuctId).then(data=>{
+    const deleteaStandard = catuctId => {
+        deleteStandard(catuctId).then(data=>{
             console.log(data)
             if(data.error)
             {
@@ -136,8 +132,8 @@ const Projects = () => {
             }
         })
     }
-    const getSubject = classId => {
-        getASubject(classId).then(data=>{
+    const getStandard = classId => {
+        getAStandard(classId).then(data=>{
             if(data.error)
             {
                 console.log(data.error)
@@ -146,9 +142,7 @@ const Projects = () => {
             else{
                 setProject({
                     ...project,
-                    name: data.name,
-                    price: data.price,
-                    value: data.value
+                    name: data.name
                 })
                 setuid(data._id)
                 setupdate(true)
@@ -156,12 +150,12 @@ const Projects = () => {
             }
         })
     }
-    const updateaSubject = (event,cid) => {
+    const updateaStandard = (event,cid) => {
         event.preventDefault();
         setProject({
             ...project,error: false
         });
-        updateSubject(cid,{name,price,value}).then(data=>{
+        updateStandard(cid,{name}).then(data=>{
             console.log(data)
             if(data.error)
             {
@@ -172,8 +166,6 @@ const Projects = () => {
                 setProject({
                     ...project,
                     name:"",
-                    price: 0,
-                    value: 0,
                     error:"",
                     success: true
                 })
@@ -200,7 +192,7 @@ const Projects = () => {
             <CardBody>
                 <div className="d-flex align-items-center">
                     <div>
-                        <CardTitle>Add Subject</CardTitle>
+                        <CardTitle>Add Standard</CardTitle>
                         <CardSubtitle></CardSubtitle>
                     </div>
                     
@@ -211,8 +203,6 @@ const Projects = () => {
                     <thead>
                         <tr className="border-0">
                             <th className="border-0">Name</th>
-                            <th className="border-0">Price</th>
-                            <th className="border-0">Months Of Subscription</th>
                             
                         </tr>
                     </thead>
@@ -224,44 +214,21 @@ const Projects = () => {
                                     type="text"
                                     name={name}
                                     id={name}
-                                    placeholder="Subject Name"
+                                    placeholder="Standard Name"
                                     value={name}
                                     onChange={handleChange("name")}
                                     ></Input>
 
                             </td>
-                            <td>
-                            <Input
-                                    type="number"
-                                    name={price}
-                                    id={price}
-                                    placeholder="Price in INR"
-                                    value={price}
-                                    onChange={handleChange("price")}
-                                    ></Input>
-                            </td>
                             
-                            <td>
-                            <Input
-                                    type="number"
-                                    name={value}
-                                    id={value}
-                                    placeholder="value"
-                                    value={value}
-                                    onChange={handleChange("value")}
-                                    ></Input>
-                            </td>
-                            
-                                    <td>{update === true ? (<i onClick={e=>{updateaSubject(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} class="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} class="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
+                                    <td>{update === true ? (<i onClick={e=>{updateaStandard(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} class="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} class="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
                         </tr>
-                        {subject.map((obj,i) => {
+                        {standard.map((obj,i) => {
                             return(
                             <tr key={i}>
                             <td>{obj.name}</td>
-                            <td>{obj.price}</td>
-                            <td>{obj.value}</td>
-                            <td><i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getSubject(obj._id)}} aria-hidden="true"></i>
-                            <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaSubject(obj._id)}} aria-hidden="true"></i></td>
+                            <td><i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getStandard(obj._id)}} aria-hidden="true"></i>
+                            <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaStandard(obj._id)}} aria-hidden="true"></i></td>
                         </tr>
                         )
                     })}

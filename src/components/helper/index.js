@@ -48,6 +48,22 @@ export const subjects = subjects =>{
     })
 }
 
+export const standards = standards =>{
+    return fetch(`${API}/standard/create`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json',
+            "Content-Type" : 'application/json'
+        },
+        body: JSON.stringify(standards)
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {console.log(err);
+    })
+}
+
 export const notices = notices =>{
     return fetch(`${API}/notice/create`,{
         method:"POST",
@@ -824,6 +840,70 @@ export const addSubject = (ids) => {
         console.log("Error in adding subject")
     })
 }
+
+export const getAllStandards = ()=>{
+    
+    return fetch(`${API}/standards`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the standards")
+    })
+}
+
+export const getAStandard = standardId=>{
+    
+    return fetch(`${API}/standard/${standardId}`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the standard")
+    })
+}
+
+export const deleteStandard = (standardId)=>{
+    
+    return fetch(`${API}/standard/delete/${standardId}`,{
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            // Authorization: `Bearer ${token}` 
+        }
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in deleting the standard")
+    })
+}
+
+export const updateStandard = (standardId,standardO)=>{
+    
+    return fetch(`${API}/standard/update/${standardId}`,{
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(standardO)
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in updating standard")
+    })
+}
+
+
 
 export const subclassrooms = (ids) => {
     console.log(ids)

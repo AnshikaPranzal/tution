@@ -17,6 +17,7 @@ import {
 import Search from '../ui-components/findUser'
 import { SalesSummary, Projects, Feeds } from '../../components/admin-dashboard-components';
 import Subject from '../ui-components/SubjectCRUD';
+import Standard from '../ui-components/StandardCRUD';
 import $ from 'jquery'
 
 import img1 from '../../assets/images/big/img1.jpg';
@@ -616,6 +617,7 @@ const Starter = () => {
         </Card >
             </Row>
 
+                    <Standard></Standard>
                     <Subject></Subject>
                     <Search></Search>
         </div>

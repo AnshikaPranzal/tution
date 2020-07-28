@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getASubject} from '../../../../helper/index'
+import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getAllStandards, getASubject} from '../../../../helper/index'
 
 import {
     Card,
@@ -18,6 +18,8 @@ const Projects = () => {
  
     const [classO, setclassO] = useState([])
     // eslint-disable-next-line no-unused-vars
+    const [std, setstandard] = useState([])
+    const [errorS, seterrorS] = useState(false)
     const [errorF, seterrorF] = useState(false)
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
@@ -49,6 +51,22 @@ const Projects = () => {
       useEffect (() => {
         loadAllSubjects()
         },[])
+
+        const loadAllStandards = () =>{
+            getAllStandards().then(data =>{
+              //   console.log(data)
+              if(data)
+              if(data.error){
+                seterrorS(data.error)
+              }
+              else{
+                setstandard(data)
+              }
+            })
+          }
+          useEffect (() => {
+            loadAllStandards()
+            },[])
   
     const loadAllclasses = () =>{
       getAllClasses().then(data =>{
@@ -306,10 +324,10 @@ const Projects = () => {
                             <Input type="select" className="custom-select" value={standard}
                                     onChange={handleChange("standard")}>
                                 <option value="0">Select</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
+                                {std.map((obj,i) => {
+                                    return(<option key={i} value={obj.name} >{obj.name}</option>)
+                                })
+                                }
                             </Input>
                             </td>
                             

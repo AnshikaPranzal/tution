@@ -139,7 +139,7 @@ const Projects = () => {
                 <Card key={i} style={{textAlign: "center"}}>
                     <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
                                 <CardTitle>{obj.name}</CardTitle>
-                                <CardSubtitle>Class {obj.standard}</CardSubtitle>
+                                <CardSubtitle>{obj.subject}</CardSubtitle>
                                 <CardBody>{obj.description}</CardBody>
                                 <div>
                                 {isAuthenticated() 
