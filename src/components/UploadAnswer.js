@@ -12,16 +12,18 @@ import {
   Table
 } from 'reactstrap';
 import $ from 'jquery'
-import { classroomUploadDocument, getAllUSers,isAuthenticated, getAClassroom } from './helper/index';
+import { classroomUploadAnswer, getAllUSers,isAuthenticated, getAClassroom } from './helper/index';
 
-const AddDocument = (props)=> {
+const UploadAnswer = (props)=> {
     const crid = props.id;
+    const aid = props.aid;
+    const data = props.data;
     console.log(crid)
     const [values, setValues] = useState({
         name:"",
         type:"",
         price:"",
-        stock:"",
+        a_id:aid,
         photo:"",
         categories:[],
         category:"",
@@ -33,18 +35,10 @@ const AddDocument = (props)=> {
     })
     const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
-    const [project, setProject] = useState({
-        name: "",
-        description: "",
-        subject: "",
-        error:"",
-        members:[],
-        doc:[],
-        success: false
-    })
+   
     const refresh1 = true;
     const [refresh, setrefresh] = useState(true)
-    const { name,type,price, stock,photo,categories,category,loading,error,getRedirect,createdDocument,formData} = values;
+    const { name,type,price, a_id,photo,categories,category,loading,error,getRedirect,createdDocument,formData} = values;
     const{user, token} = isAuthenticated();
 
     const preload = () => {
@@ -56,6 +50,7 @@ const AddDocument = (props)=> {
             }
             else{
                 setValues({...values,categories:data, formData: new FormData()});
+
                 console.log(categories);
             }
         })
@@ -65,33 +60,8 @@ const AddDocument = (props)=> {
         preload();
     },[refresh1])
 
-    const getClassroom = cid => {
-      getAClassroom(cid).then(data=>{
-          
-          if(data.error)
-          {
-              console.log(data.error)
-              // setValues({...values,error:data.error})
-          }
-          else{
-              setProject({
-                  ...project,
-                  name: data.name,
-                  description: data.description,
-                  subject: data.subject,
-                  members: data.members,
-                  doc:data.doc,
-                  assignment: data.assignment,
-              });
-              setrefresh(false)
-          }
-      })}
-
-      useEffect (() => {
-          getClassroom(crid)
-          },[refresh])
-
-
+    
+     
     const goBack = () =>(
         
      <div className="mt-5">
@@ -105,7 +75,7 @@ const AddDocument = (props)=> {
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
                     <div className="alert alert-success" style={{display: createdDocument ? "" : "none"}}>
-                        Document Added to DB.
+                        Answer Submitted.
                     </div>
                 </div>
         </div>
@@ -126,11 +96,10 @@ const AddDocument = (props)=> {
           const v = name === "photo"? event.target.files[0]:event.target.value;
 
             formData.append(name,v,'photo.png');
+            formData.append("assignment", aid);
             formData.append("username", user.name);
             formData.append("userid", user._id);
-            for (var key of formData.entries()) {
-              console.log(key[0] + ', ' + key[1])
-            }
+            
            setValues({...values,[name]: v});
 
           
@@ -153,7 +122,7 @@ const AddDocument = (props)=> {
         const Submit = event =>{
             event.preventDefault();
             setValues({...values,error:"",loading: true})
-            classroomUploadDocument(crid,formData)
+            classroomUploadAnswer(crid,formData)
             .then( data =>{
                
                 if(data.error){
@@ -165,7 +134,7 @@ const AddDocument = (props)=> {
                         name:"",
                         type:"",
                         price:"",
-                        stock:"",
+                        a_id:"",
                         photo:"",
                         loading:false,
                         createdDocument: true,
@@ -181,10 +150,8 @@ const AddDocument = (props)=> {
     const catForm =() =>(
         <form >
           {
-            isAuthenticated() 
-            && isAuthenticated().user.role === 1
-            // && isAuthenticated().user.role === 0
-            ?<><h2>Upload Notes</h2>
+            isAuthenticated().user.role === 0
+            ?<>
         <div className="form-group">
           <label className="btn btn-block btn-info">
             <input
@@ -208,11 +175,28 @@ const AddDocument = (props)=> {
         
         <button type="submit" onClick={Submit} className="btn submitD">
           Create Document
-        </button></>:""}
-        
+        </button></>:<>
+        <Table>
+                                <th>Answers</th>
+                                <th>Uploaded By</th>
+                                <th>Date</th>
+                        {(data === undefined)? "" :
+                        (data.map((obj,i)=>{
+                            if(obj.qid.toString() === aid.toString()){
+                            return(
+                            // <tr key={i}>
+                            
+                                <tr key={i}>
+
+                                        <td>{obj.name}</td>
+                                        <td>{obj.uploader}</td>
+                                        <td>{obj.date.substring(8,10)} {Month[parseInt(obj.date.substring(5,7)-1)]}, {obj.date.substring(0,4)}</td>
+
+                                </tr>)}}))}</Table>
+        </>}
+{/*         
                             <Table>
                                 <th>Notes</th>
-                                <th>Uploader</th>
                                 <th>Date</th>
                         {(project.doc === undefined)? "" :
                         (project.doc.map((obj,i)=>{
@@ -222,17 +206,14 @@ const AddDocument = (props)=> {
                                 <tr key={i}>
 
                                         <td>{obj.name}</td>
-                                        <td>{obj.uploader}</td>
                                         <td>{obj.date.substring(8,10)} {Month[parseInt(obj.date.substring(5,7)-1)]}, {obj.date.substring(0,4)}</td>
-                                        {/* <CardSubtitle>{obj.subject}</CardSubtitle>
-                                        <CardBody>{obj.description}</CardBody> */}
 
                                 </tr>
                                 )
                            
                         
                     }))}
-                        </Table>
+                        </Table> */}
       </form>
     );
   return (
@@ -246,4 +227,4 @@ const AddDocument = (props)=> {
   );
 }
 
-export default AddDocument;
+export default UploadAnswer;

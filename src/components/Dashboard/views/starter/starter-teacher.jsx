@@ -97,12 +97,13 @@ const Starter = () => {
             name: "",
             description: "",
             subject: "",
+            owner: user._id,
             standard: 0,
             error:"",
             success: false
         })
 
-        const {name, description , subject, standard, success, error} = project;
+        const {name, description , subject, owner, standard, success, error} = project;
        
         const handleChange = name => event => {
             // const v = name === "formData"? event.target.files[0]:event.target.value
@@ -119,7 +120,7 @@ const Starter = () => {
                 ...project,error: false
             });
             
-            classrooms({name, description, subject, standard})
+            classrooms({name, description, subject,owner, standard})
                 .then( (data) =>{
                     console.log(data)
                     console.log(project)
@@ -137,6 +138,7 @@ const Starter = () => {
                             name: "",
                             description: "",
                             subject: "",
+                            owner: user._id,
                             standard: 0,
                             error:"",
                             success: true

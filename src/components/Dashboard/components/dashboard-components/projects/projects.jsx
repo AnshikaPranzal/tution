@@ -47,12 +47,6 @@ const Projects = () => {
     loadAllclasses()
     },[])
 
-    const getClassName = (cid) => {
-        console.log(cid)
-        getASubject(cid)
-        .then( data => (data.name))
-        .catch (err => console.log(err))
-    }
 
     const loadAllclassroooms = () =>{
         console.log(user)
@@ -116,13 +110,13 @@ const Projects = () => {
                                 
                                 <tr key={index}>
                                     <td>
-                                        <div className="d-flex no-block align-items-center">
+                                        <div className="d-flex no-block align-items-center" >
                                             <div className="mr-2"><img src={img1} alt="user" className="rounded-circle" width="45" /></div>
                                             <div className="">
                                                 <h5 className="mb-0 font-16 font-medium">{obj.name}</h5><span>{obj.email}</span></div>
                                         </div>
                                     </td>
-                                    <td>{getClassName(obj.subject)}</td>
+                                    <td>{obj.subject}</td>
                                     <td>{obj.time}</td>
                                     <td className="blue-grey-text  text-darken-4 font-medium">{obj.date.substring(8, 10)}{obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}</td>
                                     <td>
@@ -142,7 +136,7 @@ const Projects = () => {
             return(
             // <tr key={i}>
             <Col xs="12" md="4">
-                <Card key={i}>
+                <Card key={i} style={{textAlign: "center"}}>
                     <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
                                 <CardTitle>{obj.name}</CardTitle>
                                 <CardSubtitle>Class {obj.standard}</CardSubtitle>

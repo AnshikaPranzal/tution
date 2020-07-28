@@ -316,7 +316,7 @@ const Projects = () => {
                                             </div>
                                     </div>
                             </td>
-                            <td>{getClassName(obj.subject)}</td>
+                            <td>{obj.subject}</td>
                             <td>{obj.standard}</td>
                             <td>{obj.time}</td>
                             <td className="blue-grey-text  text-darken-4 font-medium">{obj.date.substring(8, 10)}{obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}</td>

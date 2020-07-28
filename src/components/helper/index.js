@@ -701,6 +701,29 @@ export const classroomUploadDocument = (classroomId,documents) =>{
     })
 }
 
+export const classroomUploadAnswer = (classroomId,documents) =>{
+    for (var key of documents.entries()) {
+        console.log(key[0] + ', ' + key[1])
+    }
+    console.log(documents)
+    return fetch(`${API}/classroom/${classroomId}/upload/answer`,{
+        method:"PUT",
+        headers: {
+            Accept: "application/json"
+        },
+        body: documents
+        
+    })
+    .then(response => {
+    console.log(response)
+    return response.json(); 
+    })
+    .catch(err => {console.log(err);
+        
+    })
+}
+
+
 export const classroomUploadAssignment = (classroomId,documents) =>{
     for (var key of documents.entries()) {
         console.log(key[0] + ', ' + key[1])

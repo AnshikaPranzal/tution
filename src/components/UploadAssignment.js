@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import UploadAnswer from './UploadAnswer'
 import {
   Card,
   CardBody,
@@ -40,6 +41,8 @@ const AddAssignment = (props)=> {
         error:"",
         members:[],
         doc:[],
+        assignment:[],
+        assignmentanswers:[],
         success: false
     })
     const refresh1 = true;
@@ -82,6 +85,7 @@ const AddAssignment = (props)=> {
                   members: data.members,
                   doc:data.doc,
                   assignment: data.assignment,
+                  assignmentanswers: data.assignmentanswers,
               });
               setrefresh(false)
           }
@@ -126,6 +130,8 @@ const AddAssignment = (props)=> {
           const v = name === "photo"? event.target.files[0]:event.target.value;
             console.log(name,event.target.files[0]);
           formData.append(name,v,'photo.png');
+          formData.append("username", user.name);
+          formData.append("userid", user._id);
           for (var key of formData.entries()) {
 			console.log(key[0] + ', ' + key[1])
 		}
@@ -179,7 +185,8 @@ const AddAssignment = (props)=> {
 
     const catForm =() =>(
         <form >
-          <h2>Upload Assignments</h2>
+          {isAuthenticated()&&isAuthenticated().user.role === 1?
+            <><h2>Upload Assignments</h2>
         <div className="form-group">
           <label className="btn btn-block btn-info">
             <input
@@ -244,11 +251,13 @@ const AddAssignment = (props)=> {
         
         <button type="submit" onClick={Submit} className="btn submitA">
           Create Assignment
-        </button>
+        </button></>:""}
         
                             <Table>
                                 <th>Assignments</th>
+                                <th>Uploader</th>
                                 <th>Date</th>
+                                <th>Answers</th>
                         {(project.assignment === undefined)?"":
                         (project.assignment.map((obj,i)=>{
                             return(
@@ -257,31 +266,15 @@ const AddAssignment = (props)=> {
                                 <tr key={i}>
 
                                         <td>{obj.name}</td>
+                                        <td>{obj.uploader}</td>
                                         <td>{obj.date.substring(8,10)} {Month[parseInt(obj.date.substring(5,7)-1)]}, {obj.date.substring(0,4)}</td>
                                         {/* <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody> */}
-                                        <h2>Assignment answers</h2>
-                            <Table>
-                                <th>Answers</th>
-                                <th>Date</th>
-                        {(obj.answers === undefined)?"":
-                        obj.answers.map((ans,i)=>{
-                            return(
-                            // <tr key={i}>
-                            
-                                <tr key={i}>
-
-                                        <td>{ans.name}</td>
-                                        <td>{ans.date.substring(8,10)} {Month[parseInt(ans.date.substring(5,7)-1)]}, {ans.date.substring(0,4)}</td>
-                                        {/* <CardSubtitle>{obj.subject}</CardSubtitle>
-                                        <CardBody>{obj.description}</CardBody> */}
-
-                                </tr>
-                                )
-                           
-                        
-                    })}
-                        </Table>
+                                        <td>
+                            <>
+                        <UploadAnswer id={crid} aid={obj._id} data={project.assignmentanswers}></UploadAnswer>
+                        </>
+                        </td>
                                 </tr>
                                 )
                            

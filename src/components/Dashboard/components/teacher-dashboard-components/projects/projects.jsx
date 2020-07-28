@@ -23,14 +23,14 @@ const Projects = () => {
     const [uid, setuid] = useState("")
     const [reload, setreload] = useState(false)
     const [sub, setsubject] = useState([])
+    const [subname, setSubname] = useState()
     
 
-    const getClassName = (cid) => {
-        console.log(cid)
-        getASubject(cid)
-        .then( data => (data.name))
-        .catch (err => console.log(err))
-    }
+    // const getClassName = (cid) => {
+    //     getASubject(cid)
+    //     .then( data =>{setSubname(data)})
+    //     .catch (err => console.log(err))
+    // }
 
     
 
@@ -105,6 +105,7 @@ const Projects = () => {
         name:nameT,
         email:emailT,
         subject: "",
+        owner: user._id,
         subjectname: "",
         Class: "",
         standard:"",
@@ -113,7 +114,7 @@ const Projects = () => {
         error:"",
         success: false
     })
-    const {classLink,name,email, subject,subjectname,standard,time ,date,success,error} = project;
+    const {classLink,name,email, subject,owner,subjectname,standard,time ,date,success,error} = project;
    
     const handleChange = name => event => {
         setProject({
@@ -132,7 +133,7 @@ const Projects = () => {
             ...project,error: false,
         });
         
-        classes({classLink,name,email,subject,subjectname,standard,time,date})
+        classes({classLink,name,email,subject,owner,subjectname,standard,time,date})
             .then( (data) =>{
                 console.log(data)
                 console.log(project)
@@ -149,6 +150,7 @@ const Projects = () => {
                         ...project,
                         classLink: "",
                         subject: "",
+                        owner: user._id,
                         subjectname: "",
                         Class: "",
                         standard:"",
@@ -293,7 +295,7 @@ const Projects = () => {
                                     onChange={handleChange("subject")}>
                                 <option value="0">Select</option>
                                 {sub.map((obj,i) => {
-                                    return(<option key={i} value={obj._id} >{obj.name}</option>)
+                                    return(<option key={i} value={obj.name} >{obj.name}</option>)
                                 })
                                 }
                             </Input></td>
@@ -334,7 +336,7 @@ const Projects = () => {
                         {classO.map((obj,i) => {
                                                           
                             if(obj.email === emailT){
-                               
+                              
                             return(
                             <tr key={i}>
                             <td>
@@ -343,7 +345,7 @@ const Projects = () => {
                                         <h5 className="mb-0 font-16 font-medium"><span><a href={obj.classLink} target="blank">Start Class</a></span></h5></div>
                                 </div>
                             </td>
-                            <td>{getClassName(obj.subject)}</td>
+                            <td>{obj.subject}</td>
                             
                             <td>{obj.standard}</td>
                             <td>{obj.time}</td>
