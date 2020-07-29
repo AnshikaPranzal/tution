@@ -176,7 +176,7 @@ export const createResponse = async (resp) =>{
 export const deleteQuestion = async (qId,quesId)=>{
     
     try {
-        const response = await fetch(`${API}/questions/delete${qId}/${quesId}`, {
+        const response = await fetch(`${API}/question/delete${qId}/${quesId}`, {
             method: "DELETE",
             headers: {
                 Accept: "application/json",
@@ -192,7 +192,7 @@ export const deleteQuestion = async (qId,quesId)=>{
 export const deleteOption = async (oId,quesId)=>{
     
     try {
-        const response = await fetch(`${API}/option/delete${quesId}/${oId}`, {
+        const response = await fetch(`${API}/option/delete/${quesId}/${oId}`, {
             method: "DELETE",
             headers: {
                 Accept: "application/json",
@@ -239,6 +239,44 @@ export const updateQuiz = async (qId,quiz)=>{
     }
 }
 
+export const updateQuestion = async (quesId,question)=>{
+    console.log("inn")
+    for (var key of question.entries()) {
+        console.log(key[0] + ', ' + key[1])
+    }
+    return fetch(`${API}/question/update/${quesId}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json"
+            },
+            body: question
+        }).then(response =>{
+
+            console.log(response)
+            return response.json();
+        }).catch( (e) =>{
+        console.log("Error in updating question");
+    })
+}
+
+export const updateOption = async (opId,option)=>{
+    
+    try {
+        const response = await fetch(`${API}/option/update/${opId}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(option)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in updating question");
+    }
+}
+
 export const createOption = async (qid,option) =>{
     console.log(option,"q")
     try {
@@ -260,6 +298,18 @@ export const createOption = async (qid,option) =>{
 export const getAQuestion = async (quesId) => {
     try {
         const response = await fetch(`${API}/question/${quesId}`, {
+            method: "GET"
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err, "hello");
+    }
+}
+
+export const getAOption = async (optionId) => {
+    try {
+        const response = await fetch(`${API}/option/${optionId}`, {
             method: "GET"
         });
         return response.json();

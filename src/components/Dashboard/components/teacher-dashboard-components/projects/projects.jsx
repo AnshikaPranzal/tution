@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getASubject} from '../../../../helper/index'
+import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects} from '../../../../helper/index'
 
 import {
     Card,
@@ -18,21 +18,10 @@ const Projects = () => {
  
     const [classO, setclassO] = useState([])
     // eslint-disable-next-line no-unused-vars
-    const [errorF, seterrorF] = useState(false)
+    const [, seterrorF] = useState(false)
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
-    const [reload, setreload] = useState(false)
     const [sub, setsubject] = useState([])
-    
-
-    const getClassName = (cid) => {
-        console.log(cid)
-        getASubject(cid)
-        .then( data => (data.name))
-        .catch (err => console.log(err))
-    }
-
-    
 
     const loadAllSubjects = () =>{
         getAllSubjects().then(data =>{
@@ -118,11 +107,6 @@ const Projects = () => {
     const handleChange = name => event => {
         setProject({
             ...project,error: false, [name]: event.target.value
-        })
-    }
-    const reloading = ()=>{
-        setProject({
-            ...project,error: false, name: nameT, email: emailT
         })
     }
     const onSubmit = event => {

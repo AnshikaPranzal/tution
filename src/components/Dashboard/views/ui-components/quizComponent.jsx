@@ -13,7 +13,7 @@ import {
     Input  } from 'reactstrap';
 import ImageHelper from '../../../helper/ImageHelper';
 import NumberCard from './numberCard';
-import Timer from './timer';
+import Timer from './timer.jsx';
 import { Link } from 'react-router-dom';
 
   const QuizComponent = (props)=>{
@@ -25,6 +25,7 @@ import { Link } from 'react-router-dom';
         subject:"",
         questions:[],
         endtime:"",
+        duration:"",
         start:""
       })
 
