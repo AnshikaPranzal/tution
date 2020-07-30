@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react';
 import { Link } from 'react-router-dom'
-import {classrooms, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAUser, getAllSubjects} from '../../../helper/index'
+import {classrooms,getAllStandards, getAllClassrooms,getAClassroom, updateClassroom,deleteClassroom,isAuthenticated, getAUser, getAllSubjects} from '../../../helper/index'
 import {
     Card,
     CardBody,
@@ -29,6 +29,8 @@ const Starter = () => {
         formData: "",
         hello:""
     })
+    const [std, setstandard] = useState([])
+    const [errorS, seterrorS] = useState(false)
 
     const [refresh, setrefresh] = useState(true)
 
@@ -51,6 +53,24 @@ const Starter = () => {
       useEffect (() => {
         loadAllSubjects()
         },[])
+
+        
+        const loadAllStandards = () =>{
+            getAllStandards().then(data =>{
+              //   console.log(data)
+              if(data)
+              if(data.error){
+                seterrorS(data.error)
+              }
+              else{
+                setstandard(data)
+              }
+            })
+          }
+          useEffect (() => {
+            loadAllStandards()
+            },[])
+
     const loadAllclassroooms = () =>{
         getAllClassrooms().then(data =>{
             console.log(data)
@@ -96,12 +116,13 @@ const Starter = () => {
             name: "",
             description: "",
             subject: "",
+            owner: user._id,
             standard: 0,
             error:"",
             success: false
         })
 
-        const {name, description , subject, standard, success, error} = project;
+        const {name, description , subject, owner, standard, success, error} = project;
        
         const handleChange = name => event => {
             // const v = name === "formData"? event.target.files[0]:event.target.value
@@ -118,7 +139,7 @@ const Starter = () => {
                 ...project,error: false
             });
             
-            classrooms({name, description, subject, standard})
+            classrooms({name, description, subject,owner, standard})
                 .then( (data) =>{
                     console.log(data)
                     console.log(project)
@@ -136,6 +157,7 @@ const Starter = () => {
                             name: "",
                             description: "",
                             subject: "",
+                            owner: user._id,
                             standard: 0,
                             error:"",
                             success: true
@@ -347,7 +369,7 @@ const Starter = () => {
                                     onChange={handleChange("subject")}>
                                 <option value="0">Select</option>
                                 {sub.map((obj,i) => {
-                                    return(<option key={i} value={obj._id}>{obj.name}</option>)
+                                    return(<option key={i} value={obj.name}>{obj.name}</option>)
                                 })
                                 }
                             </Input></td>
@@ -356,10 +378,10 @@ const Starter = () => {
                             <Input type="select" className="custom-select" value={standard}
                                     onChange={handleChange("standard")}>
                                 <option value="0">Select</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
+                                {std.map((obj,i) => {
+                                    return(<option key={i} value={obj.name} >{obj.name}</option>)
+                                })
+                                }
                             </Input>
                             </td>
                                     <td>{update === true ? (<i onClick={e=>{updateaClassroom(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} className="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onclassroomSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} className="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
@@ -378,7 +400,7 @@ const Starter = () => {
                         <Card>
                             <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
                                         <CardTitle>{obj.name}</CardTitle>
-                                        <CardSubtitle>Class {obj.standard}</CardSubtitle>
+                                        <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody>
                                         <div>
                                         {isAuthenticated() 

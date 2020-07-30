@@ -51,21 +51,36 @@ export const subjects = async subjects =>{
     }
 }
 
-export const notices = async notices =>{
-    try {
-        const response = await fetch(`${API}/notice/create`, {
-            method: "POST",
-            headers: {
-                Accept: 'application/json',
-                "Content-Type": 'application/json'
-            },
-            body: JSON.stringify(notices)
-        });
-        return response.json();
-    }
-    catch (err) {
-        console.log(err);
-    }
+export const standards = standards =>{
+    return fetch(`${API}/standard/create`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json',
+            "Content-Type" : 'application/json'
+        },
+        body: JSON.stringify(standards)
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {console.log(err);
+    })
+}
+
+export const notices = notices =>{
+    return fetch(`${API}/notice/create`,{
+        method:"POST",
+        headers:{
+            Accept: 'application/json',
+            "Content-Type" : 'application/json'
+        },
+        body: JSON.stringify(notices)
+    })
+    .then(response => {
+        return response.json(); 
+    })
+    .catch(err => {console.log(err);
+    })
 }
 
 export const classrooms = async classrooms =>{
@@ -811,6 +826,29 @@ export const classroomUploadDocument = async (classroomId,documents) =>{
     }
 }
 
+export const classroomUploadAnswer = (classroomId,documents) =>{
+    for (var key of documents.entries()) {
+        console.log(key[0] + ', ' + key[1])
+    }
+    console.log(documents)
+    return fetch(`${API}/classroom/${classroomId}/upload/answer`,{
+        method:"PUT",
+        headers: {
+            Accept: "application/json"
+        },
+        body: documents
+        
+    })
+    .then(response => {
+    console.log(response)
+    return response.json(); 
+    })
+    .catch(err => {console.log(err);
+        
+    })
+}
+
+
 export const classroomUploadAssignment = async (classroomId,documents) =>{
     for (var key of documents.entries()) {
         console.log(key[0] + ', ' + key[1])
@@ -910,6 +948,70 @@ export const addSubject = async (ids) => {
         console.log("Error in adding subject");
     }
 }
+
+export const getAllStandards = ()=>{
+    
+    return fetch(`${API}/standards`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the standards")
+    })
+}
+
+export const getAStandard = standardId=>{
+    
+    return fetch(`${API}/standard/${standardId}`,{
+        method: "GET",
+        
+    }).then(response => {
+       console.log(response);
+        return response.json();
+    })
+    .catch(()=>{
+        console.log("Error in getting the standard")
+    })
+}
+
+export const deleteStandard = (standardId)=>{
+    
+    return fetch(`${API}/standard/delete/${standardId}`,{
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            // Authorization: `Bearer ${token}` 
+        }
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in deleting the standard")
+    })
+}
+
+export const updateStandard = (standardId,standardO)=>{
+    
+    return fetch(`${API}/standard/update/${standardId}`,{
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(standardO)
+    }).then(response => {
+        return response.json()
+    })
+    .catch(()=>{
+        console.log("Error in updating standard")
+    })
+}
+
+
 
 export const subclassrooms = async (ids) => {
     console.log(ids)

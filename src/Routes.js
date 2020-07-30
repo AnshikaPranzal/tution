@@ -54,7 +54,7 @@ function Routes() {
             <Route exact path="/course" component={CoursePage} />
             <Route exact path="/event" component={EventPage} />
             <Route exact path='/notice' component={NoticePage}/>
-            <Route exact path='/dashboard-teacher/classroom-teacher/:handle' component={ClassRoom}/>
+            <Route exact path='/dashboard-teacher/classroom-teacher/:handle' component={ClassRoom}/>{/* !Both Teacher And Student will use Same Route */}
           </Switch>}
         {/* <Footer></Footer> */}
     </BrowserRouter>

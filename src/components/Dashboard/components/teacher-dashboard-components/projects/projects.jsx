@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 
 
+<<<<<<< HEAD
 import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects} from '../../../../helper/index'
+=======
+import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getAllStandards, getASubject} from '../../../../helper/index'
+>>>>>>> cbfd3f00b13f0eb061991445861ef014e5c58202
 
 import {
     Card,
@@ -18,10 +22,29 @@ const Projects = () => {
  
     const [classO, setclassO] = useState([])
     // eslint-disable-next-line no-unused-vars
+<<<<<<< HEAD
     const [, seterrorF] = useState(false)
+=======
+    const [std, setstandard] = useState([])
+    const [errorS, seterrorS] = useState(false)
+    const [errorF, seterrorF] = useState(false)
+>>>>>>> cbfd3f00b13f0eb061991445861ef014e5c58202
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
     const [sub, setsubject] = useState([])
+<<<<<<< HEAD
+=======
+    const [subname, setSubname] = useState()
+    
+
+    // const getClassName = (cid) => {
+    //     getASubject(cid)
+    //     .then( data =>{setSubname(data)})
+    //     .catch (err => console.log(err))
+    // }
+
+    
+>>>>>>> cbfd3f00b13f0eb061991445861ef014e5c58202
 
     const loadAllSubjects = () =>{
         getAllSubjects().then(data =>{
@@ -38,6 +61,22 @@ const Projects = () => {
       useEffect (() => {
         loadAllSubjects()
         },[])
+
+        const loadAllStandards = () =>{
+            getAllStandards().then(data =>{
+              //   console.log(data)
+              if(data)
+              if(data.error){
+                seterrorS(data.error)
+              }
+              else{
+                setstandard(data)
+              }
+            })
+          }
+          useEffect (() => {
+            loadAllStandards()
+            },[])
   
     const loadAllclasses = () =>{
       getAllClasses().then(data =>{
@@ -94,6 +133,7 @@ const Projects = () => {
         name:nameT,
         email:emailT,
         subject: "",
+        owner: user._id,
         subjectname: "",
         Class: "",
         standard:"",
@@ -102,7 +142,7 @@ const Projects = () => {
         error:"",
         success: false
     })
-    const {classLink,name,email, subject,subjectname,standard,time ,date,success,error} = project;
+    const {classLink,name,email, subject,owner,subjectname,standard,time ,date,success,error} = project;
    
     const handleChange = name => event => {
         setProject({
@@ -116,7 +156,7 @@ const Projects = () => {
             ...project,error: false,
         });
         
-        classes({classLink,name,email,subject,subjectname,standard,time,date})
+        classes({classLink,name,email,subject,owner,subjectname,standard,time,date})
             .then( (data) =>{
                 console.log(data)
                 console.log(project)
@@ -133,6 +173,7 @@ const Projects = () => {
                         ...project,
                         classLink: "",
                         subject: "",
+                        owner: user._id,
                         subjectname: "",
                         Class: "",
                         standard:"",
@@ -277,7 +318,7 @@ const Projects = () => {
                                     onChange={handleChange("subject")}>
                                 <option value="0">Select</option>
                                 {sub.map((obj,i) => {
-                                    return(<option key={i} value={obj._id} >{obj.name}</option>)
+                                    return(<option key={i} value={obj.name} >{obj.name}</option>)
                                 })
                                 }
                             </Input></td>
@@ -288,10 +329,10 @@ const Projects = () => {
                             <Input type="select" className="custom-select" value={standard}
                                     onChange={handleChange("standard")}>
                                 <option value="0">Select</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
+                                {std.map((obj,i) => {
+                                    return(<option key={i} value={obj.name} >{obj.name}</option>)
+                                })
+                                }
                             </Input>
                             </td>
                             
@@ -317,7 +358,7 @@ const Projects = () => {
                         </tr>
                         {classO.map((obj,i) => {            
                             if(obj.email === emailT){
-                               
+                              
                             return(
                             <tr key={i}>
                             <td>
@@ -326,7 +367,11 @@ const Projects = () => {
                                         <h5 className="mb-0 font-16 font-medium"><span><a href={obj.classLink} target="blank">Start Class</a></span></h5></div>
                                 </div>
                             </td>
+<<<<<<< HEAD
                             {/* <td>{getClassName(obj.subject)}</td> */}
+=======
+                            <td>{obj.subject}</td>
+>>>>>>> cbfd3f00b13f0eb061991445861ef014e5c58202
                             
                             <td>{obj.standard}</td>
                             <td>{obj.time}</td>

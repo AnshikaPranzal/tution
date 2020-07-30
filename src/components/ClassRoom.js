@@ -80,8 +80,6 @@ const ClassRoom = (props) => {
     return(
     <React.Fragment>
          <header className="fixed-top header">
-            {/* <!-- top header --> */}
-                <TopHeader></TopHeader>
             {/* <!-- navbar --> */}
 			<Navbar></Navbar>
           </header>
@@ -92,9 +90,8 @@ const ClassRoom = (props) => {
           
                         {/* <CardImg top width="100%" src={img2} /> */}
                             {isAuthenticated() 
-                            // && isAuthenticated().user.role === 1 
                             ?
-                            <Col xs="12" md="6">
+                            <Col xs="12" md="12">
                             {/*--------------------------------------------------------------------------------*/}
                             {/*Card-1*/}
                             {/*--------------------------------------------------------------------------------*/}
@@ -108,9 +105,8 @@ const ClassRoom = (props) => {
 
 
                         {isAuthenticated() 
-                            // && isAuthenticated().user.role === 1 
                             ?
-                            <Col xs="12" md="6">
+                            <Col xs="12" md="12">
                             {/*--------------------------------------------------------------------------------*/}
                             {/*Card-1*/}
                             {/*--------------------------------------------------------------------------------*/}
