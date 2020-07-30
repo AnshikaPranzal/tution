@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react';
 
-import { Redirect } from 'react-router-dom';
 
     const Timer = (props) => {
         const {initialMinute = 0,initialSeconds = 0,setfinish} = props;
