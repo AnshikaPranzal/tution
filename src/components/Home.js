@@ -91,7 +91,7 @@ const Home = () =>{
 
           <AboutUs topic="Educenter"></AboutUs>
 
-          <Courses></Courses>
+          {/* <Courses></Courses> */}
 
           {/* <Cta></Cta> */}
 

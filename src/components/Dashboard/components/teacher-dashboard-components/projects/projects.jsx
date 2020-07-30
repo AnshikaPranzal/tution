@@ -346,7 +346,7 @@ const Projects = () => {
                         </tr>
                         {classO.map((obj,i) => {            
                             if(obj.email === emailT){
-                              
+                              console.log(obj)
                             return(
                             <tr key={i}>
                             <td>
