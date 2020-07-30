@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { uploadDocument, getAllUSers,isAuthenticated, createQuiz, getQuiz,updateQuiz,deleteQuiz, getAQuiz } from '../../../helper/index';
+import { uploadDocument,getAllStandards,getAllSubjects, getAllUSers,isAuthenticated, createQuiz, getQuiz,updateQuiz,deleteQuiz, getAQuiz } from '../../../helper/index';
 
 import {
   Card,
@@ -18,6 +18,7 @@ const AddQuiz = ({c})=> {
     const{user, token} = isAuthenticated();
     const [values, setValues] = useState({
         subject:"",
+        standard:"",
         title:"",
         endTime: "",
         start:"",
@@ -35,6 +36,44 @@ const AddQuiz = ({c})=> {
     const [quizzes, setquizzes] = useState([])
     const [refresh, setrefresh] = useState(true)
     const [update, setupdate] = useState(false)
+    const [sub, setsubject] = useState([])
+    const [std, setstandard] = useState([])
+    const [errorS, seterrorS] = useState(false)
+    const [errorF, seterrorF] = useState(false)
+
+    const loadAllSubjects = () =>{
+      getAllSubjects().then(data =>{
+        //   console.log(data)
+        if(data)
+        if(data.error){
+          seterrorF(data.error)
+        }
+        else{
+          setsubject(data)
+        }
+      })
+    }
+    useEffect (() => {
+      loadAllSubjects()
+      },[])
+
+      
+      const loadAllStandards = () =>{
+          getAllStandards().then(data =>{
+            //   console.log(data)
+            if(data)
+            if(data.error){
+              seterrorS(data.error)
+            }
+            else{
+              setstandard(data)
+            }
+          })
+        }
+        useEffect (() => {
+          loadAllStandards()
+          },[])
+
     const loadAllMyQuizzes = ()=>{
       console.log(user._id,"heyy")
       getQuiz(user._id).then(data=>{
@@ -53,7 +92,7 @@ const AddQuiz = ({c})=> {
       loadAllMyQuizzes()
     },[refresh])
     
-    const { subject,title,endTime,start,duration, loading,error,getRedirect,createdQuiz,formData,teacher,hh,mm} = values;
+    const { subject,standard,title,endTime,start,duration, loading,error,getRedirect,createdQuiz,formData,teacher,hh,mm} = values;
 
     const successMessage = () =>{
         // console.log(createdQuiz)
@@ -89,7 +128,7 @@ const AddQuiz = ({c})=> {
     const Submit = event =>{
         event.preventDefault();
         setValues({...values,error:"",loading: true,teacher:user._id})
-        createQuiz({title,subject,endTime,start,teacher,mm}).then(data =>{
+        createQuiz({title,subject,standard,endTime,start,teacher,mm}).then(data =>{
             console.log(data)
             if(data.error){
               console.log(data.error)
@@ -100,6 +139,7 @@ const AddQuiz = ({c})=> {
                 setValues({
                     ...values,
                     subject:"",
+                    standard:"",
                     title:"",
                     endTime:"",
                     start:"",
@@ -162,6 +202,7 @@ const AddQuiz = ({c})=> {
               setValues({
                   ...values,
                   subject:"",
+                  standard:"",
                   title:"",
                   endTime:"",
                   start:"",
@@ -199,6 +240,7 @@ const AddQuiz = ({c})=> {
                         <tr className="border-0">
                             <th className="border-0">Name</th>
                             <th className="border-0">Subject</th>
+                            <th className="border-0">standard</th>
                             <th className="border-0">Test Duration</th>
                         </tr>
                     </thead>
@@ -215,7 +257,7 @@ const AddQuiz = ({c})=> {
                         />
                       </div>
                       </td>
-                      <td>
+                      {/* <td>
                       <div className="form-group">
                         <input
                           onChange={handleChange("subject")}
@@ -225,7 +267,26 @@ const AddQuiz = ({c})=> {
                           value={subject}
                         />
                       </div>
-                      </td>
+                      </td> */}
+                      
+                      <td><Input type="select" className="custom-select" value={subject}
+                                    onChange={handleChange("subject")}>
+                                <option value="0">Select</option>
+                                {sub.map((obj,i) => {
+                                    return(<option key={i} value={obj.name}>{obj.name}</option>)
+                                })
+                                }
+                            </Input></td>
+                      <td>
+                            <Input type="select" className="custom-select" value={standard}
+                                    onChange={handleChange("standard")}>
+                                <option value="0">Select</option>
+                                {std.map((obj,i) => {
+                                    return(<option key={i} value={obj.name} >{obj.name}</option>)
+                                })
+                                }
+                            </Input>
+                            </td>
                       <td>
                         <input
                           onChange={handleChange("mm")}
@@ -249,6 +310,7 @@ const AddQuiz = ({c})=> {
               <tr key={index}>
                   <td>{obj.title}</td>
                   <td>{obj.subject}</td>
+                  <td>{obj.standard}</td>
                   <td>{obj.duration}</td>
                   <td><Link to={`/quiz/${obj._id}`} >Add Questions</Link> </td>
                   <td><i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getTheQuiz(obj._id)}} aria-hidden="true"></i>
