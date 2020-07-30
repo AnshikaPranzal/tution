@@ -1,6 +1,6 @@
 /* eslint-disable no-lone-blocks */
 import React, {useState,useEffect} from 'react';
-import { getQuestions } from '../../../helper/index';
+import { getQuestions,createResponse,isAuthenticated } from '../../../helper/index';
 
 import {
     Card,
@@ -17,7 +17,7 @@ import Timer from './timer.jsx';
   const QuizComponent = (props)=>{
      
     const qid= props.qid;
-
+    const {user}= isAuthenticated()
     const [quiz, setquiz] = useState({
         title:"",
         subject:"",
@@ -47,13 +47,65 @@ import Timer from './timer.jsx';
 
     const {duration} = quiz
     
-    const {cSelected,onCheckboxBtnClick,finish,setfinish} = props
+    const {cSelected,onCheckboxBtnClick,finish,setfinish,setc,marks} = props
+    const [correct, setcorrect] = useState([])
     const [review, setreview] = useState([])
-    const [totalmarks] = useState(0)
 
     const markforreview = (i)=>{
         review.push(i)
         setreview(review)
+    }
+    const [totalmarks, settotalmarks] = useState(0)
+
+    const dec = ()=>{
+        {quiz.questions.map((x)=>
+            {
+                var f = 0
+                x.options.map((y)=>{
+                    if(y.isCorrect === false){
+                        {cSelected.map((o) => {
+                            if(o === y._id){
+                                f=1;
+                            }
+                        })}
+                    }
+                    else{
+                        var t=0
+                        {cSelected.map((o) => {
+                            if(o === y._id){
+                                t=1;
+                            }
+                        })}
+                        if(t===0){
+                            f=1
+                        }
+                    }
+                })
+                if(f===0){
+                    correct.push(true)
+                    setcorrect([...correct])
+                }
+                else{
+                    f=0
+                }
+            })}
+            return correct.length
+    }
+
+    const onSubmit = ()=>{
+        const totalMarks = dec()
+        settotalmarks(totalMarks)
+        createResponse({cSelected,quiz,user,totalMarks}).then(data=>{
+            if(data){
+                if(data.error){
+                    console.log(data.error)
+                }
+                else{
+                    setfinish(true)
+                    setc(0)
+                } 
+            }
+        })
     }
 
     var elements=[];
@@ -64,15 +116,26 @@ import Timer from './timer.jsx';
           <React.Fragment>
               {finish === true && (<div className="alert alert-success text-center">Submitted!!You Scored:{totalmarks}</div>)}
               <Row>
-                  <Col md={8} style={{height:"30rem"}}>
+                  <Col md={8} className="text-center">
+                    
+                        <div>
+                            <h2>{quiz.title}</h2>
+                            <h5>{quiz.subject}</h5>
+                        </div>
+                    
+                   </Col>
+                   <Col md={4} className="text-center align-items-center">
+                       
+                            <button className="btn" onClick={()=>{onSubmit()}} style={{backgroundColor:"#FA8281",width:"50%",marginTop:"1em"}}>End Quiz</button>
+                        
+                   </Col>
+                </Row>
+              <Row>
+                  <Col md={8} style={{height:"25rem"}}>
                     <Card style={{height:"100%"}}>
                         <CardBody>
-                            <div className="d-flex align-items-center">
-                                <div>
-                                    <CardTitle>{quiz.title}</CardTitle>
-                                    <CardSubtitle>{quiz.subject}</CardSubtitle>
-                                </div>
-                            </div> 
+                            
+                                
                             {quiz.questions.map((x,i)=>
                             {
                                 return(
@@ -186,13 +249,13 @@ import Timer from './timer.jsx';
                                                     ):(
                                                         <React.Fragment>
                                                         {f === true ?(
-                                                            <Col md={2} style={{height:"3em",margin:"0",width:"100%"}} className="no-col">
+                                                            <Col md={2} xs={2} style={{height:"3em",margin:"0",width:"100%"}} className="no-col">
                                                             <Card style={{height:"2.5em",padding:"0.5em",borderRadius:"0px"}} className="text-center bg-success">
                                                                 {i+1}
                                                             </Card>
                                                             </Col>
                                                         ):(
-                                                            <Col md={2} style={{height:"3em",margin:"0",width:"100%"}} className="no-col">
+                                                            <Col md={2} xs={2} style={{height:"3em",margin:"0",width:"100%"}} className="no-col">
                                                             <Card style={{height:"2.5em",padding:"0.5em",borderRadius:"0px",width:"100%"}} className="text-center">
                                                                 {i+1}
                                                             </Card>
