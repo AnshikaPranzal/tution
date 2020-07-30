@@ -13,6 +13,7 @@ import {
 } from 'reactstrap';
 import $ from 'jquery'
 import { classroomUploadDocument, getAllUSers,isAuthenticated, getAClassroom } from './helper/index';
+import { API } from '../backend';
 
 const AddDocument = (props)=> {
     const crid = props.id;
@@ -32,6 +33,7 @@ const AddDocument = (props)=> {
         formData:""
     })
     const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
 
     const [project, setProject] = useState({
         name: "",
@@ -178,6 +180,18 @@ const AddDocument = (props)=> {
             })
         }
 
+        const generateDownload = (id)=>{
+        const document =  `${API}/classroom/document/${id}`
+        // const previewUrl = window.URL.createObjectURL(document);
+
+        // const anchor = document.createElement.bind("a");
+        // anchor.download = "abc.pdf";
+        // anchor.href = URL.createObjectURL(document);
+        // anchor.click();
+            // console.log(anchor)
+        // window.URL.revokeObjectURL(previewUrl);
+        }
+
     const catForm =() =>(
         <form >
           {
@@ -226,6 +240,8 @@ const AddDocument = (props)=> {
                                         <td>{obj.date.substring(8,10)} {Month[parseInt(obj.date.substring(5,7)-1)]}, {obj.date.substring(0,4)}</td>
                                         {/* <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody> */}
+                                
+                                        <td><a href={`${API}/classroom/document/${obj._id}/${obj.name}`} rel="noopener noreferrer" target="_blank">Open</a></td>
 
                                 </tr>
                                 )
