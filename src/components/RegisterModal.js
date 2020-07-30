@@ -1,20 +1,21 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
-import { signup1 } from './helper/index'
-
+import { signup1,getAllStandards } from './helper/index'
+import { Input } from 'reactstrap';
 const RegisterModal = () =>{
     const [values,setValues] = useState({
         name:"",
         mob:"",
         email:"",
         password:"",
+        standard:"",
         error:"",
         success: false
     })
 
-    const {name, mob,email, password, error, success} = values;
+    const {name, mob,email, password,standard, error, success} = values;
 
     const handleChange = name => event => {
         setValues({
@@ -27,7 +28,7 @@ const RegisterModal = () =>{
         setValues({
             ...values,error: false
         });
-        signup1({name,email,password,mob})
+        signup1({name,email,password,mob,standard})
             .then( (data) =>{
                 if(data){
                 if(data.error){
@@ -45,6 +46,7 @@ const RegisterModal = () =>{
                         mob:"",
                         email:"",
                         password:"",
+                        standard:"", 
                         error:"",
                         success: true
                     })
@@ -75,6 +77,24 @@ const RegisterModal = () =>{
         </div>
         </div>
     )}
+    
+    const [std, setstandard] = useState([])
+    const [errorS, seterrorS] = useState(false)
+    const loadAllStandards = () =>{
+        getAllStandards().then(data =>{
+          //   console.log(data)
+          if(data)
+          if(data.error){
+            seterrorS(data.error)
+          }
+          else{
+            setstandard(data)
+          }
+        })
+      }
+      useEffect (() => {
+        loadAllStandards()
+        },[])
         
         const signup = () =>(
             <React.Fragment>
@@ -100,6 +120,17 @@ const RegisterModal = () =>{
                                 <div className="col-12">
                                     <input type="password" className="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password" onChange={handleChange("password")} value={password}></input>
                                 </div>
+                                <div className="col-12">
+                                <Input type="select" className="custom-select" value={standard}
+                                    onChange={handleChange("standard")} >
+                                <option value="0">Standard</option>
+                                {std.map((obj,i) => {
+                                    return(<option key={i} value={obj.name} >{obj.name}</option>)
+                                })
+                                }
+                            </Input>
+                                </div>
+                                
                                 <div className="col-12">
                                     <button type="submit" onClick={onSubmit} className="hvr-bounce-to-top">SIGN UP</button>
                                 </div>
