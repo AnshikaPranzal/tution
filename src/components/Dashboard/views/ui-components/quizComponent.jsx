@@ -1,20 +1,18 @@
 /* eslint-disable no-lone-blocks */
 import React, {useState,useEffect} from 'react';
-import { getQuestions, createResponse, isAuthenticated } from '../../../helper/index';
+import { getQuestions } from '../../../helper/index';
 
 import {
     Card,
     CardBody,
     CardTitle,
     CardSubtitle,
-    Button,
     Row,
     Col,
     Input  } from 'reactstrap';
 import ImageHelper from '../../../helper/ImageHelper';
 import NumberCard from './numberCard';
 import Timer from './timer.jsx';
-import { Link } from 'react-router-dom';
 
   const QuizComponent = (props)=>{
      
@@ -29,8 +27,7 @@ import { Link } from 'react-router-dom';
         start:""
       })
 
-      const [showP, setshowP] = useState(true)
-      const [showN, setshowN] = useState(true)
+      const [showP] = useState(true)
     const loadQuiz=()=>{
         getQuestions(qid).then(data=>{
           if(data){
@@ -43,34 +40,16 @@ import { Link } from 'react-router-dom';
           }
         }) 
     }
-    const {user} = isAuthenticated()
 
     useEffect(() => {
         loadQuiz()
     })
 
-    const [count] = useState(0)
     const {duration} = quiz
     
-    const {cSelected,onCheckboxBtnClick,finish,setfinish,setc,marks} = props
-    const [correct, setcorrect] = useState([])
+    const {cSelected,onCheckboxBtnClick,finish,setfinish} = props
     const [review, setreview] = useState([])
-    const [totalmarks, settotalmarks] = useState(0)
-    const onSubmit = ()=>{
-        const totalMarks = dec()
-        settotalmarks(totalMarks)
-        createResponse({cSelected,quiz,user,totalMarks}).then(data=>{
-            if(data){
-                if(data.error){
-                    console.log(data.error)
-                }
-                else{
-                    setfinish(true)
-                    setc(0)
-                } 
-            }
-        })
-    }
+    const [totalmarks] = useState(0)
 
     const markforreview = (i)=>{
         review.push(i)
@@ -80,41 +59,6 @@ import { Link } from 'react-router-dom';
     var elements=[];
     for(var i=0;i<quiz.questions.length;i++){
         elements.push(<Col md={2} style={{height:"3em",margin:"0",width:"100%"}} className="no-col"><NumberCard c={i} cSelected={cSelected}></NumberCard></Col>);
-    }
-    const dec = ()=>{
-        {quiz.questions.map((x)=>
-            {
-                var f = 0
-                x.options.map((y)=>{
-                    if(y.isCorrect === false){
-                        {cSelected.map((o) => {
-                            if(o === y._id){
-                                f=1;
-                            }
-                        })}
-                    }
-                    else{
-                        var t=0
-                        {cSelected.map((o) => {
-                            if(o === y._id){
-                                t=1;
-                            }
-                        })}
-                        if(t===0){
-                            f=1
-                        }
-                    }
-                })
-                if(f===0){
-                    correct.push(true)
-                    setcorrect([...correct])
-                }
-                else{
-                    f=0
-                }
-
-            })}
-            return correct.length
     }
       return(
           <React.Fragment>
@@ -214,7 +158,7 @@ import { Link } from 'react-router-dom';
                                 
                                     <React.Fragment key={i}>
                                         
-                                            {x.options.map((y)=>{
+                                            {x.options.map((y,l) =>{
                                                 
                                                 {cSelected.map((o) => {
                                                     const g = (o === y._id) ? true : f
