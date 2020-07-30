@@ -3,7 +3,7 @@ import React, {useState,useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 
     const Timer = (props) => {
-        const {initialMinute = 0,initialSeconds = 0} = props;
+        const {initialMinute = 0,initialSeconds = 0,setfinish} = props;
         const [ minutes, setMinutes ] = useState(initialMinute);
         const [seconds, setSeconds ] =  useState(initialSeconds);
         useEffect(()=>{
@@ -23,12 +23,12 @@ import { Redirect } from 'react-router-dom';
             return ()=> {
                 clearInterval(myInterval);
               };
-        });
+        },[seconds]);
     
         return (
             <div>
             { minutes === 0 && seconds === 0
-                ? <Redirect to='/'></Redirect>
+                ? setfinish(true)
                 : <h1> {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1> 
             }
             </div>
