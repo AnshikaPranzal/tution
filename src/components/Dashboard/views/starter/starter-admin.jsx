@@ -284,12 +284,18 @@ const Starter = () => {
                                         }
                                         if(students === 0){
                                             $('.bsm').addClass('hide')
+                                        }else{
+                                            $('.bsm').removeClass('hide')
                                         }
                                         if(weekstudents === 0){
                                             $('.bwsm').addClass('hide')
+                                        }else{
+                                            $('.bwsm').removeClass('hide') 
                                         }
                                         if(monthstudents === 0){
                                             $('.bmsm').addClass('hide')
+                                        }else{
+                                            $('.bmsm').removeClass('hide')
                                         }
                                         
                                     }

@@ -37,6 +37,7 @@ const Starter = () => {
     const {formData}=values
 
     const [sub, setsubject] = useState([])
+    
 
     const loadAllSubjects = () =>{
         getAllSubjects().then(data =>{
@@ -111,6 +112,7 @@ const Starter = () => {
         )}
 
         const { user } = isAuthenticated();
+        const Tid = user._id;
 
         const [project, setProject] = useState({
             name: "",
@@ -394,13 +396,15 @@ const Starter = () => {
     </Row>
     <Row>
                 {classroomO.map((obj,i)=>{
-                    return(
+                    if(Tid.toString() === obj.owner.toString())
+                    {return(
                     // <tr key={i}>
                     <Col xs="12" md="4" key={i}>
                         <Card>
                             <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
                                         <CardTitle>{obj.name}</CardTitle>
                                         <CardSubtitle>{obj.subject}</CardSubtitle>
+                                        <CardSubtitle>{obj.standard}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody>
                                         <div>
                                         {isAuthenticated() 
@@ -416,7 +420,7 @@ const Starter = () => {
                                 </Col>)
                            
                         
-                    })}
+                    }})}
                         </Row>
 
     <Row>  
