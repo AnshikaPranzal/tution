@@ -86,7 +86,7 @@ const ClassRoom = (props) => {
           {/* <!-- /header --> */}
           <ClassroomTitle title={project.name} body={project.description}></ClassroomTitle>
           <div className="text-center">
-          <Row>
+          <Row style={{width: "100vw", margin: "0"}}>
           
                         {/* <CardImg top width="100%" src={img2} /> */}
                             {isAuthenticated() 
@@ -110,7 +110,7 @@ const ClassRoom = (props) => {
                             {/*--------------------------------------------------------------------------------*/}
                             {/*Card-1*/}
                             {/*--------------------------------------------------------------------------------*/}
-                            <Card>
+                            <Card style={{overflow: "scroll"}}>
                             <CardBody>
                             <UploadAssignment id={crid}></UploadAssignment>
                         </CardBody>

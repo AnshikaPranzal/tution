@@ -132,6 +132,7 @@ const AddAssignment = (props)=> {
           formData.append(name,v,'photo.png');
           formData.append("username", user.name);
           formData.append("userid", user._id);
+          formData.append("submission", "");
           for (var key of formData.entries()) {
 			console.log(key[0] + ', ' + key[1])
 		}
@@ -207,6 +208,17 @@ const AddAssignment = (props)=> {
             value={name}
           />
         </div>
+        <div className="form-group">
+          <label>submission Date</label>
+          <input
+            type="date"
+            onChange={handleChanger("submission")}
+            name="photo"
+            className="form-control"
+            placeholder=""
+            // value={name}
+          />
+        </div>
         {/* <div className="form-group">
           <textarea
             onChange={handleChanger("type")}
@@ -256,7 +268,8 @@ const AddAssignment = (props)=> {
                             <Table>
                                 <th>Assignments</th>
                                 <th>Uploader</th>
-                                <th>Date</th>
+                                <th>Uploaded on</th>
+                                <th>Last Date of submission</th>
                                 <th>Answers</th>
                         {(project.assignment === undefined)?"":
                         (project.assignment.map((obj,i)=>{
@@ -268,11 +281,12 @@ const AddAssignment = (props)=> {
                                         <td>{obj.name}</td>
                                         <td>{obj.uploader}</td>
                                         <td>{obj.date.substring(8,10)} {Month[parseInt(obj.date.substring(5,7)-1)]}, {obj.date.substring(0,4)}</td>
+                                        <td>{obj.submission.substring(8,10)} {Month[parseInt(obj.submission.substring(5,7)-1)]}, {obj.submission.substring(0,4)}</td>
                                         {/* <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody> */}
                                         <td>
                             <>
-                        <UploadAnswer id={crid} aid={obj._id} data={project.assignmentanswers}></UploadAnswer>
+                        <UploadAnswer id={crid} aid={obj._id} data={project.assignmentanswers} submission={obj.submission}></UploadAnswer>
                         </>
                         </td>
                                 </tr>

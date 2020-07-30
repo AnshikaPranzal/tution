@@ -18,6 +18,8 @@ const UploadAnswer = (props)=> {
     const crid = props.id;
     const aid = props.aid;
     const data = props.data;
+    const submission = props.submission;
+    const today = new Date().toString();
     console.log(crid)
     const [values, setValues] = useState({
         name:"",
@@ -164,7 +166,7 @@ const UploadAnswer = (props)=> {
           </label>
         </div>
         <div className="form-group">
-          <input
+        <input
             onChange={handleChanger("name")}
             name="photo"
             className="form-control"
