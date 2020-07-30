@@ -281,11 +281,13 @@ import Timer from './timer.jsx';
                                 <Col md={12}>
                                     <button className="btn" onClick={()=>{markforreview(props.c)}} style={{backgroundColor:"#F6FF9F",width:"60%"}}>Mark for Review</button>
                                 </Col>
-                                {showP &&(<Col md={6} style={{marginTop:"5px"}}>
+                                {(props.c=== 0) ?(<Col md={6} style={{marginTop:"5px"}}>
+                                    <button className="btn" onClick={()=>{props.decrement()}} style={{backgroundColor:"#FA8281",width:"100%"}} disabled>Previous</button>
+                                </Col>):(<Col md={6} style={{marginTop:"5px"}}>
                                     <button className="btn" onClick={()=>{props.decrement()}} style={{backgroundColor:"#FA8281",width:"100%"}}>Previous</button>
                                 </Col>)}
-                                {finish === true ? (<Col md={6} style={{marginTop:"5px"}}>
-                                    <button className="btn" onClick={()=>{props.increment()}} style={{backgroundColor:"#82F78C",width:"100%"}}>Next</button>
+                                {(props.c=== quiz.questions.length-2) ? (<Col md={6} style={{marginTop:"5px"}}>
+                                    <button className="btn" onClick={()=>{props.increment()}} style={{backgroundColor:"#82F78C",width:"100%"}} disabled>Next</button>
                                 </Col>):(<Col md={6} style={{marginTop:"5px"}}>
                                     <button className="btn" onClick={()=>{props.increment()}} style={{backgroundColor:"#82F78C",width:"100%"}}>Next</button>
                                 </Col>)}
