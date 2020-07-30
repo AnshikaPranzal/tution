@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getAllStandards, getASubject} from '../../../../helper/index'
+import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getAllStandards} from '../../../../helper/index'
 
 import {
     Card,
