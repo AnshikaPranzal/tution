@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 
 
-<<<<<<< HEAD
-import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects} from '../../../../helper/index'
-=======
 import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getAllStandards, getASubject} from '../../../../helper/index'
->>>>>>> cbfd3f00b13f0eb061991445861ef014e5c58202
 
 import {
     Card,
@@ -22,19 +18,12 @@ const Projects = () => {
  
     const [classO, setclassO] = useState([])
     // eslint-disable-next-line no-unused-vars
-<<<<<<< HEAD
-    const [, seterrorF] = useState(false)
-=======
     const [std, setstandard] = useState([])
     const [errorS, seterrorS] = useState(false)
     const [errorF, seterrorF] = useState(false)
->>>>>>> cbfd3f00b13f0eb061991445861ef014e5c58202
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
     const [sub, setsubject] = useState([])
-<<<<<<< HEAD
-=======
-    const [subname, setSubname] = useState()
     
 
     // const getClassName = (cid) => {
@@ -44,7 +33,6 @@ const Projects = () => {
     // }
 
     
->>>>>>> cbfd3f00b13f0eb061991445861ef014e5c58202
 
     const loadAllSubjects = () =>{
         getAllSubjects().then(data =>{
@@ -367,11 +355,7 @@ const Projects = () => {
                                         <h5 className="mb-0 font-16 font-medium"><span><a href={obj.classLink} target="blank">Start Class</a></span></h5></div>
                                 </div>
                             </td>
-<<<<<<< HEAD
-                            {/* <td>{getClassName(obj.subject)}</td> */}
-=======
                             <td>{obj.subject}</td>
->>>>>>> cbfd3f00b13f0eb061991445861ef014e5c58202
                             
                             <td>{obj.standard}</td>
                             <td>{obj.time}</td>
