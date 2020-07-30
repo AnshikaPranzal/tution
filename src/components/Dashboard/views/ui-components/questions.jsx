@@ -14,9 +14,10 @@ import {
     InputGroupText
 } from 'reactstrap';
 import { Modal } from 'react-bootstrap';
-import {createQuestion, createOption, getQuestions, deleteQuestion} from '../../../helper';
+import {createQuestion, createOption, getQuestions, deleteQuestion, deleteOption} from '../../../helper';
 
 import UpdateQuestion from '../../../UpdateQuestion'
+import UpdateOption from '../../../UpdateOption'
 import ImageHelper from '../../../helper/ImageHelper';
 const Questions = (props) => {
 
@@ -42,7 +43,6 @@ const Questions = (props) => {
         console.log(qid,"id")
 
         getQuestions(qid).then(data=>{
-          console.log(data,"all questions")
           if(data){
             if(data.error){
               console.log(data.error)
@@ -59,11 +59,10 @@ const Questions = (props) => {
 
          
     }
-    console.log(quiz,"qwqwww")
 
     const handleChange = name => event => {
       const v = name === "img"? event.target.files[0]:event.target.value
-      console.log(event.target,v)
+      
       formData.set(name,v)
       if( name !== "img" )
       setqarray({
@@ -71,23 +70,27 @@ const Questions = (props) => {
       })
       if(name === "img")
       formData.set("hasImg",true)
-      console.log(qarray)
-      for (var key of formData.entries()) {
-        console.log(key[0] + ', ' + key[1]);
-    }
+     
   }
 
     const [refresh, setrefresh] = useState(true)
 
     useEffect(() => {
         loadQuiz()
-    }, [loadQuiz, refresh])
+    }, [refresh])
     const [options, setoptions] = useState([]);
   const [zId, setzId] = useState()
   const [show, setshow] = useState(false);
+  const [oId, setoId] = useState()
+  const [showo, setshowo] = useState(false);
   const handleClose = () => setshow(false);
   const handleShow = (id) => {setshow(true);
   setzId(id)
+  }
+  const handleCloseO = () => setshowo(false);
+  const handleShowO = (id) => {
+  setshowo(true);
+  setoId(id)
   }
 
   // handle input change
@@ -175,11 +178,26 @@ const [quesId, setquesId] = useState({id: 0})
       }
     })
   }
+  const deleteAOption = (oid,questionId)=>{
+    deleteOption(oid,questionId).then(data=>{
+      if(data){
+        if(data.error){
+          console.log(data.error)
+        }
+        else{
+          setrefresh(!refresh)
+        }
+      }
+    })
+  }
 
   const nextChar = (c,k)=> {
     return String.fromCharCode(c.charCodeAt(0) + k);
 }
  
+const loadrefresh = ()=>{
+  setrefresh(!refresh)
+}
     return(
     <React.Fragment>
           <div >
@@ -236,7 +254,7 @@ const [quesId, setquesId] = useState({id: 0})
                                                     <Input addon type="checkbox" id="hi" name="isCorrect" onChange={e=>handleInputChange(e,i)} aria-label="Checkbox for following text input" />
                                                   </InputGroupText>
                                                 </InputGroupAddon>
-                                                <Input placeholder="Check it out" name="optionValue" onChange={e=>handleInputChangeN(e,i)}/>
+                                                <Input placeholder="Enter Option" name="optionValue" onChange={e=>handleInputChangeN(e,i)}/>
                                               </InputGroup>
                                               </div>
                                             </td>
@@ -282,15 +300,20 @@ const [quesId, setquesId] = useState({id: 0})
                             </div>
                             
                             <br></br>
-                            <div style={{marginLeft:"3em"}}>{x.options.map((y,j)=>(
-                                y.isCorrect ? (<span className="text-success">{nextChar('a',j)}. {y.optionValue}<i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i>
+                            <div style={{marginLeft:"3em"}}>
+                              {x.options.map((y,j)=>(
+                                y.isCorrect ? (<span className="text-success">{nextChar('a',j)}. {y.optionValue}
+                                <i className="fa fa-plus text-info" onClick={()=>{handleShowO(y._id)}} style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i>
                                 <i className="fa fa-trash text-orange" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i><br></br></span>):(<span>{nextChar('a',j)}. {y.optionValue}
-                                <i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i>
-                                <i className="fa fa-trash text-orange" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i><br></br></span>)
+                                <i className="fa fa-plus text-info" onClick={()=>{handleShowO(y._id)}} style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i>
+                                <i className="fa fa-trash text-orange" onClick={()=>{deleteAOption(y._id,x._id)}} style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i><br></br></span>)
                               ))}</div>
                               
                             <Modal show={show} onHide={handleClose}>
                                   <UpdateQuestion id={zId} ></UpdateQuestion>
+                            </Modal>
+                            <Modal show={showo} onHide={handleCloseO}>
+                                  <UpdateOption id={oId} loadrefresh={()=>loadrefresh()} hide={()=>handleCloseO()}></UpdateOption>
                             </Modal>
                             </React.Fragment>
                             </td>

@@ -17,7 +17,6 @@ import { SalesSummary, Projects, Feeds } from '../../components/teacher-dashboar
 import { useRef } from 'react';
 // import AddDocument from '../ui-components/document'
 import AddDQuiz from '../ui-components/quiz'
-import AddQuiz from '../ui-components/quiz';
 
 const Starter = () => {
    const [file, setfile] = useState()
@@ -397,8 +396,8 @@ const Starter = () => {
                 {classroomO.map((obj,i)=>{
                     return(
                     // <tr key={i}>
-                    <Col xs="12" md="4">
-                        <Card key={i}>
+                    <Col xs="12" md="4" key={i}>
+                        <Card>
                             <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
                                         <CardTitle>{obj.name}</CardTitle>
                                         <CardSubtitle>{obj.subject}</CardSubtitle>
@@ -408,11 +407,11 @@ const Starter = () => {
                                         // && isAuthenticated().user.role === 1
                                         ?(
                                             <p>
-                                            <Link classid="Hello" to={`/dashboard-teacher/classroom-teacher/${obj._id}`}>See More</Link>
+                                            <Link to={`/dashboard-teacher/classroom-teacher/${obj._id}`}>See More</Link>
                                             </p>
                                         ):""}
-                                             <i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClassroom(obj._id)}} aria-hidden="true"></i>
-                                        <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClassroom(obj._id)}} aria-hidden="true"></i></div>
+                                             <i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClassroom(obj._id)}} aria-hidden="true"></i>
+                                        <i className="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClassroom(obj._id)}} aria-hidden="true"></i></div>
                                 </Card>
                                 </Col>)
                            

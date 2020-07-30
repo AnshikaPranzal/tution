@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getAllStandards, getASubject} from '../../../../helper/index'
+import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getAllStandards} from '../../../../helper/index'
 
 import {
     Card,
@@ -23,9 +23,7 @@ const Projects = () => {
     const [errorF, seterrorF] = useState(false)
     const [update, setupdate] = useState(false)
     const [uid, setuid] = useState("")
-    const [reload, setreload] = useState(false)
     const [sub, setsubject] = useState([])
-    const [subname, setSubname] = useState()
     
 
     // const getClassName = (cid) => {
@@ -137,11 +135,6 @@ const Projects = () => {
     const handleChange = name => event => {
         setProject({
             ...project,error: false, [name]: event.target.value
-        })
-    }
-    const reloading = ()=>{
-        setProject({
-            ...project,error: false, name: nameT, email: emailT
         })
     }
     const onSubmit = event => {
@@ -349,10 +342,9 @@ const Projects = () => {
                                     onChange={handleChange("date")}
                                     style={{maxWidth:"200px"}}
                                     ></Input></td>
-                                    <td>{update === true ? (<i onClick={e=>{updateaClass(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} class="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} class="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
+                                    <td>{update === true ? (<i onClick={e=>{updateaClass(e,uid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} className="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={onSubmit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} className="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
                         </tr>
-                        {classO.map((obj,i) => {
-                                                          
+                        {classO.map((obj,i) => {            
                             if(obj.email === emailT){
                               
                             return(
@@ -368,8 +360,8 @@ const Projects = () => {
                             <td>{obj.standard}</td>
                             <td>{obj.time}</td>
                             <td className="blue-grey-text  text-darken-4 font-medium">{obj.date.substring(8, 10)}{obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}</td>
-                            <td><i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClass(obj._id)}} aria-hidden="true"></i>
-                            <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClass(obj._id)}} aria-hidden="true"></i></td>
+                            <td><i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getClass(obj._id)}} aria-hidden="true"></i>
+                            <i className="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaClass(obj._id)}} aria-hidden="true"></i></td>
                         </tr>
                         )}
                         return(<tr key={i}></tr>)

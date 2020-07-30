@@ -12,6 +12,7 @@ import QuizComponent from './quizComponent';
       const decrement = ()=>{
         setc(c-1)
       }
+      var elements=[];
       const [cSelected, setCSelected] = useState([]);
       const [marks, setmarks] = useState(0)
       const onCheckboxBtnClick = (selected) => {
@@ -29,7 +30,7 @@ import QuizComponent from './quizComponent';
         setmarks(marks+1)
       }
       return(
-    <QuizComponent c={c} setc={setc} increment={increment} decrement={decrement} qid={qid} cSelected={cSelected} finish={finish} setfinish={setfinish} onCheckboxBtnClick={onCheckboxBtnClick} marks={marks} incMarks={incMarks} setmarks={setmarks}></QuizComponent>
+    <QuizComponent c={c} setc={setc} increment={increment} decrement={decrement} qid={qid} cSelected={cSelected} finish={finish} setfinish={setfinish} elements={elements} onCheckboxBtnClick={onCheckboxBtnClick} marks={marks} incMarks={incMarks} setmarks={setmarks}></QuizComponent>
       )
   }
 
