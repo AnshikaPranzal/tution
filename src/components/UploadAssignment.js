@@ -14,6 +14,7 @@ import {
 } from 'reactstrap';
 import $ from 'jquery';
 import { getAClassroom, classroomUploadAssignment, getAllUSers,isAuthenticated } from './helper/index';
+import { API } from '../backend';
 
 const AddAssignment = (props)=> {
     const crid = props.id;
@@ -270,6 +271,7 @@ const AddAssignment = (props)=> {
                                 <th>Uploader</th>
                                 <th>Uploaded on</th>
                                 <th>Last Date of submission</th>
+                                <th>Assignment</th>
                                 <th>Answers</th>
                         {(project.assignment === undefined)?"":
                         (project.assignment.map((obj,i)=>{
@@ -284,6 +286,7 @@ const AddAssignment = (props)=> {
                                         <td>{obj.submission.substring(8,10)} {Month[parseInt(obj.submission.substring(5,7)-1)]}, {obj.submission.substring(0,4)}</td>
                                         {/* <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody> */}
+                                        <td><a href={`${API}/classroom/assignment/${obj._id}/${obj.name}`} rel="noopener noreferrer" target="_blank">Open</a></td>
                                         <td>
                             <>
                         <UploadAnswer id={crid} aid={obj._id} data={project.assignmentanswers} submission={obj.submission}></UploadAnswer>

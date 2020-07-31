@@ -13,6 +13,7 @@ import {
 } from 'reactstrap';
 import $ from 'jquery'
 import { classroomUploadAnswer, getAllUSers,isAuthenticated, getAClassroom } from './helper/index';
+import { API } from '../backend';
 
 const UploadAnswer = (props)=> {
     const crid = props.id;
@@ -75,7 +76,7 @@ const UploadAnswer = (props)=> {
 
         return(
         <div className="row ">
-                <div className="col-md-6 offset-sm-3 text-left">
+                <div className="col-md-8 offset-sm-3 text-left">
                     <div className="alert alert-success" style={{display: createdDocument ? "" : "none"}}>
                         Answer Submitted.
                     </div>
@@ -87,7 +88,7 @@ const UploadAnswer = (props)=> {
        
     return(
         <div className="row ">
-        <div className="col-md-6 offset-sm-3 text-left">
+        <div className="col-md-8 offset-sm-3 text-left">
         <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
             {error}
         </div>
@@ -193,7 +194,7 @@ const UploadAnswer = (props)=> {
                                         <td>{obj.name}</td>
                                         <td>{obj.uploader}</td>
                                         <td>{obj.date.substring(8,10)} {Month[parseInt(obj.date.substring(5,7)-1)]}, {obj.date.substring(0,4)}</td>
-
+                                        <td><a href={`${API}/classroom/answer/${obj._id}/${obj.name}`} rel="noopener noreferrer" target="_blank">Open</a></td>
                                 </tr>)}}))}</Table>
         </>}
 {/*         
