@@ -12,7 +12,7 @@ import {
   Table
 } from 'reactstrap';
 import $ from 'jquery'
-import { classroomUploadDocument, getAllUSers,isAuthenticated, getAClassroom } from './helper/index';
+import { classroomUploadDocument, getAllUSers,isAuthenticated, getAClassroom, deleteDocument } from './helper/index';
 import { API } from '../backend';
 
 const AddDocument = (props)=> {
@@ -88,6 +88,21 @@ const AddDocument = (props)=> {
               setrefresh(false)
           }
       })}
+
+      const deleteadocument = catuctId => {
+          console.log(catuctId)
+        deleteDocument({cid: crid, did: catuctId}).then(data=>{
+            console.log(data)
+            if(data.error)
+            {
+                console.log(data.error)
+                // setValues({...values,error:data.error})
+            }
+            else{
+               setrefresh(true)
+            }
+        })
+    }
 
       useEffect (() => {
           getClassroom(crid)
@@ -241,7 +256,8 @@ const AddDocument = (props)=> {
                                         {/* <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody> */}
                                 
-                                        <td><a href={`${API}/classroom/document/${obj._id}/${obj.name}`} rel="noopener noreferrer" target="_blank">Open</a></td>
+                                        <td><a href={`${API}/classroom/document/${obj._id}/${obj.name}`} rel="noopener noreferrer" target="_blank">Open</a>
+                                        {isAuthenticated().user.role === 1 ? <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteadocument(obj._id)}} aria-hidden="true"></i>:""}</td>
 
                                 </tr>
                                 )
