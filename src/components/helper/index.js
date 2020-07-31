@@ -737,6 +737,22 @@ export const getAllClassrooms = async ()=>{
     }
 }
 
+export const getAllMembers = async classroomId=>{
+    
+    try {
+        const response = await fetch(`${API}/classroom/${classroomId}/members`, {
+            method: "GET",
+        });
+        console.log(response.json());
+        console.log(classroomId)
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in getting the Classrooms");
+    }
+}
+
+
 export const getAClassroom = async classroomId=>{
     
     try {
