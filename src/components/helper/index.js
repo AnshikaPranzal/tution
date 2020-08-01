@@ -597,42 +597,6 @@ export const addItemToCart = (item,next)=>{
     
 }
 
-export const addClickToAnswer = (item,c,next)=>{
-    let answer = []
-    if(typeof window!== undefined){
-        if(localStorage.getItem("answer")){
-            answer=JSON.parse(localStorage.getItem("answer"))
-        }
-
-            answer.push({
-                ...item
-            })
-        
-        next()
-        
-    }
-    localStorage.setItem("answer",JSON.stringify(answer))
-    
-}
-
-export const findClickInAnswer = (i)=>{
-    let answer = []
-    let t
-    if(typeof window!== undefined){
-        if(localStorage.getItem("answer")){
-            answer=JSON.parse(localStorage.getItem("answer"))
-        }
-        // answer.map((prod,index) =>{
-            
-        //         if(i === index)
-        //         {
-        //            t = prod ;
-        //     console.log("t",t)
-        // }
-        //   })
-    }
-    return answer;
-}
 
 export const updateItemInCart = (i)=>{
     let cart = []
@@ -961,7 +925,7 @@ export const addSubject = async (ids) => {
         return response.json();
     }
     catch (e) {
-        console.log("Error in adding subject");
+        console.log("Error in adding subject",e);
     }
 }
 

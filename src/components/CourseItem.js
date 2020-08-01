@@ -21,11 +21,11 @@ const CourseItem = (props) => {
   const [flag, setflag] = useState(0)
   const [amount, setamount] = useState(0);
   const [sub, setsub] = useState(2)
-  const [product, setproduct] = useState([{"name":props.topic,"count":1}])
+  const [product, setproduct] = useState([{"name":props.topic,"id":props.subjectid,"count":1}])
   const [cart, setcart] = useState(loadCart())
     
 
-  const addProductToCart = () => {
+  const addProductToCart = async () => {
     var i;
     
     if(cart === undefined)
@@ -34,6 +34,7 @@ const CourseItem = (props) => {
       
       
         addItemToCart(product,()=>{
+          console.log("umm idk")
           setcart(loadCart())
         })
         setcart(loadCart())
@@ -41,6 +42,7 @@ const CourseItem = (props) => {
       }
       else
       {
+      console.log("pppp",product)
       console.log("sub")
     for(i=0;i<cart.length;i++){
       console.log(i === cart.length)

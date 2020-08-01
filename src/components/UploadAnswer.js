@@ -1,26 +1,16 @@
 import React, {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Card,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-  Row,
-  Col,
-  Input,
   Table
 } from 'reactstrap';
 import $ from 'jquery'
-import { classroomUploadAnswer, getAllUSers,isAuthenticated, getAClassroom } from './helper/index';
+import { classroomUploadAnswer, getAllUSers,isAuthenticated } from './helper/index';
 import { API } from '../backend';
 
 const UploadAnswer = (props)=> {
     const crid = props.id;
     const aid = props.aid;
     const data = props.data;
-    const submission = props.submission;
-    const today = new Date().toString();
     console.log(crid)
     const [values, setValues] = useState({
         name:"",
@@ -40,9 +30,9 @@ const UploadAnswer = (props)=> {
 
    
     const refresh1 = true;
-    const [refresh, setrefresh] = useState(true)
-    const { name,type,price, a_id,photo,categories,category,loading,error,getRedirect,createdDocument,formData} = values;
-    const{user, token} = isAuthenticated();
+    const [, setrefresh] = useState(true)
+    const { name,categories,error,createdDocument,formData} = values;
+    const{user} = isAuthenticated();
 
     const preload = () => {
         getAllUSers().then(data=>{
@@ -65,12 +55,6 @@ const UploadAnswer = (props)=> {
 
     
      
-    const goBack = () =>(
-        
-     <div className="mt-5">
-         <Link className="btn btn-sm btn-success mb-3" to="/admin/dashboard">Go Back to Home</Link>
-     </div>
-    );
 
     const successMessage = () =>{
 

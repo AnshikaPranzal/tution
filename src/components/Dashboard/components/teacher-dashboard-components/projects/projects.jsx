@@ -352,7 +352,7 @@ const Projects = () => {
                             <td>
                                 <div className="d-flex no-block align-items-center">
                                 <div className="">
-                                        <h5 className="mb-0 font-16 font-medium"><span><a href={obj.classLink} target="blank">Start Class</a></span></h5></div>
+                                        <h5 className="mb-0 font-16 font-medium"><span><a href={obj.classLink} rel="noopener noreferrer" target="_blank">Start Class</a></span></h5></div>
                                 </div>
                             </td>
                             <td>{obj.subject}</td>

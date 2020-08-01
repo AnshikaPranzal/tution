@@ -2,7 +2,7 @@
 import React, { useState,useEffect } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import { Modal, Button} from 'react-bootstrap';
-import { signup1, cartEmpty, addItemToCart, updateItemInCart, updateUser, findItemInCart, getAUser,decreaseItemInCart } from './helper/index'
+import { signup1, cartEmpty, addItemToCart, updateItemInCart, updateUser, findItemInCart, getAUser,decreaseItemInCart, addSubject } from './helper/index'
 import { isAuthenticated,payment,loadCart } from './helper';
 import { Input,Table } from 'reactstrap';
 
@@ -45,27 +45,42 @@ const CartModal = (props) =>{
 
     const purchaseCount = ()=>{
         
-        getAUser(user._id,token).then(data=>{
+        getAUser(user._id,token).then(async data=>{
             if(data.error){
                 console.log(data.error,"_-_")
             }
             else{
                 console.log(data,"-_-")
-                const physics = findItemInCart("Physics") + data.physics
-                const chemistry = findItemInCart("Chemistry") + data.chemistry 
-                const maths = findItemInCart("Mathematics") + data.maths
-                const biology = findItemInCart("Biology") + data.biology
+                console.log(loadCart(),"uuu")
+                const cart = await loadCart()
+                // const physics = findItemInCart("Physics") + data.physics
+                // const chemistry = findItemInCart("Chemistry") + data.chemistry 
+                // const maths = findItemInCart("Mathematics") + data.maths
+                // const biology = findItemInCart("Biology") + data.biology
                 
-                console.log(physics,"kk")
-                updateUser(user._id,token,{physics,chemistry,maths,biology}).then( (data) =>{
+                // console.log(physics,"kk")
+                // updateUser(user._id,token,{physics,chemistry,maths,biology}).then( (data) =>{
                    
-                    if(data.error){
-                        console.log(data.error)
-                    }
-                    else{
-                        console.log("updated")
-                }})
-                .catch(console.log("Error in updation"))
+                //     if(data.error){
+                //         console.log(data.error)
+                //     }
+                //     else{
+                //         console.log("updated")
+                // }})
+                // .catch(console.log("Error in updation"))
+                cart.map(async (o,i)=>{
+                    console.log(o)
+                    await addSubject({user_id:user._id, subject_id:o[0].id, value: o[0].count}).then(data=>{
+                        if(data){
+                            if(data.error){
+                                console.log(data.error)
+                            }
+                            else{
+                                console.log(data,"hi")
+                            }
+                        }
+                    })
+                })
             }
         }).catch(err=>console.log(err))
        
@@ -92,11 +107,11 @@ const CartModal = (props) =>{
           "name": "Some Tutions",
           "description": "Thanks for enrolling with the best!",
           "image": "http://localhost:5000/logo.svg",
-          "order_id": data.id, 
+          "order_id": data.id,
           "handler": function (response){
               // alert(response.razorpay_payment_id);
               // alert(response.razorpay_order_id);
-              
+            //   console.log(response)
             purchaseCount()
             alert("Congratulations your payment was successful!!")
               

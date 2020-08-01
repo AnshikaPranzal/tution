@@ -37,6 +37,7 @@ const Starter = () => {
     const {formData}=values
 
     const [sub, setsubject] = useState([])
+    const [role, setrole] = useState(1)
     
 
     const loadAllSubjects = () =>{
@@ -111,7 +112,7 @@ const Starter = () => {
             </div>
         )}
 
-        const { user } = isAuthenticated();
+        const { user,token } = isAuthenticated();
         const Tid = user._id;
 
         const [project, setProject] = useState({
