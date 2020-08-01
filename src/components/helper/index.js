@@ -983,6 +983,23 @@ export const addSubject = async (ids) => {
     }
 }
 
+export const buySubject = async (ids) => {
+    try {
+        const response = await fetch(`${API}/user/buysubject`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(ids)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in buying subject",e);
+    }
+}
+
 export const getAllStandards = ()=>{
     
     return fetch(`${API}/standards`,{

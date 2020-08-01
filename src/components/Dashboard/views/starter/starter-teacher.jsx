@@ -245,14 +245,14 @@ const Starter = () => {
         const [file2, setfile2] = useState([])
     return (
         <div className="text-center">
-            <Row>
+            {/* <Row>
                 <Col sm={6} lg={8}>
                     <SalesSummary />
                 </Col>
                 <Col sm={6} lg={4}>
                     <Feeds />
                 </Col>
-            </Row>
+            </Row> */}
             <Row>
                 <Col sm={12}>
                     <Projects />
