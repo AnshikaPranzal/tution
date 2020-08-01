@@ -747,6 +747,42 @@ export const deleteClassroom = async (classroomId)=>{
     }
 }
 
+export const deleteDocument = async (ids)=>{
+    
+    try {
+        const response = await fetch(`${API}/document/delete`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(ids)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in deleting the Notes");
+    }
+}
+
+export const deleteAssignment = async (ids)=>{
+    
+    try {
+        const response = await fetch(`${API}/assignment/delete`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(ids)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in deleting the Assignment");
+    }
+}
+
 export const updateClassroom = async (classroomId,classroomO)=>{
     
     try {
@@ -1027,5 +1063,23 @@ export const subclasses = async (ids) => {
     }
     catch (e) {
         console.log("Error in geting Classes");
+    }
+}
+
+export const subquizzes = async (ids) => {
+    console.log(ids)
+    try {
+        const response = await fetch(`${API}/user/subquizes`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(ids)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in geting Quizes");
     }
 }

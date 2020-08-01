@@ -13,7 +13,7 @@ import {
   Table
 } from 'reactstrap';
 import $ from 'jquery';
-import { getAClassroom, classroomUploadAssignment, getAllUSers,isAuthenticated } from './helper/index';
+import { getAClassroom, classroomUploadAssignment, getAllUSers, deleteAssignment,isAuthenticated } from './helper/index';
 import { API } from '../backend';
 
 const AddAssignment = (props)=> {
@@ -103,6 +103,21 @@ const AddAssignment = (props)=> {
          <Link className="btn btn-sm btn-success mb-3" to="/admin/dashboard">Go Back to Home</Link>
      </div>
     );
+
+    const deleteaassignment = catuctId => {
+      console.log(catuctId)
+    deleteAssignment({cid: crid, did: catuctId}).then(data=>{
+        console.log(data)
+        if(data.error)
+        {
+            console.log(data.error)
+            // setValues({...values,error:data.error})
+        }
+        else{
+           setrefresh(true)
+        }
+    })
+}
 
     const successMessage = () =>{
         console.log(createdAssignment)
@@ -271,7 +286,7 @@ const AddAssignment = (props)=> {
                                 <th>Uploader</th>
                                 <th>Uploaded on</th>
                                 <th>Last Date of submission</th>
-                                <th>Assignment</th>
+                                <th>View</th>
                                 <th>Answers</th>
                         {(project.assignment === undefined)?"":
                         (project.assignment.map((obj,i)=>{
@@ -286,7 +301,8 @@ const AddAssignment = (props)=> {
                                         <td>{obj.submission.substring(8,10)} {Month[parseInt(obj.submission.substring(5,7)-1)]}, {obj.submission.substring(0,4)}</td>
                                         {/* <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardBody>{obj.description}</CardBody> */}
-                                        <td><a href={`${API}/classroom/assignment/${obj._id}/${obj.name}`} rel="noopener noreferrer" target="_blank">Open</a></td>
+                                        <td><a href={`${API}/classroom/assignment/${obj._id}/${obj.name}`} rel="noopener noreferrer" target="_blank">Open</a>
+                                        {isAuthenticated().user.role === 1 ? <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaassignment(obj._id)}} aria-hidden="true"></i>:""}</td>
                                         <td>
                             <>
                         <UploadAnswer id={crid} aid={obj._id} data={project.assignmentanswers} submission={obj.submission}></UploadAnswer>

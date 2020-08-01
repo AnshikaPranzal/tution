@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import { getQuiz, isAuthenticated } from '../../../helper/index';
+import { getQuiz, isAuthenticated, subquizzes } from '../../../helper/index';
 
 import {
     Card,
@@ -20,14 +20,14 @@ import { Link } from 'react-router-dom';
     const [refresh, setrefresh] = useState(true)
     const loadAllMyQuizzes = ()=>{
       console.log(user._id,"heyy")
-      getQuiz(user._id).then(data=>{
+      subquizzes({user_id: user._id}).then(data=>{
         console.log(data,"quizdata")
         if(data){
           if(data.error){
             console.log(data.error)
           }
           else{
-            setquizzes(data.data)
+            setquizzes(data)
           }
         }
       })

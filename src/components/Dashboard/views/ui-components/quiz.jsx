@@ -305,9 +305,11 @@ const AddQuiz = ({c})=> {
                       <td>{update === true ? (<i onClick={e=>{updateAquiz(qid)}} style={{cursor:"pointer", marginTop:"6px", fontSize:"20px"}} className="fa fa-check text-success" aria-hidden="true"></i>):(<i onClick={Submit} style={{cursor:"pointer",marginTop:"6px", fontSize:"20px"}} className="fa fa-plus text-success" aria-hidden="true"></i>)}</td>
 
       </tr>    
-            {quizzes && quizzes.map((obj,index) => (
-                
-              <tr key={index}>
+            {quizzes && quizzes.map((obj,index) => {
+              console.log(user._id.toString())
+              console.log(obj.teacher.toString());
+                if(user._id.toString() === obj.teacher.toString()){
+              return(<tr key={index}>
                   <td>{obj.title}</td>
                   <td>{obj.subject}</td>
                   <td>{obj.standard}</td>
@@ -315,8 +317,8 @@ const AddQuiz = ({c})=> {
                   <td><Link to={`/quiz/${obj._id}`} >Add Questions</Link> </td>
                   <td><i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getTheQuiz(obj._id)}} aria-hidden="true"></i>
                    <i className="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteAQuiz(obj._id)}} aria-hidden="true"></i></td>
-              </tr>
-            ))}  
+              </tr>)}
+              })}  
             {console.log(quizzes.data)}
                     </tbody>
                     </Table>

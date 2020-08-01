@@ -76,11 +76,11 @@ const Projects = () => {
             <CardBody>
                 <div className="d-flex align-items-center">
                     <div>
-                        <CardTitle>Your Classes</CardTitle>
+                        <CardTitle><h4>Your Classes</h4></CardTitle>
                         <CardSubtitle>Click on them to join</CardSubtitle>
                     </div>
                   
-                    <div className="ml-auto d-flex no-block align-items-center">
+                    {/* <div className="ml-auto d-flex no-block align-items-center">
                         <div className="dl">
                             <Input type="select" className="custom-select">
                                 <option value="0">Monthly</option>
@@ -89,7 +89,7 @@ const Projects = () => {
                                 <option value="3">Yearly</option>
                             </Input>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <Table className="no-wrap v-middle" responsive>
                     <thead>
@@ -131,13 +131,15 @@ const Projects = () => {
                 </Table>
             </CardBody>
         </Card >
+        <h4>CLASSROOMS</h4>
+        <hr></hr>
         <Row>
         {classroomO.map((obj,i)=>{
             return(
             // <tr key={i}>
             <Col xs="12" md="4">
                 <Card key={i} style={{textAlign: "center"}}>
-                    <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
+                    <div style={{height: "5rem", background: "linear-gradient(45deg, #1273BE, violet"}}></div>
                                 <CardTitle>{obj.name}</CardTitle>
                                 <CardSubtitle>{obj.subject}</CardSubtitle>
                                 <CardBody>{obj.description}</CardBody>
