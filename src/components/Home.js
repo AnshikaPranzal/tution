@@ -99,7 +99,7 @@ const Home = () =>{
 
           {/* <Events></Events> */}
 
-          <TeacherList></TeacherList>
+          {/* <TeacherList></TeacherList> */}
 
 
           <Footer></Footer>

@@ -2,7 +2,7 @@
 import React, { useState,useEffect } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import { Modal, Button} from 'react-bootstrap';
-import { signup1, cartEmpty, addItemToCart, updateItemInCart, updateUser, findItemInCart, getAUser,decreaseItemInCart, addSubject } from './helper/index'
+import { signup1, cartEmpty, addItemToCart, updateItemInCart, updateUser, findItemInCart, getAUser,decreaseItemInCart, buySubject } from './helper/index'
 import { isAuthenticated,payment,loadCart } from './helper';
 import { Input,Table } from 'reactstrap';
 
@@ -68,18 +68,28 @@ const CartModal = (props) =>{
                 //         console.log("updated")
                 // }})
                 // .catch(console.log("Error in updation"))
-                cart.map(async (o,i)=>{
-                    console.log(o)
-                    await addSubject({user_id:user._id, subject_id:o[0].id, value: o[0].count}).then(data=>{
-                        if(data){
-                            if(data.error){
-                                console.log(data.error)
-                            }
-                            else{
-                                console.log(data,"hi")
-                            }
+                // cart.map(async (o,i)=>{
+                //     console.log(o)
+                //     await addSubject({user_id:user._id, subject_id:o[0].id, value: o[0].count}).then(data=>{
+                //         if(data){
+                //             if(data.error){
+                //                 console.log(data.error)
+                //             }
+                //             else{
+                //                 console.log(data,"hi")
+                //             }
+                //         }
+                //     })
+                // })
+                await buySubject({user_id:user._id, subject:cart}).then(data=>{
+                    if(data){
+                        if(data.error){
+                            console.log(data.error)
                         }
-                    })
+                        else{
+                            console.log(data,"hi")
+                        }
+                    }
                 })
             }
         }).catch(err=>console.log(err))

@@ -83,10 +83,9 @@ const CourseItem = (props) => {
           {/* <li className="list-inline-item"><i className="ti-calendar mr-1 text-color"></i>{props.date}</li> */}
           <li className="list-inline-item"></li>
         </ul>
-        <a href="course-single.html">
           <h4 className="card-title">{props.topic}</h4>
-        </a>
-        <p className="card-text mb-4"> {props.des}</p>
+{/*         
+        <p className="card-text mb-4"> {props.des}</p> */}
         <p className="list-inline-item">Rs.{props.price}</p>
         <hr></hr>
         <a  data-toggle="modal" data-target="#signinModal" className="hvr-bounce-to-top" topic={props.topic} onClick={addProductToCart}>Enroll</a>
