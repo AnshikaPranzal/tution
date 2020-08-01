@@ -20,15 +20,17 @@ let lineData = {
         pointBorderColor: 'rgb(94,114,228)',
         pointBackgroundColor: 'rgb(94,114,228)',
         data: [0, 15, 6, 11, 25, 9, 18, 24]
-    }, {
-        label: 'Outcome',
-        borderWidth: 1,
-        backgroundColor: 'rgba(79,195,247,.1)',
-        borderColor: 'rgb(79,195,247)',
-        pointBorderColor: 'rgb(79,195,247)',
-        pointBackgroundColor: 'rgb(79,195,247)',
-        data: [0, 8, 11, 22, 8, 10, 5, 21]
-    }]
+    }, 
+    // {
+    //     label: 'Outcome',
+    //     borderWidth: 1,
+    //     backgroundColor: 'rgba(79,195,247,.1)',
+    //     borderColor: 'rgb(79,195,247)',
+    //     pointBorderColor: 'rgb(79,195,247)',
+    //     pointBackgroundColor: 'rgb(79,195,247)',
+    //     data: [0, 8, 11, 22, 8, 10, 5, 21]
+    // }
+]
 };
 
 const SalesSummary = () => {
@@ -40,7 +42,7 @@ const SalesSummary = () => {
                         <CardTitle>Performance Summary</CardTitle>
                         <CardSubtitle>summary of the month</CardSubtitle>
                     </div>
-                    <div className="ml-auto d-flex align-items-center">
+                    {/* <div className="ml-auto d-flex align-items-center">
                         <ul className="list-inline font-12 dl mr-3 mb-0">
                             <li className="border-0 p-0 text-info list-inline-item">
                                 <i className="fa fa-circle"></i> Quizzes
@@ -49,7 +51,7 @@ const SalesSummary = () => {
                                 <i className="fa fa-circle"></i> Classes
 								</li>
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
                 <Row>
                     <Col lg="12">
