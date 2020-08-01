@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react';
-import {notices,isAuthenticated,getAllNotices,deleteNotice,updateNotice ,getANotice, getAllUSers, } from '../../../helper/index'
+import {notices,isAuthenticated,getAllNotices,deleteNotice,updateNotice ,getANotice, getAllUSers, updateRole, } from '../../../helper/index'
 import {
     Card,
     CardImg,
@@ -262,45 +262,73 @@ const Starter = () => {
     loadAllusers()
 }, [refresh])
 
+    const addTeacher = ()=>{
+        updateRole(user._id,{email:emailT,role:1}).then(data=>{
+            if(data){
+                if(data.error)
+                {
+                    console.log(data.error)
+                    // setValues({...values,error:data.error})
+                }
+                else{
+                    setemailT("")
+                }
+            }
+        })
+    }
+    const addAdmin = ()=>{
+        updateRole(user._id,{email:emailT,role:2}).then(data=>{
+            if(data){
+                if(data.error)
+                {
+                    console.log(data.error)
+                    // setValues({...values,error:data.error})
+                }
+                else{
+                    setemailT("")
+                }
+            }
+        })
+    }
     return (
-        <div >
+        <div>
         <Row className="text-center">
             {
-                                userO.map((obj,i) => {
-                                    if(obj.role === 0){
-                                        students = students + 1
-                                        studentsarray[students-1] = obj
-                                        usercreation = `${obj.createdAt.substring(5,7)}/${obj.createdAt.substring(8,10)}/${obj.createdAt.substring(0,4)}`
-                                         difference = Math.floor(((new Date().getTime())-(new Date(usercreation).getTime()))/(1000 * 3600 * 24))
-                                         console.log(difference)
-                                        if(difference <= 7)
-                                        {
-                                            weekstudents= weekstudents + 1
-                                            weekstudentsarray[weekstudents - 1] = obj
-                                        }
-                                        if(difference <= 30){
-                                            monthstudents= monthstudents + 1
-                                            monthstudentsarray[monthstudents-1] = obj
-                                        }
-                                        if(students === 0){
-                                            $('.bsm').addClass('hide')
-                                        }else{
-                                            $('.bsm').removeClass('hide')
-                                        }
-                                        if(weekstudents === 0){
-                                            $('.bwsm').addClass('hide')
-                                        }else{
-                                            $('.bwsm').removeClass('hide') 
-                                        }
-                                        if(monthstudents === 0){
-                                            $('.bmsm').addClass('hide')
-                                        }else{
-                                            $('.bmsm').removeClass('hide')
-                                        }
-                                        
-                                    }
-                                })
-                            }
+                userO.map((obj,i) => {
+                    if(obj.role === 0){
+                        students = students + 1
+                        studentsarray[students-1] = obj
+                        usercreation = `${obj.createdAt.substring(5,7)}/${obj.createdAt.substring(8,10)}/${obj.createdAt.substring(0,4)}`
+                            difference = Math.floor(((new Date().getTime())-(new Date(usercreation).getTime()))/(1000 * 3600 * 24))
+                            console.log(difference)
+                        if(difference <= 7)
+                        {
+                            weekstudents= weekstudents + 1
+                            weekstudentsarray[weekstudents - 1] = obj
+                        }
+                        if(difference <= 30){
+                            monthstudents= monthstudents + 1
+                            monthstudentsarray[monthstudents-1] = obj
+                        }
+                        if(students === 0){
+                            $('.bsm').addClass('hide')
+                        }else{
+                            $('.bsm').removeClass('hide')
+                        }
+                        if(weekstudents === 0){
+                            $('.bwsm').addClass('hide')
+                        }else{
+                            $('.bwsm').removeClass('hide') 
+                        }
+                        if(monthstudents === 0){
+                            $('.bmsm').addClass('hide')
+                        }else{
+                            $('.bmsm').removeClass('hide')
+                        }
+                        
+                    }
+                })
+            }
             <Col xs="12" md="4">
             
                     {/*--------------------------------------------------------------------------------*/}
@@ -414,7 +442,7 @@ const Starter = () => {
                                    
                                     ></Input>
                                    
-                            <Button style={{marginTop:"1rem"}}>Add</Button>
+                            <Button onClick={()=>{addTeacher()}} style={{marginTop:"1rem"}}>Add</Button>
                         </CardBody>
                     </Card>
                 </Col>

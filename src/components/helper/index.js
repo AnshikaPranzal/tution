@@ -948,6 +948,24 @@ export const updateSubject = async (subjectId,subjectO)=>{
     }
 }
 
+export const updateRole = async (userId,user)=>{
+    
+    try {
+        const response = await fetch(`${API}/update/role/${userId}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user)
+        });
+        return response.json();
+    }
+    catch (e) {
+        console.log("Error in updating role");
+    }
+}
+
 export const addSubject = async (ids) => {
     try {
         const response = await fetch(`${API}/user/addSubject`, {
