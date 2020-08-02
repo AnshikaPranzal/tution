@@ -95,7 +95,7 @@ import Timer from './timer.jsx';
     const onSubmit = ()=>{
         const totalMarks = dec()
         settotalmarks(totalMarks)
-        createResponse({cSelected,quiz,user,totalMarks}).then(data=>{
+        createResponse({cSelected,quiz,user,totalMarks},quiz._id,user._id).then(data=>{
             if(data){
                 if(data.error){
                     console.log(data.error)
@@ -286,7 +286,7 @@ import Timer from './timer.jsx';
                                 </Col>):(<Col md={6} style={{marginTop:"5px"}}>
                                     <button className="btn" onClick={()=>{props.decrement()}} style={{backgroundColor:"#FA8281",width:"100%"}}>Previous</button>
                                 </Col>)}
-                                {(props.c=== quiz.questions.length-2) ? (<Col md={6} style={{marginTop:"5px"}}>
+                                {(props.c=== quiz.questions.length-1) ? (<Col md={6} style={{marginTop:"5px"}}>
                                     <button className="btn" onClick={()=>{props.increment()}} style={{backgroundColor:"#82F78C",width:"100%"}} disabled>Next</button>
                                 </Col>):(<Col md={6} style={{marginTop:"5px"}}>
                                     <button className="btn" onClick={()=>{props.increment()}} style={{backgroundColor:"#82F78C",width:"100%"}}>Next</button>

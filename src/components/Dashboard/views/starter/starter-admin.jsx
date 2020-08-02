@@ -140,6 +140,53 @@ const Starter = () => {
         </div>
         </div>
     )}
+        const [successT, setsuccessT] = useState(false)
+        const [errorT, seterrorT] = useState(false)
+        const [successA, setsuccessA] = useState(false)
+        const [errorA, seterrorA] = useState(false)
+    const successTeacher = () =>(
+        <div className="row ">
+                <div className="col-md-6 offset-sm-3 text-left">
+                    <div className="alert alert-success" style={{display: successT ? "" : "none"}}>
+                        Teacher Added!!
+                    </div>
+                </div>
+        </div>
+    )
+
+    const errorTeacher = () =>{
+       
+    return(
+        <div className="row ">
+        <div className="col-md-6 offset-sm-3 text-left">
+        <div className="alert alert-danger" style={{display: errorT ? "" : "none"}}>
+            {errorT}
+        </div>
+        </div>
+        </div>
+    )}
+
+    const successAdmin = () =>(
+        <div className="row ">
+                <div className="col-md-6 offset-sm-3 text-left">
+                    <div className="alert alert-success" style={{display: successA ? "" : "none"}}>
+                        Admin Added!!
+                    </div>
+                </div>
+        </div>
+    )
+
+    const errorAdmin = () =>{
+       
+    return(
+        <div className="row ">
+        <div className="col-md-6 offset-sm-3 text-left">
+        <div className="alert alert-danger" style={{display: errorA ? "" : "none"}}>
+            {errorA}
+        </div>
+        </div>
+        </div>
+    )}
     // const {dispatch} = useContext(TodoContext)
     const { user } = isAuthenticated();
     const [project, setProject] = useState({
@@ -267,25 +314,29 @@ const Starter = () => {
             if(data){
                 if(data.error)
                 {
-                    console.log(data.error)
+                    console.log(data.error,"lllllllllllll")
                     // setValues({...values,error:data.error})
+                    seterrorT(data.error)
                 }
                 else{
                     setemailT("")
+                    setsuccessT(true)
                 }
             }
         })
     }
     const addAdmin = ()=>{
-        updateRole(user._id,{email:emailT,role:2}).then(data=>{
+        updateRole(user._id,{email:emailA,role:2}).then(data=>{
             if(data){
                 if(data.error)
                 {
-                    console.log(data.error)
+                    console.log(data.error,"lllllllllllll")
+                    seterrorA(data.error)
                     // setValues({...values,error:data.error})
                 }
                 else{
-                    setemailT("")
+                    setemailA("")
+                    setsuccessA(true)
                 }
             }
         })
@@ -431,6 +482,8 @@ const Starter = () => {
                         <CardBody>
                             <CardTitle>Add Teacher</CardTitle>
                             <CardSubtitle>Provide email of the teacher.</CardSubtitle>
+                            {successTeacher()}
+                            {errorTeacher()}
                             <Input
                                     type="email"
                                     name="email"
@@ -455,6 +508,8 @@ const Starter = () => {
                         <CardBody>
                             <CardTitle>Add Admin</CardTitle>
                             <CardSubtitle>Provide email of the admin.</CardSubtitle>
+                            {successAdmin()}
+                            {errorAdmin()}
                             <Input
                                     type="email"
                                     name="email"
@@ -466,99 +521,13 @@ const Starter = () => {
                                    
                                     ></Input>
                                    
-                            <Button style={{marginTop:"1rem"}}>Add</Button>
+                            <Button onClick={()=>{addAdmin()}} style={{marginTop:"1rem"}}>Add</Button>
                         </CardBody>
                     </Card>
                 </Col>
                 
             </Row>
-            <Row className="text-center">
-                <Col xs="12" md="6">
-                    {/*--------------------------------------------------------------------------------*/}
-                    {/*Card-1*/}
-                    {/*--------------------------------------------------------------------------------*/}
-                    <Card>
-                        {/* <CardImg top width="100%" src={img1} /> */}
-                        <CardBody>
-                            <CardTitle>Add Video</CardTitle>
-                            <CardSubtitle>Provide the link for your youtube video.</CardSubtitle>
-                            <Input
-                                    type="text"
-                                    name="video"
-                                    id="video"
-                                    placeholder="Enter link here.."
-                                    value={video}
-                                    onChange={e=> setvideo(e.target.value)}
-                                    style={{marginTop:"1rem"}}
-                                   
-                                    ></Input>
-                                    <Input
-                                    type="text"
-                                    name="video"
-                                    id="video"
-                                    placeholder="Topic.."
-                                    value={video}
-                                    onChange={e=> setvideo(e.target.value)}
-                                    style={{marginTop:"1rem"}}
-                                   
-                                    ></Input>
-                                    <Input
-                                    type="text"
-                                    name="video"
-                                    id="video"
-                                    placeholder="Description.."
-                                    value={video}
-                                    onChange={e=> setvideo(e.target.value)}
-                                    style={{marginTop:"1rem"}}
-                                   
-                                    ></Input>
-                            <Button style={{marginTop:"1rem"}}>Button</Button>
-                        </CardBody>
-                    </Card>
-                </Col>
-                <Col xs="12" md="6">
-                    {/*--------------------------------------------------------------------------------*/}
-                    {/*Card-1*/}
-                    {/*--------------------------------------------------------------------------------*/}
-                    <Card>
-                        {/* <CardImg top width="100%" src={img2} /> */}
-                        <CardBody>
-                            <CardTitle>Add Documents</CardTitle>
-                            <CardSubtitle>Upload the notes/assignments here.</CardSubtitle>
-                            <Input
-                                    type="file"
-                                    name="file"
-                                    id="file"
-                                    placeholder=" : "
-                                    onChange={e=> setfile(e.target.files[0])}
-                                    style={{marginLeft:"28%",marginTop:"1rem"}}
-                                    ></Input>
-                                    <Input
-                                    type="text"
-                                    name="video"
-                                    id="video"
-                                    placeholder="Topic.."
-                                    value={video}
-                                    onChange={e=> setvideo(e.target.value)}
-                                    style={{marginTop:"1rem"}}
-                                   
-                                    ></Input>
-                                    <Input
-                                    type="text"
-                                    name="video"
-                                    id="video"
-                                    placeholder="Description.."
-                                    value={video}
-                                    onChange={e=> setvideo(e.target.value)}
-                                    style={{marginTop:"1rem"}}
-                                   
-                                    ></Input>
-                            <Button style={{marginTop:"1.4rem"}}>Upload</Button>
-                        </CardBody>
-                    </Card>
-                </Col>
-                
-            </Row>
+            
             <Row className="text-center" style={{paddingBottom:"5vmin"}}>
             <Card style={{margin: "auto"}}>
             <CardBody>

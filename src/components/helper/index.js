@@ -129,6 +129,18 @@ export const getQuiz = async (uid) =>{
     }
 }
 
+export const getUserResponse = async (uid) =>{
+    try {
+        const response = await fetch(`${API}/user/response/${uid}`, {
+            method: "GET"
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err, "hello");
+    }
+}
+
 export const getAQuiz = async (qid) =>{
     try {
         const response = await fetch(`${API}${qid}`, {
@@ -170,10 +182,10 @@ export const createQuestion = async (qid,quiz) =>{
     }
 }
 
-export const createResponse = async (resp) =>{
+export const createResponse = async (resp,quizId,uid) =>{
     console.log(resp,"q")
     try {
-        const response = await fetch(`${API}/response/create`, {
+        const response = await fetch(`${API}/response/create/${quizId}/${uid}`, {
             method: "POST",
             headers: {
                 Accept: 'application/json',
