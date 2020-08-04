@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getAllStandards} from '../../../../helper/index'
+import { classes,isAuthenticated,getAllClasses,deleteClass,updateClass ,getAClass, getAllSubjects, getAllStandards, getUserResponse} from '../../../../helper/index'
 
 import {
     Card,
@@ -25,7 +25,6 @@ const Projects = () => {
     const [uid, setuid] = useState("")
     const [sub, setsubject] = useState([])
     
-
     // const getClassName = (cid) => {
     //     getASubject(cid)
     //     .then( data =>{setSubname(data)})
@@ -81,7 +80,7 @@ const Projects = () => {
    const [refresh, setrefresh] = useState(true)
     
     useEffect (() => {
-      loadAllclasses()
+      loadAllclasses();
       },[refresh])
 
 
