@@ -401,8 +401,8 @@ const Starter = () => {
                     {return(
                     // <tr key={i}>
                     <Col xs="12" md="4" key={i}>
-                        <Card>
-                            <div style={{height: "5rem", background: "linear-gradient(45deg, #2dce89, cyan"}}></div>
+                        <Card style={{borderRadius:"10px 10px 10px 10px"}}>
+                            <div style={{height: "5rem", background: "linear-gradient(45deg, #1273BE, violet)", borderRadius:"10px 10px 0 0"}}></div>
                                         <CardTitle>{obj.name}</CardTitle>
                                         <CardSubtitle>{obj.subject}</CardSubtitle>
                                         <CardSubtitle>{obj.standard}</CardSubtitle>
