@@ -165,6 +165,18 @@ export const getQuestions = async (qid) =>{
     }
 }
 
+export const getQuestions2 = async (qid) =>{
+    try {
+        const response = await fetch(`${API}/allquiz/start/quiz/${qid}`, {
+            method: "GET"
+        });
+        return response.json();
+    }
+    catch (err) {
+        console.log(err, "hello");
+    }
+}
+
 export const createQuestion = async (qid,quiz) =>{
     console.log(quiz,"q")
     try {

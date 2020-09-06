@@ -16,12 +16,12 @@ var ThemeRoutes = [
     icon: 'ti-loop', 
     component: Starter 
   },
-  {
-    path: '/material',
-    name: 'Video/Documents',
-    icon: 'mdi mdi-apps',
-    component: Cards
-  },
+  // {
+  //   path: '/material',
+  //   name: 'Video/Documents',
+  //   icon: 'mdi mdi-apps',
+  //   component: Cards
+  // },
 
   {
     path: '/payment',
@@ -29,12 +29,12 @@ var ThemeRoutes = [
     icon: 'mdi mdi-credit-card-multiple',
     component: QuizList
   },
-  {
-    path: '/settings',
-    name: 'Toltips',
-    icon: 'mdi mdi-image-filter-vintage',
-    component: TooltipComponent
-  },
+  // {
+  //   path: '/settings',
+  //   name: 'Toltips',
+  //   icon: 'mdi mdi-image-filter-vintage',
+  //   component: TooltipComponent
+  // },
   {
     path: '/start/quiz/:question',
     component: QuizStudent

@@ -258,60 +258,6 @@ const Starter = () => {
                     <Projects />
                 </Col>
             </Row>
-            <Row className="text-center" style={{paddingBottom:"5vmin"}}>
-                
-                    {/*--------------------------------------------------------------------------------*/}
-                    {/*Card-1*/}
-                    {/*--------------------------------------------------------------------------------*/}
-                    <Card style={{margin: "auto"}}>
-                        {/* <CardImg top width="100%" src={img1} /> */}
-                        <CardBody>
-                            <CardTitle>Add Video</CardTitle>
-                            <CardSubtitle>Provide the link for your youtube video.</CardSubtitle>
-                            <Input
-                                    type="text"
-                                    name="video"
-                                    id="video"
-                                    placeholder="Enter link here.."
-                                    value={video}
-                                    onChange={e=> setvideo(e.target.value)}
-                                    style={{marginTop:"1rem"}}
-                                   
-                                    ></Input>
-                                    <Input
-                                    type="text"
-                                    name="video"
-                                    id="video1"
-                                    placeholder="Topic.."
-                                    value={video}
-                                    onChange={e=> setvideo(e.target.value)}
-                                    style={{marginTop:"1rem"}}
-                                   
-                                    ></Input>
-                                    <Input
-                                    type="text"
-                                    name="video"
-                                    id="video2"
-                                    placeholder="Description.."
-                                    value={video}
-                                    onChange={e=> setvideo(e.target.value)}
-                                    style={{marginTop:"1rem"}}
-                                   
-                                    ></Input>
-                            <Button style={{marginTop:"1rem"}}>Button</Button>
-                        </CardBody>
-                    </Card>
-                
-                {/* <Col xs="12" md="6">
-                   
-                    <Card>
-                        <CardBody>
-                            <AddDocument></AddDocument>
-                        </CardBody>
-                    </Card>
-                </Col> */}
-                
-            </Row>
             
             <Row className="text-center" style={{paddingBottom:"5vmin"}}>
             <Card style={{margin: "auto"}}>

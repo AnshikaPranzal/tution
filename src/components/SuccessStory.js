@@ -20,8 +20,9 @@ const SuccessStory = () => {
                 <div className="col-lg-6 col-sm-8">
                     <div className="bg-white p-5">
                     <h2 className="section-title">Success Stories</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+
+                    <p>After setting a new benchmark for success we planned to expand our support to a wide range of students to create excellence in the domain of education in a systematic manner but in a cost effective way.</p>
+                    <p>At “Effervescence” we partner with the best faculties in the domain to create top quality content for the aspirants. The content is designed using our experience and feedback from successful students, so that it ensures learning is fun and engaging. </p>
                     </div>
                 </div>
                 </div>

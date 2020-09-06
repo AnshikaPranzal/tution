@@ -32,7 +32,7 @@ import Timer from './timer.jsx';
         getQuestions(qid).then(data=>{
           if(data){
             if(data.error){
-              console.log(data.error)
+            //   console.log(data.error)
             }
             else{
               setquiz(data.data[0])
@@ -56,7 +56,7 @@ import Timer from './timer.jsx';
         setreview(review)
     }
     const [totalmarks, settotalmarks] = useState(0)
-
+    const [start, setstart] = useState(true)
     const dec = ()=>{
         {quiz.questions.map((x)=>
             {
@@ -98,7 +98,7 @@ import Timer from './timer.jsx';
         createResponse({cSelected,quiz,user,totalMarks},quiz._id,user._id).then(data=>{
             if(data){
                 if(data.error){
-                    console.log(data.error)
+                    // console.log(data.error)
                 }
                 else{
                     setfinish(true)
@@ -114,6 +114,11 @@ import Timer from './timer.jsx';
     }
       return(
           <React.Fragment>
+              {start === false ?
+              (<React.Fragment>
+                  <button onClick={()=>{setstart(true)}}>start</button>
+              </React.Fragment>):
+          (<React.Fragment>
               {finish === true && (<div className="alert alert-success text-center">Submitted!!You Scored:{totalmarks}</div>)}
               <Row>
                   <Col md={8} className="text-center">
@@ -299,7 +304,8 @@ import Timer from './timer.jsx';
                   </Col>
               </Row>
               
-          </React.Fragment>
+          </React.Fragment>)
+          }</React.Fragment>
       )
   }
 

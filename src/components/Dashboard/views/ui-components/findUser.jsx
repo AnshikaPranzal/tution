@@ -19,6 +19,7 @@ const[userO, setuserO] = useState([])
 const [sub, setsubject] = useState([])
 const [errorF, seterrorF] = useState(false)
 const [refresh, setRefresh] = useState(false)
+
 const loadAllusers = () =>{
     getAllUSers().then(data =>{
         console.log(data)
@@ -74,7 +75,7 @@ const users = []
 //     $('hvr-bounce-to-top').removeClass('hide')
 // }
 const onSubmit = event => {
-    console.log("hi")
+
     event.preventDefault();
     userO.map((obj, i) => {
         if(obj.role === 0){

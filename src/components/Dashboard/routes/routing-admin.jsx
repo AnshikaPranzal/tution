@@ -37,12 +37,12 @@ var ThemeRoutes = [
   //   icon: 'mdi mdi-toggle-switch',
   //   component: Buttons
   // },
-  {
-    path: '/payment',
-    name: 'Payment',
-    icon: 'mdi mdi-credit-card-multiple',
-    component: Cards
-  },
+  // {
+  //   path: '/payment',
+  //   name: 'Payment',
+  //   icon: 'mdi mdi-credit-card-multiple',
+  //   component: Cards
+  // },
 
   // {
   //   path: '/pagination',
@@ -56,12 +56,12 @@ var ThemeRoutes = [
   //   icon: 'mdi mdi-pencil-circle',
   //   component: PopoverComponent
   // },
-  {
-    path: '/settings',
-    name: 'Toltips',
-    icon: 'mdi mdi-image-filter-vintage',
-    component: TooltipComponent
-  },
+  // {
+  //   path: '/settings',
+  //   name: 'Toltips',
+  //   icon: 'mdi mdi-image-filter-vintage',
+  //   component: TooltipComponent
+  // },
   { path: '/', pathTo: '/dashboard-admin', name: 'Dashboard', redirect: true }
 ];
 export default ThemeRoutes;

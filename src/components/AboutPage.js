@@ -35,7 +35,7 @@ const About = () => {
           </header>
           {/* <!-- /header --> */}
 
-        <Title title="About Us" body="Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others."></Title>
+        <Title title="About Us" body="After several long years of valuable experience we planned to create a platform that believes in the theme ‘excel education for all’, equalizes all aspirants and will provide equal opportunities so that everyone can try to reach the peak of the mountain from the same base camp."></Title>
 
         {/* <AboutSection></AboutSection> */}
         <AboutUs topic="Us"></AboutUs>
