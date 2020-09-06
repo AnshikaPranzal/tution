@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useState,useEffect } from 'react';
-import { Link,Redirect } from 'react-router-dom';
 import { Modal, Button} from 'react-bootstrap';
 import { signup1, cartEmpty, addItemToCart, updateItemInCart, updateUser, findItemInCart, getAUser,decreaseItemInCart, buySubject } from './helper/index'
 import { isAuthenticated,payment,loadCart } from './helper';
@@ -38,7 +37,6 @@ const CartModal = (props) =>{
     const [count, setcount] = useState(0)
 
     var i = 1
-    var idk = 0
     useEffect(()=>{
         setproduct(loadCart());
     },[reload]);

@@ -10,8 +10,8 @@ const AboutUs = (props) => {
     <div className="row align-items-center">
       <div className="col-md-6 order-2 order-md-1">
         <h2 className="section-title">About {props.topic}</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat </p>
-        <p>cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+        <p>“Effervescence” is not just a brand name. The name itself is self-explanatory. As talents or ideas are bubbling inside a student, longing for the opportunity to surface and emerge with full vigour when they get the escape velocity; we motivate the students to effervesce their potentials just as an effervescent liquid raises bubbles so that our aspirants can reach their goal with full confidence.</p>
+        <p>We are going to start our journey from the small town of Coochbehar, but with a ‘not so small’ dream. The dream has already turned into a reality without any brand name. For last 10 years we have had a large number of successful aspirants in competitive exams like JEE (Mains and Advance), NEET-UG, WBJEE, KVPY as well as in class XII Board exam (WBCHSE, CBSE, ICSE) (Please, see the list of a few successful candidates). </p>
         <Link to='/about' className="btn btn-primary-outline">Learn more</Link>
       </div>
       <div className="col-md-6 order-1 order-md-2 mb-4 mb-md-0">

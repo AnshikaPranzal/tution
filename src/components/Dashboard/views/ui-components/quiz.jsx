@@ -43,7 +43,7 @@ const AddQuiz = ({c})=> {
 
     const loadAllSubjects = () =>{
       getAllSubjects().then(data =>{
-        //   console.log(data)
+          console.log(data)
         if(data)
         if(data.error){
           seterrorF(data.error)
@@ -60,7 +60,7 @@ const AddQuiz = ({c})=> {
       
       const loadAllStandards = () =>{
           getAllStandards().then(data =>{
-            //   console.log(data)
+              console.log(data)
             if(data)
             if(data.error){
               seterrorS(data.error)
@@ -75,12 +75,12 @@ const AddQuiz = ({c})=> {
           },[])
 
     const loadAllMyQuizzes = ()=>{
-      console.log(user._id,"heyy")
+      // console.log(user._id,"heyy")
       getQuiz(user._id).then(data=>{
-        console.log(data,"quizdata")
+        // console.log(data,"quizdata")
         if(data){
           if(data.error){
-            console.log(error)
+            // console.log(error)
           }
           else{
             setquizzes(data.data)
@@ -91,11 +91,11 @@ const AddQuiz = ({c})=> {
     useEffect(() => {
       loadAllMyQuizzes()
     },[refresh])
-    
+    console.log(quizzes,"njnjnjnjjjjjjjjjjjjjjjj")
     const { subject,standard,title,endTime,start,duration, loading,error,getRedirect,createdQuiz,formData,teacher,hh,mm} = values;
 
     const successMessage = () =>{
-        // console.log(createdQuiz)
+        console.log(createdQuiz)
         return(
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
@@ -121,7 +121,7 @@ const AddQuiz = ({c})=> {
           const v = name === "img"? event.target.files[0]:event.target.value
 
            setValues({...values,[name]: v});
-           console.log(values)
+          //  console.log(values)
     }
 
         
@@ -129,13 +129,13 @@ const AddQuiz = ({c})=> {
         event.preventDefault();
         setValues({...values,error:"",loading: true,teacher:user._id})
         createQuiz({title,subject,standard,endTime,start,teacher,mm}).then(data =>{
-            console.log(data)
+            // console.log(data)
             if(data.error){
-              console.log(data.error)
+              // console.log(data.error)
                 setValues({...values,error:data.error})
             }
             else{
-              console.log(data,"quiz")
+              // console.log(data,"quiz")
                 setValues({
                     ...values,
                     subject:"",
@@ -153,7 +153,7 @@ const AddQuiz = ({c})=> {
             }
         })
         .catch(()=>{
-            console.log("Error in creating Quiz")
+            // console.log("Error in creating Quiz")
         })
     }
 
@@ -161,7 +161,7 @@ const AddQuiz = ({c})=> {
       deleteQuiz(id).then(data=>{
         if(data){
           if(data.error){
-            console.log(data.error)
+            // console.log(data.error)
           }
           else{
             setrefresh(!refresh)
@@ -174,7 +174,7 @@ const AddQuiz = ({c})=> {
       getAQuiz(`/quiz/${id}`).then(data=>{
         if(data){
             if(data.error){
-              console.log(data.error)
+              // console.log(data.error)
             }
             else{
               setqid(id)
@@ -192,9 +192,9 @@ const AddQuiz = ({c})=> {
     const [qid, setqid] = useState(null)
     const updateAquiz =  (id) =>{
             updateQuiz(id,{title,subject,endTime,start,teacher,mm}).then(data =>{
-          console.log(data)
+          // console.log(data)
           if(data.error){
-            console.log(data.error)
+            // console.log(data.error)
               setValues({...values,error:data.error})
           }
           else{
@@ -216,7 +216,7 @@ const AddQuiz = ({c})=> {
           }
       })
       .catch(()=>{
-          console.log("Error in creating Quiz")
+          // console.log("Error in creating Quiz")
       })
   }
 
@@ -306,8 +306,8 @@ const AddQuiz = ({c})=> {
 
       </tr>    
             {quizzes && quizzes.map((obj,index) => {
-              console.log(user._id.toString())
-              console.log(obj.teacher.toString());
+              // console.log(user._id.toString())
+              // console.log(obj.teacher.toString());
                 if(user._id.toString() === obj.teacher.toString()){
               return(<tr key={index}>
                   <td>{obj.title}</td>
@@ -315,11 +315,12 @@ const AddQuiz = ({c})=> {
                   <td>{obj.standard}</td>
                   <td>{obj.duration}</td>
                   <td><Link to={`/quiz/${obj._id}`} >Add Questions</Link> </td>
+                  <td><Link to={`/responses/${obj._id}`} >View Responses</Link> </td>
                   <td><i className="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getTheQuiz(obj._id)}} aria-hidden="true"></i>
                    <i className="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteAQuiz(obj._id)}} aria-hidden="true"></i></td>
               </tr>)}
               })}  
-            {console.log(quizzes.data)}
+            {/* {console.log(quizzes.data)} */}
                     </tbody>
                     </Table>
             </CardBody>
@@ -332,7 +333,7 @@ const AddQuiz = ({c})=> {
     );
   return (
     
-            <div className="col-md-8 offset-md-2">
+            <div className="col-md-12">
                 {catForm()}
             </div>
        

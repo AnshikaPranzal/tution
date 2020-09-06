@@ -1,10 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 
 import QuizComponent from './quizComponent';
 
   const QuizStudent = (props)=>{
       const [c, setc] = useState(0)
       const [finish, setfinish] = useState(false)
+      // const {check}=props
+      // useEffect(() => {
+      //   if(check===true){
+      //     setfinish(true)
+      //   }
+      //   else{
+      //     setfinish(false)
+      //   }
+      // }, [check])
     const qid= props.location.pathname;
       const increment = ()=>{
         setc(c+1)
