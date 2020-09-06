@@ -85,7 +85,7 @@ const Footer = () => {
                     </div>
                     <div className="col-sm-4 text-sm-right text-center">
                     <ul className="list-inline">
-                        <li className="list-inline-item"><Link className="d-inline-block p-2" to='/course'>Course</Link></li>
+                        {/* <li className="list-inline-item"><Link className="d-inline-block p-2" to='/course'>Course</Link></li> */}
                         <li className="list-inline-item"><Link className="d-inline-block p-2" to='/about'>About</Link></li>
                         <li className="list-inline-item"><Link className="d-inline-block p-2" to='/contact'>Contact</Link></li>
                     </ul>

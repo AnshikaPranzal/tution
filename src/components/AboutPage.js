@@ -42,7 +42,7 @@ const About = () => {
 
         <SuccessStory></SuccessStory>
 
-        <TeacherList></TeacherList>
+        {/* <TeacherList></TeacherList> */}
 
         <Footer></Footer>
         
