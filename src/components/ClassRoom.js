@@ -185,7 +185,7 @@ const ClassRoom = (props) => {
                             })
                         
                         } */}
-          {isAuthenticated().user.role === 0 ? (
+          {isAuthenticated().user.role === 1 ? (
             <Col xs="12" md="12">
               {/*--------------------------------------------------------------------------------*/}
               {/*Card-1*/}
