@@ -688,6 +688,10 @@ textarea.form-control {
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 
+.navbar-brand {
+  padding: 0px !important;
+}
+
 .nav-item:hover::before,
 .nav-item.active::before {
   -webkit-transform: scaleY(1);

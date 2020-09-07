@@ -278,7 +278,7 @@ import Timer from './timer.jsx';
                           <Col className="no-col">
                             <Card className="text-center mt-3">
                                 <CardTitle className="text-center mt-3" style={{color:"grey"}}>Time Left</CardTitle>
-                                <Timer initialMinute = {20} initialSeconds = {0} setfinish={setfinish}></Timer>
+                               {!isNaN(parseInt(duration)) && <Timer initialMinute = {parseInt(duration)} initialSeconds = {0} setfinish={setfinish}></Timer>}
                                 <CardSubtitle style={{color:"grey"}}>MaxTime: {duration} Mins.</CardSubtitle>
                             </Card>
                             <Row className="text-center">

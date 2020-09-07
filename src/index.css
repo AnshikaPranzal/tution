@@ -1,6 +1,5 @@
 html {
-  /* font-size: calc(0.75vh+0.75vw); */
-  font-size: 2vmin;
+  font-size: calc(0.75vh+0.75vw);
 }
 
 body {

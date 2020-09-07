@@ -11,8 +11,7 @@ import "slick";
 // eslint-disable-next-line no-unused-vars
 import preloader from "../images/preloader.gif";
 import Slide from "./Slide";
-import bg from "../images/banner/banner-1.jpg";
-
+import bg from "../images/banner/tutor.jpeg";
 const SliderList = () => {
   var sectionStyle = {
     width: "100%",
@@ -43,14 +42,15 @@ const SliderList = () => {
           <div className="hero-slider">
             <Slider {...settings}>
               <Slide
-                heading="Your bright future is our mission!"
+                heading="Empowering children to reach their potential!"
                 body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
               tempor
               incididunt ut labore et
               dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exer"
               ></Slide>
+
               <Slide
-                heading="We are here for you!"
+                heading="Your bright future is our mission!"
                 body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
               tempor
               incididunt ut labore et

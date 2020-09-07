@@ -8,11 +8,11 @@ const NavBar = (props) => {
   return (
     <React.Fragment>
       <div className={`navigation w-100 ${props.active}`}>
-        <div className="container1">
+        <div className="container">
           <Navbar collapseOnSelect expand="lg">
             <Navbar.Brand>
               <a className="navbar-brand" href="/">
-                <img src={logo} alt="logo" style={{ width: "10rem" }}></img>
+                <img src={logo} alt="logo" style={{ width: "15rem" }}></img>
               </a>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />

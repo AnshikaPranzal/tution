@@ -20,7 +20,7 @@ const Slide = (props) => {
           <div className="col-md-8">
            <h1 className="text-white"  style={{fontSize: '7vmin'}}>{props.heading}</h1>
             <p className="text-muted mb-4" >{props.body}</p>
-            <Link to='/contact' className=" hvr-bounce-to-top" >Apply now</Link>
+            <Link to='/contact' className=" hvr-bounce-to-top" >Contact Us</Link>
           </div>
         </div>
       </div>
