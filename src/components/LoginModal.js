@@ -51,7 +51,8 @@ const LoginModal = () =>{
         })
         signin({email,password})
             .then( (data) =>{
-                
+                if(data){}
+                //TODO:handle empty data
                 if(data.error){
                    
                     setValues({

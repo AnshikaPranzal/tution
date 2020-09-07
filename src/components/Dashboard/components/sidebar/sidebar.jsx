@@ -26,13 +26,13 @@ const Sidebar = (props) => {
         <aside className="left-sidebar" id="sidebarbg" data-sidebarbg="skin6" onMouseEnter={expandLogo.bind(null)} onMouseLeave={expandLogo.bind(null)}>
             <div className="scroll-sidebar">
                 <PerfectScrollbar className="sidebar-nav">
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col-3"></div>
                         <div className="col-6" style={{alignItems:"center"}}>
                         <img className="img-fluid w-60" style={{borderRadius: "50%", width:"100%",height:"6vw", marginTop:"7em", marginBottom:"1em"}} src={profile} alt="about image"></img>
                         <h4 style={{textAlign:"center",fontSize:"1rem"}}>Hello, {user.name}</h4>
                         </div>
-                    </div>
+                    </div> */}
                 
                     {/*--------------------------------------------------------------------------------*/}
                     {/* Sidebar Menus will go here                                                */}

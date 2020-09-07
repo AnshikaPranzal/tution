@@ -17,8 +17,8 @@ const Banner = () => {
             <BannerItem iname="ti-blackboard" heading="Practice Problems" body="We provide chapterwise practice problems from various reputed books and coaching centres as well as our own customized study materials."></BannerItem>
             <BannerItem iname="ti-agenda" heading="Mock Test" body=" Chapter wise online mock test: The mock test will be in a cumulative manner."></BannerItem>
             <BannerItem iname="ti-write" heading="Doubt Clearing" body="Doubt clearing and discussion sessions after every mock test"></BannerItem>
-            <BannerItem iname="ti-blackboard" heading="Videos" body="Video solutions of practice sets to improve conceptual understanding."></BannerItem>
-            <BannerItem iname="ti-book" heading="Study plan" body=" Effective study plan to cover all the courses under the given time."></BannerItem>
+            {/* <BannerItem iname="ti-blackboard" heading="Videos" body="Video solutions of practice sets to improve conceptual understanding."></BannerItem> */}
+            {/* <BannerItem iname="ti-book" heading="Study plan" body=" Effective study plan to cover all the courses under the given time."></BannerItem> */}
             </div>
             </div>
             </div>
