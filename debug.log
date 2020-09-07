@@ -35,3 +35,4 @@
 [0716/065914.214:ERROR:http_transport_win.cc(276)] WinHttpSendRequest: The operation completed successfully. (0x0)
 [0716/075916.785:ERROR:http_transport_win.cc(276)] WinHttpSendRequest: The operation completed successfully. (0x0)
 [0721/123352.092:ERROR:http_transport_win.cc(276)] WinHttpSendRequest: The operation completed successfully. (0x0)
+[0906/070351.656:ERROR:file_io.cc(90)] ReadExactly: expected 36, observed 0
