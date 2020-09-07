@@ -561,7 +561,7 @@ a h4:hover {
 
 /* page title */
 .page-title-section {
-  padding: 200px 0 80px;
+  padding: 22.22vmin 0 8.88vmin;
 }
 
 .custom-breadcrumb li.nasted {
@@ -1034,7 +1034,7 @@ link:focus,
 /* /teacher */
 /* footer */
 .newsletter {
-  margin-bottom: -18.899px;
+  margin-bottom: -2.1vmin;
   position: relative;
   z-index: 1;
 }
