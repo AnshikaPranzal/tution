@@ -164,7 +164,7 @@ import Timer from './timer.jsx';
                                                    })}
                                                 return(
                                                     <React.Fragment>
-                                                {(finish === true) ? (<Col md={6} className="text-center">
+                                                {(finish === true) ? (<Col md={10} className="ml-4">
                                                     {f === true ? (
                                                         <React.Fragment>
                                                             {y.isCorrect === true ?
@@ -194,8 +194,8 @@ import Timer from './timer.jsx';
                                                         </React.Fragment>
                                                     )}
                                                 </Col>):(
-                                                <Col md={6} className="text-center">
-                                                    <div>
+                                                <Col md={10} className="ml-4">
+                                                    <div className="alert">
                                                         <Input type="checkbox" onClick={()=>onCheckboxBtnClick(y._id)} defaultChecked={f} aria-label="Checkbox for following text input" style={{marginTop:"4px"}} />
                                                         <span style={{marginLeft:"6px"}}>{y.optionValue}</span>
                                                     </div>
