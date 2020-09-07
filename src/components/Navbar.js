@@ -11,7 +11,7 @@ const NavBar =(props) => {
       <div className={`navigation w-100 ${props.active}`} >
     <div className="container">
     <Navbar collapseOnSelect expand="lg">
-    <Navbar.Brand ><a className="navbar-brand" href="/"><img src={logo} alt="logo" style={{width: "10rem"}}></img></a></Navbar.Brand>
+    <Navbar.Brand ><a className="navbar-brand" href="/"><img src={logo} alt="logo" style={{width: "15rem"}}></img></a></Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <div className="mr-auto"style={{lineHeight: "0"}}>
