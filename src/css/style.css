@@ -21,7 +21,7 @@ body {
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   /* font-size: 15px; */
-  font-size: 2vmin;
+  font-size: 2vmin !important;
   color: #5c5c77;
 }
 

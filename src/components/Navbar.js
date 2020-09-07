@@ -8,7 +8,7 @@ const NavBar = (props) => {
   return (
     <React.Fragment>
       <div className={`navigation w-100 ${props.active}`}>
-        <div className="container">
+        <div className="container1">
           <Navbar collapseOnSelect expand="lg">
             <Navbar.Brand>
               <a className="navbar-brand" href="/">

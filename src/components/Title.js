@@ -3,6 +3,7 @@ import bg from "../images/backgrounds/page-title.jpg";
 
 const Title = (props) => {
   var sectionStyle = {
+    paddingTop: "20vmin",
     width: "100%",
     height: "55.56vmin",
     backgroundImage: `url(${bg})`,
