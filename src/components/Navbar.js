@@ -12,7 +12,7 @@ const NavBar = (props) => {
           <Navbar collapseOnSelect expand="lg">
             <Navbar.Brand>
               <a className="navbar-brand" href="/">
-                <img src={logo} alt="logo" style={{ width: "15rem" }}></img>
+                <img src={logo} alt="logo" style={{ width: "20vw" }}></img>
               </a>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
