@@ -4,7 +4,7 @@ import Success_pic from "../images/backgrounds/success-story.jpg";
 const SuccessStory = () => {
   var sectionStyle = {
     width: "100%",
-    height: "700px",
+    height: "77.778vmin",
     backgroundImage: `url(${Success_pic})`,
   };
   return (
@@ -26,7 +26,7 @@ const SuccessStory = () => {
                 className="bg-white p-5"
                 style={{
                   overflowY: "scroll",
-                  height: "30vmin",
+                  height: "60vmin",
                   width: "30vw",
                 }}
               >
