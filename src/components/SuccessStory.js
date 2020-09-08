@@ -26,7 +26,7 @@ const SuccessStory = () => {
                 className="bg-white p-5"
                 style={{
                   overflowY: "scroll",
-                  height: "60vmin",
+                  // height: "60vmin",
                   width: "30vw",
                 }}
               >
