@@ -70,6 +70,7 @@ const TooltipComponent = () => {
 
         getAUser(user._id,token).then(data=>{
             console.log(data)
+            if(data)
             if(data.error){
                 console.log(data.error);
             }
@@ -99,6 +100,7 @@ const TooltipComponent = () => {
     const {user,token} = isAuthenticated()
 
         updateUser(user._id,token,guser).then(data=>{
+            if(data)
             if(data.error){
                 console.log(data.error)
             }

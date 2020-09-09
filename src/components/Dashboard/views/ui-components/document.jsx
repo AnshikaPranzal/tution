@@ -25,6 +25,7 @@ const AddDocument = ()=> {
     const preload = () => {
         getAllUSers().then(data=>{
             console.log(data)
+            if(data)
             if(data.error)
             {
                 setValues({...values,error:data.error})
@@ -88,7 +89,8 @@ const AddDocument = ()=> {
             uploadDocument(formData)
             .then( data =>{
                
-                if(data.error){
+            if(data)
+            if(data.error){
                     setValues({...values,error:data.error})
                 }
                 else{

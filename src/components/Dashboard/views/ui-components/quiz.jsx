@@ -130,6 +130,7 @@ const AddQuiz = ({c})=> {
         setValues({...values,error:"",loading: true,teacher:user._id})
         createQuiz({title,subject,standard,endTime,start,teacher,mm}).then(data =>{
             // console.log(data)
+            if(data)
             if(data.error){
               // console.log(data.error)
                 setValues({...values,error:data.error})
@@ -193,7 +194,8 @@ const AddQuiz = ({c})=> {
     const updateAquiz =  (id) =>{
             updateQuiz(id,{title,subject,endTime,start,teacher,mm}).then(data =>{
           // console.log(data)
-          if(data.error){
+            if(data)
+            if(data.error){
             // console.log(data.error)
               setValues({...values,error:data.error})
           }

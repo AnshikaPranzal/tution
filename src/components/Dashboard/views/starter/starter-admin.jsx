@@ -213,7 +213,8 @@ const Starter = () => {
             .then( (data) =>{
                 console.log(data)
                 console.log(project)
-                if(data.error){
+            if(data)
+            if(data.error){
                    
                     setProject({
                         ...project,
@@ -238,6 +239,7 @@ const Starter = () => {
     const deleteaNotice = catuctId => {
         deleteNotice(catuctId).then(data=>{
             console.log(data)
+            if(data)
             if(data.error)
             {
                 console.log(data.error)
@@ -251,6 +253,7 @@ const Starter = () => {
     const getNotice = noticeId => {
         getANotice(noticeId).then(data=>{
             console.log(data.date,"d")
+            if(data)
             if(data.error)
             {
                 console.log(data.error)
@@ -276,6 +279,7 @@ const Starter = () => {
         });
         updateNotice(nid,{title,description,date}).then(data=>{
             console.log(data)
+            if(data)
             if(data.error)
             {
                 console.log(data.error)

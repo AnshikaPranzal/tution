@@ -101,7 +101,8 @@ const Projects = () => {
             .then( (data) =>{
                 console.log(data)
                 console.log(project)
-                if(data.error){
+            if(data)
+            if(data.error){
                    
                     setProject({
                         ...project,
@@ -126,6 +127,7 @@ const Projects = () => {
     const deleteaSubject = catuctId => {
         deleteSubject(catuctId).then(data=>{
             console.log(data)
+            if(data)
             if(data.error)
             {
                 console.log(data.error)
@@ -138,6 +140,7 @@ const Projects = () => {
     }
     const getSubject = classId => {
         getASubject(classId).then(data=>{
+            if(data)
             if(data.error)
             {
                 console.log(data.error)
@@ -163,6 +166,7 @@ const Projects = () => {
         });
         updateSubject(cid,{name,price,value}).then(data=>{
             console.log(data)
+            if(data)
             if(data.error)
             {
                 console.log(data.error)

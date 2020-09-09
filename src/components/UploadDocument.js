@@ -52,6 +52,7 @@ const AddDocument = (props)=> {
     const preload = () => {
         getAllUSers().then(data=>{
             console.log(data)
+            if(data)
             if(data.error)
             {
                 setValues({...values,error:data.error})
@@ -70,7 +71,8 @@ const AddDocument = (props)=> {
     const getClassroom = cid => {
       getAClassroom(cid).then(data=>{
           
-          if(data.error)
+            if(data)
+            if(data.error)
           {
               console.log(data.error)
               // setValues({...values,error:data.error})
@@ -93,6 +95,7 @@ const AddDocument = (props)=> {
           console.log(catuctId)
         deleteDocument({cid: crid, did: catuctId}).then(data=>{
             console.log(data)
+            if(data)
             if(data.error)
             {
                 console.log(data.error)
@@ -173,7 +176,8 @@ const AddDocument = (props)=> {
             classroomUploadDocument(crid,formData)
             .then( data =>{
                
-                if(data.error){
+            if(data)
+            if(data.error){
                     setValues({...values,error:data.error})
                 }
                 else{

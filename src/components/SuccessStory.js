@@ -15,7 +15,7 @@ const SuccessStory = () => {
             <div className="col-lg-6 col-sm-4 position-relative success-video">
               <a
                 className="play-btn venobox"
-                href="https://youtu.be/nA1Aqp0sPQo"
+                href="/about"
                 data-vbtype="video"
               >
                 <i className="ti-control-play"></i>
@@ -24,11 +24,11 @@ const SuccessStory = () => {
             <div className="col-lg-6 col-sm-8">
               <div
                 className="bg-white p-5"
-                style={{
-                  overflowY: "scroll",
-                  height: "60vmin",
-                  width: "30vw",
-                }}
+                // style={{
+                //   overflowY: "scroll",
+                //   height: "60vmin",
+                //   width: "30vw",
+                // }}
               >
                 <h2 className="section-title">Success Stories</h2>
 

@@ -54,6 +54,7 @@ const AddAssignment = (props)=> {
     const preload = () => {
         getAllUSers().then(data=>{
             console.log(data)
+            if(data)
             if(data.error)
             {
                 setValues({...values,error:data.error})
@@ -72,7 +73,8 @@ const AddAssignment = (props)=> {
     const getClassroom = cid => {
       getAClassroom(cid).then(data=>{
           
-          if(data.error)
+            if(data)
+            if(data.error)
           {
               console.log(data.error)
               // setValues({...values,error:data.error})
@@ -108,7 +110,8 @@ const AddAssignment = (props)=> {
       console.log(catuctId)
     deleteAssignment({cid: crid, did: catuctId}).then(data=>{
         console.log(data)
-        if(data.error)
+            if(data)
+            if(data.error)
         {
             console.log(data.error)
             // setValues({...values,error:data.error})
@@ -178,7 +181,8 @@ const AddAssignment = (props)=> {
             classroomUploadAssignment(crid,formData)
             .then( data =>{
                
-                if(data.error){
+            if(data)
+            if(data.error){
                     setValues({...values,error:data.error})
                 }
                 else{
