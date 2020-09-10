@@ -15,9 +15,9 @@ import bg from "../images/banner/tutor.jpeg";
 const SliderList = () => {
   var sectionStyle = {
     width: "100%",
-    height: "90vh",
+    height: "57vmax",
     backgroundImage: `url(${bg})`,
-    padding: "25vh 0 25vh",
+    padding: "20vmax 0 20vmax",
   };
   var settings = {
     dots: false,
@@ -41,28 +41,10 @@ const SliderList = () => {
         <div className="" style={{ width: "80vw", margin: "auto" }}>
           <div className="hero-slider">
             <Slider {...settings}>
-              <Slide
-                heading="Empowering children to reach their potential!"
-                body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor
-              incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exer"
-              ></Slide>
+              <Slide heading="Empowering children to reach their potential!"></Slide>
 
-              <Slide
-                heading="Your bright future is our mission!"
-                body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor
-              incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exer"
-              ></Slide>
-              <Slide
-                heading="Your can count on us."
-                body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor
-              incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exer"
-              ></Slide>
+              <Slide heading="Your bright future is our mission!"></Slide>
+              <Slide heading="Your can count on us."></Slide>
             </Slider>
           </div>
         </div>

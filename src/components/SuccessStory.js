@@ -4,20 +4,19 @@ import Success_pic from "../images/backgrounds/success-story.jpg";
 const SuccessStory = () => {
   var sectionStyle = {
     width: "100%",
-    height: "77.778vmin",
+    // height: "77.778vmin",
     backgroundImage: `url(${Success_pic})`,
   };
   return (
     <React.Fragment>
       <section className="section bg-cover" style={sectionStyle}>
-        <div className="container">
+        <div className="container1">
           <div className="row">
-            <div className="col-lg-6 col-sm-4 position-relative success-video">
-              <a
-                className="play-btn venobox"
-                href="/about"
-                data-vbtype="video"
-              >
+            <div
+              className="col-lg-6 col-sm-4 position-relative success-video"
+              style={{ height: "50vmin" }}
+            >
+              <a className="play-btn venobox" href="/about" data-vbtype="video">
                 <i className="ti-control-play"></i>
               </a>
             </div>

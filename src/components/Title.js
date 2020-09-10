@@ -1,11 +1,13 @@
 import React from "react";
-import bg from "../images/backgrounds/page-title.jpg";
+
+import bg from "../images/banner/tutor.jpeg";
+// import bg from "../images/backgrounds/page-title.jpg";
 
 const Title = (props) => {
   var sectionStyle = {
-    paddingTop: "20vmin",
+    paddingTop: "18vmax",
     width: "100%",
-    height: "55.56vmin",
+    height: "38.67vmax",
     backgroundImage: `url(${bg})`,
   };
   return (
