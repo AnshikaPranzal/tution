@@ -40,6 +40,13 @@ p,
   font-family: "Poppins", sans-serif;
 }
 
+.footer-text {
+  color: #5e72e4;
+  font-size: 0.8rem !important;
+  line-height: 1.9;
+  font-family: "Poppins", sans-serif;
+}
+
 h1,
 h2,
 h3,
@@ -1142,7 +1149,7 @@ footer {
 }
 
 .container1 {
-  width: 80vw;
+  width: 94vw;
   margin: auto;
 }
 /*# sourceMappingURL=maps/style.css.map */
