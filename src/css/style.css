@@ -39,6 +39,13 @@ p,
   font-family: 'Poppins', sans-serif;
 }
 
+.footer-text{
+    color: #5e72e4;
+    font-size: 0.8rem !important;
+    line-height: 1.9;
+    font-family: 'Poppins', sans-serif;
+}
+
 h1,
 h2,
 h3,
@@ -1092,8 +1099,8 @@ link:focus,
 }
 
 .logo-footer {
-  margin-top: -2.22vmin;
-  display: inline-block;
+  /* margin-top: -2.22vmin; */
+  /* display: inline-block; */
 }
 
 footer {
@@ -1106,7 +1113,7 @@ footer {
 
 .newsfooter {
   border-color: #494a43 !important;
-  padding-top: 30.556vmin;
+  padding-top: 2rem;
 }
 
 /* /footer */
@@ -1141,7 +1148,7 @@ footer {
 }
 
 .container1 {
-  width: 80vw;
+  width: 94vw;
   margin: auto;
 }
 /*# sourceMappingURL=maps/style.css.map */
