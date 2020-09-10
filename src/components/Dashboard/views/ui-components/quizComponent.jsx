@@ -114,12 +114,12 @@ import Timer from './timer.jsx';
     }
       return(
           <React.Fragment>
-              {start === false ?
+              {!start ?
               (<React.Fragment>
                   <button onClick={()=>{setstart(true)}}>start</button>
               </React.Fragment>):
           (<React.Fragment>
-              {finish === true && (<div className="alert alert-success text-center">Submitted!!You Scored:{totalmarks}</div>)}
+              {finish && (<div className="alert alert-success text-center">Submitted!!You Scored:{totalmarks}</div>)}
               <Row>
                   <Col md={8} className="text-center">
                     
@@ -136,9 +136,9 @@ import Timer from './timer.jsx';
                    </Col>
                 </Row>
               <Row>
-                  <Col md={8} style={{height:"25rem"}}>
-                    <Card style={{height:"100%"}}>
-                        <CardBody>
+                  <Col md={8} style={{height:"60vh"}}>
+                    <Card style={{height:"100%",overflow:"hidden"}}>
+                        <CardBody style={{overflowX:"hidden",overflowY:"auto"}}>
                             
                                 
                             {quiz.questions.map((x,i)=>
@@ -164,10 +164,10 @@ import Timer from './timer.jsx';
                                                    })}
                                                 return(
                                                     <React.Fragment>
-                                                {(finish === true) ? (<Col md={10} className="ml-4">
-                                                    {f === true ? (
+                                                {finish? (<Col md={10} className="ml-4">
+                                                    {f  ? (
                                                         <React.Fragment>
-                                                            {y.isCorrect === true ?
+                                                            {y.isCorrect ?
                                                                 (<div className="alert alert-success">
                                                                     <input type="checkbox" checked={f} aria-label="Checkbox for following text input" style={{marginTop:"4px"}} disabled/>
                                                                     <span style={{marginLeft:"6px"}}>{y.optionValue}</span>
@@ -179,7 +179,7 @@ import Timer from './timer.jsx';
                                                         </React.Fragment>
                                                     ):(
                                                         <React.Fragment>
-                                                            {y.isCorrect === true ?
+                                                            {y.isCorrect ?
                                                                 (
                                                             
                                                                     <div className="alert">
@@ -208,7 +208,7 @@ import Timer from './timer.jsx';
                                             {i!==0 && <Col md={2}><Button onClick={()=>{props.decrement()}}>Previous</Button></Col>}
                                             {i!==(quiz.questions.length-1) && <Col md={2} style={{marginRight:"0px",marginLeft:"auto"}} onClick={()=>{props.increment()}}><Button>Next</Button></Col>}
                                             {(i===(quiz.questions.length-1) && finish === false) && <Col md={4} style={{marginRight:"0px",marginLeft:"auto"}} onClick={onSubmit}><Button>Finish and Submit</Button></Col>}
-                                            {(i===(quiz.questions.length-1) && finish === true) && <Col md={4} style={{marginRight:"0px",marginLeft:"auto"}} ><Link to='/dashboard'><Button>Go to Dashboard</Button></Link></Col>}
+                                            {(i===(quiz.questions.length-1) && finish ) && <Col md={4} style={{marginRight:"0px",marginLeft:"auto"}} ><Link to='/dashboard'><Button>Go to Dashboard</Button></Link></Col>}
                                         </Row> */}
                                         
                                     </React.Fragment>
@@ -245,7 +245,7 @@ import Timer from './timer.jsx';
                                                 })}
                                             
                                                 <React.Fragment>
-                                                    {j === true?(
+                                                    {j ?(
                                                         <Col md={2} style={{height:"3em",margin:"0",width:"100%"}} className="no-col">
                                                         <Card style={{height:"2.5em",padding:"0.5em",borderRadius:"0px",backgroundColor:"#F6FF9F"}} className="text-center">
                                                             {i+1}
@@ -253,7 +253,7 @@ import Timer from './timer.jsx';
                                                         </Col>
                                                     ):(
                                                         <React.Fragment>
-                                                        {f === true ?(
+                                                        {f  ?(
                                                             <Col md={2} xs={2} style={{height:"3em",margin:"0",width:"100%"}} className="no-col">
                                                             <Card style={{height:"2.5em",padding:"0.5em",borderRadius:"0px"}} className="text-center bg-success">
                                                                 {i+1}
@@ -277,9 +277,11 @@ import Timer from './timer.jsx';
                       <Row>
                           <Col className="no-col">
                             <Card className="text-center mt-3">
-                                <CardTitle className="text-center mt-3" style={{color:"grey"}}>Time Left</CardTitle>
+                                {!finish ? (<><CardTitle className="text-center mt-3" style={{color:"grey"}}>Time Left</CardTitle>
                                {!isNaN(parseInt(duration)) && <Timer initialMinute = {parseInt(duration)} initialSeconds = {0} setfinish={setfinish}></Timer>}
-                                <CardSubtitle style={{color:"grey"}}>MaxTime: {duration} Mins.</CardSubtitle>
+                                <CardSubtitle style={{color:"grey"}}>MaxTime: {duration} Mins.</CardSubtitle></>):(
+                                    <CardTitle className="text-center mt-3" style={{color:"grey"}}>Thank You!</CardTitle>
+                                )}
                             </Card>
                             <Row className="text-center">
                                 

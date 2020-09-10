@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <React.Fragment>
       <footer>
-        <div className="newsletter">
+        <div className="newsletter mt-4">
           <div className="container1">
             <div className="row">
               <div className="col-md-9 ml-auto bg-primary py-5 newsletter-block">
@@ -100,12 +100,13 @@ const Footer = () => {
             <div className="row">
               <div className="col-sm-4 text-sm-left text-center">
                 <p className="mb-0">
-                  Copyright
-                  <script>
+                  Designed and maintained by{" "}
+                  {/* <script>
                     var CurrentYear = new Date().getFullYear()
                     document.write(CurrentYear)
-                  </script>
-                  ©{" "}
+                  </script> */}
+                  {/* ©{" "} */}
+                  Infinite Loop
                 </p>
               </div>
               <div className="col-sm-4 text-sm-right text-center">

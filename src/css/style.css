@@ -16,6 +16,10 @@ VERSION:	Versoin Number
   font-style: normal;
 }
 
+.card-teacher
+{ width:100%;
+  margin:1rem }
+
 body {
   line-height: 1.2;
   font-family: "Poppins", sans-serif;

@@ -91,7 +91,7 @@ const AddQuiz = ({c})=> {
     useEffect(() => {
       loadAllMyQuizzes()
     },[refresh])
-    console.log(quizzes,"njnjnjnjjjjjjjjjjjjjjjj")
+    // console.log(quizzes,"njnjnjnjjjjjjjjjjjjjjjj")
     const { subject,standard,title,endTime,start,duration, loading,error,getRedirect,createdQuiz,formData,teacher,hh,mm} = values;
 
     const successMessage = () =>{
@@ -225,8 +225,8 @@ const AddQuiz = ({c})=> {
 
     const catForm =() =>(
         <form >
-          <Row className="text-center" style={{paddingBottom:"5vmin"}}>
-            <Card style={{margin: "auto"}}>
+          <Row>
+            <Card className="card-teacher">
             <CardBody>
                 <div className="d-flex align-items-center">
                     <div>
@@ -335,7 +335,7 @@ const AddQuiz = ({c})=> {
     );
   return (
     
-            <div className="col-md-12">
+            <div>
                 {catForm()}
             </div>
        

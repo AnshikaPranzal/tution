@@ -18,12 +18,12 @@ import img3 from '../../assets/images/big/img3.jpg';
 
 const Starter = () => {
     return (
-        <div>
+        <div className="mt-4">
             <Row>
                 <Col sm={6} lg={8}>
                     <SalesSummary />
                 </Col>
-                <Col sm={6} lg={4}>
+                <Col sm={6} lg={4} >
                     <Feeds />
                 </Col>
             </Row>

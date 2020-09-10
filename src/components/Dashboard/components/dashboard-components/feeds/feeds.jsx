@@ -52,7 +52,7 @@ const Feeds = () => {
     
     
     return (
-        <Card>
+        <Card style={{height:"92%"}}>
             <CardBody>
                 <CardTitle>Feeds</CardTitle>
                 <div className="feed-widget">

@@ -62,7 +62,7 @@ const Fulllayout = (props) => {
         data-sidebar-position="fixed"
         data-header-position="fixed"
         data-boxed-layout="full"
-        style={{ paddingTop: "7em" }}
+        // style={{ paddingTop: "7em" }}
       >
         {/*--------------------------------------------------------------------------------*/}
         {/* Header                                                                         */}

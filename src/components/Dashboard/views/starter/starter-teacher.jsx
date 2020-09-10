@@ -262,7 +262,7 @@ const Starter = () => {
   };
   const [file2, setfile2] = useState([]);
   return (
-    <div className="text-center">
+    <div className="mt-4">
       {/* <Row>
                 <Col sm={6} lg={8}>
                     <SalesSummary />
@@ -271,13 +271,14 @@ const Starter = () => {
                     <Feeds />
                 </Col>
             </Row> */}
-      <Row>
-        <Col sm={12}>
+      <Row className="align-items-center">
+        <Col>
           <Projects />
         </Col>
       </Row>
-      <Row className="text-center" style={{ paddingBottom: "5vmin" }}>
-        <Card style={{ margin: "auto" }}>
+      
+      <Row >
+        <Card className="card-teacher">
           <CardBody>
             <div className="d-flex align-items-center">
               <div>
