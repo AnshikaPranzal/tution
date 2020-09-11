@@ -15,9 +15,9 @@ import bg from "../images/banner/tutor.jpeg";
 const SliderList = () => {
   var sectionStyle = {
     width: "100%",
-    height: "57vmax",
+    height: "90vh",
     backgroundImage: `url(${bg})`,
-    padding: "20vmax 0 20vmax",
+    padding: "25vh 0 25vh",
   };
   var settings = {
     dots: false,
