@@ -35,6 +35,8 @@ import { Link } from 'react-router-dom';
 
     useEffect(() => {
       loadAllMyQuizzes()
+      if(localStorage.getItem("attemptedquiz"))
+      localStorage.removeItem("attemptedquiz")
     },[refresh])
 
     return(

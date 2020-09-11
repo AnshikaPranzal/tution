@@ -25,6 +25,7 @@ import Events from './Events'
 import SuccessStory from './SuccessStory'
 import TeacherList from './TeacherList';
 import Footer from './Footer'
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -106,4 +107,4 @@ const Home = () =>{
         </React.Fragment>
     )
 }
-export default Home;
+export default withRouter(Home);

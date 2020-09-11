@@ -13,6 +13,8 @@ import {
 import ImageHelper from '../../../helper/ImageHelper';
 import NumberCard from './numberCard';
 import Timer from './timer.jsx';
+import { Redirect, withRouter } from 'react-router-dom';
+
 
   const QuizComponent = (props)=>{
      
@@ -26,9 +28,17 @@ import Timer from './timer.jsx';
         duration:"",
         start:""
       })
+      const [refresh, setrefresh] = useState(true)
+
+      useEffect(()=>{
+        if(localStorage.getItem("attemptedquiz") && (localStorage.getItem("attemptedquiz") == quiz._id))
+            props.history.push("/payment") 
+    },[props.history, quiz._id, refresh])
 
       const [showP] = useState(true)
     const loadQuiz=()=>{
+        // setrefresh(!refresh)
+        // if(!localStorage.getItem("attemptedquiz"))
         getQuestions(qid).then(data=>{
           if(data){
             if(data.error){
@@ -91,6 +101,20 @@ import Timer from './timer.jsx';
             })}
             return correct.length
     }
+    const check = () => {
+        
+      if( localStorage.getItem("attemptedquiz")){
+          console.log("Inside redirect")
+          return <Redirect to={'/'} />
+          
+      }
+    }
+
+
+
+    // useEffect(()=>{
+    //     check()
+    // })
 
     const onSubmit = ()=>{
         const totalMarks = dec()
@@ -103,9 +127,15 @@ import Timer from './timer.jsx';
                 else{
                     setfinish(true)
                     setc(0)
+                    if(typeof(window)!== undefined){
+                        localStorage.setItem("attemptedquiz",quiz._id)
+                    }
+                    // setrefresh(false)
+                    // check()
                 } 
             }
         })
+        
     }
 
     var elements=[];
@@ -116,7 +146,10 @@ import Timer from './timer.jsx';
           <React.Fragment>
               {!start ?
               (<React.Fragment>
-                  <button onClick={()=>{setstart(true)}}>start</button>
+                  <Card className='text-center p-5'>
+                      <CardTitle>Already Attempted!!</CardTitle>
+                  </Card>
+                  
               </React.Fragment>):
           (<React.Fragment>
               {finish && (<div className="alert alert-success text-center">Submitted!!You Scored:{totalmarks}</div>)}
@@ -278,7 +311,7 @@ import Timer from './timer.jsx';
                           <Col className="no-col">
                             <Card className="text-center mt-3">
                                 {!finish ? (<><CardTitle className="text-center mt-3" style={{color:"grey"}}>Time Left</CardTitle>
-                               {!isNaN(parseInt(duration)) && <Timer initialMinute = {parseInt(duration)} initialSeconds = {0} setfinish={setfinish}></Timer>}
+                               {!isNaN(parseInt(duration)) && <Timer initialMinute = {parseInt(duration)} initialSeconds = {0} finish={finish} setfinish={setfinish}></Timer>}
                                 <CardSubtitle style={{color:"grey"}}>MaxTime: {duration} Mins.</CardSubtitle></>):(
                                     <CardTitle className="text-center mt-3" style={{color:"grey"}}>Thank You!</CardTitle>
                                 )}
@@ -311,4 +344,4 @@ import Timer from './timer.jsx';
       )
   }
 
-  export default QuizComponent
+  export default withRouter(QuizComponent)

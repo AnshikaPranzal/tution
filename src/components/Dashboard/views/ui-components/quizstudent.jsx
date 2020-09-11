@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 
 import QuizComponent from './quizComponent';
+import { Redirect } from 'react-router-dom';
 
   const QuizStudent = (props)=>{
       const [c, setc] = useState(0)
@@ -38,6 +39,24 @@ import QuizComponent from './quizComponent';
       const incMarks = ()=>{
         setmarks(marks+1)
       }
+      // const [refresh, setrefresh] = useState(true)
+      // const check = () => {
+      //   console.log(localStorage.getItem("attemptedquiz"),"c p")
+      //   if(localStorage.getItem("attemptedquiz")){
+      //     console.log("Inside Parent")
+      //       return(
+      //           <Redirect to={{
+      //             pathname: "/dashboard",
+      //             // search: "?utm=your+face",
+      //             // state: { referrer: currentLocation }
+      //           }}></Redirect>
+      //       )
+      //   }
+      // }
+  
+      // useEffect(()=>{
+      //     check()
+      // })
       return(
     <QuizComponent c={c} setc={setc} increment={increment} decrement={decrement} qid={qid} cSelected={cSelected} finish={finish} setfinish={setfinish} elements={elements} onCheckboxBtnClick={onCheckboxBtnClick} marks={marks} incMarks={incMarks} setmarks={setmarks}></QuizComponent>
       )

@@ -25,16 +25,28 @@ let myInterval = false;
                     } 
                     setMinutes(min)
                     setSeconds(sec)
+                    if(typeof(window)!== undefined){
+                        localStorage.setItem("sec",sec)
+                        localStorage.setItem("min",min)
+                    }
                     console.log(minutes,"rahul bhaiya",seconds,"minutes")
                 }, 1000)}
+        const call = async ()=>{
+            const news = await Promise.resolve(localStorage.getItem("sec")) 
+            const newm = await Promise.resolve(localStorage.getItem("min")) 
+            // const newm = await localStorage.getItem("min")
+            func(news,newm)
+        }
         useEffect(()=>{
             console.log(minutes,typeof minutes,"debraj bhaiya",props)
          
             // return ()=> {
             //     clearInterval(myInterval);
             //   };
+
             console.log(seconds,"use")
-            func(seconds,minutes)
+            // func(seconds,minutes)
+            call()
             
         },[]);
         
