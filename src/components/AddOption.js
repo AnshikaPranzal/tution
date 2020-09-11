@@ -2,31 +2,30 @@
 import React, { useState, useEffect } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
-import { signup1, getAQuestion, updateQuestion } from './helper/index'
-
-const RegisterModal = (props) =>{
+import { signup1, getAOption, createOption} from './helper/index'
+import { InputGroup,InputGroupAddon,InputGroupText,Input } from 'reactstrap'
+const UpdateOption = (props) =>{
     const [values,setValues] = useState([{
-        title:"",
-        img:"",
-        formData:"",
+        optionValue:"",
+        isCorrect:"",
         success: "",
         error:""
     }])
-    const {title,img,formData,success,error} = values
+
+    const {optionValue,isCorrect,success,error} = values
     const handleChange = name => event => {
-        const v = name === "img"? event.target.files[0]:event.target.value
-      
-        formData.set(name,v)
+        if(name === "isCorrect")
+        setValues({
+            ...values,[name]: !isCorrect
+        })
+        else
         setValues({
             ...values,[name]: event.target.value
         })
-        console.log(values)
-        if(name === "img")
-        formData.set("hasImg",true)
     }
-    const [refresh, setrefresh] = useState(true)
-    const loadQuestion = ()=>{
-        getAQuestion(props.id).then(data=>{
+    const [refresh1, setrefresh1] = useState(true)
+    const loadOption = ()=>{
+        getAOption(props.id).then(data=>{
             console.log("backhere")
             if(data){
                 if(data.error){
@@ -34,7 +33,7 @@ const RegisterModal = (props) =>{
                 }
                 else{
                     setValues({
-                        ...values,error: false, title:data.title, formData: new FormData() 
+                        ...values,error: false, optionValue:data.optionValue,isCorrect:data.isCorrect
                     });
                 }
             }
@@ -42,9 +41,9 @@ const RegisterModal = (props) =>{
     }
 
     useEffect(() => {
-        loadQuestion()
+        // loadOption()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[refresh])
+    },[refresh1])
 
     const successMessage = () =>{
         
@@ -52,7 +51,7 @@ const RegisterModal = (props) =>{
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
                     <div className="alert alert-success" style={{display: success ? "" : "none"}}>
-                        Congratulations!!! Question Updated
+                        Option Created!!
                     </div>
                 </div>
         </div>
@@ -69,13 +68,13 @@ const RegisterModal = (props) =>{
         </div>
         </div>
     )}
-
+    const { loadrefresh,hide } = props
     const onSubmit = event => {
         event.preventDefault();
         setValues({
             ...values,error: false
         });
-        updateQuestion(props.id,formData).then(data=>{
+       createOption(props.id,values).then(data=>{
             if(data){
                 if(data.error)
                 {
@@ -89,6 +88,8 @@ const RegisterModal = (props) =>{
                         ...values,success: true
                     });
                     console.log("<3")
+                    loadrefresh()
+                    hide()
                 }
             }
         })
@@ -100,22 +101,25 @@ const RegisterModal = (props) =>{
                 <Modal.Header closeButton>
                         <Modal.Title>
                             <div className="modal-header border-0">
-                                <h3>Update Question</h3>
+                                <h3>Update Option</h3>
                             </div>
                         </Modal.Title>
                 </Modal.Header>
                 <Modal.Body><div className="modal-body">
                         <div className="login">
                             <form action="#" className="row">
-                                <div className="col-12">
-                                    <input type="file" className="mb-3" id="signupPhone" accept="image"  placeholder="Enter Image" onChange={handleChange("img")} value={img}></input>
-                                </div>
-                                <div className="col-12">
-                                    <input type="text" className="mb-3" id="signupName"  placeholder="Enter Question" value={title} onChange={handleChange("title")} ></input>
-                                </div>
+                                              <InputGroup>
+                                                <InputGroupAddon addonType="prepend">
+                                                  <InputGroupText>
+                                                    <Input addon type="checkbox" id="hi" name="isCorrect" onChange={handleChange("isCorrect")} checked={isCorrect} aria-label="Checkbox for following text input" />
+                                                  </InputGroupText>
+                                                </InputGroupAddon>
+                                                <Input placeholder="Enter Option" name="optionValue" onChange={handleChange("optionValue")} value={optionValue}/>
+                                              </InputGroup>
+                                              
                                 
-                                <div className="col-12">
-                                    <button type="submit" onClick={onSubmit} className="hvr-bounce-to-top mt-3">Update</button>
+                                <div className="col-12 d-flex flex-row-reverse mt-3">
+                                    <button onClick={onSubmit} style={{margin:"auto"}} className="btn btn-outline-success">Add</button>
                                 </div>
                             </form>
                         </div>
@@ -130,4 +134,4 @@ const RegisterModal = (props) =>{
         </React.Fragment>
         )
     };
-    export default RegisterModal;
+    export default UpdateOption;

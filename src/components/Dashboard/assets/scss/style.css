@@ -827,7 +827,7 @@ pre code {
 
 .col-2 {
     flex: 0 0 16.66667%;
-    max-width: 26.66667%;
+    max-width: 16.66667%;
 }
 
 .col-3 {
@@ -5266,7 +5266,7 @@ input[type="button"].btn-block {
     display: flex;
     flex-direction: column;
     min-width: 0;
-    word-wrap: normal;
+    word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
     border: 0px solid transparent;
@@ -12630,11 +12630,11 @@ Preloader
     line-height: 40px;
 }
 
-#main-wrapper[data-layout='vertical'],
+/* #main-wrapper[data-layout='vertical'],
 #main-wrapper[data-layout='horizontal'] {
-    /*This is for the logo bg*/
-    /*This is for the sidebar bg*/
-}
+    This is for the logo bg
+    This is for the sidebar bg
+} */
 
 #main-wrapper[data-layout='vertical'] .topbar .top-navbar .navbar-header[data-logobg='skin1'],
 #main-wrapper[data-layout='horizontal'] .topbar .top-navbar .navbar-header[data-logobg='skin1'] {
