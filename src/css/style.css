@@ -679,6 +679,7 @@ textarea.form-control {
 .nav-item {
   margin: 0 1.75vmin;
   position: relative;
+  margin-bottom: 8vh;
 }
 
 .nav-item .nav-link {
