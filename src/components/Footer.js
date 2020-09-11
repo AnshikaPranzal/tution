@@ -10,7 +10,7 @@ const Footer = () => {
           <div className='bg-primary '>
             <div className='row'>
               <div className='col-md-3 mx-auto py-5 newsletter-block'>
-                <h3 className='text-white'>Subscribe Now</h3>
+                <h3 className='text-white text-center'>Subscribe Now</h3>
                 <form action='#' className='text-center'>
                   <div className='input-wrapper'>
                     <input
@@ -37,7 +37,10 @@ const Footer = () => {
         <div className='newsfooter bg-footer section border-bottom'>
           <div className='container1'>
             <div className='row'>
-              <div className='col-lg-4 col-sm-8 mb-5 mb-lg-0' style={{margin:"auto",marginLeft:"0px"}}>
+              <div
+                className='col-lg-4 col-sm-8 mb-5 mb-lg-0'
+                style={{ margin: 'auto', marginLeft: '0px' }}
+              >
                 {/* <!-- logo --> */}
                 <Link className='logo-footer' to='/'>
                   <img
@@ -51,18 +54,18 @@ const Footer = () => {
               <div className='col-lg-3 col-sm-8 mb-5 mb-lg-0'>
                 {/* <!-- About Us --> */}
                 <h3 className='text-white mb-5'>About Us</h3>
-                <p className="footer-text">
+                <p className='footer-text'>
                   Our courses offer a good compromise between the continuous
                   assessment favoured by some universities and the emphasis
                   placed on final exams by others.
                 </p>
               </div>
-            
+
               {/* <!-- Reach --> */}
               <div className='col-lg-3 col-md-3 col-sm-4 col-6 mb-5 mb-md-0'>
                 <h3 className='text-white mb-5'>Reach us</h3>
-                
-                  <ul className='list-unstyled footer-text'>
+
+                <ul className='list-unstyled footer-text'>
                   <ul className='list-unstyled'>
                     <li className='mb-2'>
                       20khb, Kolkata, Kolkata,West Bengal
@@ -72,19 +75,17 @@ const Footer = () => {
                     <li className='mb-2'>contact@yourdomain.com</li>
                   </ul>
                 </ul>
-                
               </div>
-              
             </div>
           </div>
         </div>
         {/* <!-- copyright --> */}
-        <div className="copyright py-4 bg-footer">
-          <div className="container1">
-            <div className="row">
-              <div className="col-sm-4 text-sm-left text-center">
-                <p className="mb-0 footer-text">
-                  Designed and maintained by{" "}
+        <div className='copyright py-4 bg-footer'>
+          <div className='container1'>
+            <div className='row'>
+              <div className='col-sm-4 text-sm-left text-center'>
+                <p className='mb-0 footer-text'>
+                  Designed and maintained by{' '}
                   {/* <script>
                     var CurrentYear = new Date().getFullYear()
                     document.write(CurrentYear)
