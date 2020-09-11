@@ -5,9 +5,9 @@ import bg from "../images/banner/tutor.jpeg";
 
 const Title = (props) => {
   var sectionStyle = {
-    paddingTop: "18vmax",
+    paddingTop: "22.5vh",
     width: "100%",
-    height: "38.67vmax",
+    height: "75vh",
     backgroundImage: `url(${bg})`,
   };
   return (
