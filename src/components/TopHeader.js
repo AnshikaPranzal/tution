@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { Modal } from "react-bootstrap";
-import ResgisterModal from "./RegisterModal";
-import LoginModal from "./LoginModal";
-import { isAuthenticated, signout } from "./helper";
-import Navbar from "./Navbar";
+import { Modal } from 'react-bootstrap';
+import ResgisterModal from './RegisterModal';
+import LoginModal from './LoginModal';
+import { isAuthenticated, signout } from './helper';
+import Navbar from './Navbar';
 
 const TopHeader = () => {
   const [show, setShow] = useState(false);
@@ -27,71 +27,83 @@ const TopHeader = () => {
   return (
     <React.Fragment>
       <div
-        className="top-header bg-white"
-        style={{ lineHeight: "0", paddingTop: "2px" }}
+        className='top-header bg-white'
+        style={{ lineHeight: '0', paddingTop: '2px' }}
       >
-        <div className="container1">
-          <div className="row no-gutters">
-            <div className="col-lg-4 text-center text-lg-left">
-              <a className="text-color mr-3" href="callto:+443003030266">
+        <div className='container1'>
+          <div className='row no-gutters'>
+            <div className='col-lg-4 text-center text-lg-left'>
+              <a
+                className='text-color mr-3 header-font'
+                href='callto:+443003030266'
+              >
                 <strong>CALL</strong> +44 300 303 0266
               </a>
-              <ul className="list-inline d-inline">
-                <li className="list-inline-item mx-0">
-                  <a className="d-inline-block p-2 text-color" href="/">
-                    <i className="ti-facebook"></i>
+              <ul className='list-inline d-inline'>
+                <li className='list-inline-item mx-0'>
+                  <a
+                    className='d-inline-block header-font p-2 text-color'
+                    href='/'
+                  >
+                    <i className='ti-facebook'></i>
                   </a>
                 </li>
-                <li className="list-inline-item mx-0">
-                  <a className="d-inline-block p-2 text-color" href="/">
-                    <i className="ti-twitter-alt"></i>
+                <li className='list-inline-item mx-0'>
+                  <a
+                    className='d-inline-block header-font p-2 text-color'
+                    href='/'
+                  >
+                    <i className='ti-twitter-alt'></i>
                   </a>
                 </li>
                 {/* <li className="list-inline-item mx-0"><a className="d-inline-block p-2 text-color" href="/"><i className="ti-spanedin"></i></a></li> */}
-                <li className="list-inline-item mx-0">
-                  <a className="d-inline-block p-2 text-color" href="/">
-                    <i className="ti-instagram"></i>
+                <li className='list-inline-item mx-0'>
+                  <a
+                    className='d-inline-block p-2 header-font text-color'
+                    href='/'
+                  >
+                    <i className='ti-instagram'></i>
                   </a>
                 </li>
               </ul>
             </div>
-            <div className="col-lg-8 text-center text-lg-right">
+            <div className='col-lg-8 text-center text-lg-right'>
               <ul
-                className="list-inline"
-                style={{ marginBottom: "0", paddingTop: "5px" }}
+                className='list-inline'
+                style={{ marginBottom: '0', paddingTop: '5px' }}
               >
                 {isAuthenticated() ? (
-                  <li className="list-inline-item">
+                  <li className='list-inline-item'>
                     <span
-                      className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"
+                      className='text-uppercase text-color  header-font p-sm-2 py-2 px-0 d-inline-block'
                       onClick={logout}
-                      data-toggle="modal"
-                      data-target="#signupModal"
-                      style={{ cursor: "pointer" }}
+                      data-toggle='modal'
+                      data-target='#signupModal'
+                      style={{ cursor: 'pointer' }}
                     >
                       Log Out
                     </span>
                   </li>
                 ) : (
                   <span>
-                    <li className="list-inline-item">
+                    <li className='list-inline-item'>
                       <span
-                        className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"
+                        className='text-uppercase text-color header-font p-sm-2 py-2 px-0 d-inline-block'
                         onClick={handleShowlogin}
-                        data-toggle="modal"
-                        data-target="#loginModal"
-                        style={{ cursor: "pointer" }}
+                        data-toggle='modal'
+                        data-target='#loginModal'
+                        style={{ cursor: 'pointer' }}
                       >
                         Login
                       </span>
                     </li>
-                    <li className="list-inline-item">
+                    <li className='list-inline-item'>
                       <span
-                        className="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"
+                        className='text-uppercase text-color header-font p-sm-2 py-2 px-0 d-inline-block'
                         onClick={handleShowsignup}
-                        data-toggle="modal"
-                        data-target="#signupModal"
-                        style={{ cursor: "pointer" }}
+                        data-toggle='modal'
+                        data-target='#signupModal'
+                        style={{ cursor: 'pointer' }}
                       >
                         Register
                       </span>

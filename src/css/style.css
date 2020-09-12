@@ -20,6 +20,9 @@ VERSION:	Versoin Number
   width: 100%;
   margin: 1rem;
 }
+.header-font {
+  font-size: 0.6rem;
+}
 
 body {
   line-height: 1.2;
