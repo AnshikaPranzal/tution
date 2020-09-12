@@ -51,7 +51,7 @@ const UpdateOption = (props) =>{
         <div className="row ">
                 <div className="col-md-6 offset-sm-3 text-left">
                     <div className="alert alert-success" style={{display: success ? "" : "none"}}>
-                        Congratulations!!! Option Updated
+                        Option Updated!!
                     </div>
                 </div>
         </div>
@@ -118,8 +118,8 @@ const UpdateOption = (props) =>{
                                               </InputGroup>
                                               
                                 
-                                <div className="col-12">
-                                    <button onClick={onSubmit} className="hvr-bounce-to-top">Update</button>
+                                <div className="col-12 d-flex flex-row-reverse mt-3">
+                                    <button onClick={onSubmit} style={{margin:"auto"}} className="btn btn-outline-success">Update</button>
                                 </div>
                             </form>
                         </div>

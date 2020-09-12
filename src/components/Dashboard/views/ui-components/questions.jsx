@@ -18,6 +18,7 @@ import {createQuestion, createOption, getQuestions, deleteQuestion, deleteOption
 
 import UpdateQuestion from '../../../UpdateQuestion'
 import UpdateOption from '../../../UpdateOption'
+import AddOption from '../../../AddOption'
 import ImageHelper from '../../../helper/ImageHelper';
 const Questions = (props) => {
 
@@ -81,8 +82,10 @@ const Questions = (props) => {
     const [options, setoptions] = useState([]);
   const [zId, setzId] = useState()
   const [show, setshow] = useState(false);
+  const [showA, setshowA] = useState(false);
   const [oId, setoId] = useState()
   const [showo, setshowo] = useState(false);
+  const [showoA, setshowoA] = useState(false);
   const handleClose = () => setshow(false);
   const handleShow = (id) => {setshow(true);
   setzId(id)
@@ -91,6 +94,15 @@ const Questions = (props) => {
   const handleShowO = (id) => {
   setshowo(true);
   setoId(id)
+  }
+  // const handleCloseA = () => setshow(false);
+  // const handleShow = (id) => {setshow(true);
+  // setzId(id)
+  // }
+  const handleCloseOA = () => setshowoA(false);
+  const handleShowOA = (id) => {
+  setshowoA(true);
+  setzId(id)
   }
 
   // handle input change
@@ -149,7 +161,7 @@ const [quesId, setquesId] = useState({id: 0})
               // setValues({...values,error:data.error})
           }
           else{
-            console.log("Options createdd XD<3")
+            // console.log("Options createdd XD<3")
             setoptions([])
 
             setrefresh(!refresh)
@@ -300,21 +312,42 @@ const loadrefresh = ()=>{
                             </div>
                             
                             <br></br>
+
                             <div style={{marginLeft:"3em"}}>
-                              {x.options.map((y,j)=>(
-                                y.isCorrect ? (<span className="text-success">{nextChar('a',j)}. {y.optionValue}
-                                <i className="fa fa-plus text-info" onClick={()=>{handleShowO(y._id)}} style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i>
-                                <i className="fa fa-trash text-orange" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i><br></br></span>):(<span>{nextChar('a',j)}. {y.optionValue}
-                                <i className="fa fa-plus text-info" onClick={()=>{handleShowO(y._id)}} style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i>
-                                <i className="fa fa-trash text-orange" onClick={()=>{deleteAOption(y._id,x._id)}} style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.5em"}}  aria-hidden="true"></i><br></br></span>)
-                              ))}</div>
-                              
+                              <Table className="no-wrap v-middle" responsive>
+                                <tbody>
+                                  
+                                    {x.options.map((y,j)=>(
+                                      y.isCorrect ? (
+                                      <tr className="text-success">
+                                      <td>{nextChar('a',j)}. {y.optionValue}</td>
+                                      <td><i className="fa fa-plus text-info" onClick={()=>{handleShowO(y._id)}} style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.7em"}}  aria-hidden="true"></i></td>
+                                      <td><i className="fa fa-trash text-orange" style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.7em"}}  aria-hidden="true"></i></td><br></br></tr>):(<tr>
+                                        <td>{nextChar('a',j)}. {y.optionValue}</td>
+                                      <td><i className="fa fa-plus text-info" onClick={()=>{handleShowO(y._id)}} style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.7em"}}  aria-hidden="true"></i></td>
+                                      <td><i className="fa fa-trash text-orange" onClick={()=>{deleteAOption(y._id,x._id)}} style={{cursor:"pointer",marginRight:"5px",marginLeft:"5px",fontSize:"0.7em"}}  aria-hidden="true"></i></td><br></br>
+                                      </tr>)
+                                    ))}
+                                  
+                                </tbody>
+                              </Table>
+                              </div>
+                                {/* <div className="row"> */}
+                                  <div className="d-flex flex-row-reverse">
+                                        <button onClick={()=>{handleShowOA(x._id)}} style={{margin:"auto"}} className="btn btn-outline-success">Add Option</button>
+                                  </div>
+                                    
+                                {/* </div> */}
                             <Modal show={show} onHide={handleClose}>
                                   <UpdateQuestion id={zId} ></UpdateQuestion>
                             </Modal>
                             <Modal show={showo} onHide={handleCloseO}>
                                   <UpdateOption id={oId} loadrefresh={()=>loadrefresh()} hide={()=>handleCloseO()}></UpdateOption>
                             </Modal>
+                            <Modal show={showoA} onHide={handleCloseOA}>
+                                  <AddOption id={zId} loadrefresh={()=>loadrefresh()} hide={()=>handleCloseO()}></AddOption>
+                            </Modal>
+                            
                             </React.Fragment>
                             </td>
                             </tr>
