@@ -682,7 +682,6 @@ textarea.form-control {
 .nav-item {
   margin: 0 1.75vmin;
   position: relative;
-  margin-bottom: 8vh;
 }
 
 .nav-item .nav-link {
@@ -742,6 +741,9 @@ link:focus,
 @media (max-width: 991px) {
   .navbar-expand-lg .navbar-nav .nav-link {
     padding: 2.22vmin;
+  }
+  .nav-item{
+    margin-bottom: 8vh;
   }
 }
 
