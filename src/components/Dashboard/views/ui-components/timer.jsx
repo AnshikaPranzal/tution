@@ -2,11 +2,24 @@ import React, {useState,useEffect} from 'react';
 let myInterval = false;
 
     const Timer = (props) => {
-        const {initialMinute ,initialSeconds ,setfinish} = props;
+        const {initialMinute ,initialSeconds ,finish,setfinish} = props;
         const [ minutes, setMinutes ] = useState(initialMinute);
         const [seconds, setSeconds ] =  useState(initialSeconds);
+        useEffect(() => {
+            if(finish){
+                localStorage.removeItem("sec")
+                localStorage.removeItem("min")
+            }
+            else
+            {if(typeof(window)!== undefined){
+                localStorage.setItem("sec",0)
+                localStorage.setItem("min",parseInt(initialMinute))
+                setSeconds(0)
+                setMinutes(parseInt(initialMinute))
+            }}
+        }, [])
         const func = (sec,min)=>{ if(!myInterval)
-            myInterval= setInterval(() => {
+            myInterval= setInterval( async () => {
                 // var sec 
                 // if(minutes === 0 && seconds === 0){
                 //     clearInterval(myInterval)
@@ -23,27 +36,37 @@ let myInterval = false;
                             sec=59
                         }
                     } 
-                    setMinutes(min)
-                    setSeconds(sec)
-                    if(typeof(window)!== undefined){
+                    
+                    if(typeof(window)!== undefined && localStorage.getItem("sec")){
+                        console.log("func")
                         localStorage.setItem("sec",sec)
                         localStorage.setItem("min",min)
+                        const news = await Promise.resolve(parseInt(localStorage.getItem("sec"))) 
+                        const newm = await Promise.resolve(parseInt(localStorage.getItem("min"))) 
+                        const p1 = await Promise.resolve(setMinutes(newm))
+                        const p2 = await Promise.resolve(setSeconds(news))
                     }
                     console.log(minutes,"rahul bhaiya",seconds,"minutes")
                 }, 1000)}
         const call = async ()=>{
-            const news = await Promise.resolve(localStorage.getItem("sec")) 
-            const newm = await Promise.resolve(localStorage.getItem("min")) 
+                        console.log("call")
+            const news = await Promise.resolve(parseInt(localStorage.getItem("sec"))) 
+            const newm = await Promise.resolve(parseInt(localStorage.getItem("min"))) 
+            const p1 = await Promise.resolve(setMinutes(newm))
+            const p2 = await Promise.resolve(setSeconds(news))
             // const newm = await localStorage.getItem("min")
+            console.log("Anshika",news,newm)
+            console.log("Anshika2",news,newm)
+            
             func(news,newm)
         }
         useEffect(()=>{
             console.log(minutes,typeof minutes,"debraj bhaiya",props)
-         
+            
             // return ()=> {
             //     clearInterval(myInterval);
             //   };
-
+            
             console.log(seconds,"use")
             // func(seconds,minutes)
             call()

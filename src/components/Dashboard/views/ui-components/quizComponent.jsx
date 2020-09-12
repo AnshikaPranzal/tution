@@ -46,6 +46,7 @@ import { Redirect, withRouter } from 'react-router-dom';
             }
             else{
               setquiz(data.data[0])
+              
             }
           }
         }) 
@@ -54,7 +55,7 @@ import { Redirect, withRouter } from 'react-router-dom';
     useEffect(() => {
         loadQuiz()
     })
-
+    
     const {duration} = quiz
     
     const {cSelected,onCheckboxBtnClick,finish,setfinish,setc,marks} = props
@@ -130,6 +131,8 @@ import { Redirect, withRouter } from 'react-router-dom';
                     if(typeof(window)!== undefined){
                         localStorage.setItem("attemptedquiz",quiz._id)
                     }
+                    localStorage.removeItem("sec")
+                    localStorage.removeItem("min")
                     // setrefresh(false)
                     // check()
                 } 
