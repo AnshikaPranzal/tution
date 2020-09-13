@@ -276,8 +276,8 @@ const Starter = () => {
           <Projects />
         </Col>
       </Row>
-      
-      <Row >
+
+      <Row>
         <Card className="card-teacher">
           <CardBody>
             <div className="d-flex align-items-center">
@@ -404,7 +404,12 @@ const Starter = () => {
             return (
               // <tr key={i}>
               <Col xs="12" md="4" key={i}>
-                <Card style={{ borderRadius: "10px 10px 10px 10px" }}>
+                <Card
+                  style={{
+                    borderRadius: "10px 10px 10px 10px",
+                    textAlign: "center",
+                  }}
+                >
                   <div
                     style={{
                       height: "5rem",
@@ -419,9 +424,7 @@ const Starter = () => {
                   <div>
                     {isAuthenticated() && isAuthenticated().user.role === 1 ? (
                       <p>
-                        <Link
-                          to={`/dashboard-teacher/classroom-teacher/${obj._id}`}
-                        >
+                        <Link to={`/teacherClassroom/${obj._id}`}>
                           See More
                         </Link>
                       </p>
