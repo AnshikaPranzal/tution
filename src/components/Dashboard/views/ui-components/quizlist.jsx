@@ -14,7 +14,7 @@ import {
   } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-  const QuizList = () =>{
+  const QuizList = (props) =>{
     const { user} = isAuthenticated()
     const [quizzes, setquizzes] = useState([])
     const [refresh, setrefresh] = useState(true)
@@ -39,9 +39,11 @@ import { Link } from 'react-router-dom';
       localStorage.removeItem("attemptedquiz")
     },[refresh])
 
-    const startTest = ()=>{
+    const startTest = (e)=>{
+      
       localStorage.setItem("start",Date.now())
       return true
+      
     }
 
     return(
@@ -58,7 +60,7 @@ import { Link } from 'react-router-dom';
                             
                         </div>     
                                            
-                        <a onClick={()=>startTest()} href={`/start/quiz/${obj._id}`} target="_blank"> Start </a>
+                        <a href={`/start/quiz/${obj._id}`} onClick={()=>startTest()} > Start </a>
                     </CardBody>
                 </Card>
             ))}

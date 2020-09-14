@@ -31,10 +31,6 @@ function Routes() {
   return (
     
       <BrowserRouter>
-          {/* <header className="fixed-top header">
-                <TopHeader></TopHeader>
-                <Navbar ></Navbar>
-          </header> */}
           {loading?<div className="preloader">
             <img src={preloader} alt="Loading..."></img>
           </div>:

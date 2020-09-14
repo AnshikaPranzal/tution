@@ -1,8 +1,6 @@
 
 import Starter from '../views/starter/starter.jsx';
 // ui components
-import Cards from '../views/ui-components/cards.jsx';
-import TooltipComponent from '../views/ui-components/tooltip.jsx';
 import QuizList from '../views/ui-components/quizlist.jsx';
 import QuizStudent from '../views/ui-components/quizstudent.jsx';
 import QuizCompleted from '../views/ui-components/quizCompleted.jsx';
@@ -35,10 +33,10 @@ var ThemeRoutes = [
   //   icon: 'mdi mdi-image-filter-vintage',
   //   component: TooltipComponent
   // },
-  {
-    path: '/start/quiz/:question',
-    component: QuizStudent
-  },
+  // {
+  //   path: '/start/quiz/:question',
+  //   component: QuizStudent
+  // },
   {
     path: '/quizcompleted',
     component: QuizCompleted

@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 
 import QuizComponent from './quizComponent';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
   const QuizStudent = (props)=>{
       const [c, setc] = useState(0)
@@ -65,4 +65,4 @@ import { Redirect } from 'react-router-dom';
       )
   }
 
-  export default QuizStudent
+  export default withRouter(QuizStudent)
