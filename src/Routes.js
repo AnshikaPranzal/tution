@@ -14,6 +14,7 @@ import ClassRoom from './components/ClassRoom';
 import EventPage from './components/EventPage';
 import NoticePage from './components/NoticePage';
 import FulllayoutTeacher from './components/Dashboard/layouts/fulllayout -teacher';
+import Quiz from './components/Dashboard/views/ui-components/quizstudent';
 import FulllayoutAdmin from './components/Dashboard/layouts/fulllayout -admin';
 import preloader from './images/preload.gif';
 import PrivateRoute from './auth-routes/PrivateRoutes';
@@ -45,7 +46,7 @@ function Routes() {
             <Route exact path="/payment" component={Fulllayout} />
             <Route exact path="/material" component={Fulllayout} />
             <Route exact path="/settings" component={Fulllayout} />
-            <Route exact path="/start/quiz/:question" component={Fulllayout} />
+            <Route exact path="/start/quiz/:question" component={Quiz} />
             <Route exact path="/quizcompleted" component={Fulllayout} />
             <Route exact path="/dashboard-teacher" component={FulllayoutTeacher} />
             <Route exact path="/view/response/:quiz/:response" component={FulllayoutTeacher} />

@@ -112,7 +112,6 @@ import { Redirect, withRouter } from 'react-router-dom';
     }
 
 
-
     // useEffect(()=>{
     //     check()
     // })
@@ -314,7 +313,7 @@ import { Redirect, withRouter } from 'react-router-dom';
                           <Col className="no-col">
                             <Card className="text-center mt-3">
                                 {!finish ? (<><CardTitle className="text-center mt-3" style={{color:"grey"}}>Time Left</CardTitle>
-                               {!isNaN(parseInt(duration)) && <Timer initialMinute = {parseInt(duration)} initialSeconds = {0} finish={finish} setfinish={setfinish}></Timer>}
+                               {!isNaN(parseInt(duration)) && <Timer initialMinute = {10} initialSeconds = {0} finish={finish} setfinish={setfinish}></Timer>}
                                 <CardSubtitle style={{color:"grey"}}>MaxTime: {duration} Mins.</CardSubtitle></>):(
                                     <CardTitle className="text-center mt-3" style={{color:"grey"}}>Thank You!</CardTitle>
                                 )}

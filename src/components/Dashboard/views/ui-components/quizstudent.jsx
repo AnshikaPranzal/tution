@@ -57,6 +57,9 @@ import { Redirect } from 'react-router-dom';
       // useEffect(()=>{
       //     check()
       // })
+    //       useEffect(()=>{
+      
+    // },[finish])
       return(
     <QuizComponent c={c} setc={setc} increment={increment} decrement={decrement} qid={qid} cSelected={cSelected} finish={finish} setfinish={setfinish} elements={elements} onCheckboxBtnClick={onCheckboxBtnClick} marks={marks} incMarks={incMarks} setmarks={setmarks}></QuizComponent>
       )

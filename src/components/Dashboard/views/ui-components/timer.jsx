@@ -12,18 +12,38 @@ let myInterval = false;
             }
             else
             {if(typeof(window)!== undefined){
-                localStorage.setItem("sec",0)
-                localStorage.setItem("min",parseInt(initialMinute))
-                setSeconds(0)
-                setMinutes(parseInt(initialMinute))
+                localStorage.setItem("sec",remainingTime2())
+                
+                localStorage.setItem("min",remainingTime())
             }}
+            if(minutes === 0 && seconds === 0){
+                localStorage.removeItem("sec")
+                localStorage.removeItem("min")
+                localStorage.removeItem("start")
+            }
         }, [])
+        const remainingTime = ()=>{
+            
+           var d =parseInt(localStorage.getItem("start"))
+           var d1 = Date.now()
+           var t = parseInt(initialMinute) - parseInt((d1 - d)/60000) 
+           var s =  parseInt((d1 - d)/1000)
+           return t-1
+        }
+        const remainingTime2 = ()=>{
+            
+            var d =parseInt(localStorage.getItem("start"))
+            var d1 = Date.now()
+            var s =  60 - parseInt((d1 - d)/1000) % 60
+            return s
+         }
         const func = (sec,min)=>{ if(!myInterval)
             myInterval= setInterval( async () => {
                 // var sec 
                 // if(minutes === 0 && seconds === 0){
                 //     clearInterval(myInterval)
                 // }
+                    // remainingTime()
                     if (sec > 0) {
                         sec=sec-1
                     }

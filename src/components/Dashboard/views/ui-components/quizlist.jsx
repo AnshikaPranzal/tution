@@ -39,6 +39,11 @@ import { Link } from 'react-router-dom';
       localStorage.removeItem("attemptedquiz")
     },[refresh])
 
+    const startTest = ()=>{
+      localStorage.setItem("start",Date.now())
+      return true
+    }
+
     return(
         <React.Fragment>
             
@@ -51,8 +56,9 @@ import { Link } from 'react-router-dom';
                                 <CardSubtitle>{obj.subject}</CardSubtitle>
                             </div>
                             
-                        </div>                        
-                        <Link to={`/start/quiz/${obj._id}`}> Start </Link>
+                        </div>     
+                                           
+                        <a onClick={()=>startTest()} href={`/start/quiz/${obj._id}`} target="_blank"> Start </a>
                     </CardBody>
                 </Card>
             ))}
