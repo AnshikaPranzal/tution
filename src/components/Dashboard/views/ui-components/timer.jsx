@@ -9,6 +9,7 @@ let myInterval = false;
             if(finish){
                 localStorage.removeItem("sec")
                 localStorage.removeItem("min")
+                localStorage.removeItem("start")
             }
             else
             {if(typeof(window)!== undefined){
