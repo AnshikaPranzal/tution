@@ -8,10 +8,10 @@ VERSION:	Versoin Number
 [TABLE OF CONTENTS]
 -------------------------------------------------------------------*/
 /*  typography */
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
 @font-face {
-  font-family: "futura-bold";
-  src: url("../fonts/Futura-Bold.woff") format("woff");
+  font-family: 'futura-bold';
+  src: url('../fonts/Futura-Bold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -20,10 +20,13 @@ VERSION:	Versoin Number
   width: 100%;
   margin: 1rem;
 }
+.header-font {
+  font-size: 0.6rem;
+}
 
 body {
   line-height: 1.2;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   /* font-size: 15px; */
   font-size: 1rem !important;
@@ -35,16 +38,16 @@ p,
   font-weight: 400;
   color: #5c5c77;
 
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.9;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .footer-text {
   color: #5e72e4;
   font-size: 0.8rem !important;
   line-height: 1.9;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 h1,
@@ -54,7 +57,7 @@ h4,
 h5,
 h6 {
   color: #1e1e4b;
-  font-family: "futura-bold";
+  font-family: 'futura-bold';
   font-weight: 700;
   line-height: 1.2;
 }
@@ -170,7 +173,7 @@ h6,
 .btn {
   /* font-size: 16px; */
   font-size: 0.9rem !important;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-transform: capitalize;
   padding: 1.5vmin 4.4vmin;
   border-radius: 0;
@@ -184,7 +187,7 @@ h6,
 
 .btn::before {
   position: absolute;
-  content: "";
+  content: '';
   height: 80%;
   width: 100%;
   left: 0;
@@ -301,7 +304,7 @@ h6,
 /* Bounce To Top */
 .hvr-bounce-to-top {
   font-size: 1rem;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-transform: capitalize;
   padding: 1.75vmin 4.44vmin;
   border-radius: 0;
@@ -324,7 +327,7 @@ h6,
   transition-duration: 0.5s;
 }
 .hvr-bounce-to-top:before {
-  content: "";
+  content: '';
   position: absolute;
   z-index: -1;
   top: 0;
@@ -475,7 +478,7 @@ a h4:hover {
 
 .overlay::before {
   position: absolute;
-  content: "";
+  content: '';
   height: 100%;
   width: 100%;
   top: 0;
@@ -529,7 +532,7 @@ a h4:hover {
 }
 
 .font-secondary {
-  font-family: "futura-bold";
+  font-family: 'futura-bold';
 }
 
 .mb-10 {
@@ -606,8 +609,8 @@ a h4:hover {
 
 .custom-breadcrumb li.nasted::before {
   position: absolute;
-  font-family: "themify";
-  content: "\e649";
+  font-family: 'themify';
+  content: '\e649';
   font-size: 2.22vmin;
   top: 50%;
   left: -0.5vmin;
@@ -628,7 +631,7 @@ a h4:hover {
 
 .list-styled li::before {
   position: absolute;
-  content: "";
+  content: '';
   height: 1.1vmin;
   width: 1.1vmin;
   border-radius: 50%;
@@ -699,7 +702,6 @@ textarea.form-control {
 .nav-item {
   margin: 0 1.75vmin;
   position: relative;
-  margin-bottom: 8vh;
 }
 
 .nav-item .nav-link {
@@ -713,7 +715,7 @@ textarea.form-control {
   bottom: 0;
   height: 0.75vmin;
   width: 100%;
-  content: "";
+  content: '';
   background: #fff;
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
@@ -759,6 +761,9 @@ link:focus,
 @media (max-width: 991px) {
   .navbar-expand-lg .navbar-nav .nav-link {
     padding: 2.22vmin;
+  }
+  .nav-item{
+    margin-bottom: 8vh;
   }
 }
 
@@ -821,7 +826,7 @@ link:focus,
   color: #1e1e4b;
   transition: 0.2s ease;
   text-transform: capitalize;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 @media (max-width: 991px) {
@@ -1000,7 +1005,7 @@ link:focus,
 
 .play-btn::before {
   position: absolute;
-  content: "";
+  content: '';
   height: 0;
   width: 0;
   -webkit-transform: translate(-50%, -50%);
@@ -1016,7 +1021,7 @@ link:focus,
 
 .play-btn::after {
   position: absolute;
-  content: "";
+  content: '';
   height: 80%;
   width: 80%;
   -webkit-transform: translate(-50%, -50%);
@@ -1046,7 +1051,7 @@ link:focus,
 .card-date {
   position: absolute;
   background: #68d8d6;
-  font-family: "futura-bold";
+  font-family: 'futura-bold';
   text-align: center;
   padding: 1.1vmin;
   color: #fff;

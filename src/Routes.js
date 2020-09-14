@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter,Switch,Route } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Home from './components/Home';
 import Contact from './components/Contact';
@@ -26,8 +26,7 @@ function Routes() {
     const timeout = setTimeout(() => {
       setLoading(false);
     }, 200);
-    
-  })
+  });
   return (
     
       <BrowserRouter>
@@ -57,7 +56,6 @@ function Routes() {
           </Switch>}
         {/* <Footer></Footer> */}
     </BrowserRouter>
-   
   );
 }
 
