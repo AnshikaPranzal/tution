@@ -6,7 +6,7 @@ let myInterval = false;
         const [ minutes, setMinutes ] = useState(initialMinute);
         const [seconds, setSeconds ] =  useState(initialSeconds);
         useEffect(() => {
-            if(finish){
+            if(minutes <= 0 || (minutes === 0 && seconds === 0)){
                 localStorage.removeItem("sec")
                 localStorage.removeItem("min")
                 localStorage.removeItem("start")
@@ -23,6 +23,13 @@ let myInterval = false;
                 localStorage.removeItem("start")
             }
         }, [])
+        useEffect(()=>{
+            if(minutes <= 0 || (minutes === 0 && seconds === 0)){
+                localStorage.removeItem("sec")
+                localStorage.removeItem("min")
+                localStorage.removeItem("start")
+            }
+        })
         const remainingTime = ()=>{
             
            var d =parseInt(localStorage.getItem("start"))
@@ -96,7 +103,7 @@ let myInterval = false;
         
         return (
             <div>
-            { minutes === 0 && seconds === 0
+            { minutes <= 0 || (minutes === 0 && seconds === 0)
                 ? setfinish(true)
                 : <h1> {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1> 
             }

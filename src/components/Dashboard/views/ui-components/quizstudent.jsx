@@ -1,7 +1,8 @@
 import React, {useState,useEffect} from 'react';
 
 import QuizComponent from './quizComponent';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect, withRouter,useHistory,useRouter } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom'
 
   const QuizStudent = (props)=>{
       const [c, setc] = useState(0)
@@ -39,6 +40,40 @@ import { Redirect, withRouter } from 'react-router-dom';
       const incMarks = ()=>{
         setmarks(marks+1)
       }
+      
+  //     const [isBackButtonClicked, setBackbuttonPress] = useState(false);
+  //     const onBackButtonEvent = (e) => {
+  //       localStorage.setItem("jj",7)
+  //       e.preventDefault();
+  //       if (!isBackButtonClicked) {
+  //         localStorage.removeItem("start")
+  //       if (window.confirm("Do you want to go to Test Listing")) {
+  //         localStorage.removeItem("start")
+  //         setBackbuttonPress(true)
+  //         console.log("here")
+  //         props.history.go('/')
+  //       } else {
+  //         window.history.pushState(null, null, window.location.pathname);
+  //         setBackbuttonPress(false)
+  //       }
+  //     }
+  //   }
+  //     // const {history} = useRouter();
+  // useEffect(() => {
+    
+  //   window.history.pushState(null, null, window.location.pathname);
+  //   window.addEventListener('popstate', onBackButtonEvent);
+
+  //   //logic for showing popup warning on page refresh
+  //   window.onbeforeunload = function () {
+
+  //     return "Data will be lost if you leave the page, are you sure?";
+  //   };
+  //   return () => {
+  //     window.removeEventListener('popstate', onBackButtonEvent);
+  //   }
+  // }, [])
+
       // const [refresh, setrefresh] = useState(true)
       // const check = () => {
       //   console.log(localStorage.getItem("attemptedquiz"),"c p")

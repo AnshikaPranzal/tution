@@ -1,7 +1,6 @@
 /* eslint-disable no-lone-blocks */
 import React, {useState,useEffect} from 'react';
 import { getQuestions,createResponse,isAuthenticated } from '../../../helper/index';
-
 import {
     Card,
     CardBody,
@@ -32,7 +31,7 @@ import { Redirect, withRouter } from 'react-router-dom';
 
       useEffect(()=>{
         if(localStorage.getItem("attemptedquiz") && (localStorage.getItem("attemptedquiz") == quiz._id))
-            props.history.push("/payment") 
+            props.history.push("/quiz") 
     },[props.history, quiz._id, refresh])
 
       const [showP] = useState(true)
@@ -110,7 +109,35 @@ import { Redirect, withRouter } from 'react-router-dom';
           
       }
     }
+    const [isBackButtonClicked, setBackbuttonPress] = useState(false);
+    const onBackButtonEvent = (e) => {
+      e.preventDefault();
+      if (!isBackButtonClicked) {
+      if (window.confirm("Do you want to go to Test Listing")) {
+       
+        setBackbuttonPress(true)
+        props.history.go('/')
+      } else {
+        window.history.pushState(null, null, window.location.pathname);
+        setBackbuttonPress(false)
+      }
+    }
+  }
+    // const {history} = useRouter();
+useEffect(() => {
+  
+  window.history.pushState(null, null, window.location.pathname);
+  window.addEventListener('popstate', onBackButtonEvent);
 
+  //logic for showing popup warning on page refresh
+  window.onbeforeunload = function () {
+
+    return "are you sure?";
+  };
+  return () => {
+    window.removeEventListener('popstate', onBackButtonEvent);
+  }
+}, [])
 
     // useEffect(()=>{
     //     check()
@@ -132,6 +159,7 @@ import { Redirect, withRouter } from 'react-router-dom';
                     }
                     localStorage.removeItem("sec")
                     localStorage.removeItem("min")
+                    localStorage.removeItem("start")
                     // setrefresh(false)
                     // check()
                 } 
@@ -139,6 +167,7 @@ import { Redirect, withRouter } from 'react-router-dom';
         })
         
     }
+
 
     var elements=[];
     for(var i=0;i<quiz.questions.length;i++){
@@ -193,13 +222,14 @@ import { Redirect, withRouter } from 'react-router-dom';
                                                 var f 
                                                    {cSelected.map((o) => {
                                                        const k = (o === y._id) ? true : f
-                                                        f=k
+                                                        f=k //f true => checked
                                                         // setflag(true);
                                                         return(<span></span>)
                                                    })}
                                                 return(
                                                     <React.Fragment>
-                                                {finish? (<Col md={10} className="ml-4">
+                                                {finish? (
+                                                <Col md={10} className="ml-4">
                                                     {f  ? (
                                                         <React.Fragment>
                                                             {y.isCorrect ?
