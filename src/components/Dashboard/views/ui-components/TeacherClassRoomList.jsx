@@ -40,6 +40,9 @@ const TeacherClassRoomList = () => {
       <h4>CLASSROOMS</h4>
       <hr></hr>
       <Row>
+        {classrooms.length === 0 && (
+          <h3 className="text-center"> No classroom has been created</h3>
+        )}
         {classrooms.map((obj, i) => {
           if (Tid.toString() === obj.owner._id.toString()) {
             return (
