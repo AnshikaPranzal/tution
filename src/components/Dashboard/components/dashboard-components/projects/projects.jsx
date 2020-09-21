@@ -123,6 +123,9 @@ const Projects = () => {
               })}
             </tbody>
           </Table>
+          {classO.length === 0 && (
+            <h3 classs="text-center">No Classes For Today!</h3>
+          )}
         </CardBody>
       </Card>
     </>
