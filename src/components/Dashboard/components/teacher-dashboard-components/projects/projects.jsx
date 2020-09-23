@@ -21,7 +21,6 @@ import {
   Table,
 } from 'reactstrap';
 import { useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
 
 const Projects = () => {
   const [classO, setclassO] = useState([]);
@@ -87,27 +86,33 @@ const Projects = () => {
   }, [refresh]);
 
   const successMessage = () => {
-    toast.success('Congratulations, Class has been added 😁👍!', {
-      position: 'bottom-left',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    return (
+      <div className="row ">
+        <div className="col-md-6 offset-sm-3 text-left">
+          <div
+            className="alert alert-success"
+            style={{ display: success ? '' : 'none' }}
+          >
+            Congratulations!!! Class is added.
+          </div>
+        </div>
+      </div>
+    );
   };
 
   const errorMessage = () => {
-    toast.error(`${error}`, {
-      position: 'bottom-left',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    return (
+      <div className="row ">
+        <div className="col-md-6 offset-sm-3 text-left">
+          <div
+            className="alert alert-danger"
+            style={{ display: error ? '' : 'none' }}
+          >
+            {error}
+          </div>
+        </div>
+      </div>
+    );
   };
   // const {dispatch} = useContext(TodoContext)
   const { user } = isAuthenticated();
@@ -283,17 +288,6 @@ const Projects = () => {
             <CardSubtitle>Click on them to join</CardSubtitle>
           </div>
         </div>
-        <ToastContainer
-          position="bottom-left"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
         {successMessage()}
         {errorMessage()}
         <Table className="no-wrap v-middle" responsive>
