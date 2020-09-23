@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import $ from "jquery";
+import $ from 'jquery';
 
 import {
   Card,
@@ -9,9 +9,9 @@ import {
   CardSubtitle,
   Input,
   Table,
-} from "reactstrap";
-import { useEffect } from "react";
-import { getAllSubjects, addSubject, getAllUSers } from "../../../helper";
+} from 'reactstrap';
+import { useEffect } from 'react';
+import { getAllSubjects, addSubject, getAllUSers } from '../../../helper';
 
 const Projects = () => {
   const [userO, setuserO] = useState([]);
@@ -54,9 +54,9 @@ const Projects = () => {
   const users = [];
 
   const [u, setU] = useState({
-    name: "",
-    email: "",
-    subject: "",
+    name: '',
+    email: '',
+    subject: '',
     value: 0,
   });
   const { name, email, subject, value } = u;
@@ -113,7 +113,7 @@ const Projects = () => {
                   id={name}
                   placeholder="Name"
                   value={name}
-                  onChange={handleChange("name")}
+                  onChange={handleChange('name')}
                 ></Input>
               </td>
 
@@ -124,7 +124,7 @@ const Projects = () => {
                   id={email}
                   placeholder="email"
                   value={email}
-                  onChange={handleChange("email")}
+                  onChange={handleChange('email')}
                 ></Input>
               </td>
 
@@ -133,7 +133,7 @@ const Projects = () => {
                   type="select"
                   className="custom-select"
                   value={subject}
-                  onChange={handleChange("subject")}
+                  onChange={handleChange('subject')}
                 >
                   <option value="0">Select</option>
                   {sub.map((obj, i) => {
@@ -153,14 +153,14 @@ const Projects = () => {
                   id={value}
                   placeholder="0"
                   value={value}
-                  onChange={handleChange("value")}
+                  onChange={handleChange('value')}
                 ></Input>
               </td>
 
               <td>
                 <button
                   onClick={onSubmit}
-                  style={{ cursor: "pointer", padding: "16px 32px" }}
+                  style={{ cursor: 'pointer', padding: '16px 32px' }}
                   class="hvr-bounce-to-top"
                 >
                   Add
