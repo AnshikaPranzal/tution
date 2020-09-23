@@ -27,14 +27,13 @@ const Projects = () => {
           seterrorF(data.error);
         } else {
           setuserO(data);
-          setRefresh(!refresh);
         }
     });
   };
 
   useEffect(() => {
     loadAllusers();
-  }, [refresh]);
+  }, []);
 
   const loadAllSubjects = () => {
     getAllSubjects().then((data) => {
@@ -89,29 +88,29 @@ const Projects = () => {
   const dashboard = () => (
     <Card>
       <CardBody>
-        <div className="d-flex align-items-center">
+        <div className='d-flex align-items-center'>
           <div>
             <CardTitle>Find Student</CardTitle>
             <CardSubtitle>To Add or Edit Subject</CardSubtitle>
           </div>
         </div>
-        <Table className="no-wrap v-middle" responsive>
+        <Table className='no-wrap v-middle' responsive>
           <thead>
-            <tr className="border-0">
-              <th className="border-0">Name</th>
-              <th className="border-0">Email</th>
-              <th className="border-0">Subject</th>
-              <th className="border-0">Months</th>
+            <tr className='border-0'>
+              <th className='border-0'>Name</th>
+              <th className='border-0'>Email</th>
+              <th className='border-0'>Subject</th>
+              <th className='border-0'>Months</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
                 <Input
-                  type="text"
+                  type='text'
                   name={name}
                   id={name}
-                  placeholder="Name"
+                  placeholder='Name'
                   value={name}
                   onChange={handleChange('name')}
                 ></Input>
@@ -119,10 +118,10 @@ const Projects = () => {
 
               <td>
                 <Input
-                  type="email"
+                  type='email'
                   name={email}
                   id={email}
-                  placeholder="email"
+                  placeholder='email'
                   value={email}
                   onChange={handleChange('email')}
                 ></Input>
@@ -130,12 +129,12 @@ const Projects = () => {
 
               <td>
                 <Input
-                  type="select"
-                  className="custom-select"
+                  type='select'
+                  className='custom-select'
                   value={subject}
                   onChange={handleChange('subject')}
                 >
-                  <option value="0">Select</option>
+                  <option value='0'>Select</option>
                   {sub.map((obj, i) => {
                     return (
                       <option key={i} value={obj._id}>
@@ -148,10 +147,10 @@ const Projects = () => {
 
               <td>
                 <Input
-                  type="Number"
+                  type='Number'
                   name={value}
                   id={value}
-                  placeholder="0"
+                  placeholder='0'
                   value={value}
                   onChange={handleChange('value')}
                 ></Input>
@@ -161,7 +160,7 @@ const Projects = () => {
                 <button
                   onClick={onSubmit}
                   style={{ cursor: 'pointer', padding: '16px 32px' }}
-                  class="hvr-bounce-to-top"
+                  class='hvr-bounce-to-top'
                 >
                   Add
                 </button>
@@ -172,7 +171,7 @@ const Projects = () => {
                 return <></>;
               }
               return (
-                <tr key={i} className="userlist">
+                <tr key={i} className='userlist'>
                   <td>{obj.name}</td>
                   <td>{obj.email}</td>
                   <td>
@@ -195,7 +194,7 @@ const Projects = () => {
           </tbody>
         </Table>
         {userO.length === 0 && (
-          <h3 className="text-center">No Students Enrolled</h3>
+          <h3 className='text-center'>No Students Enrolled</h3>
         )}
       </CardBody>
     </Card>
