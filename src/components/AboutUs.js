@@ -1,15 +1,15 @@
-import React from "react";
-import About_pic from "../images/about/about3.jpg";
-import { Link } from "react-router-dom";
+import React from 'react';
+import About_pic from '../images/about/about3.jpg';
+import { Link } from 'react-router-dom';
 
 const AboutUs = (props) => {
   return (
     <React.Fragment>
-      <section className="section">
-        <div className="" style={{ width: "80vw", margin: "auto" }}>
-          <div className="row align-items-center">
-            <div className="col-md-6 order-2 order-md-1">
-              <h2 className="section-title">About {props.topic}</h2>
+      <section className='section'>
+        <div className='' style={{ width: '80vw', margin: 'auto' }}>
+          <div className='row align-items-center'>
+            <div className='col-md-6 order-2 order-md-1'>
+              <h2 className='section-title'>About {props.topic}</h2>
               <p>
                 “Effervescence” is not just a brand name. The name itself is
                 self-explanatory. As talents or ideas are bubbling inside a
@@ -26,18 +26,18 @@ const AboutUs = (props) => {
                 10 years we have had a large number of successful aspirants in
                 competitive exams like JEE (Mains and Advance), NEET-UG, WBJEE,
                 KVPY as well as in class XII Board exam (WBCHSE, CBSE, ICSE)
-                (Please, see the list of a few successful candidates).{" "}
+                (Please, see the list of a few successful candidates).{' '}
               </p>
-              <Link to="/about" className="btn btn-primary-outline">
+              <Link to='/about' className='btn btn-primary-outline'>
                 Learn more
               </Link>
             </div>
-            <div className="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
+            <div className='col-md-6 order-1 order-md-2 mb-4 mb-md-0'>
               <img
-                className="img-fluid w-100"
+                className='img-fluid image-hover-shadow w-100'
                 src={About_pic}
-                alt="aboutimage"
-                style={{ borderRadius: "10px" }}
+                alt='aboutimage'
+                style={{ borderRadius: '10px' }}
               ></img>
             </div>
           </div>
