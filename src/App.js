@@ -21,13 +21,13 @@ function App() {
     }, 3000);
   });
   return (
-    <div className="App">
+    <div className='App'>
       {loading ? (
-        <Cube color="red" size="60px" duration="5s"></Cube>
+        <Cube color='red' size='60px' duration='5s'></Cube>
       ) : (
         <>
           <ToastContainer
-            position="bottom-left"
+            position='bottom-left'
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
