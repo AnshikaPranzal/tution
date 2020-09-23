@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 import {
   classes,
@@ -10,7 +10,7 @@ import {
   getAllSubjects,
   getAllStandards,
   getUserResponse,
-} from "../../../../helper/index";
+} from '../../../../helper/index';
 
 import {
   Card,
@@ -19,8 +19,9 @@ import {
   CardSubtitle,
   Input,
   Table,
-} from "reactstrap";
-import { useEffect } from "react";
+} from 'reactstrap';
+import { useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Projects = () => {
   const [classO, setclassO] = useState([]);
@@ -29,7 +30,7 @@ const Projects = () => {
   const [errorS, seterrorS] = useState(false);
   const [errorF, seterrorF] = useState(false);
   const [update, setupdate] = useState(false);
-  const [uid, setuid] = useState("");
+  const [uid, setuid] = useState('');
   const [sub, setsubject] = useState([]);
 
   // const getClassName = (cid) => {
@@ -86,33 +87,27 @@ const Projects = () => {
   }, [refresh]);
 
   const successMessage = () => {
-    return (
-      <div className="row ">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <div
-            className="alert alert-success"
-            style={{ display: success ? "" : "none" }}
-          >
-            Congratulations!!! Class is added.
-          </div>
-        </div>
-      </div>
-    );
+    toast.success('Congratulations, Class has been added 😁👍!', {
+      position: 'bottom-left',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const errorMessage = () => {
-    return (
-      <div className="row ">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <div
-            className="alert alert-danger"
-            style={{ display: error ? "" : "none" }}
-          >
-            {error}
-          </div>
-        </div>
-      </div>
-    );
+    toast.error(`${error}`, {
+      position: 'bottom-left',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
   // const {dispatch} = useContext(TodoContext)
   const { user } = isAuthenticated();
@@ -120,17 +115,17 @@ const Projects = () => {
   const nameT = user.name;
   const emailT = user.email;
   const [project, setProject] = useState({
-    classLink: "",
+    classLink: '',
     name: nameT,
     email: emailT,
-    subject: "",
+    subject: '',
     owner: user._id,
-    subjectname: "",
-    Class: "",
-    standard: "",
-    time: "",
-    date: "",
-    error: "",
+    subjectname: '',
+    Class: '',
+    standard: '',
+    time: '',
+    date: '',
+    error: '',
     success: false,
   });
   const {
@@ -185,21 +180,21 @@ const Projects = () => {
         } else {
           setProject({
             ...project,
-            classLink: "",
-            subject: "",
+            classLink: '',
+            subject: '',
             owner: user._id,
-            subjectname: "",
-            Class: "",
-            standard: "",
-            time: "",
-            date: "",
-            error: "",
+            subjectname: '',
+            Class: '',
+            standard: '',
+            time: '',
+            date: '',
+            error: '',
             success: true,
           });
           setrefresh(!refresh);
         }
       })
-      .catch(console.log("Error in classes"));
+      .catch(console.log('Error in classes'));
   };
   const deleteaClass = (catuctId) => {
     deleteClass(catuctId).then((data) => {
@@ -214,7 +209,7 @@ const Projects = () => {
   };
   const getClass = (classId) => {
     getAClass(classId).then((data) => {
-      console.log(data.date, "d");
+      console.log(data.date, 'd');
       if (data.error) {
         console.log(data.error);
         // setValues({...values,error:data.error})
@@ -255,13 +250,13 @@ const Projects = () => {
       } else {
         setProject({
           ...project,
-          classLink: "",
-          subject: "",
-          Class: "",
-          standard: "",
-          time: "",
-          date: "",
-          error: "",
+          classLink: '',
+          subject: '',
+          Class: '',
+          standard: '',
+          time: '',
+          date: '',
+          error: '',
           success: true,
         });
         setrefresh(!refresh);
@@ -288,6 +283,17 @@ const Projects = () => {
             <CardSubtitle>Click on them to join</CardSubtitle>
           </div>
         </div>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         {successMessage()}
         {errorMessage()}
         <Table className="no-wrap v-middle" responsive>
@@ -312,7 +318,7 @@ const Projects = () => {
                       id={classLink}
                       placeholder="Class link here.."
                       value={classLink}
-                      onChange={handleChange("classLink")}
+                      onChange={handleChange('classLink')}
                     ></Input>
                     {/* <Input
                                     type="text"
@@ -332,7 +338,7 @@ const Projects = () => {
                   type="select"
                   className="custom-select"
                   value={subject}
-                  onChange={handleChange("subject")}
+                  onChange={handleChange('subject')}
                 >
                   <option value="0">Select</option>
                   {sub.map((obj, i) => {
@@ -350,7 +356,7 @@ const Projects = () => {
                   type="select"
                   className="custom-select"
                   value={standard}
-                  onChange={handleChange("standard")}
+                  onChange={handleChange('standard')}
                 >
                   <option value="0">Select</option>
                   {std.map((obj, i) => {
@@ -370,8 +376,8 @@ const Projects = () => {
                   id="todo"
                   placeholder=" : "
                   value={time}
-                  onChange={handleChange("time")}
-                  style={{ maxWidth: "100px" }}
+                  onChange={handleChange('time')}
+                  style={{ maxWidth: '100px' }}
                 ></Input>
               </td>
               <td className="blue-grey-text  text-darken-4 font-medium">
@@ -381,8 +387,8 @@ const Projects = () => {
                   id="date"
                   placeholder="1 hr."
                   value={date}
-                  onChange={handleChange("date")}
-                  style={{ maxWidth: "200px" }}
+                  onChange={handleChange('date')}
+                  style={{ maxWidth: '200px' }}
                 ></Input>
               </td>
               <td>
@@ -392,9 +398,9 @@ const Projects = () => {
                       updateaClass(e, uid);
                     }}
                     style={{
-                      cursor: "pointer",
-                      marginTop: "6px",
-                      fontSize: "20px",
+                      cursor: 'pointer',
+                      marginTop: '6px',
+                      fontSize: '20px',
                     }}
                     className="fa fa-check text-success"
                     aria-hidden="true"
@@ -403,9 +409,9 @@ const Projects = () => {
                   <i
                     onClick={onSubmit}
                     style={{
-                      cursor: "pointer",
-                      marginTop: "6px",
-                      fontSize: "20px",
+                      cursor: 'pointer',
+                      marginTop: '6px',
+                      fontSize: '20px',
                     }}
                     className="fa fa-plus text-success"
                     aria-hidden="true"
@@ -446,7 +452,7 @@ const Projects = () => {
                     <td>
                       <i
                         className="fa fa-plus text-info"
-                        style={{ cursor: "pointer", marginRight: "20px" }}
+                        style={{ cursor: 'pointer', marginRight: '20px' }}
                         onClick={() => {
                           getClass(obj._id);
                         }}
@@ -454,7 +460,7 @@ const Projects = () => {
                       ></i>
                       <i
                         className="fa fa-trash text-orange"
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: 'pointer' }}
                         onClick={() => {
                           deleteaClass(obj._id);
                         }}

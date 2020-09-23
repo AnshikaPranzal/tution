@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   notices,
   isAuthenticated,
@@ -9,7 +9,7 @@ import {
   getANotice,
   getAllUSers,
   updateRole,
-} from "../../../helper/index";
+} from '../../../helper/index';
 import {
   Card,
   CardImg,
@@ -22,62 +22,62 @@ import {
   Col,
   Input,
   Table,
-} from "reactstrap";
-import Search from "../ui-components/findUser";
+} from 'reactstrap';
+import Search from '../ui-components/findUser';
 import {
   SalesSummary,
   Projects,
   Feeds,
-} from "../../components/admin-dashboard-components";
-import Subject from "../ui-components/SubjectCRUD";
-import Standard from "../ui-components/StandardCRUD";
-import $ from "jquery";
+} from '../../components/admin-dashboard-components';
+import Subject from '../ui-components/SubjectCRUD';
+import Standard from '../ui-components/StandardCRUD';
+import $ from 'jquery';
 
-import img1 from "../../assets/images/big/img1.jpg";
-import img2 from "../../assets/images/big/img2.jpg";
-import img3 from "../../assets/images/big/img3.jpg";
+import img1 from '../../assets/images/big/img1.jpg';
+import img2 from '../../assets/images/big/img2.jpg';
+import img3 from '../../assets/images/big/img3.jpg';
 
 const Starter = () => {
   $(document).ready(() => {
-    $(".sl").addClass("hide");
+    $('.sl').addClass('hide');
   });
-  $(".bsm").click(() => {
-    $(".sm").addClass("hide");
-    $(".sl").removeClass("hide");
+  $('.bsm').click(() => {
+    $('.sm').addClass('hide');
+    $('.sl').removeClass('hide');
   });
-  $(".bsl").click(() => {
-    $(".sl").addClass("hide");
-    $(".sm").removeClass("hide");
-  });
-
-  $(document).ready(() => {
-    $(".wsl").addClass("hide");
-  });
-  $(".bwsm").click(() => {
-    $(".wsm").addClass("hide");
-    $(".wsl").removeClass("hide");
-  });
-  $(".bwsl").click(() => {
-    $(".wsl").addClass("hide");
-    $(".wsm").removeClass("hide");
+  $('.bsl').click(() => {
+    $('.sl').addClass('hide');
+    $('.sm').removeClass('hide');
   });
 
   $(document).ready(() => {
-    $(".msl").addClass("hide");
+    $('.wsl').addClass('hide');
   });
-  $(".bmsm").click(() => {
-    $(".msm").addClass("hide");
-    $(".msl").removeClass("hide");
+  $('.bwsm').click(() => {
+    $('.wsm').addClass('hide');
+    $('.wsl').removeClass('hide');
   });
-  $(".bmsl").click(() => {
-    $(".msl").addClass("hide");
-    $(".msm").removeClass("hide");
+  $('.bwsl').click(() => {
+    $('.wsl').addClass('hide');
+    $('.wsm').removeClass('hide');
   });
 
-  const [file, setfile] = useState("choose");
-  const [video, setvideo] = useState("");
-  const [emailT, setemailT] = useState("");
-  const [emailA, setemailA] = useState("");
+  $(document).ready(() => {
+    $('.msl').addClass('hide');
+  });
+  $('.bmsm').click(() => {
+    $('.msm').addClass('hide');
+    $('.msl').removeClass('hide');
+  });
+  $('.bmsl').click(() => {
+    $('.msl').addClass('hide');
+    $('.msm').removeClass('hide');
+  });
+
+  const [file, setfile] = useState('choose');
+  const [video, setvideo] = useState('');
+  const [emailT, setemailT] = useState('');
+  const [emailA, setemailA] = useState('');
 
   const [noticeO, setnoticeO] = useState([]);
   const [userO, setuserO] = useState([]);
@@ -88,11 +88,11 @@ const Starter = () => {
   var monthstudents = 0;
   var monthstudentsarray = [];
   var difference = 0;
-  var usercreation = "";
+  var usercreation = '';
   const [errorF, seterrorF] = useState(false);
   const [errorU, seterrorU] = useState(false);
   const [update, setupdate] = useState(false);
-  const [uid, setuid] = useState("");
+  const [uid, setuid] = useState('');
 
   const loadAllnotices = () => {
     getAllNotices().then((data) => {
@@ -128,7 +128,7 @@ const Starter = () => {
       <div className="col-md-6 offset-sm-3 text-left">
         <div
           className="alert alert-success"
-          style={{ display: success ? "" : "none" }}
+          style={{ display: success ? '' : 'none' }}
         >
           Congratulations!!! Notice is added.
         </div>
@@ -142,7 +142,7 @@ const Starter = () => {
         <div className="col-md-6 offset-sm-3 text-left">
           <div
             className="alert alert-danger"
-            style={{ display: error ? "" : "none" }}
+            style={{ display: error ? '' : 'none' }}
           >
             {error}
           </div>
@@ -159,7 +159,7 @@ const Starter = () => {
       <div className="col-md-6 offset-sm-3 text-left">
         <div
           className="alert alert-success"
-          style={{ display: successT ? "" : "none" }}
+          style={{ display: successT ? '' : 'none' }}
         >
           Teacher Added!!
         </div>
@@ -173,7 +173,7 @@ const Starter = () => {
         <div className="col-md-6 offset-sm-3 text-left">
           <div
             className="alert alert-danger"
-            style={{ display: errorT ? "" : "none" }}
+            style={{ display: errorT ? '' : 'none' }}
           >
             {errorT}
           </div>
@@ -187,7 +187,7 @@ const Starter = () => {
       <div className="col-md-6 offset-sm-3 text-left">
         <div
           className="alert alert-success"
-          style={{ display: successA ? "" : "none" }}
+          style={{ display: successA ? '' : 'none' }}
         >
           Admin Added!!
         </div>
@@ -201,7 +201,7 @@ const Starter = () => {
         <div className="col-md-6 offset-sm-3 text-left">
           <div
             className="alert alert-danger"
-            style={{ display: errorA ? "" : "none" }}
+            style={{ display: errorA ? '' : 'none' }}
           >
             {errorA}
           </div>
@@ -212,10 +212,10 @@ const Starter = () => {
   // const {dispatch} = useContext(TodoContext)
   const { user } = isAuthenticated();
   const [project, setProject] = useState({
-    title: "",
-    description: "",
-    date: "",
-    error: "",
+    title: '',
+    description: '',
+    date: '',
+    error: '',
     success: false,
   });
   const { title, description, date, success, error } = project;
@@ -248,16 +248,16 @@ const Starter = () => {
           } else {
             setProject({
               ...project,
-              title: "",
-              description: "",
-              date: "",
-              error: "",
+              title: '',
+              description: '',
+              date: '',
+              error: '',
               success: true,
             });
             setrefresh(!refresh);
           }
       })
-      .catch(console.log("Error in Noticees"));
+      .catch(console.log('Error in Noticees'));
   };
   const deleteaNotice = (catuctId) => {
     deleteNotice(catuctId).then((data) => {
@@ -273,7 +273,7 @@ const Starter = () => {
   };
   const getNotice = (noticeId) => {
     getANotice(noticeId).then((data) => {
-      console.log(data.date, "d");
+      console.log(data.date, 'd');
       if (data)
         if (data.error) {
           console.log(data.error);
@@ -306,10 +306,10 @@ const Starter = () => {
         } else {
           setProject({
             ...project,
-            title: "",
-            description: "",
-            date: "",
-            error: "",
+            title: '',
+            description: '',
+            date: '',
+            error: '',
             success: true,
           });
           setrefresh(!refresh);
@@ -335,11 +335,11 @@ const Starter = () => {
     updateRole(user._id, { email: emailT, role: 1 }).then((data) => {
       if (data) {
         if (data.error) {
-          console.log(data.error, "lllllllllllll");
+          console.log(data.error, 'lllllllllllll');
           // setValues({...values,error:data.error})
           seterrorT(data.error);
         } else {
-          setemailT("");
+          setemailT('');
           setsuccessT(true);
         }
       }
@@ -349,11 +349,11 @@ const Starter = () => {
     updateRole(user._id, { email: emailA, role: 2 }).then((data) => {
       if (data) {
         if (data.error) {
-          console.log(data.error, "lllllllllllll");
+          console.log(data.error, 'lllllllllllll');
           seterrorA(data.error);
           // setValues({...values,error:data.error})
         } else {
-          setemailA("");
+          setemailA('');
           setsuccessA(true);
         }
       }
@@ -387,19 +387,19 @@ const Starter = () => {
               monthstudentsarray[monthstudents - 1] = obj;
             }
             if (students === 0) {
-              $(".bsm").addClass("hide");
+              $('.bsm').addClass('hide');
             } else {
-              $(".bsm").removeClass("hide");
+              $('.bsm').removeClass('hide');
             }
             if (weekstudents === 0) {
-              $(".bwsm").addClass("hide");
+              $('.bwsm').addClass('hide');
             } else {
-              $(".bwsm").removeClass("hide");
+              $('.bwsm').removeClass('hide');
             }
             if (monthstudents === 0) {
-              $(".bmsm").addClass("hide");
+              $('.bmsm').addClass('hide');
             } else {
-              $(".bmsm").removeClass("hide");
+              $('.bmsm').removeClass('hide');
             }
           }
         })}
@@ -409,10 +409,10 @@ const Starter = () => {
           {/*--------------------------------------------------------------------------------*/}
           <Card
             style={{
-              borderRadius: "10px",
-              backgroundColor: "cornflowerblue",
-              color: "white",
-              minHeight: "25vh",
+              borderRadius: '10px',
+              backgroundColor: 'cornflowerblue',
+              color: 'white',
+              minHeight: '8rem',
             }}
           >
             {/* <CardImg top width="100%" src={img2} /> */}
@@ -420,32 +420,16 @@ const Starter = () => {
               <CardTitle>Total Registered</CardTitle>
 
               <h4>{students}</h4>
-              {students !== 0 && (
-                <div className="see-more sm">
-                  <text className="see-more-button bsm">See more</text>
-                </div>
-              )}
-              <div class="see-less sl">
-                {studentsarray.map((obj, i) => {
-                  return (
-                    <>
-                      <text>{obj.name}</text>
-                      <br></br>
-                    </>
-                  );
-                })}
-                <text className="see-less-button bsl">See less</text>
-              </div>
             </CardBody>
           </Card>
         </Col>
         <Col xs="12" md="4">
           <Card
             style={{
-              borderRadius: "10px",
-              backgroundColor: "red",
-              color: "white",
-              minHeight: "25vh",
+              borderRadius: '10px',
+              backgroundColor: 'red',
+              color: 'white',
+              minHeight: '8rem',
             }}
           >
             {/* <CardImg top width="100%" src={img2} /> */}
@@ -453,32 +437,16 @@ const Starter = () => {
               <CardTitle>Registered in last 1 week</CardTitle>
 
               <h4>{weekstudents}</h4>
-              {weekstudents !== 0 && (
-                <div className="see-more wsm">
-                  <text className="see-more-button bwsm">See more</text>
-                </div>
-              )}
-              <div class="see-less wsl">
-                {weekstudentsarray.map((obj, i) => {
-                  return (
-                    <>
-                      <text>{obj.name}</text>
-                      <br></br>
-                    </>
-                  );
-                })}
-                <text className="see-less-button bwsl">See less</text>
-              </div>
             </CardBody>
           </Card>
         </Col>
         <Col xs="12" md="4">
           <Card
             style={{
-              borderRadius: "10px",
-              backgroundColor: "green",
-              color: "white",
-              minHeight: "25vh",
+              borderRadius: '10px',
+              backgroundColor: 'green',
+              color: 'white',
+              minHeight: '8rem',
             }}
           >
             {/* <CardImg top width="100%" src={img2} /> */}
@@ -486,22 +454,6 @@ const Starter = () => {
               <CardTitle>Registered in last 30 days</CardTitle>
 
               <h4>{monthstudents}</h4>
-              {monthstudents !== 0 && (
-                <div className="see-more msm">
-                  <text className="see-more-button bmsm">See more</text>
-                </div>
-              )}
-              <div class="see-less msl">
-                {monthstudentsarray.map((obj, i) => {
-                  return (
-                    <>
-                      <text>{obj.name}</text>
-                      <br></br>
-                    </>
-                  );
-                })}
-                <text className="see-less-button bmsl">See less</text>
-              </div>
             </CardBody>
           </Card>
         </Col>
@@ -539,14 +491,14 @@ const Starter = () => {
                 placeholder="Enter email here.."
                 value={emailT}
                 onChange={(e) => setemailT(e.target.value)}
-                style={{ marginTop: "1rem" }}
+                style={{ marginTop: '1rem' }}
               ></Input>
 
               <Button
                 onClick={() => {
                   addTeacher();
                 }}
-                style={{ marginTop: "1rem" }}
+                style={{ marginTop: '1rem' }}
               >
                 Add
               </Button>
@@ -571,14 +523,14 @@ const Starter = () => {
                 placeholder="Enter email here.."
                 value={emailA}
                 onChange={(e) => setemailA(e.target.value)}
-                style={{ marginTop: "1rem" }}
+                style={{ marginTop: '1rem' }}
               ></Input>
 
               <Button
                 onClick={() => {
                   addAdmin();
                 }}
-                style={{ marginTop: "1rem" }}
+                style={{ marginTop: '1rem' }}
               >
                 Add
               </Button>
@@ -618,7 +570,7 @@ const Starter = () => {
                             id={title}
                             placeholder="Title"
                             value={title}
-                            onChange={handleChange("title")}
+                            onChange={handleChange('title')}
                           ></Input>
                         </div>
                       </div>
@@ -632,7 +584,7 @@ const Starter = () => {
                         id={description}
                         placeholder="Description"
                         value={description}
-                        onChange={handleChange("description")}
+                        onChange={handleChange('description')}
                       ></Input>
                       {/*                                      
                                     </div>
@@ -646,8 +598,8 @@ const Starter = () => {
                         id="date"
                         placeholder="1 hr."
                         value={date}
-                        onChange={handleChange("date")}
-                        style={{ maxWidth: "200px" }}
+                        onChange={handleChange('date')}
+                        style={{ maxWidth: '200px' }}
                       ></Input>
                     </td>
                     <td>
@@ -657,9 +609,9 @@ const Starter = () => {
                             updateaNotice(e, uid);
                           }}
                           style={{
-                            cursor: "pointer",
-                            marginTop: "6px",
-                            fontSize: "20px",
+                            cursor: 'pointer',
+                            marginTop: '6px',
+                            fontSize: '20px',
                           }}
                           className="fa fa-check text-success"
                           aria-hidden="true"
@@ -668,9 +620,9 @@ const Starter = () => {
                         <i
                           onClick={onSubmit}
                           style={{
-                            cursor: "pointer",
-                            marginTop: "6px",
-                            fontSize: "20px",
+                            cursor: 'pointer',
+                            marginTop: '6px',
+                            fontSize: '20px',
                           }}
                           className="fa fa-plus text-success"
                           aria-hidden="true"
@@ -700,7 +652,7 @@ const Starter = () => {
                         <td>
                           <i
                             class="fa fa-plus text-info"
-                            style={{ cursor: "pointer", marginRight: "20px" }}
+                            style={{ cursor: 'pointer', marginRight: '20px' }}
                             onClick={() => {
                               getNotice(obj._id);
                             }}
@@ -708,7 +660,7 @@ const Starter = () => {
                           ></i>
                           <i
                             class="fa fa-trash text-orange"
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: 'pointer' }}
                             onClick={() => {
                               deleteaNotice(obj._id);
                             }}
