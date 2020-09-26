@@ -10,23 +10,23 @@ const SuccessStory = () => {
   };
   return (
     <React.Fragment>
-      <section className="section bg-cover bg-light" style={sectionStyle}>
-        <div className="container1">
-          <div className="row align-items-center">
-            <div className="col-lg-6 col-sm-4 position-relative success-video">
-              <img src={StudyIllustration} alt=".." width="100%" />
+      <section className='section bg-cover bg-light' style={sectionStyle}>
+        <div className='container1'>
+          <div className='row align-items-center'>
+            <div className='col-lg-6  col-10 mx-auto position-relative success-video'>
+              <img src={StudyIllustration} alt='..' width='100%' />
             </div>
 
-            <div className="col-lg-6 col-sm-8">
+            <div className='col-lg-6  col-12'>
               <div
-                className=" p-5"
+                className=' p-5'
                 // style={{
                 //   overflowY: "scroll",
                 //   height: "60vmin",
                 //   width: "30vw",
                 // }}
               >
-                <h2 className="section-title">Success Stories</h2>
+                <h2 className='section-title'>Success Stories</h2>
 
                 <p>
                   After setting a new benchmark for success we planned to expand
