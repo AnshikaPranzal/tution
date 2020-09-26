@@ -34,6 +34,7 @@ const Fulllayout = (props) => {
   useEffect(() => {
     const updateDimensions = () => {
       let element = document.getElementById('main-wrapper');
+      if (!element) return;
       setWidth(window.innerWidth);
       if (width < 1170) {
         element.setAttribute('data-sidebartype', 'mini-sidebar');
@@ -56,18 +57,18 @@ const Fulllayout = (props) => {
   /*--------------------------------------------------------------------------------*/
   return (
     <React.Fragment>
-      <header className="sticky-top header">
-        <Navbar dashboard="active" active="nav-bg"></Navbar>
+      <header className='fixed-top header'>
+        <Navbar dashboard='active' active='nav-bg'></Navbar>
       </header>
 
       <div
-        id="main-wrapper"
-        data-theme="light"
-        data-layout="vertical"
-        data-sidebartype="full"
-        data-sidebar-position="fixed"
-        data-header-position="fixed"
-        data-boxed-layout="full"
+        id='main-wrapper'
+        data-theme='light'
+        data-layout='vertical'
+        data-sidebartype='full'
+        data-sidebar-position='fixed'
+        data-header-position='fixed'
+        data-boxed-layout='full'
         style={{ paddingTop: '1em' }}
       >
         {/*--------------------------------------------------------------------------------*/}
@@ -81,8 +82,8 @@ const Fulllayout = (props) => {
         {/*--------------------------------------------------------------------------------*/}
         {/* Page Main-Content                                                              */}
         {/*--------------------------------------------------------------------------------*/}
-        <div className="page-wrapper d-block" style={{ paddingTop: '10vh' }}>
-          <div className="page-content container-fluid">
+        <div className='page-wrapper d-block' style={{ paddingTop: '10vh' }}>
+          <div className='page-content container-fluid'>
             <Switch>
               {ThemeRoutes.map((prop, key) => {
                 if (prop.redirect) {

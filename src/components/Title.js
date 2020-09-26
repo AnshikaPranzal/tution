@@ -7,7 +7,7 @@ const Title = (props) => {
 
   return (
     <React.Fragment>
-      <section className='page-title-section overlay bannerStyle' >
+      <section className='page-title-section overlay bannerStyle1' >
         <div className='row pb-5'>
           <div className='col-lg-8 pb-5 col-sm-10'>
             <ul className='list-inline custom-breadcrumb'>
