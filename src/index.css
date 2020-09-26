@@ -1,9 +1,9 @@
 html {
   font-size: calc(0.8vh+0.8vw);
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 968px) {
   html {
-    font-size: calc(1vh+1vw) !important;
+    font-size: calc(1.2vh + 1.2vw) !important;
   }
 }
 body {

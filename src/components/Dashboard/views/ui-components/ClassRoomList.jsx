@@ -40,8 +40,13 @@ const ClassRoomList = () => {
 
   return (
     <React.Fragment>
-      <h4>CLASSROOMS</h4>
+      <h3 className="text-center">CLASSROOMS</h3>
       <hr></hr>
+      {classrooms.length === 0 && (
+        <h3 className="text-center">
+          You Are Not Admitted To Any ClassRoom Yet
+        </h3>
+      )}
       <Row>
         {classrooms.map((obj, i) => {
           return (

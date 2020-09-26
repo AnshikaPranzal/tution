@@ -395,6 +395,9 @@ const Starter = () => {
                 </tr>
               </tbody>
             </Table>
+            {classroomO.length === 0 && (
+              <h3 className="text-center">No Classroom Found</h3>
+            )}
           </CardBody>
         </Card>
       </Row>
