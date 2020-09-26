@@ -139,12 +139,11 @@ const CartModal = (props) =>{
       } 
      const displaycount = product=>{
          var s=0;
-         
+         console.log(product,"kkkooooo")
          for(i=0;i<product.length;i++){
-                s=s+product[i][0].count;
-                
+                s=s+(product[i][0].price * product[i][0].count);
          }
-         return s*500;
+         return s;
      }
 
 
@@ -170,6 +169,7 @@ const CartModal = (props) =>{
                                     </thead>
                                 <tbody>
                                 { product.map((prod,index)=>{
+                                   
                                     var s = prod[0].count
                                     return(
                                         <tr key={index}>

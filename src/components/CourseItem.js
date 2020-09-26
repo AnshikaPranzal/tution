@@ -21,7 +21,7 @@ const CourseItem = (props) => {
   const [flag, setflag] = useState(0)
   const [amount, setamount] = useState(0);
   const [sub, setsub] = useState(2)
-  const [product, setproduct] = useState([{"name":props.topic,"id":props.subjectid,"count":1}])
+  const [product, setproduct] = useState([{"name":props.topic,"id":props.subjectid,"count":1,"price":props.price}])
   const [cart, setcart] = useState(loadCart())
     
 
