@@ -62,7 +62,7 @@ const AllCourseList = () => {
                   ></CourseItem>
                 );
               })}
-            {subject?.length === 0 && (
+            {!subject && subject.length === 0 && (
               <div className="col-12">
                 <div className="container p-0">
                   <div className="row py-5 d-flex text-center">

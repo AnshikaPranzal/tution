@@ -59,23 +59,25 @@ const AllNoticeList = () => {
                   })}
                 </ul>
               )}
-              <div className="container p-0">
-                <div className="row py-5 d-flex text-center">
-                  <div className="col-12 align-self">
-                    <p className="display-4">
-                      <div
-                        style={{
-                          animation: 'linear infinite 2s animateNotice',
-                        }}
-                      >
-                        {' '}
-                        No notice for now!
-                      </div>
-                      Please come back soon...
-                    </p>
+              {!noticeO && noticeO.length === 0 && (
+                <div className="container p-0">
+                  <div className="row py-5 d-flex text-center">
+                    <div className="col-12 align-self">
+                      <p className="display-4">
+                        <div
+                          style={{
+                            animation: 'linear infinite 2s animateNotice',
+                          }}
+                        >
+                          {' '}
+                          No notice for now!
+                        </div>
+                        Please come back soon...
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
