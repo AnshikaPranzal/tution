@@ -27,7 +27,8 @@
     "reactjs-file-uploader": "^1.0.8",
     "reactstrap": "^8.5.1",
     "slick": "^1.12.2",
-    "styled-loaders-react": "^1.1.0"
+    "styled-loaders-react": "^1.1.0",
+    "toastify": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
