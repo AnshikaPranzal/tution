@@ -1,9 +1,9 @@
-import React from "react";
-import Success_pic from "../images/backgrounds/success-story.jpg";
+import React from 'react';
+import Success_pic from '../images/backgrounds/success-story.jpg';
 
 const SuccessStory = () => {
   var sectionStyle = {
-    width: "100%",
+    width: '100%',
     // height: "77.778vmin",
     backgroundImage: `url(${Success_pic})`,
   };
@@ -13,14 +13,14 @@ const SuccessStory = () => {
         <div className="container1">
           <div className="row">
             <div
-              className="col-lg-6 col-sm-4 position-relative success-video"
-              style={{ height: "50vmin" }}
+              className="col-lg-6 position-relative success-video"
+              style={{ height: '50vmin' }}
             >
               <a className="play-btn venobox" href="/about" data-vbtype="video">
                 <i className="ti-control-play"></i>
               </a>
             </div>
-            <div className="col-lg-6 col-sm-8">
+            <div className="col-lg-6">
               <div
                 className="bg-white p-5"
                 // style={{
@@ -42,7 +42,7 @@ const SuccessStory = () => {
                   domain to create top quality content for the aspirants. The
                   content is designed using our experience and feedback from
                   successful students, so that it ensures learning is fun and
-                  engaging.{" "}
+                  engaging.{' '}
                 </p>
               </div>
             </div>
