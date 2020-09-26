@@ -8,8 +8,8 @@ const Footer = () => {
       <footer>
         <div className='newsletter'>
           <div className='bg-primary '>
-            <div className='row'>
-              <div className='col-md-3 col-sm-8 mx-auto py-5 newsletter-block'>
+            <div className='row no-gutters py-2'>
+              <div className='col-lg-5 col-md-8 col-sm-8 mx-auto py-5 newsletter-block'>
                 <h3 className='text-white text-center'>Subscribe Now</h3>
                 <form action='#' className='text-center'>
                   <div className='input-wrapper'>
