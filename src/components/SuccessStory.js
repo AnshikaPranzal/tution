@@ -1,35 +1,32 @@
 import React from 'react';
 import Success_pic from '../images/backgrounds/success-story.jpg';
+import StudyIllustration from '../images/studyng.svg';
 
 const SuccessStory = () => {
   var sectionStyle = {
     width: '100%',
     // height: "77.778vmin",
-    backgroundImage: `url(${Success_pic})`,
+    // backgroundImage: `url(${Success_pic})`,
   };
   return (
     <React.Fragment>
-      <section className="section bg-cover" style={sectionStyle}>
-        <div className="container1">
-          <div className="row">
-            <div
-              className="col-lg-6 position-relative success-video"
-              style={{ height: '50vmin' }}
-            >
-              <a className="play-btn venobox" href="/about" data-vbtype="video">
-                <i className="ti-control-play"></i>
-              </a>
+      <section className='section bg-cover bg-light' style={sectionStyle}>
+        <div className='container1'>
+          <div className='row align-items-center'>
+            <div className='col-lg-6 col-sm-4 position-relative success-video'>
+              <img src={StudyIllustration} alt='..' width='100%' />
             </div>
-            <div className="col-lg-6">
+
+            <div className='col-lg-6 col-sm-8'>
               <div
-                className="bg-white p-5"
+                className=' p-5'
                 // style={{
                 //   overflowY: "scroll",
                 //   height: "60vmin",
                 //   width: "30vw",
                 // }}
               >
-                <h2 className="section-title">Success Stories</h2>
+                <h2 className='section-title'>Success Stories</h2>
 
                 <p>
                   After setting a new benchmark for success we planned to expand
