@@ -79,13 +79,13 @@ const Home = () => {
 
       <Banner></Banner>
 
-      <AboutUs topic="Educenter"></AboutUs>
+      <AboutUs topic="Educenter"/>
 
       {/* <Courses></Courses> */}
 
       {/* <Cta></Cta> */}
 
-      <SuccessStory></SuccessStory>
+      <SuccessStory/>
 
 
       {/* <Events></Events> */}
