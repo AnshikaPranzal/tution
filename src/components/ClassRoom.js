@@ -25,7 +25,7 @@ import {
   deleteClassroom,
   isAuthenticated,
 } from "./helper/index";
-
+import { toast } from 'react-toastify';
 const ClassRoom = (props) => {
   console.log(isAuthenticated());
 
@@ -78,7 +78,7 @@ const ClassRoom = (props) => {
     getAllUSers().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setuserO(data);
@@ -92,7 +92,7 @@ const ClassRoom = (props) => {
 
   const getClassroom = (cid) => {
     getAClassroom(cid).then((data) => {
-      if (data.error) {
+      if (data.error) { toast(data.error,{type:"error"})
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {

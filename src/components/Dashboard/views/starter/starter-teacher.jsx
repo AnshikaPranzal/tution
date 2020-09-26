@@ -31,7 +31,7 @@ import {
 import { useRef } from "react";
 // import AddDocument from '../ui-components/document'
 import AddDQuiz from "../ui-components/quiz";
-
+import { toast } from 'react-toastify';
 const Starter = () => {
   const [file, setfile] = useState();
   const [video, setvideo] = useState("");
@@ -57,7 +57,7 @@ const Starter = () => {
     getAllSubjects().then((data) => {
       //   console.log(data)
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setsubject(data);
@@ -72,7 +72,7 @@ const Starter = () => {
     getAllStandards().then((data) => {
       //   console.log(data)
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorS(data.error);
         } else {
           setstandard(data);
@@ -87,7 +87,7 @@ const Starter = () => {
     getAllClassrooms().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setclassroomO(data);
@@ -171,7 +171,7 @@ const Starter = () => {
       .then((data) => {
         console.log(data);
         console.log(project);
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           setProject({
             ...project,
             error: data.error,
@@ -196,7 +196,7 @@ const Starter = () => {
   const deleteaClassroom = (catuctId) => {
     deleteClassroom(catuctId).then((data) => {
       console.log(data);
-      if (data.error) {
+      if (data.error) { toast(data.error,{type:"error"})
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
@@ -206,7 +206,7 @@ const Starter = () => {
   };
   const getClassroom = (catuctId) => {
     getAClassroom(catuctId).then((data) => {
-      if (data.error) {
+      if (data.error) { toast(data.error,{type:"error"})
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
@@ -232,7 +232,7 @@ const Starter = () => {
     updateClassroom(cid, { name, description, subject, standard }).then(
       (data) => {
         console.log(data);
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {

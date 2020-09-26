@@ -5,6 +5,8 @@ import { Link, Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "./helper";
 import { Modal, Button } from "react-bootstrap";
 
+import { toast } from 'react-toastify';
+
 const LoginModal = () => {
   const [values, setValues] = useState({
     email: "182@gmail.com",
@@ -27,9 +29,9 @@ const LoginModal = () => {
   const loadingMessage = () =>
     loading && (
       <div className="row ">
-        <div className="col-md-6 offset-sm-3 text-left">
+        <div className="col-md-6 offset-sm-3 text-left mt-2">
           <div className="alert alert-info">
-            <h3>Loading...</h3>
+            <h4>Loading...</h4>
           </div>
         </div>
       </div>
@@ -60,12 +62,13 @@ const LoginModal = () => {
     signin({ email, password })
       .then((data) => {
         if (data)
-          if (data.error) {
+          if (data.error) { toast(data.error,{type:"error"})
             setValues({
               ...values,
               error: data.error,
               loading: false,
             });
+            toast("Unable to locate the user",{type:"error"})
           } else {
             authenticate(data, () => {
               setValues({

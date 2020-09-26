@@ -11,7 +11,7 @@ import {
   getAllStandards,
   getUserResponse,
 } from '../../../../helper/index';
-
+import { toast } from 'react-toastify';
 import {
   Card,
   CardBody,
@@ -42,7 +42,7 @@ const Projects = () => {
     getAllSubjects().then((data) => {
       //   console.log(data)
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setsubject(data);
@@ -57,7 +57,7 @@ const Projects = () => {
     getAllStandards().then((data) => {
       //   console.log(data)
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorS(data.error);
         } else {
           setstandard(data);
@@ -72,7 +72,7 @@ const Projects = () => {
     getAllClasses().then((data) => {
       //   console.log(data)
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setclassO(data);
@@ -86,6 +86,7 @@ const Projects = () => {
   }, [refresh]);
 
   const successMessage = () => {
+    
     return (
       <div className='row '>
         <div className='col-md-6 offset-sm-3 text-left'>
@@ -176,7 +177,7 @@ const Projects = () => {
       .then((data) => {
         console.log(data);
         console.log(project);
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           setProject({
             ...project,
             error: data.error,
@@ -204,7 +205,7 @@ const Projects = () => {
   const deleteaClass = (catuctId) => {
     deleteClass(catuctId).then((data) => {
       console.log(data);
-      if (data.error) {
+      if (data.error) { toast(data.error,{type:"error"})
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
@@ -215,7 +216,7 @@ const Projects = () => {
   const getClass = (classId) => {
     getAClass(classId).then((data) => {
       console.log(data.date, 'd');
-      if (data.error) {
+      if (data.error) { toast(data.error,{type:"error"})
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
@@ -249,7 +250,7 @@ const Projects = () => {
       date,
     }).then((data) => {
       console.log(data);
-      if (data.error) {
+      if (data.error) { toast(data.error,{type:"error"})
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {

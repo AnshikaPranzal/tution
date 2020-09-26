@@ -8,7 +8,7 @@ import {
   deleteSubject,
   updateSubject,
 } from "../../../helper/index";
-
+import { toast } from 'react-toastify';
 import {
   Card,
   CardBody,
@@ -31,7 +31,7 @@ const Projects = () => {
     getAllSubjects().then((data) => {
       //   console.log(data)
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setsubject(data);
@@ -110,7 +110,7 @@ const Projects = () => {
         console.log(data);
         console.log(project);
         if (data)
-          if (data.error) {
+          if (data.error) { toast(data.error,{type:"error"})
             setProject({
               ...project,
               error: data.error,
@@ -134,7 +134,7 @@ const Projects = () => {
     deleteSubject(catuctId).then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
@@ -145,7 +145,7 @@ const Projects = () => {
   const getSubject = (classId) => {
     getASubject(classId).then((data) => {
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
@@ -170,7 +170,7 @@ const Projects = () => {
     updateSubject(cid, { name, price, value }).then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {

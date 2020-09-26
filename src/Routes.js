@@ -20,6 +20,9 @@ import PrivateRoute from './auth-routes/PrivateRoutes';
 import TeacherRoute from './auth-routes/TeacherRoutes';
 import AdminRoute from './auth-routes/AdminRoutes';
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Routes() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -29,6 +32,7 @@ function Routes() {
   });
   return (
     <BrowserRouter>
+      
       {/* <header className="fixed-top header">
                 <TopHeader></TopHeader>
                 <Navbar ></Navbar>
@@ -38,6 +42,8 @@ function Routes() {
           <img src={preloader} alt='Loading...'></img>
         </div>
       ) : (
+        <>
+        <ToastContainer />
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
@@ -89,6 +95,7 @@ function Routes() {
             component={FulllayoutTeacher}
           />
         </Switch>
+        </>
       )}
       {/* <Footer></Footer> */}
     </BrowserRouter>

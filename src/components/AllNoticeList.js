@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NoticeItem from "./NoticeItem";
 import { getAllNotices } from "./helper";
-
+import { toast } from 'react-toastify';
 const AllNoticeList = () => {
   const [noticeO, setnoticeO] = useState([]);
   // eslint-disable-next-line no-unused-vars
@@ -11,7 +11,7 @@ const AllNoticeList = () => {
     getAllNotices().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterror(data.error);
         } else {
           setnoticeO(data);

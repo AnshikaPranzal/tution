@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
-import $ from 'jquery';
+// import $ from 'jquery';
 
 import {
   Card,
@@ -10,8 +10,8 @@ import {
   Input,
   Table,
 } from 'reactstrap';
-import { useEffect } from 'react';
 import { getAllSubjects, addSubject, getAllUSers } from '../../../helper';
+import { toast } from 'react-toastify';
 
 const Projects = () => {
   const [userO, setuserO] = useState([]);
@@ -23,7 +23,7 @@ const Projects = () => {
     getAllUSers().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setuserO(data);
@@ -39,7 +39,7 @@ const Projects = () => {
     getAllSubjects().then((data) => {
       //   console.log(data)
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setsubject(data);

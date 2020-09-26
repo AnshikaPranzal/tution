@@ -18,7 +18,7 @@ import {
   Table,
 } from "reactstrap";
 import { useEffect } from "react";
-
+import { toast } from 'react-toastify';
 const Projects = () => {
   const [standard, setstandard] = useState([]);
   // eslint-disable-next-line no-unused-vars
@@ -31,7 +31,7 @@ const Projects = () => {
     getAllStandards().then((data) => {
       //   console.log(data)
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setstandard(data);
@@ -108,7 +108,7 @@ const Projects = () => {
         console.log(data);
         console.log(project);
         if (data)
-          if (data.error) {
+          if (data.error) { toast(data.error,{type:"error"})
             setProject({
               ...project,
               error: data.error,
@@ -130,7 +130,7 @@ const Projects = () => {
     deleteStandard(catuctId).then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
@@ -141,7 +141,7 @@ const Projects = () => {
   const getStandard = (classId) => {
     getAStandard(classId).then((data) => {
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
@@ -164,7 +164,7 @@ const Projects = () => {
     updateStandard(cid, { name }).then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {

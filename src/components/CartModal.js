@@ -5,7 +5,7 @@ import { signup1, cartEmpty, addItemToCart, updateItemInCart, updateUser, findIt
 import { isAuthenticated,payment,loadCart } from './helper';
 import { Input,Table } from 'reactstrap';
 
-
+import { toast } from 'react-toastify';
 
 const loadScript = (src)=>{
   return new Promise(resolve=>{
@@ -51,38 +51,11 @@ const CartModal = (props) =>{
                 console.log(data,"-_-")
                 console.log(loadCart(),"uuu")
                 const cart = await loadCart()
-                // const physics = findItemInCart("Physics") + data.physics
-                // const chemistry = findItemInCart("Chemistry") + data.chemistry 
-                // const maths = findItemInCart("Mathematics") + data.maths
-                // const biology = findItemInCart("Biology") + data.biology
-                
-                // console.log(physics,"kk")
-                // updateUser(user._id,token,{physics,chemistry,maths,biology}).then( (data) =>{
-                   
-                //     if(data.error){
-                //         console.log(data.error)
-                //     }
-                //     else{
-                //         console.log("updated")
-                // }})
-                // .catch(console.log("Error in updation"))
-                // cart.map(async (o,i)=>{
-                //     console.log(o)
-                //     await addSubject({user_id:user._id, subject_id:o[0].id, value: o[0].count}).then(data=>{
-                //         if(data){
-                //             if(data.error){
-                //                 console.log(data.error)
-                //             }
-                //             else{
-                //                 console.log(data,"hi")
-                //             }
-                //         }
-                //     })
-                // })
                 await buySubject({user_id:user._id, subject:cart}).then(data=>{
                     if(data){
                         if(data.error){
                             console.log(data.error)
+                            toast("Unable to locate the user",{type:"error"})
                         }
                         else{
                             console.log(data,"hi")
