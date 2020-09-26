@@ -80,9 +80,7 @@ const UpdateOption = (props) =>{
                 if(data.error)
                 {
                     console.log(data.error)
-                    setValues({
-                        ...values,error: data.error
-                    });
+                    toast(data.error,{type:"error"})
                 }
                 else{
                     toast("Option Created",{type:"success"})

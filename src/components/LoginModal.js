@@ -65,7 +65,7 @@ const LoginModal = () => {
           if (data.error) { toast(data.error,{type:"error"})
             setValues({
               ...values,
-              error: data.error,
+               
               loading: false,
             });
             toast("Unable to locate the user",{type:"error"})

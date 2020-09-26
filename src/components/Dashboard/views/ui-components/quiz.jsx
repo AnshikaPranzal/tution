@@ -162,7 +162,7 @@ const AddQuiz = ({ c }) => {
         if (data)
           if (data.error) { toast(data.error,{type:"error"})
             // console.log(data.error)
-            setValues({ ...values, error: data.error });
+            setValues({ ...values,   });
           } else {
             // console.log(data,"quiz")
             setValues({
@@ -224,7 +224,7 @@ const AddQuiz = ({ c }) => {
         if (data)
           if (data.error) { toast(data.error,{type:"error"})
             // console.log(data.error)
-            setValues({ ...values, error: data.error });
+            setValues({ ...values,   });
           } else {
             setupdate(!update);
             setValues({

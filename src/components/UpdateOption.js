@@ -83,7 +83,7 @@ const UpdateOption = (props) =>{
                     toast(data.error,{type:"error"})
                     console.log(data.error)
                     setValues({
-                        ...values,error: data.error
+                        ...values, 
                     });
                 }
                 else{

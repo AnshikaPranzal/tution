@@ -180,7 +180,7 @@ const Projects = () => {
         if (data.error) { toast(data.error,{type:"error"})
           setProject({
             ...project,
-            error: data.error,
+             
             success: false,
           });
         } else {
