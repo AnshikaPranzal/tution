@@ -299,7 +299,7 @@ const AddQuiz = ({c})=> {
                           // style={{width:"40%"}}
                           value={mm}
                         />
-               
+
                       </td>
          
            

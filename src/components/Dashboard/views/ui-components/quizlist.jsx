@@ -42,12 +42,11 @@ import { Link, withRouter } from 'react-router-dom';
           }
           else{
             setaquiz(data.quiz)
-          
           }
         }
       })
     }
-    // console.log(aquiz)
+    console.log(aquiz)
 
     useEffect(() => {
       loadAllMyQuizzes()
@@ -58,7 +57,8 @@ import { Link, withRouter } from 'react-router-dom';
     },[refresh])
 
     const check = (id)=>{
-      if(aquiz.filter(e => e == id) == []){
+      if(aquiz.filter(e => {console.log(e,id);return(e == id)}).length === 0){
+        console.log("hiii")
         return true
       }
       else{
@@ -91,7 +91,7 @@ import { Link, withRouter } from 'react-router-dom';
                             
                         </div>     
                                            
-                        {check() ? (!localStorage.getItem("start") && <a href={`/start/quiz/${obj._id}`} onClick={()=>startTest()} > Start </a>): (<span className="text-success">Attempted</span>)}
+                        {check(obj._id) ? (!localStorage.getItem("start") && <a href={`/start/quiz/${obj._id}`} onClick={()=>startTest()} > Start </a>): (<span className="text-success">Attempted</span>)}
                     </CardBody>
                 </Card>
             )})}

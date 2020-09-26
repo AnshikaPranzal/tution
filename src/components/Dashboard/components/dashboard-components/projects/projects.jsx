@@ -83,7 +83,7 @@ const Projects = () => {
                 <th className="border-0">Date</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody>            
               {classO.map((obj, index) => {
                 //    if(obj.subject === "Maths")
 
@@ -123,6 +123,7 @@ const Projects = () => {
               })}
             </tbody>
           </Table>
+          {classO.length === 0 && <h4 className="text-center">No classes today.</h4>}
         </CardBody>
       </Card>
     </>
