@@ -13,12 +13,6 @@ import preloader from '../images/preloader.gif';
 import Slide from './Slide';
 import bg from '../images/banner/tutor.jpeg';
 const SliderList = () => {
-  var sectionStyle = {
-    width: '100%',
-    height: '90vh',
-    backgroundImage: `linear-gradient(#3A394Eb0,#3A394Ea0),url(${bg})`,
-    padding: '20vh 0',
-  };
   var settings = {
     dots: false,
     infinite: true,
@@ -37,7 +31,7 @@ const SliderList = () => {
 
   return (
     <React.Fragment>
-      <section className="hero-section overlay bg-cover" style={sectionStyle}>
+      <section className="hero-section overlay bg-cover bannerStyle1">
         <div className="" style={{ width: '80vw', margin: 'auto' }}>
           <div className="hero-slider">
             <Slider {...settings}>

@@ -10,7 +10,6 @@ import Navbar from './components/Navbar';
 import About from './components/AboutPage';
 import Question from './components/Question';
 import CoursePage from './components/CoursePage';
-import EventPage from './components/EventPage';
 import NoticePage from './components/NoticePage';
 import FulllayoutTeacher from './components/Dashboard/layouts/fulllayout -teacher';
 import FulllayoutAdmin from './components/Dashboard/layouts/fulllayout -admin';
@@ -78,11 +77,11 @@ function Routes() {
             path="/dashboard-admin"
             component={FulllayoutAdmin}
           />
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/course" component={CoursePage} />
-          <Route exact path="/event" component={EventPage} />
-          <Route exact path="/notice" component={NoticePage} />
-          <Route exact path="/myclassroom/:handle" component={Fulllayout} />
+          <Route exact path='/contact' component={Contact} />
+          <Route exact path='/course' component={CoursePage} />
+          <Route exact path='/notice' component={NoticePage} />
+          <Route exact path='/myclassroom/:handle' component={Fulllayout} />
+
           <Route
             exact
             path="/teacherClassroom/:handle"

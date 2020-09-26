@@ -14,15 +14,14 @@ import preloader from '../images/preloader.gif';
 import logo from '../images/logo.png';
 import TopHeader from './TopHeader.js';
 import Navbar from './Navbar.js';
-import ResgisterModal from './RegisterModal';
-import LoginModal from './LoginModal';
-import SliderList from './Slider';
-import Banner from './Banner';
-import AboutUs from './AboutUs';
-import Courses from './Courses';
-import Cta from './Cta';
-import Events from './Events';
-import SuccessStory from './SuccessStory';
+import ResgisterModal from './RegisterModal'
+import LoginModal from './LoginModal'
+import SliderList from './Slider'
+import Banner  from './Banner'
+import AboutUs from './AboutUs'
+import Courses from './Courses'
+import Cta from './Cta'
+import SuccessStory from './SuccessStory'
 import TeacherList from './TeacherList';
 import Footer from './Footer';
 import { withRouter } from 'react-router-dom';
@@ -87,6 +86,7 @@ const Home = () => {
       {/* <Cta></Cta> */}
 
       <SuccessStory></SuccessStory>
+
 
       {/* <Events></Events> */}
 
