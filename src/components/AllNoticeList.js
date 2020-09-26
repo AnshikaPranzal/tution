@@ -54,7 +54,7 @@ const AllNoticeList = () => {
                         year={obj.date.substring(0, 4)}
                         title={obj.title}
                         des={obj.description}
-                      ></NoticeItem>
+                      />
                     );
                   })}
                 </ul>
