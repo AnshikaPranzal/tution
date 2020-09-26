@@ -115,12 +115,7 @@ const Projects = () => {
               success: false,
             });
           } else {
-            setProject({
-              ...project,
-              name: "",
-              error: "",
-              success: true,
-            });
+            toast("Standard Added",{type:"success"})
             setrefresh(!refresh);
           }
       })
@@ -168,12 +163,7 @@ const Projects = () => {
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
-          setProject({
-            ...project,
-            name: "",
-            error: "",
-            success: true,
-          });
+          toast("Standard Updated",{type:"success"})
           setrefresh(!refresh);
           setupdate(false);
         }

@@ -4,6 +4,8 @@ import { Link,Redirect } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import { signup1, getAOption, updateOption} from './helper/index'
 import { InputGroup,InputGroupAddon,InputGroupText,Input } from 'reactstrap'
+
+import { toast } from 'react-toastify';
 const UpdateOption = (props) =>{
     const [values,setValues] = useState([{
         optionValue:"",
@@ -78,15 +80,14 @@ const UpdateOption = (props) =>{
             if(data){
                 if(data.error)
                 {
+                    toast(data.error,{type:"error"})
                     console.log(data.error)
                     setValues({
                         ...values,error: data.error
                     });
                 }
                 else{
-                    setValues({
-                        ...values,success: true
-                    });
+                    toast("Option Updated",{type:"success"})
                     console.log("<3")
                     loadrefresh()
                     hide()

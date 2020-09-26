@@ -4,6 +4,7 @@ import { Link,Redirect } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import { signup1,getAllStandards } from './helper/index'
 import { Input } from 'reactstrap';
+import { toast } from 'react-toastify';
 const RegisterModal = () =>{
     const [values,setValues] = useState({
         name:"",
@@ -32,7 +33,7 @@ const RegisterModal = () =>{
             .then( (data) =>{
                 if(data){
                 if(data.error){
-                   
+                    toast(data.error,{type:"error"})
                     setValues({
                         ...values,
                         error: data.error,
@@ -40,6 +41,7 @@ const RegisterModal = () =>{
                     })
                 }
                 else{
+                    toast("Registered!!",{type:"success"})
                     setValues({
                         ...values,
                         name:"",
@@ -47,8 +49,7 @@ const RegisterModal = () =>{
                         email:"",
                         password:"",
                         standard:"", 
-                        error:"",
-                        success: true
+                        error:""
                     })
                 }
             }

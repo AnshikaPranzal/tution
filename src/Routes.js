@@ -10,7 +10,6 @@ import Navbar from './components/Navbar';
 import About from './components/AboutPage';
 import Question from './components/Question';
 import CoursePage from './components/CoursePage';
-import EventPage from './components/EventPage';
 import NoticePage from './components/NoticePage';
 import FulllayoutTeacher from './components/Dashboard/layouts/fulllayout -teacher';
 import FulllayoutAdmin from './components/Dashboard/layouts/fulllayout -admin';
@@ -38,60 +37,60 @@ function Routes() {
                 <Navbar ></Navbar>
           </header> */}
       {loading ? (
-        <div className='preloader'>
-          <img src={preloader} alt='Loading...'></img>
+        <div className="preloader">
+          <img src={preloader} alt="Loading..."></img>
         </div>
       ) : (
         <>
         <ToastContainer />
         <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/about' component={About} />
-          <PrivateRoute exact path='/dashboard' component={Fulllayout} />
-          <PrivateRoute exact path='/quiz' component={Fulllayout} />
-          <PrivateRoute exact path='/classroom' component={Fulllayout} />
-          <PrivateRoute exact path='/material' component={Fulllayout} />
-          <PrivateRoute exact path='/settings' component={Fulllayout} />
-          <PrivateRoute exact path='/start/quiz/:question' component={Quiz} />
-          <PrivateRoute exact path='/quizcompleted' component={Fulllayout} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <PrivateRoute exact path="/dashboard" component={Fulllayout} />
+          <PrivateRoute exact path="/quiz" component={Fulllayout} />
+          <PrivateRoute exact path="/classroom" component={Fulllayout} />
+          <PrivateRoute exact path="/material" component={Fulllayout} />
+          <PrivateRoute exact path="/settings" component={Fulllayout} />
+          <PrivateRoute exact path="/start/quiz/:question" component={Quiz} />
+          <PrivateRoute exact path="/quizcompleted" component={Fulllayout} />
           <TeacherRoute
             exact
-            path='/dashboard-teacher'
+            path="/dashboard-teacher"
             component={FulllayoutTeacher}
           />
           <TeacherRoute
             exact
-            path='/listclassroom'
+            path="/listclassroom"
             component={FulllayoutTeacher}
           />
           <TeacherRoute
             exact
-            path='/view/response/:quiz/:response'
+            path="/view/response/:quiz/:response"
             component={FulllayoutTeacher}
           />
           <TeacherRoute
             exact
-            path='/quiz/:user'
+            path="/quiz/:user"
             component={FulllayoutTeacher}
           />
           <TeacherRoute
             exact
-            path='/responses/:question'
+            path="/responses/:question"
             component={FulllayoutTeacher}
           />
           <AdminRoute
             exact
-            path='/dashboard-admin'
+            path="/dashboard-admin"
             component={FulllayoutAdmin}
           />
           <Route exact path='/contact' component={Contact} />
           <Route exact path='/course' component={CoursePage} />
-          <Route exact path='/event' component={EventPage} />
           <Route exact path='/notice' component={NoticePage} />
           <Route exact path='/myclassroom/:handle' component={Fulllayout} />
+
           <Route
             exact
-            path='/teacherClassroom/:handle'
+            path="/teacherClassroom/:handle"
             component={FulllayoutTeacher}
           />
         </Switch>

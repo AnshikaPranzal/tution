@@ -24,18 +24,18 @@ const AllNoticeList = () => {
   }, []);
 
   const Month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
   return (
     <React.Fragment>
@@ -43,20 +43,41 @@ const AllNoticeList = () => {
         <div className="container1">
           <div className="row">
             <div className="col-12">
-              <ul className="list-unstyled">
-                {noticeO.map((obj, index) => {
-                  return (
-                    <NoticeItem
-                      key={index}
-                      date={obj.date.substring(8, 10)}
-                      month={Month[parseInt(obj.date.substring(5, 7) - 1)]}
-                      year={obj.date.substring(0, 4)}
-                      title={obj.title}
-                      des={obj.description}
-                    ></NoticeItem>
-                  );
-                })}
-              </ul>
+              {noticeO?.length > 0 && (
+                <ul className="list-unstyled">
+                  {noticeO.map((obj, index) => {
+                    return (
+                      <NoticeItem
+                        key={index}
+                        date={obj.date.substring(8, 10)}
+                        month={Month[parseInt(obj.date.substring(5, 7) - 1)]}
+                        year={obj.date.substring(0, 4)}
+                        title={obj.title}
+                        des={obj.description}
+                      />
+                    );
+                  })}
+                </ul>
+              )}
+              {!noticeO && noticeO.length === 0 && (
+                <div className="container p-0">
+                  <div className="row py-5 d-flex text-center">
+                    <div className="col-12 align-self">
+                      <p className="display-4">
+                        <div
+                          style={{
+                            animation: 'linear infinite 2s animateNotice',
+                          }}
+                        >
+                          {' '}
+                          No notice for now!
+                        </div>
+                        Please come back soon...
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

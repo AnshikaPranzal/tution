@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import { signup1, getAQuestion, updateQuestion } from './helper/index'
-
+import { toast } from 'react-toastify';
 const RegisterModal = (props) =>{
     const [values,setValues] = useState([{
         title:"",
@@ -79,15 +79,14 @@ const RegisterModal = (props) =>{
             if(data){
                 if(data.error)
                 {
+                    toast(data.error,{type:"error"})
                     console.log(data.error)
                     setValues({
                         ...values,error: data.error
                     });
                 }
                 else{
-                    setValues({
-                        ...values,success: true
-                    });
+                    toast("Question Updated",{type:"success"})
                     console.log("<3")
                 }
             }

@@ -194,9 +194,9 @@ const Projects = () => {
             standard: '',
             time: '',
             date: '',
-            error: '',
-            success: true,
+            error: ''
           });
+          toast("Class Added",{type:"success"})
           setrefresh(!refresh);
         }
       })
@@ -262,9 +262,9 @@ const Projects = () => {
           standard: '',
           time: '',
           date: '',
-          error: '',
-          success: true,
+          error: ''
         });
+        toast("Class Updated",{type:"success"})
         setrefresh(!refresh);
         setupdate(false);
       }

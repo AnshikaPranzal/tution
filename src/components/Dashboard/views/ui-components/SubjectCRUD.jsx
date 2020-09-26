@@ -113,18 +113,10 @@ const Projects = () => {
           if (data.error) { toast(data.error,{type:"error"})
             setProject({
               ...project,
-              error: data.error,
               success: false,
             });
           } else {
-            setProject({
-              ...project,
-              name: "",
-              price: 0,
-              value: 0,
-              error: "",
-              success: true,
-            });
+            toast("Subject Added",{type:"success"})
             setrefresh(!refresh);
           }
       })
@@ -138,6 +130,7 @@ const Projects = () => {
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
+          toast("Subject deleted",{type:"success"})
           setrefresh(!refresh);
         }
     });
@@ -180,8 +173,8 @@ const Projects = () => {
             price: 0,
             value: 0,
             error: "",
-            success: true,
           });
+          toast("Subject updated",{type:"success"})
           setrefresh(!refresh);
           setupdate(false);
         }

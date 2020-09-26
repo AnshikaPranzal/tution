@@ -250,15 +250,14 @@ const Starter = () => {
               success: false,
             });
           } else {
-            toast("Notice Added",{type:"success"})
             setProject({
               ...project,
               title: '',
               description: '',
               date: '',
               error: '',
-              success: true,
             });
+            toast("Notice Added",{type:"success"})
             setrefresh(!refresh);
           }
       })
@@ -315,8 +314,8 @@ const Starter = () => {
             description: '',
             date: '',
             error: '',
-            success: true,
           });
+          toast("Notice Updated",{type:"success"})
           setrefresh(!refresh);
           setupdate(false);
         }

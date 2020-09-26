@@ -185,9 +185,9 @@ const Starter = () => {
             subject: "",
             owner: user._id,
             standard: 0,
-            error: "",
-            success: true,
+            error: ""
           });
+          toast("Classroom Added",{type:"success"})
           setrefresh(!refresh);
         }
       })
@@ -242,9 +242,9 @@ const Starter = () => {
             description: "",
             subject: "",
             standard: 0,
-            error: "",
-            success: true,
+            error: ""
           });
+          toast("Classroom Updated",{type:"success"})
           setrefresh(!refresh);
           setupdate(false);
         }

@@ -123,6 +123,7 @@ const Projects = () => {
       .then((data) => {
         console.log(data);
         console.log(project);
+        if(data)
         if (data.error) { toast(data.error,{type:"error"})
           setProject({
             ...project,
@@ -138,9 +139,9 @@ const Projects = () => {
             standard: "",
             time: "",
             date: "",
-            error: "",
-            success: true,
+            error: ""
           });
+          toast("Classes added",{type:"success"})
           setrefresh(!refresh);
         }
       })
@@ -149,6 +150,7 @@ const Projects = () => {
   const deleteaClass = (catuctId) => {
     deleteClass(catuctId).then((data) => {
       console.log(data);
+      if(data)
       if (data.error) { toast(data.error,{type:"error"})
         console.log(data.error);
         // setValues({...values,error:data.error})
@@ -208,8 +210,8 @@ const Projects = () => {
           time: "",
           date: "",
           error: "",
-          success: true,
         });
+        toast("Classes Updated",{type:"success"})
         setrefresh(!refresh);
         setupdate(false);
       }
