@@ -93,6 +93,18 @@ const Starter = () => {
   const [errorU, seterrorU] = useState(false);
   const [update, setupdate] = useState(false);
   const [uid, setuid] = useState('');
+  const [Email, setEmail] = useState({
+    EmailTitle:"",
+    EmailBody:""
+  })
+
+  const handleEmail = (name) => (event) => {
+    setEmail({
+      ...Email,
+      [name]: event.target.value
+    })
+  }
+  const{EmailBody, EmailTitle} = Email;
 
   const loadAllnotices = () => {
     getAllNotices().then((data) => {
@@ -471,6 +483,36 @@ const Starter = () => {
           <Projects />
         </Col>
       </Row>
+      <Row>
+      <Col xs="12" md="12">
+        <Card>
+            <CardBody>
+            <CardTitle>News Letter</CardTitle>
+            <CardSubtitle>Send Email</CardSubtitle>
+            <Input
+                type="text"
+                name="EmailTitle"
+                id="EmailTitle"
+                placeholder="Enter Email Title here.."
+                value={EmailTitle}
+                onChange={handleEmail("EmailTitle")}
+                style={{ marginTop: '1rem' }}
+              />
+              <hr/>
+              <Input
+                type="textarea"
+                name="EmailBody"
+                id="EmailBody"
+                placeholder="Enter Email Body here.."
+                value={EmailBody}
+                onChange={handleEmail("EmailBody")}
+                style={{ marginTop: '1rem' }}
+              />
+              <Button style={{marginTop:"1rem"}}>Send</Button>
+            </CardBody>
+        </Card>
+        </Col>
+      </Row>
 
       <Row className="text-center">
         <Col xs="12" md="6">
@@ -505,6 +547,7 @@ const Starter = () => {
             </CardBody>
           </Card>
         </Col>
+        
         <Col xs="12" md="6">
           {/*--------------------------------------------------------------------------------*/}
           {/*Card-1*/}
