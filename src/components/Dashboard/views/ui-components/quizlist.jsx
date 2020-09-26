@@ -5,7 +5,7 @@ import {
   subquizzes,
   getAUser,
 } from "../../../helper/index";
-
+import { toast } from 'react-toastify';
 import {
   Card,
   CardBody,
@@ -28,7 +28,7 @@ const QuizList = (props) => {
     subquizzes({ user_id: user._id }).then((data) => {
       console.log(data, "quizdata");
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
         } else {
           setquizzes(data);
@@ -41,7 +41,7 @@ const QuizList = (props) => {
     getAUser(user._id, token).then((data) => {
       console.log(data, "userdata");
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
         } else {
           setaquiz(data.quiz);

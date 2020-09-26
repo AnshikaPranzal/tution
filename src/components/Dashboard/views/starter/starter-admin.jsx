@@ -36,6 +36,7 @@ import $ from 'jquery';
 import img1 from '../../assets/images/big/img1.jpg';
 import img2 from '../../assets/images/big/img2.jpg';
 import img3 from '../../assets/images/big/img3.jpg';
+import { toast } from 'react-toastify';
 
 const Starter = () => {
   $(document).ready(() => {
@@ -110,9 +111,10 @@ const Starter = () => {
     getAllNotices().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
+          
           setnoticeO(data);
         }
     });
@@ -121,7 +123,7 @@ const Starter = () => {
     getAllUSers().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setuserO(data);
@@ -135,7 +137,9 @@ const Starter = () => {
   useEffect(() => {
     loadAllusers();
   }, []);
-  const successMessage = () => (
+  const successMessage = () => {
+    
+    return(
     <div className="row ">
       <div className="col-md-6 offset-sm-3 text-left">
         <div
@@ -146,7 +150,7 @@ const Starter = () => {
         </div>
       </div>
     </div>
-  );
+  )};
 
   const errorMessage = () => {
     return (
@@ -251,10 +255,10 @@ const Starter = () => {
         console.log(data);
         console.log(project);
         if (data)
-          if (data.error) {
+          if (data.error) { toast(data.error,{type:"error"})
             setProject({
               ...project,
-              error: data.error,
+               
               success: false,
             });
           } else {
@@ -264,8 +268,8 @@ const Starter = () => {
               description: '',
               date: '',
               error: '',
-              success: true,
             });
+            toast("Notice Added",{type:"success"})
             setrefresh(!refresh);
           }
       })
@@ -275,7 +279,7 @@ const Starter = () => {
     deleteNotice(catuctId).then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
@@ -287,7 +291,7 @@ const Starter = () => {
     getANotice(noticeId).then((data) => {
       console.log(data.date, 'd');
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
@@ -312,7 +316,7 @@ const Starter = () => {
     updateNotice(nid, { title, description, date }).then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
@@ -322,8 +326,8 @@ const Starter = () => {
             description: '',
             date: '',
             error: '',
-            success: true,
           });
+          toast("Notice Updated",{type:"success"})
           setrefresh(!refresh);
           setupdate(false);
         }
@@ -346,7 +350,7 @@ const Starter = () => {
   const addTeacher = () => {
     updateRole(user._id, { email: emailT, role: 1 }).then((data) => {
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error, 'lllllllllllll');
           // setValues({...values,error:data.error})
           seterrorT(data.error);
@@ -360,7 +364,7 @@ const Starter = () => {
   const addAdmin = () => {
     updateRole(user._id, { email: emailA, role: 2 }).then((data) => {
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error, 'lllllllllllll');
           seterrorA(data.error);
           // setValues({...values,error:data.error})

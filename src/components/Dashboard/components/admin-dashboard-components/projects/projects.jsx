@@ -11,7 +11,7 @@ import {
   getAClass,
   getASubject,
 } from "../../../../helper/index";
-
+import { toast } from 'react-toastify';
 import {
   Card,
   CardBody,
@@ -38,7 +38,7 @@ const Projects = () => {
     getAllClasses().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setclassO(data);
@@ -123,10 +123,11 @@ const Projects = () => {
       .then((data) => {
         console.log(data);
         console.log(project);
-        if (data.error) {
+        if(data)
+        if (data.error) { toast(data.error,{type:"error"})
           setProject({
             ...project,
-            error: data.error,
+             
             success: false,
           });
         } else {
@@ -138,9 +139,9 @@ const Projects = () => {
             standard: "",
             time: "",
             date: "",
-            error: "",
-            success: true,
+            error: ""
           });
+          toast("Classes added",{type:"success"})
           setrefresh(!refresh);
         }
       })
@@ -149,10 +150,12 @@ const Projects = () => {
   const deleteaClass = (catuctId) => {
     deleteClass(catuctId).then((data) => {
       console.log(data);
-      if (data.error) {
+      if(data)
+      if (data.error) { toast(data.error,{type:"error"})
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
+        
         setrefresh(!refresh);
       }
     });
@@ -160,7 +163,7 @@ const Projects = () => {
   const getClass = (classId) => {
     getAClass(classId).then((data) => {
       console.log(data.date, "d");
-      if (data.error) {
+      if (data.error) { toast(data.error,{type:"error"})
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
@@ -194,7 +197,7 @@ const Projects = () => {
       date,
     }).then((data) => {
       console.log(data);
-      if (data.error) {
+      if (data.error) { toast(data.error,{type:"error"})
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
@@ -207,8 +210,8 @@ const Projects = () => {
           time: "",
           date: "",
           error: "",
-          success: true,
         });
+        toast("Classes Updated",{type:"success"})
         setrefresh(!refresh);
         setupdate(false);
       }

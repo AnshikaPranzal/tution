@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import CourseItem from './CourseItem';
+import React, { useState, useEffect } from "react";
+import CourseItem from "./CourseItem";
+import course_pic1 from "../images/courses/physics2.png";
+import course_pic2 from "../images/courses/chemistry3.png";
+import course_pic3 from "../images/courses/maths.png";
+import { toast } from 'react-toastify';
+import {
+  isAuthenticated,
+  addItemToCart,
+  loadCart,
+  getAllSubjects,
+} from "./helper";
 import Reading from '../images/svg/reading.png';
-
-import { loadCart, getAllSubjects } from './helper';
 
 const AllCourseList = () => {
   const [product, setproduct] = useState();
@@ -24,7 +32,7 @@ const AllCourseList = () => {
     getAllSubjects().then((data) => {
       //   console.log(data)
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setsubject(data);

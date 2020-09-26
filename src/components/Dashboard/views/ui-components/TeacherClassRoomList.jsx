@@ -13,7 +13,7 @@ import {
   Table,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-
+import { toast } from 'react-toastify';
 const TeacherClassRoomList = () => {
   const { user } = isAuthenticated();
   const Tid = user._id;
@@ -23,7 +23,7 @@ const TeacherClassRoomList = () => {
     getAllClassrooms().then((data) => {
       console.log(data);
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
         } else {
           setclassrooms(data);

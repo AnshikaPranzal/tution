@@ -12,7 +12,7 @@ import {
   deleteQuiz,
   getAQuiz,
 } from "../../../helper/index";
-
+import { toast } from 'react-toastify';
 import {
   Card,
   CardBody,
@@ -56,7 +56,7 @@ const AddQuiz = ({ c }) => {
     getAllSubjects().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setsubject(data);
@@ -71,7 +71,7 @@ const AddQuiz = ({ c }) => {
     getAllStandards().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorS(data.error);
         } else {
           setstandard(data);
@@ -87,7 +87,7 @@ const AddQuiz = ({ c }) => {
     getQuiz(user._id).then((data) => {
       // console.log(data,"quizdata")
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           // console.log(error)
         } else {
           setquizzes(data.data);
@@ -160,9 +160,9 @@ const AddQuiz = ({ c }) => {
       .then((data) => {
         // console.log(data)
         if (data)
-          if (data.error) {
+          if (data.error) { toast(data.error,{type:"error"})
             // console.log(data.error)
-            setValues({ ...values, error: data.error });
+            setValues({ ...values,   });
           } else {
             // console.log(data,"quiz")
             setValues({
@@ -189,7 +189,7 @@ const AddQuiz = ({ c }) => {
   const deleteAQuiz = (id) => {
     deleteQuiz(id).then((data) => {
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           // console.log(data.error)
         } else {
           setrefresh(!refresh);
@@ -201,7 +201,7 @@ const AddQuiz = ({ c }) => {
   const getTheQuiz = (id) => {
     getAQuiz(`/quiz/${id}`).then((data) => {
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           // console.log(data.error)
         } else {
           setqid(id);
@@ -222,9 +222,9 @@ const AddQuiz = ({ c }) => {
       .then((data) => {
         // console.log(data)
         if (data)
-          if (data.error) {
+          if (data.error) { toast(data.error,{type:"error"})
             // console.log(data.error)
-            setValues({ ...values, error: data.error });
+            setValues({ ...values,   });
           } else {
             setupdate(!update);
             setValues({

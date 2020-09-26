@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import img1 from "../../../assets/images/users/1.jpg";
-
+import { toast } from 'react-toastify';
 import {
   getAllClasses,
   subclassrooms,
@@ -34,7 +34,7 @@ const Projects = () => {
     subclasses({ user_id: user._id }).then((data) => {
       console.log(data);
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterror(data.error);
         } else {
           setclassO(data);
