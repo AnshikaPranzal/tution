@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CourseItem from './CourseItem';
-import course_pic1 from '../images/courses/physics2.png';
-import course_pic2 from '../images/courses/chemistry3.png';
-import course_pic3 from '../images/courses/maths.png';
+import Reading from '../images/svg/reading.png';
 
-import {
-  isAuthenticated,
-  addItemToCart,
-  loadCart,
-  getAllSubjects,
-} from './helper';
+import { loadCart, getAllSubjects } from './helper';
 
 const AllCourseList = () => {
   const [product, setproduct] = useState();
@@ -48,6 +41,9 @@ const AllCourseList = () => {
       <section className="section">
         <div className="container1">
           <div className="row justify-content-center">
+            <div className="col-12 align-self text-center">
+              <img src={Reading} alt="" className="img-fluid" />
+            </div>
             {subject?.length > 0 &&
               subject.map((obj, i) => {
                 return (
