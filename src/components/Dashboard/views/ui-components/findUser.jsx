@@ -174,18 +174,24 @@ const Projects = () => {
                 <tr key={i} className='userlist'>
                   <td>{obj.name}</td>
                   <td>{obj.email}</td>
-                  <td>
-                    <Table>
-                      {obj.subject.map((o, i) => {
-                        return (
-                          <tr key={i}>
-                            <td>{o.name}</td>
-                            <td>{o.value} months</td>
-                          </tr>
-                        );
-                      })}
-                    </Table>
+                  <td colSpan='2'>
+                    {obj.subject.map((o, i) => {
+                      return (
+                        <>
+                          <div className='d-flex justify-content-between py-2'>
+                            <span className='badge mx-auto text-white font-weight-bold mx-1 bg-success'>
+                              {o.name}
+                            </span>
+
+                            <span className='badge mx-auto font-weight-bold text-white bg-primary'>
+                              {o.value} months
+                            </span>
+                          </div>
+                        </>
+                      );
+                    })}
                   </td>
+
                   {/* <td><i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getSubject(obj._id)}} aria-hidden="true"></i>
                             <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaSubject(obj._id)}} aria-hidden="true"></i></td> */}
                 </tr>
