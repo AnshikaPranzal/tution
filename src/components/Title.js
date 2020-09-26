@@ -14,15 +14,16 @@ const Title = (props) => {
   };
   return (
     <React.Fragment>
-      <section className='page-title-section overlay' style={sectionStyle}>
-        <div className='row pb-5'>
-          <div className='col-lg-8 pb-5 col-sm-10'>
-            <ul className='list-inline custom-breadcrumb'>
-              <li className='list-inline-item'>
-                <h1 className='  text-white'>{props.title}</h1>
+      <section className="page-title-section overlay" style={sectionStyle}>
+        <div className="row pb-5">
+          <div className="col-lg-8 pb-5 col-sm-10">
+            <ul className="list-inline custom-breadcrumb">
+              <li className="list-inline-item">
+                <h1 className="  text-white">{props.title}</h1>
               </li>
             </ul>
-            <p className='text-lighten'>{props.body}</p>
+            <p className="text-lighten">{props.body}</p>
+            <hr className="divider ml-0" />
           </div>
         </div>
       </section>

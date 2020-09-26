@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Routes from './Routes';
-import 'react-toastify/dist/ReactToastify.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<Routes />, document.getElementById('root'));

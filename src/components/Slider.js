@@ -17,7 +17,7 @@ const SliderList = () => {
     width: '100%',
     height: '90vh',
     backgroundImage: `linear-gradient(#3A394Eb0,#3A394Ea0),url(${bg})`,
-    padding: '25vh 0 25vh',
+    padding: '20vh 0',
   };
   var settings = {
     dots: false,

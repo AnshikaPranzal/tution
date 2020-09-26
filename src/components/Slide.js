@@ -18,7 +18,7 @@ const Slide = (props) => {
               {props.heading}
             </h1>
             <p className="text-muted mb-4">{props.body}</p>
-            <hr className="divider" />
+            <hr className="divider ml-0" />
           </div>
         </div>
       </div>

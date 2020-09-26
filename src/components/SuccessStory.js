@@ -11,7 +11,7 @@ const SuccessStory = () => {
     <React.Fragment>
       <section className="section bg-cover" style={sectionStyle}>
         <div className="container1">
-          <div className="row">
+          <div className="row mx-0">
             <div
               className="col-lg-6 position-relative success-video"
               style={{ height: '50vmin' }}

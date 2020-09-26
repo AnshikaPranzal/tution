@@ -13,6 +13,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
@@ -29,4 +30,22 @@ code {
 
 .hidden {
   display: none;
+}
+
+.divider {
+  height: 0.198rem;
+  background-color: #68d8d6;
+  max-width: 9rem;
+}
+
+@keyframes animateNotice {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
