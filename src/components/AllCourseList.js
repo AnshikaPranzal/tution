@@ -3,6 +3,7 @@ import CourseItem from "./CourseItem";
 import course_pic1 from "../images/courses/physics2.png";
 import course_pic2 from "../images/courses/chemistry3.png";
 import course_pic3 from "../images/courses/maths.png";
+
 import { toast } from 'react-toastify';
 import {
   isAuthenticated,
@@ -11,6 +12,8 @@ import {
   getAllSubjects,
 } from "./helper";
 import Reading from '../images/svg/reading.png';
+
+
 
 const AllCourseList = () => {
   const [product, setproduct] = useState();
@@ -90,6 +93,7 @@ const AllCourseList = () => {
           </div>
         </div>
       </section>
+      
     </React.Fragment>
   );
 };

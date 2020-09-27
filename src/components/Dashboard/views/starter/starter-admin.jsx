@@ -10,6 +10,7 @@ import {
   getAllUSers,
   updateRole, addSubcriber
 } from '../../../helper/index';
+
 import {
   Card,
   CardImg,
@@ -348,11 +349,6 @@ const Starter = () => {
     });
   };
 
-  //    useEffect(() => {
-  //     setProject({
-  //         ...project,error: false, name: nameT, email: emailT
-  //     })
-  //    }, [project, nameT, emailT])
   const [refresh, setrefresh] = useState(true);
   useEffect(() => {
     loadAllnotices();
