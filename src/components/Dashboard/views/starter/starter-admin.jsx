@@ -8,7 +8,7 @@ import {
   updateNotice,
   getANotice,
   getAllUSers,
-  updateRole,
+  updateRole, addSubcriber
 } from '../../../helper/index';
 import {
   Card,
@@ -96,7 +96,8 @@ const Starter = () => {
   const [uid, setuid] = useState('');
   const [Email, setEmail] = useState({
     EmailTitle:"",
-    EmailBody:""
+    EmailBody:"",
+    EmailImg:""
   })
 
   const handleEmail = (name) => (event) => {
@@ -105,7 +106,7 @@ const Starter = () => {
       [name]: event.target.value
     })
   }
-  const{EmailBody, EmailTitle} = Email;
+  const{EmailBody, EmailTitle, EmailImg} = Email;
 
   const loadAllnotices = () => {
     getAllNotices().then((data) => {
@@ -123,14 +124,26 @@ const Starter = () => {
     getAllUSers().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) { toast(data.error,{type:"error"})
+        if (data.error) {
+          toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setuserO(data);
         }
     });
   };
-
+  const submitEmail = () => {
+    addSubcriber(Email).then(data=>{
+      if(data){
+        if(data.error){
+          toast(data.error,{type:"error"})
+        }
+        else{
+          toast("Email Sent",{type:"success"})
+        }
+      }
+    })
+  }
   useEffect(() => {
     loadAllnotices();
   }, []);
@@ -243,6 +256,7 @@ const Starter = () => {
       [name]: event.target.value,
     });
   };
+
   const onSubmit = (event) => {
     event.preventDefault();
     setProject({
@@ -504,6 +518,16 @@ const Starter = () => {
               />
               <hr/>
               <Input
+                type="text"
+                name="EmailImg"
+                id="EmailImg"
+                placeholder="Enter Img here.."
+                value={EmailImg}
+                onChange={handleEmail("EmailImg")}
+                style={{ marginTop: '1rem' }}
+              />
+              <hr/>
+              <Input
                 type="textarea"
                 name="EmailBody"
                 id="EmailBody"
@@ -512,7 +536,7 @@ const Starter = () => {
                 onChange={handleEmail("EmailBody")}
                 style={{ marginTop: '1rem' }}
               />
-              <Button style={{marginTop:"1rem"}}>Send</Button>
+              <Button onClick={submitEmail} style={{marginTop:"1rem"}}>Send</Button>
             </CardBody>
         </Card>
         </Col>
