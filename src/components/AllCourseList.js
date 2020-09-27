@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import CourseItem from "./CourseItem";
-import course_pic1 from "../images/courses/physics2.png";
-import course_pic2 from "../images/courses/chemistry3.png";
-import course_pic3 from "../images/courses/maths.png";
+import React, { useState, useEffect } from 'react';
+import CourseItem from './CourseItem';
+import course_pic1 from '../images/courses/physics2.png';
+import course_pic2 from '../images/courses/chemistry3.png';
+import course_pic3 from '../images/courses/maths.png';
 import { toast } from 'react-toastify';
 import {
   isAuthenticated,
   addItemToCart,
   loadCart,
   getAllSubjects,
-} from "./helper";
-import Reading from '../images/svg/reading.png';
+} from './helper';
+import Reading from '../images/svg/Reading.png';
 
 const AllCourseList = () => {
   const [product, setproduct] = useState();
@@ -32,7 +32,8 @@ const AllCourseList = () => {
     getAllSubjects().then((data) => {
       //   console.log(data)
       if (data)
-        if (data.error) { toast(data.error,{type:"error"})
+        if (data.error) {
+          toast(data.error, { type: 'error' });
           seterrorF(data.error);
         } else {
           setsubject(data);
@@ -46,11 +47,20 @@ const AllCourseList = () => {
   console.log('jkkkk', product);
   return (
     <React.Fragment>
-      <section className="section">
+      <section className="section pt-0">
         <div className="container1">
-          <div className="row justify-content-center">
-            <div className="col-12 align-self text-center">
-              <img src={Reading} alt="" className="img-fluid" />
+          <div className="row d-flex align-items-center justify-content-center">
+            <div className="col-12">
+              <div className="row d-flex align-items-center justify-content-center mx-0 py-4">
+                <div className="col-md-6 align-self text-center">
+                  <img src={Reading} alt="" className="img-fluid" />
+                </div>
+                <div className="col-md-6  align-self text-center px-3">
+                  <p className="h2 text-center text-muted">
+                    Find the best course that suits you!
+                  </p>
+                </div>
+              </div>
             </div>
             {subject?.length > 0 &&
               subject.map((obj, i) => {
@@ -61,8 +71,7 @@ const AllCourseList = () => {
                     product={product}
                     price={obj.price}
                     topic={obj.name}
-                    des=" Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna."
+                    des=" Lorem ipsum dolor sit amet, consectetur adipisicing elit"
                   ></CourseItem>
                 );
               })}
