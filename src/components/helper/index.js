@@ -1056,3 +1056,20 @@ export const searchUser = async (user) => {
     console.log('Error in geting Quizes');
   }
 };
+
+export const addSubcriber = (email) => {
+  console.log('email :::::', email);
+  console.log('email :::::', JSON.stringify(email));
+  return fetch(`${API}/add/subscriber`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(email),
+  })
+    .then((response) => response.json())
+    .catch((e) => {
+      console.log('Error in Setting Up User');
+    });
+};

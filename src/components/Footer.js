@@ -1,8 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../images/logo-white.png';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { addSubcriber } from './helper';
 
 const Footer = () => {
+  const [value, setValue] = useState({ email: '' });
+  const handleChange = (event) => {
+    setValue({
+      ...value,
+      email: event.target.value,
+    });
+  };
+  const emailValidator = (email) => {
+    return (
+      email.length !== '' &&
+      (email.match(/[^a-zA-Z0-9@.]+/) !== null ||
+        email.match(/[a-zA-Z0-9]+@[a-zA-Z0-9]+[.][a-zA-Z]+/) === null)
+    );
+  };
+
+  const onSubmit = () => {
+    if (emailValidator(value.email)) {
+      toast('Please fill the email or enter a proper email ID.', {
+        type: 'error',
+      });
+      return;
+    } else {
+      addSubcriber(value)
+        .then((data) => {
+          console.log('email data :::', data);
+          if (!data || data?.error) {
+            toast(`${data.error}`, {
+              type: 'error',
+            });
+            return;
+          }
+          toast('Subcriber Added Successfully', {
+            type: 'success',
+          });
+        })
+        .catch((error) =>
+          toast('Something went wrong ! We are trying to figure out.', {
+            type: 'error',
+          })
+        );
+    }
+  };
+
   return (
     <React.Fragment>
       <footer>
@@ -10,25 +55,28 @@ const Footer = () => {
           <div className="bg-primary ">
             <div className="row py-2 mx-0">
               <div className="col-lg-5 col-md-8 col-sm-8 mx-auto py-5 newsletter-block">
-                <h3 className="text-white text-center">Subscribe Now</h3>
-                <form action="#" className="text-center">
+                <div className="text-center">
+                  <h3 className="text-white text-center">
+                    Subscribe To Our Newsletter
+                  </h3>
+
                   <div className="input-wrapper">
                     <input
                       type="email"
                       className="form-control border-0"
                       id="newsletter"
                       name="newsletter"
+                      onChange={handleChange}
                       placeholder="Enter Your Email..."
-                    ></input>
+                    />
                   </div>
                   <button
-                    type="submit"
-                    value="send"
+                    onClick={onSubmit}
                     className="hvr-bounce-to-top my-3 border-curved"
                   >
                     Join
                   </button>
-                </form>
+                </div>
               </div>
             </div>
           </div>

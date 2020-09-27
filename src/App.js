@@ -10,8 +10,6 @@ import { Cube } from 'styled-loaders-react';
 // import './plugins/google-map/gmap.js'
 
 import Home from './components/Home';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -21,22 +19,11 @@ function App() {
     }, 3000);
   });
   return (
-    <div className='App'>
+    <div className="App">
       {loading ? (
-        <Cube color='red' size='60px' duration='5s'></Cube>
+        <Cube color="red" size="60px" duration="5s"></Cube>
       ) : (
         <>
-          <ToastContainer
-            position='bottom-left'
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
           <Home></Home>
         </>
       )}
