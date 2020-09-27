@@ -54,3 +54,11 @@ td,
 th {
   font-size: 1rem !important;
 }
+
+.course-card-custom {
+  overflow: hidden;
+  border-left: 1.023rem solid #68d8d6 !important;
+  border-right: 0.223rem solid #68d8d6 !important;
+  box-shadow: 0.25rem 0.3rem 10px 1px #00000040 !important;
+  border-radius: 0px 1.7778rem 1.7778rem 0px !important;
+}
