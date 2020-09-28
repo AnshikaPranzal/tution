@@ -27,9 +27,10 @@ const Projects = () => {
     name: '',
     email: '',
     subject: '',
-    value: 0,
+    expiresOn: '',
+    validity: 0,
   });
-  const { name, email, subject, value } = u;
+  const { name, email, subject, validity,expiresOn } = u;
 
   const loadUsers = () => {
     // getAllUSers().then((data) => {
@@ -63,15 +64,27 @@ const Projects = () => {
   };
   useEffect(() => {
     loadAllSubjects();
+    
   }, []);
 
   const users = [];
 
-  const handleChange = (name) => (event) => {
-    setU({
-      ...u,
-      [name]: event.target.value,
-    });
+  const handleChange = (name) => async (event) => {
+    const k = await Promise.resolve(event.target.value)
+      var d = new Date()
+      d.setDate(d.getDate()+(k*30))
+      const g = await Promise.resolve(setU({
+        ...u,
+        expiresOn: new Date(),
+        [name]: k,
+      }))
+      console.log(d.getDate(),d,"month",u,k)
+    
+    // const gk = await Promise.resolve(setU({
+    //   ...u,
+    //   [name]: k,
+    // }
+    // ));
   };
 
   // if((name !== "")&&(mob !== 0)&&(email !== ""))
@@ -80,11 +93,13 @@ const Projects = () => {
   // }
 
   const addSubjectToUser = (userId) => {
-    addSubject({ user_id: userId, subject_id: subject, value: value }).then(
+    addSubject({ user_id: userId, subject_id: subject, value: validity,expiresOn: expiresOn }).then(
       (data) => {
         console.log(data);
-        if (!data?.error) setRefresh(!refresh);
-        else console.log('SUBJECT ADDING ERROR');
+        if (!data?.error) {setRefresh(!refresh);
+        toast("Validity Updated Successfully",{type:"success"})
+        }
+        else {toast(data.error,{type:"error"})}
       }
     );
   };
@@ -92,16 +107,6 @@ const Projects = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     loadUsers();
-    // userO.map((obj, i) => {
-    //   if (obj.role === 0) {
-    //     if (obj.name === name && obj.email === email) {
-    //       addSubject({ user_id: obj._id, subject_id: subject, value: value });
-    //     }
-    //   }
-    // });
-    // console.log(!refresh);
-    // setRefresh(!refresh);
-    // $('.userlist').removeClass('hide')
   };
 
   const dashboard = () => (
@@ -160,6 +165,7 @@ const Projects = () => {
               <th className='border-0'>Email</th>
               <th className='border-0'>Subject</th>
               <th className='border-0'>Months</th>
+              <th className='border-0'>ExpiresOn</th>
             </tr>
           </thead>
           <tbody>
@@ -171,23 +177,28 @@ const Projects = () => {
                 <tr key={`user${obj._id}`} className='userlist'>
                   <td>{obj.name}</td>
                   <td>{obj.email}</td>
-                  <td colSpan='2'>
+                  <td colSpan='3'>
                     {obj.subject.map((o, i) => {
                       return (
                         <>
                           <div className='d-flex justify-content-between py-2'>
-                            <span className='badge mx-auto text-white font-weight-bold mx-1 bg-success'>
+                            <span>
                               {o.name}
                             </span>
 
-                            <span className='badge mx-auto font-weight-bold text-white bg-primary'>
-                              {o.value} months
+                            <span>
+                              {o.value}
+                            </span>
+
+                            <span>
+                              {o.expiresOn ? o.expiresOn : <>-</>}
                             </span>
                           </div>
                         </>
                       );
                     })}
                   </td>
+                  {/* <td>{obj.expiresOn}</td> */}
                   <td>
                     <Input
                       type='select'
@@ -211,11 +222,11 @@ const Projects = () => {
                   <td>
                     <Input
                       type='Number'
-                      name={value}
-                      id={value}
+                      name={validity}
+                      id={validity}
                       placeholder='0'
-                      value={value}
-                      onChange={handleChange('value')}
+                      value={validity}
+                      onChange={handleChange('validity')}
                     ></Input>
                   </td>
 

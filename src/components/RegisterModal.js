@@ -36,7 +36,6 @@ const RegisterModal = () =>{
                     toast(data.error,{type:"error"})
                     setValues({
                         ...values,
-                         
                         success: false
                     })
                 }

@@ -7,6 +7,7 @@ import {
   getASubject,
   deleteSubject,
   updateSubject,
+  getAllStandards
 } from "../../../helper/index";
 import { toast } from 'react-toastify';
 import {
@@ -44,6 +45,23 @@ const Projects = () => {
     loadAllSubjects();
   }, [refresh]);
 
+  const [std, setstd] = useState([])
+  const loadAllStandards = () =>{
+      getAllStandards().then(data =>{
+        //   console.log(data)
+        if(data)
+        if(data.error){
+          toast(data.error,{type:"error"})
+        }
+        else{
+          setstd(data)
+        }
+      })
+    }
+    useEffect (() => {
+      loadAllStandards()
+      },[])
+
   const successMessage = () => {
     return (
       <div className="row ">
@@ -80,10 +98,11 @@ const Projects = () => {
     name: "",
     price: 0,
     value: 0,
+    standard: 0,
     error: "",
     success: false,
   });
-  const { name, price, value, success, error } = project;
+  const { name, price, value, success,standard, error } = project;
 
   const handleChange = (name) => (event) => {
     setProject({
@@ -105,7 +124,7 @@ const Projects = () => {
       error: false,
     });
 
-    subjects({ name, price, value })
+    subjects({ name, price, value ,standard})
       .then((data) => {
         console.log(data);
         console.log(project);
@@ -233,14 +252,14 @@ const Projects = () => {
               </td>
 
               <td>
-                <Input
-                  type="number"
-                  name={value}
-                  id={value}
-                  placeholder="value"
-                  value={value}
-                  onChange={handleChange("value")}
-                ></Input>
+              <Input type="select" className="custom-select" value={standard}
+                                    onChange={handleChange("standard")} >
+                                <option value="0">Standard</option>
+                                {std.map((obj,i) => {
+                                    return(<option key={i} value={obj.name} >{obj.name}</option>)
+                                })
+                                }
+                            </Input>
               </td>
 
               <td>
@@ -277,7 +296,7 @@ const Projects = () => {
                 <tr key={i}>
                   <td>{obj.name}</td>
                   <td>{obj.price}</td>
-                  <td>{obj.value}</td>
+                  <td>{obj.standard}</td>
                   <td>
                     <i
                       class="fa fa-plus text-info"

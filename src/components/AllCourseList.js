@@ -10,7 +10,7 @@ import {
   loadCart,
   getAllSubjects,
 } from './helper';
-import Reading from '../images/svg/Reading.png';
+import Reading from '../images/svg/reading.svg';
 
 
 
