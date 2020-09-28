@@ -1075,3 +1075,17 @@ export const addSubcriber = (email) => {
       console.log('Error in Setting Up User');
     });
 };
+
+export const sendMail = (mailContent) =>
+  fetch(`${API}/push/emails`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(mailContent),
+  })
+    .then((response) => response.json())
+    .catch((e) => {
+      console.log('Error in Setting Up User');
+    });

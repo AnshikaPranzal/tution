@@ -36,7 +36,10 @@ const Fulllayout = (props) => {
       let element = document.getElementById('main-wrapper');
       if (!element) return;
       setWidth(window.innerWidth);
-      if (width < 1170) {
+
+      console.log('width', window.innerWidth);
+      let windowWidth = window.innerWidth;
+      if (windowWidth < 1170) {
         element.setAttribute('data-sidebartype', 'mini-sidebar');
         element.classList.add('mini-sidebar');
       } else {
@@ -44,6 +47,7 @@ const Fulllayout = (props) => {
         element.classList.remove('mini-sidebar');
       }
     };
+    updateDimensions();
     window.addEventListener('load', updateDimensions.bind(null));
     window.addEventListener('resize', updateDimensions.bind(null));
     return () => {
