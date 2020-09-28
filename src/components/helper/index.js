@@ -898,6 +898,7 @@ export const updateRole = async (userId, user) => {
 };
 
 export const addSubject = async (ids) => {
+  console.log("hi",ids)
   try {
     const response = await fetch(`${API}/user/addSubject`, {
       method: 'PUT',
@@ -907,6 +908,7 @@ export const addSubject = async (ids) => {
       },
       body: JSON.stringify(ids),
     });
+    console.log(response,"kk")
     return response.json();
   } catch (e) {
     console.log('Error in adding subject', e);

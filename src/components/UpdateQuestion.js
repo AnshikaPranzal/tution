@@ -46,29 +46,6 @@ const RegisterModal = (props) =>{
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[refresh])
 
-    const successMessage = () =>{
-        
-        return(
-        <div className="row ">
-                <div className="col-md-6 offset-sm-3 text-left">
-                    <div className="alert alert-success" style={{display: success ? "" : "none"}}>
-                        Congratulations!!! Question Updated
-                    </div>
-                </div>
-        </div>
-    )}
-
-    const errorMessage = () =>{
-       
-    return(
-        <div className="row ">
-        <div className="col-md-6 offset-sm-3 text-left">
-        <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
-            {error}
-        </div>
-        </div>
-        </div>
-    )}
 
     const onSubmit = event => {
         event.preventDefault();

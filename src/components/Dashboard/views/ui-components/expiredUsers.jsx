@@ -8,11 +8,8 @@ import {
   CardTitle,
   CardSubtitle,
   Input,
-  Table
+  Table,
 } from 'reactstrap';
-
-import { Modal } from 'react-bootstrap'
-
 import { toast } from 'react-toastify';
 import {
   getAllSubjects,
@@ -34,16 +31,17 @@ const Projects = () => {
     validity: 0,
   });
   const { name, email, subject, validity,expiresOn } = u;
-  const [showModal, setshowModal] = useState({
-    isOpen:false,
-    stId:""
-  })
-
-  const handleCloseModal = ()=>{
-    setshowModal({...showModal,isOpen:false})
-  }
 
   const loadUsers = () => {
+    // getAllUSers().then((data) => {
+    //   console.log(data);
+    //   if (data)
+    //     if (data.error) {
+    //       seterrorF(data.error);
+    //     } else {
+    //       setuserO(data);
+    //     }
+    // });
     searchUser(u)
       .then((data) => setuserO(data.users))
       .catch((error) => console.log(error));
@@ -71,29 +69,28 @@ const Projects = () => {
 
   const users = [];
 
-  const handleChange = (name) => (event) => {
-      setU({
+  const handleChange = (name) => async (event) => {
+    const k = await Promise.resolve(event.target.value)
+      var d = new Date()
+      d.setDate(d.getDate()+(k*30))
+      const g = await Promise.resolve(setU({
         ...u,
-        [name]: event.target.value,
-      })
-      // console.log(d.getDate(),d,"month",u,k)
+        expiresOn: d,
+        [name]: k,
+      }))
+      console.log(d.getDate(),d,"month",u,k)
 
   };
 
 
   const addSubjectToUser = (userId) => {
-    console.log(subject,"ll")
     addSubject({ user_id: userId, subject_id: subject, value: validity,expiresOn: expiresOn }).then(
       (data) => {
-        console.log(data,"l");
+        console.log(data);
         if (!data?.error) {setRefresh(!refresh);
         toast("Validity Updated Successfully",{type:"success"})
         }
-        else {
-          console.log(data.error)
-          toast(data.error,{type:"error"})
-        
-        }
+        else {toast(data.error,{type:"error"})}
       }
     );
   };
@@ -158,6 +155,7 @@ const Projects = () => {
               <th className='border-0'>Name</th>
               <th className='border-0'>Email</th>
               <th className='border-0'>Subject</th>
+              <th className='border-0'>Months</th>
               <th className='border-0'>ExpiresOn</th>
             </tr>
           </thead>
@@ -171,12 +169,16 @@ const Projects = () => {
                   <td>{obj.name}</td>
                   <td>{obj.email}</td>
                   <td colSpan='3'>
-                  {obj.subject.map((sub, i) => {
+                    {obj.subject.map((sub, i) => {
                       return (
                         <>
                           <div className='d-flex justify-content-between py-2'>
                             <span>
                               {sub.name}
+                            </span>
+
+                            <span>
+                              {sub.value}
                             </span>
 
                             <span>
@@ -189,30 +191,9 @@ const Projects = () => {
                   </td>
                   {/* <td>{obj.expiresOn}</td> */}
                   <td>
-                    <button
-                      className='btn btn-sm btn-outline-primary'
-                      onClick={()=>{setshowModal({
-                        isOpen:true,
-                        stId: obj._id
-                      })}}
-                    >
-                      Update Expiry
-                    </button>
-                  </td>
-                   {/* <td><i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getSubject(obj._id)}} aria-hidden="true"></i>
-                            <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaSubject(obj._id)}} aria-hidden="true"></i></td> */}
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-        
-        <Modal show={showModal.isOpen} onHide={handleCloseModal}>
-                   <h3 className="my-4 text-center">Update Expiry</h3>
-                   <div className="p-4">
-                   <Input
+                    <Input
                       type='select'
-                      className='custom-select mt-2'
+                      className='custom-select'
                       value={subject}
                       onChange={handleChange('subject')}
                     >
@@ -227,25 +208,34 @@ const Projects = () => {
                         );
                       })}
                     </Input>
+                  </td>
+
+                  <td>
                     <Input
-                      type='date'
-                      name={expiresOn}
-                      id={expiresOn}
+                      type='Number'
+                      name={validity}
+                      id={validity}
                       placeholder='0'
-                      value={expiresOn}
-                      className='mt-2'
-                      onChange={handleChange('expiresOn')}
+                      value={validity}
+                      onChange={handleChange('validity')}
                     ></Input>
+                  </td>
+
+                  <td>
                     <button
-                      className='btn btn-sm btn-outline-primary mt-2'
-                      onClick={()=>{ console.log("o");addSubjectToUser(showModal.stId)}}
+                      className='btn btn-sm btn-outline-primary'
+                      onClick={addSubjectToUser.bind(null, obj._id)}
                     >
                       Add
                     </button>
-                  
-                   </div>
-                  </Modal>
-                 
+                  </td>
+                  {/* <td><i class="fa fa-plus text-info" style={{cursor:"pointer",marginRight:"20px"}} onClick={()=>{getSubject(obj._id)}} aria-hidden="true"></i>
+                            <i class="fa fa-trash text-orange" style={{cursor:"pointer"}} onClick={()=>{deleteaSubject(obj._id)}} aria-hidden="true"></i></td> */}
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
         {userO.length === 0 && (
           <h3 className='text-center'>No Students Enrolled</h3>
         )}
