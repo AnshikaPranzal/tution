@@ -8,7 +8,9 @@ import {
   updateNotice,
   getANotice,
   getAllUSers,
-  updateRole, addSubcriber
+  updateRole,
+  addSubcriber,
+  sendMail,
 } from '../../../helper/index';
 
 import {
@@ -39,6 +41,12 @@ import img1 from '../../assets/images/big/img1.jpg';
 import img2 from '../../assets/images/big/img2.jpg';
 import img3 from '../../assets/images/big/img3.jpg';
 import { toast } from 'react-toastify';
+
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import draftToHtml from 'draftjs-to-html';
+
+import { convertToRaw } from 'draft-js';
 
 const Starter = () => {
   $(document).ready(() => {
@@ -97,27 +105,45 @@ const Starter = () => {
   const [update, setupdate] = useState(false);
   const [uid, setuid] = useState('');
   const [Email, setEmail] = useState({
-    EmailTitle:"",
-    EmailBody:"",
-    EmailImg:""
-  })
+    subject: '',
+    bodyMsg: '',
+    imgUrl: '',
+  });
+  const [editorState, setEditorState] = React.useState('');
 
   const handleEmail = (name) => (event) => {
     setEmail({
       ...Email,
-      [name]: event.target.value
-    })
-  }
-  const{EmailBody, EmailTitle, EmailImg} = Email;
+      [name]: event.target.value,
+    });
+  };
+  const { bodyMsg, subject, imgUrl } = Email;
+
+  const pushEmailsForSubscribers = (e) => {
+    e.preventDefault();
+
+    let { bodyMsg, subject, imgUrl } = Email;
+    bodyMsg = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    sendMail({ bodyMsg, subject, imgUrl })
+      .then((data) => {
+        setEmail({ subject: '', bodyMsg: '', imgUrl: '' });
+        setEditorState('');
+        return toast('Mail Sent', { type: 'success' });
+      })
+      .catch((error) => {
+        console.log(error);
+        return toast('Cannot send mail', { type: 'error' });
+      });
+  };
 
   const loadAllnotices = () => {
     getAllNotices().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) { toast(data.error,{type:"error"})
+        if (data.error) {
+          toast(data.error, { type: 'error' });
           seterrorF(data.error);
         } else {
-          
           setnoticeO(data);
         }
     });
@@ -127,25 +153,24 @@ const Starter = () => {
       console.log(data);
       if (data)
         if (data.error) {
-          toast(data.error,{type:"error"})
+          toast(data.error, { type: 'error' });
           seterrorF(data.error);
         } else {
           setuserO(data);
         }
     });
   };
-  const submitEmail = () => {
-    addSubcriber(Email).then(data=>{
-      if(data){
-        if(data.error){
-          toast(data.error,{type:"error"})
-        }
-        else{
-          toast("Email Sent",{type:"success"})
-        }
-      }
-    })
-  }
+  // const submitEmail = () => {
+  //   addSubcriber(Email).then((data) => {
+  //     if (data) {
+  //       if (data.error) {
+  //         toast(data.error, { type: 'error' });
+  //       } else {
+  //         toast('Email Sent', { type: 'success' });
+  //       }
+  //     }
+  //   });
+  // };
   useEffect(() => {
     loadAllnotices();
   }, []);
@@ -153,26 +178,26 @@ const Starter = () => {
     loadAllusers();
   }, []);
   const successMessage = () => {
-    
-    return(
-    <div className="row ">
-      <div className="col-md-6 offset-sm-3 text-left">
-        <div
-          className="alert alert-success"
-          style={{ display: success ? '' : 'none' }}
-        >
-          Congratulations!!! Notice is added.
+    return (
+      <div className='row '>
+        <div className='col-md-6 offset-sm-3 text-left'>
+          <div
+            className='alert alert-success'
+            style={{ display: success ? '' : 'none' }}
+          >
+            Congratulations!!! Notice is added.
+          </div>
         </div>
       </div>
-    </div>
-  )};
+    );
+  };
 
   const errorMessage = () => {
     return (
-      <div className="row ">
-        <div className="col-md-6 offset-sm-3 text-left">
+      <div className='row '>
+        <div className='col-md-6 offset-sm-3 text-left'>
           <div
-            className="alert alert-danger"
+            className='alert alert-danger'
             style={{ display: error ? '' : 'none' }}
           >
             {error}
@@ -186,10 +211,10 @@ const Starter = () => {
   const [successA, setsuccessA] = useState(false);
   const [errorA, seterrorA] = useState(false);
   const successTeacher = () => (
-    <div className="row ">
-      <div className="col-md-6 offset-sm-3 text-left">
+    <div className='row '>
+      <div className='col-md-6 offset-sm-3 text-left'>
         <div
-          className="alert alert-success"
+          className='alert alert-success'
           style={{ display: successT ? '' : 'none' }}
         >
           Teacher Added!!
@@ -200,10 +225,10 @@ const Starter = () => {
 
   const errorTeacher = () => {
     return (
-      <div className="row ">
-        <div className="col-md-6 offset-sm-3 text-left">
+      <div className='row '>
+        <div className='col-md-6 offset-sm-3 text-left'>
           <div
-            className="alert alert-danger"
+            className='alert alert-danger'
             style={{ display: errorT ? '' : 'none' }}
           >
             {errorT}
@@ -214,10 +239,10 @@ const Starter = () => {
   };
 
   const successAdmin = () => (
-    <div className="row ">
-      <div className="col-md-6 offset-sm-3 text-left">
+    <div className='row '>
+      <div className='col-md-6 offset-sm-3 text-left'>
         <div
-          className="alert alert-success"
+          className='alert alert-success'
           style={{ display: successA ? '' : 'none' }}
         >
           Admin Added!!
@@ -228,10 +253,10 @@ const Starter = () => {
 
   const errorAdmin = () => {
     return (
-      <div className="row ">
-        <div className="col-md-6 offset-sm-3 text-left">
+      <div className='row '>
+        <div className='col-md-6 offset-sm-3 text-left'>
           <div
-            className="alert alert-danger"
+            className='alert alert-danger'
             style={{ display: errorA ? '' : 'none' }}
           >
             {errorA}
@@ -268,13 +293,12 @@ const Starter = () => {
 
     notices({ title, description, date })
       .then((data) => {
-        console.log(data);
-        console.log(project);
         if (data)
-          if (data.error) { toast(data.error,{type:"error"})
+          if (data.error) {
+            toast(data.error, { type: 'error' });
             setProject({
               ...project,
-               
+
               success: false,
             });
           } else {
@@ -285,7 +309,7 @@ const Starter = () => {
               date: '',
               error: '',
             });
-            toast("Notice Added",{type:"success"})
+            toast('Notice Added', { type: 'success' });
             setrefresh(!refresh);
           }
       })
@@ -295,7 +319,8 @@ const Starter = () => {
     deleteNotice(catuctId).then((data) => {
       console.log(data);
       if (data)
-        if (data.error) { toast(data.error,{type:"error"})
+        if (data.error) {
+          toast(data.error, { type: 'error' });
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
@@ -307,7 +332,8 @@ const Starter = () => {
     getANotice(noticeId).then((data) => {
       console.log(data.date, 'd');
       if (data)
-        if (data.error) { toast(data.error,{type:"error"})
+        if (data.error) {
+          toast(data.error, { type: 'error' });
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
@@ -332,7 +358,8 @@ const Starter = () => {
     updateNotice(nid, { title, description, date }).then((data) => {
       console.log(data);
       if (data)
-        if (data.error) { toast(data.error,{type:"error"})
+        if (data.error) {
+          toast(data.error, { type: 'error' });
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
@@ -343,7 +370,7 @@ const Starter = () => {
             date: '',
             error: '',
           });
-          toast("Notice Updated",{type:"success"})
+          toast('Notice Updated', { type: 'success' });
           setrefresh(!refresh);
           setupdate(false);
         }
@@ -361,7 +388,8 @@ const Starter = () => {
   const addTeacher = () => {
     updateRole(user._id, { email: emailT, role: 1 }).then((data) => {
       if (data) {
-        if (data.error) { toast(data.error,{type:"error"})
+        if (data.error) {
+          toast(data.error, { type: 'error' });
           console.log(data.error, 'lllllllllllll');
           // setValues({...values,error:data.error})
           seterrorT(data.error);
@@ -375,7 +403,8 @@ const Starter = () => {
   const addAdmin = () => {
     updateRole(user._id, { email: emailA, role: 2 }).then((data) => {
       if (data) {
-        if (data.error) { toast(data.error,{type:"error"})
+        if (data.error) {
+          toast(data.error, { type: 'error' });
           console.log(data.error, 'lllllllllllll');
           seterrorA(data.error);
           // setValues({...values,error:data.error})
@@ -388,7 +417,7 @@ const Starter = () => {
   };
   return (
     <div>
-      <Row className="text-center">
+      <Row className='text-center'>
         {userO.map((obj, i) => {
           if (obj.role === 0) {
             students = students + 1;
@@ -404,7 +433,7 @@ const Starter = () => {
               (new Date().getTime() - new Date(usercreation).getTime()) /
                 (1000 * 3600 * 24)
             );
-            console.log(difference);
+
             if (difference <= 7) {
               weekstudents = weekstudents + 1;
               weekstudentsarray[weekstudents - 1] = obj;
@@ -430,7 +459,7 @@ const Starter = () => {
             }
           }
         })}
-        <Col xs="12" md="4">
+        <Col xs='12' md='4'>
           {/*--------------------------------------------------------------------------------*/}
           {/*Card-1*/}
           {/*--------------------------------------------------------------------------------*/}
@@ -450,7 +479,7 @@ const Starter = () => {
             </CardBody>
           </Card>
         </Col>
-        <Col xs="12" md="4">
+        <Col xs='12' md='4'>
           <Card
             style={{
               borderRadius: '10px',
@@ -467,7 +496,7 @@ const Starter = () => {
             </CardBody>
           </Card>
         </Col>
-        <Col xs="12" md="4">
+        <Col xs='12' md='4'>
           <Card
             style={{
               borderRadius: '10px',
@@ -499,48 +528,60 @@ const Starter = () => {
         </Col>
       </Row>
       <Row>
-      <Col xs="12" md="12">
-        <Card>
+        <Col xs='12' md='12'>
+          <Card>
             <CardBody>
-            <CardTitle>News Letter</CardTitle>
-            <CardSubtitle>Send Email</CardSubtitle>
-            <Input
-                type="text"
-                name="EmailTitle"
-                id="EmailTitle"
-                placeholder="Enter Email Title here.."
-                value={EmailTitle}
-                onChange={handleEmail("EmailTitle")}
-                style={{ marginTop: '1rem' }}
-              />
-              <hr/>
+              <CardTitle>News Letter</CardTitle>
+              <CardSubtitle>Send Email</CardSubtitle>
               <Input
-                type="text"
-                name="EmailImg"
-                id="EmailImg"
-                placeholder="Enter Img here.."
-                value={EmailImg}
-                onChange={handleEmail("EmailImg")}
+                type='text'
+                name='subject'
+                id='subject'
+                placeholder='Enter Email Title here..'
+                value={subject}
+                onChange={handleEmail('subject')}
                 style={{ marginTop: '1rem' }}
               />
-              <hr/>
+              <hr />
               <Input
-                type="textarea"
-                name="EmailBody"
-                id="EmailBody"
-                placeholder="Enter Email Body here.."
-                value={EmailBody}
-                onChange={handleEmail("EmailBody")}
+                type='text'
+                name='imgUrl'
+                id='imgUrl'
+                placeholder='Enter Img here..'
+                value={imgUrl}
+                onChange={handleEmail('imgUrl')}
                 style={{ marginTop: '1rem' }}
               />
-              <Button onClick={submitEmail} style={{marginTop:"1rem"}}>Send</Button>
+              <hr />
+              <Editor
+                editorState={editorState}
+                toolbarClassName='toolbarClassName'
+                wrapperClassName='wrapper-draft'
+                editorClassName='editor-draft'
+                onEditorStateChange={setEditorState}
+              />
+              {/* <Input
+                type='textarea'
+                name='bodyMsg'
+                id='bodyMsg'
+                placeholder='Enter Email Body here..'
+                value={bodyMsg}
+                onChange={handleEmail('bodyMsg')}
+                style={{ marginTop: '1rem' }}
+              /> */}
+              <Button
+                onClick={pushEmailsForSubscribers}
+                style={{ marginTop: '1rem' }}
+              >
+                Send
+              </Button>
             </CardBody>
-        </Card>
+          </Card>
         </Col>
       </Row>
 
-      <Row className="text-center">
-        <Col xs="12" md="6">
+      <Row className='text-center'>
+        <Col xs='12' md='6'>
           {/*--------------------------------------------------------------------------------*/}
           {/*Card-1*/}
           {/*--------------------------------------------------------------------------------*/}
@@ -552,10 +593,10 @@ const Starter = () => {
               {successTeacher()}
               {errorTeacher()}
               <Input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Enter email here.."
+                type='email'
+                name='email'
+                id='email'
+                placeholder='Enter email here..'
                 value={emailT}
                 onChange={(e) => setemailT(e.target.value)}
                 style={{ marginTop: '1rem' }}
@@ -572,8 +613,8 @@ const Starter = () => {
             </CardBody>
           </Card>
         </Col>
-        
-        <Col xs="12" md="6">
+
+        <Col xs='12' md='6'>
           {/*--------------------------------------------------------------------------------*/}
           {/*Card-1*/}
           {/*--------------------------------------------------------------------------------*/}
@@ -585,10 +626,10 @@ const Starter = () => {
               {successAdmin()}
               {errorAdmin()}
               <Input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Enter email here.."
+                type='email'
+                name='email'
+                id='email'
+                placeholder='Enter email here..'
                 value={emailA}
                 onChange={(e) => setemailA(e.target.value)}
                 style={{ marginTop: '1rem' }}
@@ -607,11 +648,11 @@ const Starter = () => {
         </Col>
       </Row>
 
-      <Row className="text-center">
+      <Row className='text-center'>
         <Col sm={12}>
           <Card>
             <CardBody>
-              <div className="d-flex align-items-center">
+              <div className='d-flex align-items-center'>
                 <div>
                   <CardTitle>Add Notice</CardTitle>
                   <CardSubtitle>Enter Title Description and Date</CardSubtitle>
@@ -619,24 +660,24 @@ const Starter = () => {
               </div>
               {successMessage()}
               {errorMessage()}
-              <Table className="no-wrap v-middle" responsive>
+              <Table className='no-wrap v-middle' responsive>
                 <thead>
-                  <tr className="border-0">
-                    <th className="border-0">Title</th>
-                    <th className="border-0">Description</th>
-                    <th className="border-0">date</th>
+                  <tr className='border-0'>
+                    <th className='border-0'>Title</th>
+                    <th className='border-0'>Description</th>
+                    <th className='border-0'>date</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>
-                      <div className="d-flex no-block align-items-center">
-                        <div className="">
+                      <div className='d-flex no-block align-items-center'>
+                        <div className=''>
                           <Input
-                            type="text"
+                            type='text'
                             name={title}
                             id={title}
-                            placeholder="Title"
+                            placeholder='Title'
                             value={title}
                             onChange={handleChange('title')}
                           ></Input>
@@ -647,10 +688,10 @@ const Starter = () => {
                       {/* <div className="d-flex no-block align-items-center">
                                     <div className=""> */}
                       <Input
-                        type="text"
+                        type='text'
                         name={description}
                         id={description}
-                        placeholder="Description"
+                        placeholder='Description'
                         value={description}
                         onChange={handleChange('description')}
                       ></Input>
@@ -659,12 +700,12 @@ const Starter = () => {
                                 </div> */}
                     </td>
 
-                    <td className="blue-grey-text  text-darken-4 font-medium">
+                    <td className='blue-grey-text  text-darken-4 font-medium'>
                       <Input
-                        type="date"
-                        name="date"
-                        id="date"
-                        placeholder="1 hr."
+                        type='date'
+                        name='date'
+                        id='date'
+                        placeholder='1 hr.'
                         value={date}
                         onChange={handleChange('date')}
                         style={{ maxWidth: '200px' }}
@@ -681,8 +722,8 @@ const Starter = () => {
                             marginTop: '6px',
                             fontSize: '20px',
                           }}
-                          className="fa fa-check text-success"
-                          aria-hidden="true"
+                          className='fa fa-check text-success'
+                          aria-hidden='true'
                         ></i>
                       ) : (
                         <i
@@ -692,8 +733,8 @@ const Starter = () => {
                             marginTop: '6px',
                             fontSize: '20px',
                           }}
-                          className="fa fa-plus text-success"
-                          aria-hidden="true"
+                          className='fa fa-plus text-success'
+                          aria-hidden='true'
                         ></i>
                       )}
                     </td>
@@ -702,10 +743,10 @@ const Starter = () => {
                     return (
                       <tr key={i}>
                         <td>
-                          <div className="d-flex no-block align-items-center">
+                          <div className='d-flex no-block align-items-center'>
                             {/* <div className="mr-2"><img src={img1} alt="user" className="rounded-circle" width="45" /></div> */}
-                            <div className="">
-                              <h5 className="mb-0 font-16 font-medium">
+                            <div className=''>
+                              <h5 className='mb-0 font-16 font-medium'>
                                 {obj.title}
                               </h5>
                             </div>
@@ -713,26 +754,26 @@ const Starter = () => {
                         </td>
                         <td>{obj.description}</td>
 
-                        <td className="blue-grey-text  text-darken-4 font-medium">
+                        <td className='blue-grey-text  text-darken-4 font-medium'>
                           {obj.date.substring(8, 10)}
                           {obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}
                         </td>
                         <td>
                           <i
-                            class="fa fa-plus text-info"
+                            class='fa fa-plus text-info'
                             style={{ cursor: 'pointer', marginRight: '20px' }}
                             onClick={() => {
                               getNotice(obj._id);
                             }}
-                            aria-hidden="true"
+                            aria-hidden='true'
                           ></i>
                           <i
-                            class="fa fa-trash text-orange"
+                            class='fa fa-trash text-orange'
                             style={{ cursor: 'pointer' }}
                             onClick={() => {
                               deleteaNotice(obj._id);
                             }}
-                            aria-hidden="true"
+                            aria-hidden='true'
                           ></i>
                         </td>
                       </tr>
@@ -741,7 +782,7 @@ const Starter = () => {
                 </tbody>
               </Table>
               {noticeO.length === 0 && (
-                <h3 className="text-center"> No Notice to Display. </h3>
+                <h3 className='text-center'> No Notice to Display. </h3>
               )}
             </CardBody>
           </Card>
