@@ -519,6 +519,18 @@ export const getAllUSers = async () => {
   }
 };
 
+export const getExpiredUSers = async () => {
+  try {
+    const response = await fetch(`${API}/expired/users`, {
+      method: 'GET',
+    });
+    console.log(response);
+    return response.json();
+  } catch (e) {
+    console.log('Error in getting the Users');
+  }
+};
+
 export const getAUser = async (userId, token) => {
   try {
     const response = await fetch(`${API}/user/${userId}`, {

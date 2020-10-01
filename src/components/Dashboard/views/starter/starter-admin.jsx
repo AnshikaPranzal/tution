@@ -27,6 +27,7 @@ import {
   Table,
 } from 'reactstrap';
 import Search from '../ui-components/findUser';
+import Expired from '../ui-components/expiredUser';
 import {
   SalesSummary,
   Projects,
@@ -790,6 +791,7 @@ const Starter = () => {
 
       <Standard></Standard>
       <Subject></Subject>
+      <Expired></Expired>
       <Search></Search>
     </div>
   );
