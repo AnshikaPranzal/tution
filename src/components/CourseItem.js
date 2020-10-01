@@ -44,8 +44,6 @@ const CourseItem = (props) => {
       });
       setcart(loadCart());
     } else {
-      console.log('pppp', product);
-      console.log('sub');
       for (i = 0; i < cart.length; i++) {
         console.log(i === cart.length);
         if (cart[i][0].name === props.topic) {
@@ -75,19 +73,19 @@ const CourseItem = (props) => {
 
   return (
     <React.Fragment>
-      <div className="col-lg-3 col-sm-6 p-3">
-        <div className="card p-0 hover-shadow course-card-custom">
-          <div className="card-header">
-            <h4 className="card-title py-4">{props.topic}</h4>
+      <div className='col-lg-3 col-sm-6 p-3'>
+        <div className='card p-0 hover-shadow course-card-custom'>
+          <div className='card-header'>
+            <h4 className='card-title py-4'>{props.topic}</h4>
           </div>
-          <div className="card-body">
-            <p className="card-text mb-4"> {props.des}</p>
-            <p className="list-inline-item">Rs.{props.price}</p>
+          <div className='card-body'>
+            <p className='card-text mb-4'> {props.des}</p>
+            <p className='list-inline-item'>Rs.{props.price}</p>
             <hr></hr>
             <a
-              data-toggle="modal"
-              data-target="#signinModal"
-              className="hvr-bounce-to-top"
+              data-toggle='modal'
+              data-target='#signinModal'
+              className='hvr-bounce-to-top'
               topic={props.topic}
               onClick={() => {
                 if (user) addProductToCart();

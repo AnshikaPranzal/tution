@@ -23,18 +23,18 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <header className="sticky-top header">
+      <header className='sticky-top header'>
         {/* <!-- top header --> */}
         <TopHeader></TopHeader>
         {/* <!-- navbar --> */}
-        <Navbar contact="active"></Navbar>
+        <Navbar contact='active'></Navbar>
       </header>
       {/* <!-- /header --> */}
 
-      <Title
+      {/* <Title
         title="Contact Us"
         body="Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible."
-      ></Title>
+      ></Title> */}
       <ContactSection></ContactSection>
       <Footer></Footer>
     </React.Fragment>

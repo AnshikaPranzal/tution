@@ -66,7 +66,7 @@ const Fulllayout = (props) => {
         data-sidebar-position='fixed'
         data-header-position='fixed'
         data-boxed-layout='full'
-        style={{ paddingTop: '7em' }}
+        style={{ paddingTop: '7vh' }}
       >
         {/*--------------------------------------------------------------------------------*/}
         {/* Header                                                                         */}
@@ -79,7 +79,7 @@ const Fulllayout = (props) => {
         {/*--------------------------------------------------------------------------------*/}
         {/* Page Main-Content                                                              */}
         {/*--------------------------------------------------------------------------------*/}
-        <div className="page-wrapper d-block style={{paddingTop:'10vh'}}">
+        <div className='page-wrapper d-block '>
           <div className='page-content container-fluid'>
             <Switch>
               {ThemeRoutes.map((prop, key) => {
