@@ -14,32 +14,20 @@ import preloader from '../images/preloader.gif';
 import logo from '../images/logo.png';
 import TopHeader from './TopHeader.js';
 import Navbar from './Navbar.js';
-import ResgisterModal from './RegisterModal'
-import LoginModal from './LoginModal'
-import SliderList from './Slider'
-import Banner  from './Banner'
-import AboutUs from './AboutUs'
-import Courses from './Courses'
-import Cta from './Cta'
-import SuccessStory from './SuccessStory'
+import ResgisterModal from './RegisterModal';
+import LoginModal from './LoginModal';
+import SliderList from './Slider';
+import Banner from './Banner';
+import AboutUs from './AboutUs';
+import Courses from './Courses';
+import Cta from './Cta';
+import SuccessStory from './SuccessStory';
 import TeacherList from './TeacherList';
 import Footer from './Footer';
 import { withRouter } from 'react-router-dom';
 
 const Home = () => {
   // Sticky Menu
-  $(window).scroll(function () {
-    var height = 0;
-    if ($('header').offset().top > 10) {
-      $('.top-header').addClass('hide');
-      $('.navigation').addClass('nav-bg');
-      $('.navigation').css('margin-top', '-' + height + 'px');
-    } else {
-      $('.top-header').removeClass('hide');
-      $('.navigation').removeClass('nav-bg');
-      $('.navigation').css('margin-top', '-' + 0 + 'px');
-    }
-  });
 
   // filter
   $(document).ready(function () {
@@ -67,11 +55,11 @@ const Home = () => {
             </div> */}
       {/* <!-- preloader end --> */}
 
-      <header className="sticky-top header">
+      <header className='sticky-top header'>
         {/* <!-- top header --> */}
         <TopHeader></TopHeader>
         {/* <!-- navbar --> */}
-        <Navbar home="active"></Navbar>
+        <Navbar home='active'></Navbar>
       </header>
       {/* <!-- /header --> */}
 
@@ -79,14 +67,13 @@ const Home = () => {
 
       <Banner></Banner>
 
-      <AboutUs topic="Educenter"/>
+      <AboutUs topic='Educenter' />
 
       {/* <Courses></Courses> */}
 
       {/* <Cta></Cta> */}
 
-      <SuccessStory/>
-
+      <SuccessStory />
 
       {/* <Events></Events> */}
 

@@ -24,24 +24,9 @@ import {
   updateClassroom,
   deleteClassroom,
   isAuthenticated,
-} from "./helper/index";
+} from './helper/index';
 import { toast } from 'react-toastify';
 const ClassRoom = (props) => {
-  console.log(isAuthenticated());
-
-  // Sticky Menu
-  $(window).scroll(function () {
-    var height = 0;
-    if ($('header').offset().top > 10) {
-      $('.top-header').addClass('hide');
-      $('.navigation').addClass('nav-bg');
-      $('.navigation').css('margin-top', '-' + height + 'px');
-    } else {
-      $('.top-header').removeClass('hide');
-      $('.navigation').removeClass('nav-bg');
-      $('.navigation').css('margin-top', '-' + 0 + 'px');
-    }
-  });
   const crid = props.match.params.handle;
   const Month = [
     'January',
@@ -78,7 +63,8 @@ const ClassRoom = (props) => {
     getAllUSers().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) { toast(data.error,{type:"error"})
+        if (data.error) {
+          toast(data.error, { type: 'error' });
           seterrorF(data.error);
         } else {
           setuserO(data);
@@ -92,7 +78,8 @@ const ClassRoom = (props) => {
 
   const getClassroom = (cid) => {
     getAClassroom(cid).then((data) => {
-      if (data.error) { toast(data.error,{type:"error"})
+      if (data.error) {
+        toast(data.error, { type: 'error' });
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
@@ -117,7 +104,7 @@ const ClassRoom = (props) => {
 
   return (
     <React.Fragment>
-      <header className="sticky-top header">
+      <header className='sticky-top header'>
         {/* <!-- navbar --> */}
         <Navbar></Navbar>
       </header>
@@ -126,11 +113,11 @@ const ClassRoom = (props) => {
         title={project.name}
         body={project.description}
       ></ClassroomTitle>
-      <div className="text-center">
+      <div className='text-center'>
         <Row style={{ width: '100vw', margin: '0' }}>
           {/* <CardImg top width="100%" src={img2} /> */}
           {isAuthenticated() ? (
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               {/*--------------------------------------------------------------------------------*/}
               {/*Card-1*/}
               {/*--------------------------------------------------------------------------------*/}
@@ -145,7 +132,7 @@ const ClassRoom = (props) => {
           )}
 
           {isAuthenticated() ? (
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               {/*--------------------------------------------------------------------------------*/}
               {/*Card-1*/}
               {/*--------------------------------------------------------------------------------*/}
@@ -186,7 +173,7 @@ const ClassRoom = (props) => {
                         
                         } */}
           {isAuthenticated().user.role === 1 ? (
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               {/*--------------------------------------------------------------------------------*/}
               {/*Card-1*/}
               {/*--------------------------------------------------------------------------------*/}

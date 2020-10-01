@@ -8,18 +8,6 @@ import Footer from './Footer.js';
 
 const Home = () => {
   // Sticky Menu
-  $(window).scroll(function () {
-    var height = 0;
-    if ($('header').offset().top > 10) {
-      $('.top-header').addClass('hide');
-      $('.navigation').addClass('nav-bg');
-      $('.navigation').css('margin-top', '-' + height + 'px');
-    } else {
-      $('.top-header').removeClass('hide');
-      $('.navigation').removeClass('nav-bg');
-      $('.navigation').css('margin-top', '-' + 0 + 'px');
-    }
-  });
 
   return (
     <React.Fragment>

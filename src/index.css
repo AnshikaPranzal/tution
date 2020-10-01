@@ -1,5 +1,6 @@
 html {
   font-size: calc(0.8vh + 0.8vw);
+  scroll-behavior: smooth !important;
 }
 @media screen and (max-width: 968px) {
   html {
