@@ -28,7 +28,13 @@ const CourseItem = (props) => {
   const [amount, setamount] = useState(0);
   const [sub, setsub] = useState(2);
   const [product, setproduct] = useState([
-    { name: props.topic, id: props.subjectid, count: 1, price: props.price },
+    {
+      name: props.topic,
+      id: props.subjectid,
+      count: 1,
+      price: props.price,
+      standard: props.standard,
+    },
   ]);
   const [cart, setcart] = useState(loadCart());
 
@@ -63,22 +69,25 @@ const CourseItem = (props) => {
   const handleCloselogin = () => {
     setshowlogin(false);
   };
-
+  console.log(props);
   return (
     <React.Fragment>
       <div className='col-lg-3 col-sm-6 p-3'>
         <div className='card p-0 hover-shadow course-card-custom'>
           <div className='card-header'>
-            <h4 className='card-title py-4'>{props.topic}</h4>
+            <h4 className='card-title py-2'>{props.topic}</h4>
+            <p className=' ribbon-course'>Class {props.standard}</p>
           </div>
           <div className='card-body'>
-            <p className='card-text mb-4'> {props.des}</p>
-            <p className='list-inline-item'>Rs.{props.price}</p>
+            <p className='small mb-3'> {props.des}</p>
+            <p className='list-inline-item badge text-white bg-primary font-weight-bold rounded'>
+              Rs.{props.price}
+            </p>
             <hr></hr>
             <a
               data-toggle='modal'
               data-target='#signinModal'
-              className='hvr-bounce-to-top'
+              className='hvr-bounce-to-top small font-weight-bold'
               topic={props.topic}
               onClick={() => {
                 if (user) addProductToCart();
