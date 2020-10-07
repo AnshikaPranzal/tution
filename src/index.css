@@ -1,5 +1,6 @@
 html {
-  font-size: calc(0.8vh+0.8vw);
+  font-size: calc(0.8vh + 0.8vw);
+  scroll-behavior: smooth !important;
 }
 @media screen and (max-width: 968px) {
   html {
@@ -8,9 +9,9 @@ html {
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

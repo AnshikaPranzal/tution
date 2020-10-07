@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardBody,
@@ -11,60 +11,47 @@ import {
   Col,
   Input,
   Table,
-} from "reactstrap";
+} from 'reactstrap';
 import { toast } from 'react-toastify';
-import $ from "jquery";
+import $ from 'jquery';
 // import TopHeader from "./TopHeader.js";
 // import Navbar from "./Navbar";
-import ClassroomTitle from "../../../ClassroomTitle";
-import UploadDocument from "../../../UploadDocument";
-import UploadAssignment from "../../../UploadAssignment";
+import ClassroomTitle from '../../../ClassroomTitle';
+import UploadDocument from '../../../UploadDocument';
+import UploadAssignment from '../../../UploadAssignment';
 import {
   getAClassroom,
   getAllUSers,
   updateClassroom,
   deleteClassroom,
   isAuthenticated,
-} from "../../../helper/index";
+} from '../../../helper/index';
 
 const ClassRoom = (props) => {
   console.log(isAuthenticated());
 
-  // Sticky Menu
-  // $(window).scroll(function () {
-  //   var height = 0;
-  //   if ($("header").offset().top > 10) {
-  //     $(".top-header").addClass("hide");
-  //     $(".navigation").addClass("nav-bg");
-  //     $(".navigation").css("margin-top", "-" + height + "px");
-  //   } else {
-  //     $(".top-header").removeClass("hide");
-  //     $(".navigation").removeClass("nav-bg");
-  //     $(".navigation").css("margin-top", "-" + 0 + "px");
-  //   }
-  // });
   const crid = props.match.params.handle;
   const Month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
   const [project, setProject] = useState({
-    name: "",
-    description: "",
-    subject: "",
-    standard: "",
-    error: "",
+    name: '',
+    description: '',
+    subject: '',
+    standard: '',
+    error: '',
     members: [],
     doc: [],
     success: false,
@@ -79,7 +66,8 @@ const ClassRoom = (props) => {
     getAllUSers().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) { toast(data.error,{type:"error"})
+        if (data.error) {
+          toast(data.error, { type: 'error' });
           seterrorF(data.error);
         } else {
           setuserO(data);
@@ -93,7 +81,8 @@ const ClassRoom = (props) => {
 
   const getClassroom = (cid) => {
     getAClassroom(cid).then((data) => {
-      if (data.error) { toast(data.error,{type:"error"})
+      if (data.error) {
+        toast(data.error, { type: 'error' });
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
@@ -122,16 +111,16 @@ const ClassRoom = (props) => {
         title={project.name}
         body={project.description}
       ></ClassroomTitle> */}
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: 'center' }}>
         <h2>{project.name}</h2>
-        <hr style={{ width: "50%", margin: "auto" }}></hr>
+        <hr style={{ width: '50%', margin: 'auto' }}></hr>
         <h4>{project.description}</h4>
       </div>
-      <div className="text-center">
-        <Row style={{ width: "100%", margin: "auto" }}>
+      <div className='text-center'>
+        <Row style={{ width: '100%', margin: 'auto' }}>
           {/* <CardImg top width="100%" src={img2} /> */}
           {isAuthenticated() ? (
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               {/*--------------------------------------------------------------------------------*/}
               {/*Card-1*/}
               {/*--------------------------------------------------------------------------------*/}
@@ -142,30 +131,30 @@ const ClassRoom = (props) => {
               </Card>
             </Col>
           ) : (
-            ""
+            ''
           )}
 
           {isAuthenticated() ? (
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               {/*--------------------------------------------------------------------------------*/}
               {/*Card-1*/}
               {/*--------------------------------------------------------------------------------*/}
-              <Card style={{ overflowX: "scroll" }}>
+              <Card style={{ overflowX: 'scroll' }}>
                 <CardBody>
                   <UploadAssignment id={crid}></UploadAssignment>
                 </CardBody>
               </Card>
             </Col>
           ) : (
-            ""
+            ''
           )}
 
           {isAuthenticated().user.role === 1 ? (
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               {/*--------------------------------------------------------------------------------*/}
               {/*Card-1*/}
               {/*--------------------------------------------------------------------------------*/}
-              <Card style={{ overflowX: "scroll" }}>
+              <Card style={{ overflowX: 'scroll' }}>
                 <CardBody>
                   <h2>Member List</h2>
                   <Table>
@@ -190,7 +179,7 @@ const ClassRoom = (props) => {
               </Card>
             </Col>
           ) : (
-            ""
+            ''
           )}
         </Row>
       </div>
