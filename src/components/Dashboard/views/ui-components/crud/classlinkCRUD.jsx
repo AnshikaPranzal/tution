@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import {
-  classes,
+  createClasses,
   isAuthenticated,
   getAllClasses,
   deleteClass,
@@ -9,7 +9,6 @@ import {
   getAClass,
   getAllSubjects,
   getAllStandards,
-  getUserResponse,
 } from '../../../../helper/index';
 import { toast } from 'react-toastify';
 import {
@@ -22,21 +21,16 @@ import {
 } from 'reactstrap';
 import { useEffect } from 'react';
 
-const Projects = () => {
+const ClassLink = () => {
   const [classO, setclassO] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [std, setstandard] = useState([]);
-  const [errorS, seterrorS] = useState(false);
-  const [errorF, seterrorF] = useState(false);
+  const [, seterrorS] = useState(false);
+  const [, seterrorF] = useState(false);
   const [update, setupdate] = useState(false);
   const [uid, setuid] = useState('');
   const [sub, setsubject] = useState([]);
 
-  // const getClassName = (cid) => {
-  //     getASubject(cid)
-  //     .then( data =>{setSubname(data)})
-  //     .catch (err => console.log(err))
-  // }
 
   const loadAllSubjects = () => {
     getAllSubjects().then((data) => {
@@ -53,20 +47,6 @@ const Projects = () => {
     loadAllSubjects();
   }, []);
 
-  const loadAllStandards = () => {
-    getAllStandards().then((data) => {
-      //   console.log(data)
-      if (data)
-        if (data.error) { toast(data.error,{type:"error"})
-          seterrorS(data.error);
-        } else {
-          setstandard(data);
-        }
-    });
-  };
-  useEffect(() => {
-    loadAllStandards();
-  }, []);
 
   const loadAllclasses = () => {
     getAllClasses().then((data) => {
@@ -76,6 +56,7 @@ const Projects = () => {
           seterrorF(data.error);
         } else {
           setclassO(data);
+          console.log(data,"opopop")
         }
     });
   };
@@ -115,12 +96,13 @@ const Projects = () => {
       </div>
     );
   };
+
   // const {dispatch} = useContext(TodoContext)
   const { user } = isAuthenticated();
   // console.log(user)
   const nameT = user.name;
   const emailT = user.email;
-  const [project, setProject] = useState({
+  const [classSingle, setclassSingle] = useState({
     classLink: '',
     name: nameT,
     email: emailT,
@@ -134,58 +116,44 @@ const Projects = () => {
     error: '',
     success: false,
   });
-  const {
-    classLink,
-    name,
-    email,
-    subject,
-    owner,
-    subjectname,
-    standard,
-    time,
-    date,
-    success,
-    error,
-  } = project;
+  const {classLink,name,email,subject,owner,subjectname,time,date,success,error,} = classSingle;
+
+  const [subId, setsubId] = useState()
+
 
   const handleChange = (name) => (event) => {
-    setProject({
-      ...project,
+    if(name === "subject"){
+      setsubId(event.target.sid)
+    }
+    setclassSingle({
+      ...classSingle,
       error: false,
       [name]: event.target.value,
     });
   };
+
+  console.log(subId,subject,subjectname,"pppppppppp")
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(project.subject);
-    setProject({
-      ...project,
+    console.log(classSingle,"finall");
+    setclassSingle({
+      ...classSingle,
       error: false,
     });
 
-    classes({
-      classLink,
-      name,
-      email,
-      subject,
-      owner,
-      subjectname,
-      standard,
-      time,
-      date,
-    })
+    createClasses({ classLink,name,email,subject,owner,subjectname,time,date },subject)
       .then((data) => {
         console.log(data);
-        console.log(project);
+        console.log(classSingle);
         if (data.error) { toast(data.error,{type:"error"})
-          setProject({
-            ...project,
+          setclassSingle({
+            ...classSingle,
              
             success: false,
           });
         } else {
-          setProject({
-            ...project,
+          setclassSingle({
+            ...classSingle,
             classLink: '',
             subject: '',
             owner: user._id,
@@ -202,6 +170,7 @@ const Projects = () => {
       })
       .catch(console.log('Error in classes'));
   };
+
   const deleteaClass = (catuctId) => {
     deleteClass(catuctId).then((data) => {
       console.log(data);
@@ -213,6 +182,7 @@ const Projects = () => {
       }
     });
   };
+
   const getClass = (classId) => {
     getAClass(classId).then((data) => {
       console.log(data.date, 'd');
@@ -220,8 +190,8 @@ const Projects = () => {
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
-        setProject({
-          ...project,
+        setclassSingle({
+          ...classSingle,
           classLink: data.classLink,
           subject: data.subject,
           standard: data.standard,
@@ -236,8 +206,8 @@ const Projects = () => {
   };
   const updateaClass = (event, cid) => {
     event.preventDefault();
-    setProject({
-      ...project,
+    setclassSingle({
+      ...classSingle,
       error: false,
     });
     updateClass(cid, {
@@ -245,7 +215,6 @@ const Projects = () => {
       name,
       email,
       subject,
-      standard,
       time,
       date,
     }).then((data) => {
@@ -254,8 +223,8 @@ const Projects = () => {
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
-        setProject({
-          ...project,
+        setclassSingle({
+          ...classSingle,
           classLink: '',
           subject: '',
           Class: '',
@@ -270,11 +239,6 @@ const Projects = () => {
       }
     });
   };
-  //    useEffect(() => {
-  //     setProject({
-  //         ...project,error: false, name: nameT, email: emailT
-  //     })
-  //    })
 
   const dashboard = () => (
     /*--------------------------------------------------------------------------------*/
@@ -295,9 +259,7 @@ const Projects = () => {
           <thead>
             <tr className='border-0'>
               <th className='border-0'>Class</th>
-              <th className='border-0'>Subject</th>
-              <th className='border-0'>Group/Section</th>
-
+              <th className='border-0'>Subject with standard</th>
               <th className='border-0'>Time</th>
               <th className='border-0'>date</th>
             </tr>
@@ -315,15 +277,6 @@ const Projects = () => {
                       value={classLink}
                       onChange={handleChange('classLink')}
                     ></Input>
-                    {/* <Input
-                                    type="text"
-                                    name={name}
-                                    id={name}
-                                    placeholder="Class link here.."
-                                    value={name}
-                                    onChange={handleChange("name")}
-                                    // style={{display: "none"}}
-                                    ></Input> */}
                   </div>
                 </div>
               </td>
@@ -338,31 +291,14 @@ const Projects = () => {
                   <option value='0'>Select</option>
                   {sub.map((obj, i) => {
                     return (
-                      <option key={i} value={obj.name}>
-                        {obj.name}
+                        <option key={i} value={obj._id}>
+                        {obj.name}({obj.standard})
                       </option>
                     );
                   })}
                 </Input>
               </td>
 
-              <td>
-                <Input
-                  type='select'
-                  className='custom-select'
-                  value={standard}
-                  onChange={handleChange('standard')}
-                >
-                  <option value='0'>Select</option>
-                  {std.map((obj, i) => {
-                    return (
-                      <option key={i} value={obj.name}>
-                        {obj.name}
-                      </option>
-                    );
-                  })}
-                </Input>
-              </td>
 
               <td>
                 <Input
@@ -436,9 +372,9 @@ const Projects = () => {
                         </div>
                       </div>
                     </td>
-                    <td>{obj.subject}</td>
-
-                    <td>{obj.standard}</td>
+                    <td>{obj.subject.name}({obj.subject.standard})</td>
+                    {/* {console.log(obj,obj.subject,"jkjkjk")} */}
+                    {/* <td>{obj.standard}</td> */}
                     <td>{obj.time}</td>
                     <td className='blue-grey-text  text-darken-4 font-medium'>
                       {obj.date.substring(8, 10)}
@@ -478,4 +414,4 @@ const Projects = () => {
   return <React.Fragment>{dashboard()}</React.Fragment>;
 };
 
-export default Projects;
+export default ClassLink;

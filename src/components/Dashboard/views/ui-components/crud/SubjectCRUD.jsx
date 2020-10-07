@@ -2,13 +2,14 @@ import React, { useState } from "react";
 
 import {
   isAuthenticated,
-  standards,
-  getAllStandards,
-  getAStandard,
-  deleteStandard,
-  updateStandard,
-} from "../../../helper/index";
-
+  subjects,
+  getAllSubjects,
+  getASubject,
+  deleteSubject,
+  updateSubject,
+  getAllStandards, getAllTeachers
+} from "../../../../helper/index";
+import { toast } from 'react-toastify';
 import {
   Card,
   CardBody,
@@ -18,31 +19,60 @@ import {
   Table,
 } from "reactstrap";
 import { useEffect } from "react";
-import { toast } from 'react-toastify';
+
 const Projects = () => {
-  const [standard, setstandard] = useState([]);
+  const [subject, setsubject] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [errorF, seterrorF] = useState(false);
   const [update, setupdate] = useState(false);
   const [uid, setuid] = useState("");
   const [reload, setreload] = useState(false);
-
-  const loadAllStandards = () => {
-    getAllStandards().then((data) => {
+  const [std, setstd] = useState([])
+  const [teachers, setteachers] = useState([])
+  const [teacherObject, setteacherObject] = useState()
+  const loadAllSubjects = () => {
+    getAllSubjects().then((data) => {
       //   console.log(data)
       if (data)
         if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
-          setstandard(data);
+          setsubject(data);
         }
     });
   };
+  console.log(subject,"newwwwwwww")
   const [refresh, setrefresh] = useState(true);
 
   useEffect(() => {
-    loadAllStandards();
+    loadAllSubjects();
   }, [refresh]);
+
+  const loadAllStandards = () =>{
+      getAllStandards().then(data =>{
+        //   console.log(data)
+        if(data)
+        if(data.error){
+          toast(data.error,{type:"error"})
+        }
+        else{
+          setstd(data)
+        }
+      })
+      getAllTeachers().then(data=>{
+        if(data){
+          if(data.error){
+            toast(data.error,{type:"error"})
+          }
+          else{
+            setteachers(data)
+          }
+        }
+      })
+    }
+    useEffect (() => {
+      loadAllStandards()
+      },[])
 
   const successMessage = () => {
     return (
@@ -52,7 +82,7 @@ const Projects = () => {
             className="alert alert-success"
             style={{ display: success ? "" : "none" }}
           >
-            Congratulations!!! Standard is added.
+            Congratulations!!! Subject is added.
           </div>
         </div>
       </div>
@@ -78,11 +108,14 @@ const Projects = () => {
   // console.log(user)
   const [project, setProject] = useState({
     name: "",
-    error: "",
+    price: 0,
+    value: 0,
+    standard: 0,
+    error: 0,
+    teacher:0,
     success: false,
   });
-  const { name, success, error } = project;
-
+  const { name, price, value, success, standard, error, teacher} = project;
   const handleChange = (name) => (event) => {
     setProject({
       ...project,
@@ -103,38 +136,37 @@ const Projects = () => {
       error: false,
     });
 
-    standards({ name })
+    subjects({ name, price, value ,standard,teacher})
       .then((data) => {
-        console.log(data);
-        console.log(project);
+        
         if (data)
           if (data.error) { toast(data.error,{type:"error"})
             setProject({
               ...project,
-               
               success: false,
             });
           } else {
-            toast("Standard Added",{type:"success"})
+            toast("Subject Added",{type:"success"})
             setrefresh(!refresh);
           }
       })
-      .catch(console.log("Error in standards"));
+      .catch(console.log("Error in subjects"));
   };
-  const deleteaStandard = (catuctId) => {
-    deleteStandard(catuctId).then((data) => {
-      console.log(data);
+  const deleteaSubject = (catuctId) => {
+    deleteSubject(catuctId).then((data) => {
+      
       if (data)
         if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
+          toast("Subject deleted",{type:"success"})
           setrefresh(!refresh);
         }
     });
   };
-  const getStandard = (classId) => {
-    getAStandard(classId).then((data) => {
+  const getSubject = (classId) => {
+    getASubject(classId).then((data) => {
       if (data)
         if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
@@ -143,6 +175,10 @@ const Projects = () => {
           setProject({
             ...project,
             name: data.name,
+            price: data.price,
+            value: data.value,
+            standard: data.standard,
+            teacher: data.teacher
           });
           setuid(data._id);
           setupdate(true);
@@ -150,30 +186,34 @@ const Projects = () => {
         }
     });
   };
-  const updateaStandard = (event, cid) => {
+  const updateaSubject = (event, cid) => {
     event.preventDefault();
     setProject({
       ...project,
       error: false,
     });
-    updateStandard(cid, { name }).then((data) => {
-      console.log(data);
+    updateSubject(cid, { name, price, value,standard,teacher }).then((data) => {
+      
       if (data)
         if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
-          toast("Standard Updated",{type:"success"})
+          setProject({
+            ...project,
+            name: "",
+            price: 0,
+            value: 0,
+            standard: 0,
+            teacher: 0,
+            error: "",
+          });
+          toast("Subject updated",{type:"success"})
           setrefresh(!refresh);
           setupdate(false);
         }
     });
   };
-  //    useEffect(() => {
-  //     setProject({
-  //         ...project,error: false, name: nameT, email: emailT
-  //     })
-  //    })
 
   const dashboard = () => (
     /*--------------------------------------------------------------------------------*/
@@ -184,7 +224,7 @@ const Projects = () => {
       <CardBody>
         <div className="d-flex align-items-center">
           <div>
-            <CardTitle>Add Standard</CardTitle>
+            <CardTitle>Add Subject</CardTitle>
             <CardSubtitle></CardSubtitle>
           </div>
         </div>
@@ -194,6 +234,9 @@ const Projects = () => {
           <thead>
             <tr className="border-0">
               <th className="border-0">Name</th>
+              <th className="border-0">Price</th>
+              <th className="border-0">Standard</th>
+              <th className="border-0">Teacher</th>
             </tr>
           </thead>
           <tbody>
@@ -203,17 +246,52 @@ const Projects = () => {
                   type="text"
                   name={name}
                   id={name}
-                  placeholder="Standard Name"
+                  placeholder="Subject Name"
                   value={name}
                   onChange={handleChange("name")}
                 ></Input>
+              </td>
+              <td>
+                <Input
+                  type="number"
+                  name={price}
+                  id={price}
+                  placeholder="Price in INR"
+                  value={price}
+                  onChange={handleChange("price")}
+                ></Input>
+              </td>
+
+              <td>
+              <Input type="select" 
+              className="custom-select" 
+              value={standard}
+              onChange={handleChange("standard")} >
+              <option value="0">Standard</option>
+                {std.map((obj,i) => {
+                   return(<option key={i} value={obj.name} >{obj.name}</option>)
+                })
+                }
+               </Input>
+              </td>
+              <td>
+              <Input type="select" 
+              className="custom-select"
+              value={teacher}
+              onChange={handleChange("teacher")} >
+              <option value="0">Teacher</option>
+                {teachers.map((obj,i) => {
+                   return(<option key={i} value={obj._id}>{obj.name}</option>)
+                })
+                }
+               </Input>
               </td>
 
               <td>
                 {update === true ? (
                   <i
                     onClick={(e) => {
-                      updateaStandard(e, uid);
+                      updateaSubject(e, uid);
                     }}
                     style={{
                       cursor: "pointer",
@@ -237,16 +315,21 @@ const Projects = () => {
                 )}
               </td>
             </tr>
-            {standard.map((obj, i) => {
+            
+            {subject.map((obj, i) => {
               return (
                 <tr key={i}>
                   <td>{obj.name}</td>
+                  <td>{obj.price}</td>
+                  <td>{obj.standard}</td>
+                  <td>{obj.teacher.name}</td>
+                 
                   <td>
                     <i
                       class="fa fa-plus text-info"
                       style={{ cursor: "pointer", marginRight: "20px" }}
                       onClick={() => {
-                        getStandard(obj._id);
+                        getSubject(obj._id);
                       }}
                       aria-hidden="true"
                     ></i>
@@ -254,7 +337,7 @@ const Projects = () => {
                       class="fa fa-trash text-orange"
                       style={{ cursor: "pointer" }}
                       onClick={() => {
-                        deleteaStandard(obj._id);
+                        deleteaSubject(obj._id);
                       }}
                       aria-hidden="true"
                     ></i>
@@ -264,8 +347,8 @@ const Projects = () => {
             })}
           </tbody>
         </Table>
-        {standard.length === 0 && (
-          <h3 className="text-center">No Standards Enlisted</h3>
+        {subject.length === 0 && (
+          <h3 className="text-center">No Subject Enlisted</h3>
         )}
       </CardBody>
     </Card>

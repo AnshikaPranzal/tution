@@ -160,32 +160,6 @@ const ClassRoom = (props) => {
             ""
           )}
 
-          {/* {
-                            userO.map((obj,i) => {
-                                if(obj.standard === undefined){
-                                    obj.standard = 0;
-                                }
-                                if((obj.role === 0)
-                                &&(obj.standard.toString() === project.standard.toString())
-                                ){
-                                    obj.subject.map((o, i) => {
-                                        if((project.subject.toString() === o.name.toString())&&(parseInt(o.value) > 0)){
-                                            students = students + 1
-                                            studentsarray[students-1] = obj
-                                        } 
-                                     })
-                                    // project.members.map((m, i) => {
-                                    //     if(obj._id.toString() === m.toString())
-                                    //     {
-                                            
-                                    //         students = students + 1
-                                    //         studentsarray[students-1] = obj
-                                    //     }
-                                    // })
-                                }
-                            })
-                        
-                        } */}
           {isAuthenticated().user.role === 1 ? (
             <Col xs="12" md="12">
               {/*--------------------------------------------------------------------------------*/}

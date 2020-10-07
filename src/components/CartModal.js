@@ -59,6 +59,7 @@ const CartModal = (props) =>{
                         }
                         else{
                             console.log(data,"hi")
+                            localStorage.removeItem("cart")
                         }
                     }
                 })
@@ -95,7 +96,7 @@ const CartModal = (props) =>{
             //   console.log(response)
             purchaseCount()
             alert("Congratulations your payment was successful!!")
-              
+            // localStorage.removeItem("cart")
           },
           "prefill": {
               name,email

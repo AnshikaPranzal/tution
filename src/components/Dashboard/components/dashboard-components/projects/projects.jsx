@@ -38,6 +38,7 @@ const Projects = () => {
           seterror(data.error);
         } else {
           setclassO(data);
+          console.log(data,"kkkk")
         }
       }
     });
@@ -107,7 +108,7 @@ const Projects = () => {
                         </div>
                       </div>
                     </td>
-                    <td>{obj.subject}</td>
+                    <td>{obj.subject.name}</td>
                     <td>{obj.time}</td>
                     <td className="blue-grey-text  text-darken-4 font-medium">
                       {obj.date.substring(8, 10)}

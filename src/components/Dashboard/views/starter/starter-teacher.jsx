@@ -23,15 +23,12 @@ import {
   Input,
   Table,
 } from "reactstrap";
-import {
-  SalesSummary,
-  Projects,
-  Feeds,
-} from "../../components/teacher-dashboard-components";
+
 import { useRef } from "react";
 // import AddDocument from '../ui-components/document'
-import AddDQuiz from "../ui-components/quiz";
+import AddDQuiz from "../ui-components/crud/quiz";
 import { toast } from 'react-toastify';
+import ClassLink from "../ui-components/crud/classlinkCRUD";
 const Starter = () => {
   const [file, setfile] = useState();
   const [video, setvideo] = useState("");
@@ -273,7 +270,8 @@ const Starter = () => {
             </Row> */}
       <Row className="align-items-center">
         <Col>
-          <Projects />
+        <ClassLink/>
+          {/* <Projects /> */}
         </Col>
       </Row>
 
@@ -295,8 +293,7 @@ const Starter = () => {
                 <tr className="border-0">
                   <th className="border-0">Name</th>
                   <th className="border-0">Description</th>
-                  <th className="border-0">Subject</th>
-                  <th className="border-0">Standard</th>
+                  <th className="border-0">Subject/Standard</th>
                 </tr>
               </thead>
               <tbody>
@@ -340,31 +337,14 @@ const Starter = () => {
                       <option value="0">Select</option>
                       {sub.map((obj, i) => {
                         return (
-                          <option key={i} value={obj.name}>
-                            {obj.name}
+                            <option key={i} value={obj._id}>
+                            {obj.name}({obj.standard})
                           </option>
                         );
                       })}
                     </Input>
                   </td>
 
-                  <td>
-                    <Input
-                      type="select"
-                      className="custom-select"
-                      value={standard}
-                      onChange={handleChange("standard")}
-                    >
-                      <option value="0">Select</option>
-                      {std.map((obj, i) => {
-                        return (
-                          <option key={i} value={obj.name}>
-                            {obj.name}
-                          </option>
-                        );
-                      })}
-                    </Input>
-                  </td>
                   <td>
                     {update === true ? (
                       <i
@@ -421,8 +401,8 @@ const Starter = () => {
                     }}
                   ></div>
                   <CardTitle>{obj.name}</CardTitle>
-                  <CardSubtitle>{obj.subject}</CardSubtitle>
-                  <CardSubtitle>{obj.standard}</CardSubtitle>
+                  <CardSubtitle>{obj.subject.name}</CardSubtitle>
+                  <CardSubtitle>{obj.subject.standard}</CardSubtitle>
                   <CardBody>{obj.description}</CardBody>
                   <div>
                     {isAuthenticated() && isAuthenticated().user.role === 1 ? (

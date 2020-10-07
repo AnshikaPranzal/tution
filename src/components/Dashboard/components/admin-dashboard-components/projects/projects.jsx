@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import img1 from '../../../assets/images/users/1.jpg';
 
 import {
-  classes,
+  createClasses,
   isAuthenticated,
   getAllClasses,
   deleteClass,
@@ -37,7 +37,7 @@ const Projects = () => {
     getAllClasses().then((data) => {
       if (data)
         if (data.error) {
-          toast(data.error, { type: 'error' });
+          // toast(data.error, { type: 'error' });
           seterrorF(data.error);
         } else {
           setclassO(data);
@@ -118,7 +118,7 @@ const Projects = () => {
       error: false,
     });
 
-    classes({ classLink, name, email, subject, standard, time, date })
+    createClasses({ classLink, name, email, subject, standard, time, date },subject)
       .then((data) => {
         if (data)
           if (data.error) {
@@ -158,71 +158,7 @@ const Projects = () => {
         }
     });
   };
-  const getClass = (classId) => {
-    getAClass(classId).then((data) => {
-      console.log(data.date, 'd');
-      if (data.error) {
-        toast(data.error, { type: 'error' });
-        console.log(data.error);
-        // setValues({...values,error:data.error})
-      } else {
-        setProject({
-          ...project,
-          classLink: data.classLink,
-          subject: data.subject,
-          standard: data.standard,
-          time: data.time,
-          date: data.date,
-        });
-        setuid(data._id);
-        setupdate(true);
-        setrefresh(!refresh);
-      }
-    });
-  };
-  const updateaClass = (event, cid) => {
-    event.preventDefault();
-    setProject({
-      ...project,
-      error: false,
-    });
-    updateClass(cid, {
-      classLink,
-      name,
-      email,
-      subject,
-      standard,
-      time,
-      date,
-    }).then((data) => {
-      console.log(data);
-      if (data.error) {
-        toast(data.error, { type: 'error' });
-        console.log(data.error);
-        // setValues({...values,error:data.error})
-      } else {
-        setProject({
-          ...project,
-          classLink: '',
-          subject: '',
-          Class: '',
-          standard: '',
-          time: '',
-          date: '',
-          error: '',
-        });
-        toast('Classes Updated', { type: 'success' });
-        setrefresh(!refresh);
-        setupdate(false);
-      }
-    });
-  };
 
-  //    useEffect(() => {
-  //     setProject({
-  //         ...project,error: false, name: nameT, email: emailT
-  //     })
-  //    }, [project, nameT, emailT])
   const [refresh, setrefresh] = useState(true);
   useEffect(() => {
     loadAllclasses();
@@ -246,9 +182,7 @@ const Projects = () => {
           <thead>
             <tr className='border-0'>
               <th className='border-0'>Class</th>
-              <th className='border-0'>Subject</th>
-              <th className='border-0'>Group/Section</th>
-
+              <th className='border-0'>Subject/Standard</th>
               <th className='border-0'>Time</th>
               <th className='border-0'>date</th>
             </tr>
@@ -274,22 +208,14 @@ const Projects = () => {
                       </div>
                     </div>
                   </td>
-                  <td>{obj.subject}</td>
-                  <td>{obj.standard}</td>
+                  <td>{obj.subject.name}({obj.subject.standard})</td>
                   <td>{obj.time}</td>
                   <td className='blue-grey-text  text-darken-4 font-medium'>
                     {obj.date.substring(8, 10)}
                     {obj.date.substring(4, 7)}-{obj.date.substring(0, 4)}
                   </td>
                   <td>
-                    <i
-                      class='fa fa-plus text-info'
-                      style={{ cursor: 'pointer', marginRight: '20px' }}
-                      onClick={() => {
-                        getClass(obj._id);
-                      }}
-                      aria-hidden='true'
-                    ></i>
+                   
                     <i
                       class='fa fa-trash text-orange'
                       style={{ cursor: 'pointer' }}

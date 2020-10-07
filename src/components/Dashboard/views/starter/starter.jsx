@@ -20,10 +20,10 @@ const Starter = () => {
     return (
         <div className="mt-4">
             <Row>
-                <Col sm={6} lg={8}>
+                <Col sm={6} lg={7}>
                     <SalesSummary />
                 </Col>
-                <Col sm={6} lg={4} >
+                <Col sm={6} lg={5} >
                     <Feeds />
                 </Col>
             </Row>

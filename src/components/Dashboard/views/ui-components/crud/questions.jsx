@@ -11,19 +11,20 @@ import {
     Table,
     InputGroup,
     InputGroupAddon,
-    InputGroupText
+    InputGroupText, Button
 } from 'reactstrap';
 import { Modal } from 'react-bootstrap';
-import {createQuestion, createOption, getQuestions, deleteQuestion, deleteOption} from '../../../helper';
+import {createQuestion, createOption, getQuestions, deleteQuestion, deleteOption,updateQuiz, deleteQuiz} from '../../../../helper';
 
-import UpdateQuestion from '../../../UpdateQuestion'
-import UpdateOption from '../../../UpdateOption'
-import AddOption from '../../../AddOption'
-import ImageHelper from '../../../helper/ImageHelper';
+import UpdateQuestion from '../../../../UpdateQuestion'
+import UpdateOption from '../../../../UpdateOption'
+import AddOption from '../../../../AddOption'
+import ImageHelper from '../../../../helper/ImageHelper';
+import { toast } from 'react-toastify';
 const Questions = (props) => {
 
     const qid= props.location.pathname;
-
+    console.log(props,qid,"popo",qid.substring(6,))
     const [quiz, setquiz] = useState({
       title:"",
       subject:"",
@@ -150,6 +151,7 @@ const [quesId, setquesId] = useState({id: 0})
     }
   })
   }
+
   const onOptionSubmit = ()=>{
     options.map((x) =>{
       console.log(x)
@@ -203,6 +205,37 @@ const [quesId, setquesId] = useState({id: 0})
     })
   }
 
+  const publishStatus = (id,status) => {
+    updateQuiz(id, {published:status })
+      .then((data) => {
+        // console.log(data)
+        if (data)
+          if (data.error) { 
+            toast(data.error,{type:"error"})
+            // console.log(data.error)
+            
+          } else {
+            toast("Quiz Status:"+status,{type:"success"})
+            setrefresh(!refresh)
+          }
+      })
+      .catch(() => {
+        // console.log("Error in creating Quiz")
+      });
+  };
+
+  const deleteAQuiz = (id) => {
+    deleteQuiz(id).then((data) => {
+      if (data) {
+        if (data.error) { toast(data.error,{type:"error"})
+          // console.log(data.error)
+        } else {
+          setrefresh(!refresh);
+        }
+      }
+    });
+  };
+
   const nextChar = (c,k)=> {
     return String.fromCharCode(c.charCodeAt(0) + k);
 }
@@ -222,7 +255,8 @@ const loadrefresh = ()=>{
                         {/* <CardImg top width="100%" src={img2} /> */}
                         <CardBody>
                             <CardTitle>{quiz.title}</CardTitle>
-                            <CardSubtitle>{quiz.subject}</CardSubtitle>
+                            <CardSubtitle>{quiz.subject.name}</CardSubtitle>
+                            <CardSubtitle>Standard - {quiz.subject.standard}</CardSubtitle>
                             {options.length === 0 ?
                             (<React.Fragment>
                               <Input
@@ -356,6 +390,13 @@ const loadrefresh = ()=>{
                        </Table>
                     </CardBody>
                   </Card>
+                </Col>
+                <Col xs="12" md="12" alignItems="right">
+                    <div className="d-flex">
+                          {!quiz.published ? (<button onClick={()=>{publishStatus(qid.substring(6,),true)}} style={{margin:"auto"}} className="btn btn-success">Publish</button>):(<button onClick={()=>{publishStatus(qid.substring(6,),false)}} style={{margin:"auto"}} className="btn btn-warning">Archive</button>)}
+                    
+                          <button onClick={()=>{deleteAQuiz(qid.substring(6,))}} style={{margin:"auto"}} className="btn btn-danger">Delete Permanently</button>
+                    </div>
                 </Col>
             </Row>
           </div>

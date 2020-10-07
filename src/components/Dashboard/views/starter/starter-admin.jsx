@@ -33,8 +33,9 @@ import {
   Projects,
   Feeds,
 } from '../../components/admin-dashboard-components';
-import Subject from '../ui-components/SubjectCRUD';
-import Standard from '../ui-components/StandardCRUD';
+import Subject from '../ui-components/crud/SubjectCRUD';
+import Standard from '../ui-components/crud/StandardCRUD';
+import ClassLink from '../ui-components/crud/classlinkCRUD'
 import $ from 'jquery';
 
 import img1 from '../../assets/images/big/img1.jpg';
@@ -160,17 +161,7 @@ const Starter = () => {
         }
     });
   };
-  // const submitEmail = () => {
-  //   addSubcriber(Email).then((data) => {
-  //     if (data) {
-  //       if (data.error) {
-  //         toast(data.error, { type: 'error' });
-  //       } else {
-  //         toast('Email Sent', { type: 'success' });
-  //       }
-  //     }
-  //   });
-  // };
+
   useEffect(() => {
     loadAllnotices();
   }, []);

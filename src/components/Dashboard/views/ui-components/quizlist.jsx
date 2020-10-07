@@ -23,8 +23,9 @@ const QuizList = (props) => {
   const { user, token } = isAuthenticated();
   const [quizzes, setquizzes] = useState([]);
   const [refresh, setrefresh] = useState(true);
+  
   const loadAllMyQuizzes = () => {
-    console.log(user._id, "heyy");
+    // console.log(user._id, "heyy");
     subquizzes({ user_id: user._id }).then((data) => {
       console.log(data, "quizdata");
       if (data) {
@@ -54,15 +55,15 @@ const QuizList = (props) => {
   useEffect(() => {
     loadAllMyQuizzes();
     getUser();
-
     if (localStorage.getItem("attemptedquiz"))
       localStorage.removeItem("attemptedquiz");
   }, [refresh]);
 
   const check = (id) => {
-    if (aquiz.filter((e) => e == id) == []) {
+    if (aquiz.filter((e) => e == id).length === 0) {
       return true;
-    } else {
+    } else {           
+      console.log("trip")
       return false;
     }
   };
@@ -87,11 +88,11 @@ const QuizList = (props) => {
               <div className="d-flex align-items-center">
                 <div>
                   <CardTitle>{obj.title}</CardTitle>
-                  <CardSubtitle>{obj.subject}</CardSubtitle>
+                  <CardSubtitle>{obj.subject.name}</CardSubtitle>
                 </div>
               </div>
 
-              {check() ? (
+              {check(obj._id) ? (
                 !localStorage.getItem("start") && (
                   <a
                     href={`/start/quiz/${obj._id}`}

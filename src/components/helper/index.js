@@ -16,9 +16,9 @@ export const signup1 = async (user) => {
   }
 };
 
-export const classes = async (classes) => {
+export const createClasses = async (classes,subId) => {
   try {
-    const response = await fetch(`${API}/class/create`, {
+    const response = await fetch(`${API}/class/create/${subId}`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -84,7 +84,7 @@ export const notices = (notices) => {
 
 export const classrooms = async (classrooms) => {
   try {
-    const response = await fetch(`${API}/classroom/create`, {
+    const response = await fetch(`${API}/classroom/create/${classrooms.subject}`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -100,7 +100,7 @@ export const classrooms = async (classrooms) => {
 
 export const createQuiz = async (quiz) => {
   try {
-    const response = await fetch(`${API}/quiz/create`, {
+    const response = await fetch(`${API}/quiz/create/${quiz.subject}`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -516,6 +516,18 @@ export const getAllUSers = async () => {
     return response.json();
   } catch (e) {
     console.log('Error in getting the Users');
+  }
+};
+
+export const getAllTeachers = async () => {
+  try {
+    const response = await fetch(`${API}/teachers`, {
+      method: 'GET',
+    });
+    console.log(response);
+    return response.json();
+  } catch (e) {
+    console.log('Error in getting the Teachers');
   }
 };
 
@@ -1006,13 +1018,12 @@ export const updateStandard = (standardId, standardO) => {
 export const subclassrooms = async (ids) => {
   console.log(ids);
   try {
-    const response = await fetch(`${API}/user/subclassrooms`, {
-      method: 'POST',
+    const response = await fetch(`${API}/user/classroom/${ids.user_id}`, {
+      method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(ids),
     });
     return response.json();
   } catch (e) {
@@ -1023,13 +1034,12 @@ export const subclassrooms = async (ids) => {
 export const subclasses = async (ids) => {
   console.log(ids);
   try {
-    const response = await fetch(`${API}/user/subclasses`, {
-      method: 'POST',
+    const response = await fetch(`${API}/class/user/${ids.user_id}`, {
+      method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(ids),
+      }
     });
     return response.json();
   } catch (e) {
@@ -1040,13 +1050,12 @@ export const subclasses = async (ids) => {
 export const subquizzes = async (ids) => {
   console.log(ids);
   try {
-    const response = await fetch(`${API}/user/subquizes`, {
-      method: 'POST',
+    const response = await fetch(`${API}/user/subquizes/${ids.user_id}`, {
+      method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(ids),
+      }
     });
     return response.json();
   } catch (e) {

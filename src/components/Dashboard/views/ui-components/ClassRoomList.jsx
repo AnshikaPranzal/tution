@@ -19,7 +19,7 @@ const ClassRoomList = () => {
   const [classrooms, setclassrooms] = useState([]);
   const [refresh, setrefresh] = useState(true);
   const loadAllMyclassrooms = () => {
-    console.log(user._id, "heyy");
+    console.log(user._id, "heyya");
     subclassrooms({ user_id: user._id }).then((data) => {
       console.log(data, "classroomdata");
       if (data) {
@@ -27,6 +27,7 @@ const ClassRoomList = () => {
           console.log(data.error);
         } else {
           setclassrooms(data);
+          console.log(classrooms,"classsss")
         }
       }
     });
@@ -60,7 +61,7 @@ const ClassRoomList = () => {
                   }}
                 ></div>
                 <CardTitle>{obj.name}</CardTitle>
-                <CardSubtitle>{obj.subject}</CardSubtitle>
+                <CardSubtitle>{obj.subject.name}</CardSubtitle>
                 <CardBody>{obj.description}</CardBody>
                 <div>
                   {isAuthenticated() ? (

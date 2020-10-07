@@ -2,14 +2,13 @@ import React, { useState } from "react";
 
 import {
   isAuthenticated,
-  subjects,
-  getAllSubjects,
-  getASubject,
-  deleteSubject,
-  updateSubject,
-  getAllStandards
-} from "../../../helper/index";
-import { toast } from 'react-toastify';
+  standards,
+  getAllStandards,
+  getAStandard,
+  deleteStandard,
+  updateStandard,
+} from "../../../../helper/index";
+
 import {
   Card,
   CardBody,
@@ -19,48 +18,31 @@ import {
   Table,
 } from "reactstrap";
 import { useEffect } from "react";
-
+import { toast } from 'react-toastify';
 const Projects = () => {
-  const [subject, setsubject] = useState([]);
+  const [standard, setstandard] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [errorF, seterrorF] = useState(false);
   const [update, setupdate] = useState(false);
   const [uid, setuid] = useState("");
   const [reload, setreload] = useState(false);
 
-  const loadAllSubjects = () => {
-    getAllSubjects().then((data) => {
+  const loadAllStandards = () => {
+    getAllStandards().then((data) => {
       //   console.log(data)
       if (data)
         if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
-          setsubject(data);
+          setstandard(data);
         }
     });
   };
   const [refresh, setrefresh] = useState(true);
 
   useEffect(() => {
-    loadAllSubjects();
+    loadAllStandards();
   }, [refresh]);
-
-  const [std, setstd] = useState([])
-  const loadAllStandards = () =>{
-      getAllStandards().then(data =>{
-        //   console.log(data)
-        if(data)
-        if(data.error){
-          toast(data.error,{type:"error"})
-        }
-        else{
-          setstd(data)
-        }
-      })
-    }
-    useEffect (() => {
-      loadAllStandards()
-      },[])
 
   const successMessage = () => {
     return (
@@ -70,7 +52,7 @@ const Projects = () => {
             className="alert alert-success"
             style={{ display: success ? "" : "none" }}
           >
-            Congratulations!!! Subject is added.
+            Congratulations!!! Standard is added.
           </div>
         </div>
       </div>
@@ -96,13 +78,10 @@ const Projects = () => {
   // console.log(user)
   const [project, setProject] = useState({
     name: "",
-    price: 0,
-    value: 0,
-    standard: 0,
     error: "",
     success: false,
   });
-  const { name, price, value, success,standard, error } = project;
+  const { name, success, error } = project;
 
   const handleChange = (name) => (event) => {
     setProject({
@@ -124,7 +103,7 @@ const Projects = () => {
       error: false,
     });
 
-    subjects({ name, price, value ,standard})
+    standards({ name })
       .then((data) => {
         console.log(data);
         console.log(project);
@@ -132,30 +111,30 @@ const Projects = () => {
           if (data.error) { toast(data.error,{type:"error"})
             setProject({
               ...project,
+               
               success: false,
             });
           } else {
-            toast("Subject Added",{type:"success"})
+            toast("Standard Added",{type:"success"})
             setrefresh(!refresh);
           }
       })
-      .catch(console.log("Error in subjects"));
+      .catch(console.log("Error in standards"));
   };
-  const deleteaSubject = (catuctId) => {
-    deleteSubject(catuctId).then((data) => {
+  const deleteaStandard = (catuctId) => {
+    deleteStandard(catuctId).then((data) => {
       console.log(data);
       if (data)
         if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
-          toast("Subject deleted",{type:"success"})
           setrefresh(!refresh);
         }
     });
   };
-  const getSubject = (classId) => {
-    getASubject(classId).then((data) => {
+  const getStandard = (classId) => {
+    getAStandard(classId).then((data) => {
       if (data)
         if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
@@ -164,8 +143,6 @@ const Projects = () => {
           setProject({
             ...project,
             name: data.name,
-            price: data.price,
-            value: data.value,
           });
           setuid(data._id);
           setupdate(true);
@@ -173,27 +150,20 @@ const Projects = () => {
         }
     });
   };
-  const updateaSubject = (event, cid) => {
+  const updateaStandard = (event, cid) => {
     event.preventDefault();
     setProject({
       ...project,
       error: false,
     });
-    updateSubject(cid, { name, price, value }).then((data) => {
+    updateStandard(cid, { name }).then((data) => {
       console.log(data);
       if (data)
         if (data.error) { toast(data.error,{type:"error"})
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
-          setProject({
-            ...project,
-            name: "",
-            price: 0,
-            value: 0,
-            error: "",
-          });
-          toast("Subject updated",{type:"success"})
+          toast("Standard Updated",{type:"success"})
           setrefresh(!refresh);
           setupdate(false);
         }
@@ -214,7 +184,7 @@ const Projects = () => {
       <CardBody>
         <div className="d-flex align-items-center">
           <div>
-            <CardTitle>Add Subject</CardTitle>
+            <CardTitle>Add Standard</CardTitle>
             <CardSubtitle></CardSubtitle>
           </div>
         </div>
@@ -224,8 +194,6 @@ const Projects = () => {
           <thead>
             <tr className="border-0">
               <th className="border-0">Name</th>
-              <th className="border-0">Price</th>
-              <th className="border-0">Months Of Subscription</th>
             </tr>
           </thead>
           <tbody>
@@ -235,38 +203,17 @@ const Projects = () => {
                   type="text"
                   name={name}
                   id={name}
-                  placeholder="Subject Name"
+                  placeholder="Standard Name"
                   value={name}
                   onChange={handleChange("name")}
                 ></Input>
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  name={price}
-                  id={price}
-                  placeholder="Price in INR"
-                  value={price}
-                  onChange={handleChange("price")}
-                ></Input>
-              </td>
-
-              <td>
-              <Input type="select" className="custom-select" value={standard}
-                                    onChange={handleChange("standard")} >
-                                <option value="0">Standard</option>
-                                {std.map((obj,i) => {
-                                    return(<option key={i} value={obj.name} >{obj.name}</option>)
-                                })
-                                }
-                            </Input>
               </td>
 
               <td>
                 {update === true ? (
                   <i
                     onClick={(e) => {
-                      updateaSubject(e, uid);
+                      updateaStandard(e, uid);
                     }}
                     style={{
                       cursor: "pointer",
@@ -290,19 +237,16 @@ const Projects = () => {
                 )}
               </td>
             </tr>
-
-            {subject.map((obj, i) => {
+            {standard.map((obj, i) => {
               return (
                 <tr key={i}>
                   <td>{obj.name}</td>
-                  <td>{obj.price}</td>
-                  <td>{obj.standard}</td>
                   <td>
                     <i
                       class="fa fa-plus text-info"
                       style={{ cursor: "pointer", marginRight: "20px" }}
                       onClick={() => {
-                        getSubject(obj._id);
+                        getStandard(obj._id);
                       }}
                       aria-hidden="true"
                     ></i>
@@ -310,7 +254,7 @@ const Projects = () => {
                       class="fa fa-trash text-orange"
                       style={{ cursor: "pointer" }}
                       onClick={() => {
-                        deleteaSubject(obj._id);
+                        deleteaStandard(obj._id);
                       }}
                       aria-hidden="true"
                     ></i>
@@ -320,8 +264,8 @@ const Projects = () => {
             })}
           </tbody>
         </Table>
-        {subject.length === 0 && (
-          <h3 className="text-center">No Subject Enlisted</h3>
+        {standard.length === 0 && (
+          <h3 className="text-center">No Standards Enlisted</h3>
         )}
       </CardBody>
     </Card>

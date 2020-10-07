@@ -3,11 +3,13 @@ import {
     Card,
     CardBody,
     CardTitle,
+    Table
 } from 'reactstrap';
 
-import {getAllNotices,isAuthenticated, subclasses, subquizzes} from '../../../../helper/index'
+import {getAllNotices,getAUser,isAuthenticated, subclasses, subquizzes} from '../../../../helper/index'
 import { useState } from "react";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Feeds = () => {
     const {user, token} = isAuthenticated();
@@ -25,7 +27,23 @@ const Feeds = () => {
         .catch(err => console.log(err))
     }
     useEffect(loadAllNotice)
-
+    const [userSubject, setuserSubject] = useState([])
+    const loaduser=()=>{
+        getAUser(user._id,token).then(data=>{
+            if(data){
+                if(data.error){
+                    toast(data.error,{type:"error"})
+                }
+                else{
+                    console.log(data.subject,"userrrrrrrrr")
+                    setuserSubject(data.subject)
+                }
+            }
+        })
+    }
+    useEffect(() => {
+        loaduser()
+    }, [])
     const loadAllClass = () => {
         subclasses({user_id: user._id})
         .then(data => {
@@ -52,23 +70,50 @@ const Feeds = () => {
     
     
     return (
-        <Card style={{height:"92%"}}>
+        <Card style={{maxHeight:"60vh",overflowY:"scroll"}}>
             <CardBody>
                 <CardTitle>Feeds</CardTitle>
                 <div className="feed-widget">
                     <ul className="list-style-none feed-body m-0 pb-3">
                         <li className="feed-item">
-                            <div className="feed-icon bg-info"><i className="far fa-bell"></i></div> You have {notice} notices. <span className="ml-auto font-12 text-muted"></span>
+                            <Table>
+                                <thead>
+                                    <th>Your subjects:</th>
+                                    <th>Expires On:</th>
+                                </thead>
+                                <tbody>
+                                {userSubject.map((sub,i)=>{
+                                return(
+                                    <tr>
+                                        <td>{sub.name}</td><td><span className="ml-auto text-muted font-8">{sub.expiresOn.substring(0,10)}</span></td>
+                                    </tr>
+                                )
+                                })}
+                                </tbody>
+                            </Table>
+                            {/* <div>Your subjects:</div> */}
                         </li>
+                        {/* <li className="feed-item">
+                            <div className="ml-4 font-14">{userSubject.map((sub,i)=>{
+                                return(
+                                    <>
+                                        <div><span>{i+1}.</span>{sub.name}<span className="text-muted font-8">(expiresOn:{sub.expiresOn.substring(0,10)})</span></div>
+                                    </>
+                                )
+                            })}</div>
+                        </li> */}
+                        {/* <li className="feed-item">
+                            <div className="feed-icon bg-info"><i className="far fa-bell"></i></div> You have {notice} notices. <span className="ml-auto font-12 text-muted"></span>
+                        </li> */}
                         <li className="feed-item">
-                            <div className="feed-icon bg-success"><i className="ti-server"></i></div> Class: {classes}<span className="ml-auto font-12 text-muted"></span>
+                            <div className="feed-icon bg-success"><i className="ti-server"></i></div> Class: {classes}<span className="ml-auto font-12 text-muted"></span><div className="feed-icon bg-danger"><i className="ti-user"></i></div> Quiz: {quiz}<span className="ml-auto font-12 text-muted"></span>
                         </li>
                         {/* <li className="feed-item">
                             <div className="feed-icon bg-warning"><i className="ti-shopping-cart"></i></div> New order received.<span className="ml-auto font-12 text-muted">31 May</span>
                         </li> */}
-                        <li className="feed-item">
+                        {/* <li className="feed-item">
                             <div className="feed-icon bg-danger"><i className="ti-user"></i></div> Quiz: {quiz}<span className="ml-auto font-12 text-muted"></span>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </CardBody>
