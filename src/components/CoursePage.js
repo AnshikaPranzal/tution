@@ -19,10 +19,10 @@ const CoursePage = () => {
         <Navbar courses='active'></Navbar>
       </header>
       {/* <!-- /header --> */}
-      <Title
+      {/* <Title
         title='Our Courses'
         body='Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.'
-      />
+      /> */}
       <AllCourseList></AllCourseList>
       <Footer></Footer>
     </React.Fragment>

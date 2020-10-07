@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
+import { addContact } from './helper';
+import { toast } from 'react-toastify';
 
 const ContactSection = () => {
   const [contactForm, setcontactForm] = useState({});
   const handleChange = (e) => {
     setcontactForm({ ...contactForm, [e.target.name]: e.target.value });
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(contactForm);
+    addContact(contactForm).then((data) => {
+      if (!data.error) {
+        toast('We will get back to you soon!!', { type: 'success' });
+        setcontactForm({});
+      } else {
+        toast('Cannot send your query right now. Contact something@gmail.com', {
+          type: 'error',
+        });
+      }
+    });
   };
   return (
     <React.Fragment>
@@ -12,7 +28,7 @@ const ContactSection = () => {
           <div className='row bannerStyle1 overlay justify-content-between contact-banner m-0 p-5  align-items-center'>
             <div className='col-lg-4 px-4 mb-4 mb-lg-0'>
               <div className='card contact-form p-5'>
-                <form action='#'>
+                <form onSubmit={onSubmit}>
                   <p className='mb-4'>
                     Fill up this form and we will get back to you soom
                   </p>
@@ -21,14 +37,16 @@ const ContactSection = () => {
                     className='form-control mb-3'
                     id='name'
                     name='name'
+                    onChange={handleChange}
                     value={contactForm.name}
                     placeholder='Your Name'
                   ></input>
                   <input
                     type='email'
                     className='form-control mb-3'
-                    id='mail'
-                    name='mail'
+                    id='email'
+                    name='email'
+                    onChange={handleChange}
                     value={contactForm.email}
                     placeholder='Your Email'
                   ></input>
@@ -38,6 +56,7 @@ const ContactSection = () => {
                     id='subject'
                     name='subject'
                     placeholder='Subject'
+                    onChange={handleChange}
                     value={contactForm.subject}
                   ></input>
                   <textarea
@@ -45,6 +64,7 @@ const ContactSection = () => {
                     id='message'
                     className='form-control mb-3'
                     placeholder='Your Message'
+                    onChange={handleChange}
                     value={contactForm.message}
                   ></textarea>
                   <button type='submit' value='send'>

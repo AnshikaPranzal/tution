@@ -36,24 +36,18 @@ const CourseItem = (props) => {
     var i;
 
     if (cart === undefined) {
-      console.log('pppp', product);
-
       addItemToCart(product, () => {
-        console.log('umm idk');
         setcart(loadCart());
       });
       setcart(loadCart());
     } else {
       for (i = 0; i < cart.length; i++) {
-        console.log(i === cart.length);
         if (cart[i][0].name === props.topic) {
           updateItemInCart(props.topic);
           i = cart.length;
           break;
         }
         if (i === cart.length - 1) {
-          console.log('bhkk');
-
           addItemToCart(product);
           break;
         }
@@ -67,7 +61,6 @@ const CourseItem = (props) => {
   const [showlogin, setshowlogin] = useState(false);
 
   const handleCloselogin = () => {
-    console.log('----k');
     setshowlogin(false);
   };
 

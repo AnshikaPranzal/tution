@@ -62,6 +62,7 @@ const Fulllayout = (props) => {
   return (
     <React.Fragment>
       <header className='fixed-top header'>
+        <TopHeader></TopHeader>
         <Navbar dashboard='active' active='nav-bg'></Navbar>
       </header>
 

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import NoticeItem from "./NoticeItem";
-import { getAllNotices } from "./helper";
+import React, { useState, useEffect } from 'react';
+import NoticeItem from './NoticeItem';
+import { getAllNotices } from './helper';
 import { toast } from 'react-toastify';
 const AllNoticeList = () => {
   const [noticeO, setnoticeO] = useState([]);
@@ -9,9 +9,9 @@ const AllNoticeList = () => {
 
   const loadAllnotices = () => {
     getAllNotices().then((data) => {
-      console.log(data);
       if (data)
-        if (data.error) { toast(data.error,{type:"error"})
+        if (data.error) {
+          toast(data.error, { type: 'error' });
           seterror(data.error);
         } else {
           setnoticeO(data);
@@ -39,12 +39,12 @@ const AllNoticeList = () => {
   ];
   return (
     <React.Fragment>
-      <section className="section">
-        <div className="container1">
-          <div className="row">
-            <div className="col-12">
+      <section className='section'>
+        <div className='container1'>
+          <div className='row'>
+            <div className='col-12'>
               {noticeO?.length > 0 && (
-                <ul className="list-unstyled">
+                <ul className='list-unstyled'>
                   {noticeO.map((obj, index) => {
                     return (
                       <NoticeItem
@@ -60,10 +60,10 @@ const AllNoticeList = () => {
                 </ul>
               )}
               {!noticeO && noticeO.length === 0 && (
-                <div className="container p-0">
-                  <div className="row py-5 d-flex text-center">
-                    <div className="col-12 align-self">
-                      <p className="display-4">
+                <div className='container p-0'>
+                  <div className='row py-5 d-flex text-center'>
+                    <div className='col-12 align-self'>
+                      <p className='display-4'>
                         <div
                           style={{
                             animation: 'linear infinite 2s animateNotice',

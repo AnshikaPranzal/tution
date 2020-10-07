@@ -5,6 +5,7 @@ import Sidebar from '../components/sidebar/sidebar.jsx';
 import Footer from '../components/footer/footer.jsx';
 import ThemeRoutes from '../routes/routing-teacher.jsx';
 import '../assets/scss/styles.css';
+import TopHeader from '../../TopHeader';
 const Fulllayout = (props) => {
   /*--------------------------------------------------------------------------------*/
   /*Change the layout settings [HEADER,SIDEBAR && DARK LAYOUT] from here            */
@@ -54,6 +55,7 @@ const Fulllayout = (props) => {
   return (
     <React.Fragment>
       <header className='fixed-top header'>
+        <TopHeader></TopHeader>
         <Navbar dashboard='active' active='nav-bg'></Navbar>
       </header>
 

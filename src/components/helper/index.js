@@ -16,7 +16,7 @@ export const signup1 = async (user) => {
   }
 };
 
-export const createClasses = async (classes,subId) => {
+export const createClasses = async (classes, subId) => {
   try {
     const response = await fetch(`${API}/class/create/${subId}`, {
       method: 'POST',
@@ -84,14 +84,17 @@ export const notices = (notices) => {
 
 export const classrooms = async (classrooms) => {
   try {
-    const response = await fetch(`${API}/classroom/create/${classrooms.subject}`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(classrooms),
-    });
+    const response = await fetch(
+      `${API}/classroom/create/${classrooms.subject}`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(classrooms),
+      }
+    );
     return response.json();
   } catch (err) {
     console.log(err);
@@ -922,7 +925,7 @@ export const updateRole = async (userId, user) => {
 };
 
 export const addSubject = async (ids) => {
-  console.log("hi",ids)
+  console.log('hi', ids);
   try {
     const response = await fetch(`${API}/user/addSubject`, {
       method: 'PUT',
@@ -932,7 +935,7 @@ export const addSubject = async (ids) => {
       },
       body: JSON.stringify(ids),
     });
-    console.log(response,"kk")
+    console.log(response, 'kk');
     return response.json();
   } catch (e) {
     console.log('Error in adding subject', e);
@@ -941,6 +944,7 @@ export const addSubject = async (ids) => {
 
 export const buySubject = async (ids) => {
   try {
+    console.log(ids, 'buy subject fetch');
     const response = await fetch(`${API}/user/buysubject`, {
       method: 'PUT',
       headers: {
@@ -949,6 +953,8 @@ export const buySubject = async (ids) => {
       },
       body: JSON.stringify(ids),
     });
+    let cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
     return response.json();
   } catch (e) {
     console.log('Error in buying subject', e);
@@ -1039,7 +1045,7 @@ export const subclasses = async (ids) => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      }
+      },
     });
     return response.json();
   } catch (e) {
@@ -1055,7 +1061,7 @@ export const subquizzes = async (ids) => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      }
+      },
     });
     return response.json();
   } catch (e) {
@@ -1105,6 +1111,33 @@ export const sendMail = (mailContent) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(mailContent),
+  })
+    .then((response) => response.json())
+    .catch((e) => {
+      console.log('Error in Setting Up User');
+    });
+
+export const addContact = (contactus) =>
+  fetch(`${API}/contactus/add`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(contactus),
+  })
+    .then((response) => response.json())
+    .catch((e) => {
+      console.log('Error in Setting Up User');
+    });
+
+export const getContacts = () =>
+  fetch(`${API}/contactus/get`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
   })
     .then((response) => response.json())
     .catch((e) => {

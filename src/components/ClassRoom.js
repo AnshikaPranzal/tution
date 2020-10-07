@@ -61,7 +61,6 @@ const ClassRoom = (props) => {
 
   const loadAllusers = () => {
     getAllUSers().then((data) => {
-      console.log(data);
       if (data)
         if (data.error) {
           toast(data.error, { type: 'error' });

@@ -12,18 +12,13 @@ import {
 } from './helper';
 import Reading from '../images/svg/reading.svg';
 
-
-
 const AllCourseList = () => {
   const [product, setproduct] = useState();
   const [sub, setsub] = useState();
   const update = () => {
-    console.log('hi', loadCart());
     if (!loadCart()) {
-      console.log('in', loadCart());
       setproduct({ p: 0, c: 0, m: 0, b: 0 });
     } else {
-      console.log('in2', loadCart());
       setproduct(loadCart());
     }
   };
@@ -46,19 +41,18 @@ const AllCourseList = () => {
     loadAllSubjects();
   }, []);
 
-  console.log('jkkkk', product);
   return (
     <React.Fragment>
-      <section className="section pt-0">
-        <div className="container1">
-          <div className="row d-flex align-items-center justify-content-center">
-            <div className="col-12">
-              <div className="row d-flex align-items-center justify-content-center mx-0 py-4">
-                <div className="col-md-6 align-self text-center">
-                  <img src={Reading} alt="" className="img-fluid" />
+      <section className='section pt-0'>
+        <div className='container1'>
+          <div className='row d-flex align-items-center justify-content-center'>
+            <div className='col-12'>
+              <div className='row d-flex align-items-center justify-content-center mx-0 py-4'>
+                <div className='col-md-6 align-self text-center'>
+                  <img src={Reading} alt='' className='img-fluid' />
                 </div>
-                <div className="col-md-6  align-self text-center px-3">
-                  <p className="h2 text-center text-muted">
+                <div className='col-md-6  align-self text-center px-3'>
+                  <p className='h2 text-center text-muted'>
                     Find the best course that suits you!
                   </p>
                 </div>
@@ -73,16 +67,16 @@ const AllCourseList = () => {
                     product={product}
                     price={obj.price}
                     topic={obj.name}
-                    des=" Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+                    des=' Lorem ipsum dolor sit amet, consectetur adipisicing elit'
                   ></CourseItem>
                 );
               })}
             {!subject && subject.length === 0 && (
-              <div className="col-12">
-                <div className="container p-0">
-                  <div className="row py-5 d-flex text-center">
-                    <div className="col-12 align-self">
-                      <p className="display-4">
+              <div className='col-12'>
+                <div className='container p-0'>
+                  <div className='row py-5 d-flex text-center'>
+                    <div className='col-12 align-self'>
+                      <p className='display-4'>
                         <div
                           style={{
                             animation: 'linear infinite 2s animateNotice',
@@ -101,7 +95,6 @@ const AllCourseList = () => {
           </div>
         </div>
       </section>
-      
     </React.Fragment>
   );
 };
