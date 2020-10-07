@@ -14,7 +14,7 @@ const AboutSection = () => {
                 style={{ borderRadius: "10px" }}
                 alt="about"
               ></img>
-              <h2 className="section-title">ABOUT OUR JOURNY</h2>
+              <h2 className="section-title">ABOUT OUR JOURNEY</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et.dolore magna aliqua. Ut

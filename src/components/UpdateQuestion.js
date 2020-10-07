@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import { signup1, getAQuestion, updateQuestion } from './helper/index'
-
+import { toast } from 'react-toastify';
 const RegisterModal = (props) =>{
     const [values,setValues] = useState([{
         title:"",
@@ -46,29 +46,6 @@ const RegisterModal = (props) =>{
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[refresh])
 
-    const successMessage = () =>{
-        
-        return(
-        <div className="row ">
-                <div className="col-md-6 offset-sm-3 text-left">
-                    <div className="alert alert-success" style={{display: success ? "" : "none"}}>
-                        Congratulations!!! Question Updated
-                    </div>
-                </div>
-        </div>
-    )}
-
-    const errorMessage = () =>{
-       
-    return(
-        <div className="row ">
-        <div className="col-md-6 offset-sm-3 text-left">
-        <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
-            {error}
-        </div>
-        </div>
-        </div>
-    )}
 
     const onSubmit = event => {
         event.preventDefault();
@@ -79,15 +56,14 @@ const RegisterModal = (props) =>{
             if(data){
                 if(data.error)
                 {
+                    toast(data.error,{type:"error"})
                     console.log(data.error)
                     setValues({
-                        ...values,error: data.error
+                        ...values, 
                     });
                 }
                 else{
-                    setValues({
-                        ...values,success: true
-                    });
+                    toast("Question Updated",{type:"success"})
                     console.log("<3")
                 }
             }

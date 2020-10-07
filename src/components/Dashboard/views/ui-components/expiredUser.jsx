@@ -17,8 +17,7 @@ import { toast } from 'react-toastify';
 import {
   getAllSubjects,
   addSubject,
-  getAllUSers,
-  searchUser,
+  getExpiredUSers
 } from '../../../helper';
 
 const Projects = () => {
@@ -44,8 +43,14 @@ const Projects = () => {
   }
 
   const loadUsers = () => {
-    searchUser(u)
-      .then((data) => setuserO(data.users))
+    getExpiredUSers(u)
+      .then((data) => {
+        if (data.error) { 
+          toast(data.error,{type:"error"})
+          } else {
+            setuserO(data);
+          }
+      })
       .catch((error) => console.log(error));
   };
 
@@ -108,50 +113,11 @@ const Projects = () => {
       <CardBody>
         <div className='d-flex align-items-center'>
           <div>
-            <CardTitle className='font-weight-bold'>Find Student</CardTitle>
+            <CardTitle className='font-weight-bold'>Students with expired subjects:</CardTitle>
             <CardSubtitle>To Add or Edit Subject</CardSubtitle>
           </div>
         </div>
-        <div className='row mx-0 px-3 align-items-center justify-content-flex-start'>
-          <div className='font-weight-bold '>Search User : </div>
-          <div className='mx-3 d-flex'>
-            <Input
-              type='text'
-              name={name}
-              id={name}
-              placeholder='Name'
-              value={name}
-              onChange={handleChange('name')}
-            ></Input>
-          </div>
-
-          <div className='mx-3'>
-            <Input
-              type='email'
-              name={email}
-              id={email}
-              placeholder='Email'
-              value={email}
-              onChange={handleChange('email')}
-            ></Input>
-          </div>
-
-          <div className='mx-3'>
-            <button
-              onClick={onSubmit}
-              style={{
-                cursor: 'pointer',
-                padding: '0.5rem',
-                borderRadius: '0.2rem',
-                fontSize: '0.8rem',
-              }}
-              class='hvr-bounce-to-top '
-            >
-              search
-            </button>
-          </div>
-        </div>
-        <hr />
+        
         <Table className='no-wrap v-middle' responsive>
           <thead>
             <tr className='border-0'>
@@ -173,7 +139,7 @@ const Projects = () => {
                   <td colSpan='3'>
                   {obj.subject.map((sub, i) => {
                       return (
-                        <>
+                        new Date(sub.expiresOn) < new Date(Date.now()) && (<>
                           <div className='d-flex justify-content-between py-2'>
                             <span>
                               {sub.name}
@@ -183,7 +149,7 @@ const Projects = () => {
                               {sub.expiresOn ? (<>{sub.expiresOn.substring(8, 10)}-{sub.expiresOn.substring(5, 7)}-{sub.expiresOn.substring(0,4)}</>) : <>-</>}
                             </span>
                           </div>
-                        </>
+                        </>)
                       );
                     })}
                   </td>

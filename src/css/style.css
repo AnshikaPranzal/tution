@@ -21,7 +21,25 @@ VERSION:	Versoin Number
   margin: 1rem;
 }
 .header-font {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
+}
+.bannerStyle1 {
+  width: 100%;
+  min-height: 90vh;
+  height: fit-content;
+  background-image: linear-gradient(#3a394eb0, #3a394ea0),
+    url(../images/banner/tutor.jpeg);
+  display: flex;
+  align-items: center;
+}
+.bannerStyle {
+  display: flex;
+  align-items: flex-end;
+  padding: 0 10vw;
+  width: 100%;
+  height: 70vh;
+  background-image: linear-gradient(#3a394eb0, #3a394ea0),
+    url(../images/banner/tutor.jpeg);
 }
 
 body {
@@ -44,7 +62,7 @@ p,
 }
 
 .footer-text {
-  color: #5e72e4;
+  color: #ffffffde;
   font-size: 0.8rem !important;
   line-height: 1.9;
   font-family: 'Poppins', sans-serif;
@@ -69,35 +87,24 @@ h6 {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 h1,
 .h1 {
   /* font-size: 60px; */
   font-size: 4rem !important;
-}
-
-@media (max-width: 760px) {
-  h1,
-  .h1 {
-    /* font-size: 45px; */
-    font-size: 2rem !important;
-  }
-  p,
-  .paragraph {
-    font-size: 0.8rem;
-  }
+  line-height: 1;
 }
 
 h2,
@@ -106,18 +113,10 @@ h2,
   font-size: 3rem !important;
 }
 
-@media (max-width: 760px) {
-  h2,
-  .h2 {
-    /* font-size: 30px; */
-    font-size: 2rem !important;
-  }
-}
-
 h3,
 .h3 {
   /* font-size: 25px; */
-  font-size: 1.75rem !important;
+  font-size: 1.85rem !important;
 }
 /* 
 @media (max-width: 575px) {
@@ -131,7 +130,7 @@ h3,
 h4,
 .h4 {
   /* font-size: 20px; */
-  font-size: 1.25rem !important;
+  font-size: 1.45rem !important;
 }
 
 /* @media (max-width: 575px) {
@@ -599,7 +598,7 @@ a h4:hover {
 
 /* page title */
 .page-title-section {
-  padding: 22.22vmin 0 8.88vmin;
+  padding: 22.22vmin 0 8.88vmin 10vw;
 }
 
 .custom-breadcrumb li.nasted {
@@ -762,7 +761,7 @@ link:focus,
   .navbar-expand-lg .navbar-nav .nav-link {
     padding: 2.22vmin;
   }
-  .nav-item{
+  .nav-item {
     margin-bottom: 8vh;
   }
 }
@@ -845,7 +844,7 @@ link:focus,
 }
 
 .hero-section {
-  padding: 27.788vmin 0 32.22vmin;
+  /* padding: 27.788vmin 0 32.22vmin; */
 }
 
 .hero-slider .prevArrow,
@@ -913,11 +912,31 @@ link:focus,
   display: inline-block;
 }
 
+.banner-hr {
+  border: none;
+  background: #50c7c54b;
+  height: 0.01rem;
+}
+.banner-card {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.banner-card:hover {
+  transform: scale(1.04);
+}
 .feature-blocks {
   margin-top: 0px;
   padding-left: 7.77vmin;
   padding-top: 8.88vmin;
-  padding-right: 30%;
+  padding-right: 10%;
+}
+.image-hover-shadow {
+  transition: 0.2s;
+}
+.image-hover-shadow:hover {
+  transform: scale(1.01);
+  box-shadow: #00909e30 2rem 2rem 0.21rem 0;
 }
 
 @media (max-width: 1400px) {
@@ -1186,3 +1205,84 @@ footer {
   width: 100vw;
 } */
 /*# sourceMappingURL=maps/style.css.map */
+@media (max-width: 1024px) {
+  .bannerStyle {
+    height: 45vh;
+  }
+  .bannerStyle1 {
+    height: 50vh;
+  }
+}
+@media (max-width: 768px) {
+  .bannerStyle {
+    height: 70vh;
+  }
+  .bannerStyle1 {
+    height: 90vh;
+  }
+}
+
+.editor-draft {
+  height: 45vh !important;
+  overflow: auto;
+}
+
+.wrapper-draft {
+  border: solid 1px #2223261e;
+  border-radius: 0 0 1rem 0.5rem;
+}
+
+.toolbarClassName {
+  background: #e6e6e6 !important;
+}
+
+button {
+  outline: none !important;
+}
+
+.bannerStyle1.contact-banner {
+  min-height: fit-content;
+  height: fit-content !important;
+}
+.contact-form {
+  background: #f3f2f2 !important;
+}
+.contact-form input,
+.contact-form textarea {
+  outline: none;
+  border: solid 1px #b2b2b2;
+  font: 400 1rem 'Arial', sans-serif !important;
+  letter-spacing: 0.5px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.contact-form p {
+  font-weight: 600;
+  color: #222326;
+  font-size: 1.2rem;
+}
+
+.contact-info i {
+  width: 1.3rem !important;
+}
+
+.contact-form button {
+  background: #5e72e4;
+  color: white;
+  font-size: 0.8rem;
+  border: none;
+  font-weight: 800 !important;
+  border-radius: 0.1rem;
+  padding: 0.5rem;
+  transition: 0.4s;
+  width: 100%;
+}
+
+.contact-form button:hover {
+  background: #798ae9;
+}

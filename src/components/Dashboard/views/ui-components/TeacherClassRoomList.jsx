@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { getAllClassrooms, isAuthenticated } from "../../../helper/index";
+import React, { useState, useEffect } from 'react';
+import { getAllClassrooms, isAuthenticated } from '../../../helper/index';
 
 import {
   Card,
@@ -11,9 +11,9 @@ import {
   Col,
   Input,
   Table,
-} from "reactstrap";
-import { Link } from "react-router-dom";
-
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 const TeacherClassRoomList = () => {
   const { user } = isAuthenticated();
   const Tid = user._id;
@@ -24,6 +24,7 @@ const TeacherClassRoomList = () => {
       console.log(data);
       if (data) {
         if (data.error) {
+          toast(data.error, { type: 'error' });
           console.log(data.error);
         } else {
           setclassrooms(data);
@@ -41,28 +42,28 @@ const TeacherClassRoomList = () => {
       <hr></hr>
       <Row>
         {classrooms.length === 0 && (
-          <h3 className="text-center"> No classroom has been created</h3>
+          <h3 className='text-center'> No classroom has been created</h3>
         )}
         {classrooms.map((obj, i) => {
           if (Tid.toString() === obj.owner._id.toString()) {
             return (
               // <tr key={i}>
-              <Col xs="12" md="4" key={i}>
+              <Col xs='12' md='4' key={i}>
                 <Card
                   style={{
-                    borderRadius: "10px 10px 10px 10px",
-                    textAlign: "center",
+                    borderRadius: '10px 10px 10px 10px',
+                    textAlign: 'center',
                   }}
                 >
                   <div
                     style={{
-                      height: "5rem",
-                      background: "linear-gradient(45deg, #1273BE, violet)",
-                      borderRadius: "10px 10px 0 0",
+                      height: '5rem',
+                      background: 'linear-gradient(45deg, #1273BE, violet)',
+                      borderRadius: '10px 10px 0 0',
                     }}
                   ></div>
                   <CardTitle>{obj.name}</CardTitle>
-                  <CardSubtitle>{obj.subject}</CardSubtitle>
+                  <CardSubtitle>{obj.subject.name}</CardSubtitle>
                   <CardSubtitle>{obj.standard}</CardSubtitle>
                   <CardBody>{obj.description}</CardBody>
                   <div>
@@ -74,7 +75,7 @@ const TeacherClassRoomList = () => {
                         </Link>
                       </p>
                     ) : (
-                      ""
+                      ''
                     )}
                   </div>
                 </Card>

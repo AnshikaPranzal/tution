@@ -8,7 +8,7 @@ import Navbar from '../../Navbar';
 import Sidebar from '../components/sidebar/sidebar.jsx';
 import Footer from '../components/footer/footer.jsx';
 import ThemeRoutes from '../routes/routing.jsx';
-import '../assets/scss/style.css';
+import '../assets/scss/styles.css';
 const Fulllayout = (props) => {
   var height1 = $('.header').innerHeight() + 'px';
 
@@ -34,8 +34,12 @@ const Fulllayout = (props) => {
   useEffect(() => {
     const updateDimensions = () => {
       let element = document.getElementById('main-wrapper');
+      if (!element) return;
       setWidth(window.innerWidth);
-      if (width < 1170) {
+
+      console.log('width', window.innerWidth);
+      let windowWidth = window.innerWidth;
+      if (windowWidth < 1170) {
         element.setAttribute('data-sidebartype', 'mini-sidebar');
         element.classList.add('mini-sidebar');
       } else {
@@ -43,6 +47,7 @@ const Fulllayout = (props) => {
         element.classList.remove('mini-sidebar');
       }
     };
+    updateDimensions();
     window.addEventListener('load', updateDimensions.bind(null));
     window.addEventListener('resize', updateDimensions.bind(null));
     return () => {
@@ -60,6 +65,7 @@ const Fulllayout = (props) => {
   return (
     <React.Fragment>
       <header className='fixed-top header'>
+        <TopHeader></TopHeader>
         <Navbar dashboard='active' active='nav-bg'></Navbar>
       </header>
 

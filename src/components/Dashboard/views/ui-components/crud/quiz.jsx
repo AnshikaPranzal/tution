@@ -11,8 +11,8 @@ import {
   updateQuiz,
   deleteQuiz,
   getAQuiz,
-} from "../../../helper/index";
-
+} from "../../../../helper/index";
+import { toast } from 'react-toastify';
 import {
   Card,
   CardBody,
@@ -56,7 +56,7 @@ const AddQuiz = ({ c }) => {
     getAllSubjects().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorF(data.error);
         } else {
           setsubject(data);
@@ -71,7 +71,7 @@ const AddQuiz = ({ c }) => {
     getAllStandards().then((data) => {
       console.log(data);
       if (data)
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterrorS(data.error);
         } else {
           setstandard(data);
@@ -87,7 +87,7 @@ const AddQuiz = ({ c }) => {
     getQuiz(user._id).then((data) => {
       // console.log(data,"quizdata")
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           // console.log(error)
         } else {
           setquizzes(data.data);
@@ -156,13 +156,13 @@ const AddQuiz = ({ c }) => {
   const Submit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true, teacher: user._id });
-    createQuiz({ title, subject, standard, endTime, start, teacher, mm })
+    createQuiz({ title, subject, teacher, mm })
       .then((data) => {
         // console.log(data)
         if (data)
-          if (data.error) {
+          if (data.error) { toast(data.error,{type:"error"})
             // console.log(data.error)
-            setValues({ ...values, error: data.error });
+            setValues({ ...values,   });
           } else {
             // console.log(data,"quiz")
             setValues({
@@ -189,7 +189,7 @@ const AddQuiz = ({ c }) => {
   const deleteAQuiz = (id) => {
     deleteQuiz(id).then((data) => {
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           // console.log(data.error)
         } else {
           setrefresh(!refresh);
@@ -201,7 +201,7 @@ const AddQuiz = ({ c }) => {
   const getTheQuiz = (id) => {
     getAQuiz(`/quiz/${id}`).then((data) => {
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           // console.log(data.error)
         } else {
           setqid(id);
@@ -222,9 +222,9 @@ const AddQuiz = ({ c }) => {
       .then((data) => {
         // console.log(data)
         if (data)
-          if (data.error) {
+          if (data.error) { toast(data.error,{type:"error"})
             // console.log(data.error)
-            setValues({ ...values, error: data.error });
+            
           } else {
             setupdate(!update);
             setValues({
@@ -267,8 +267,7 @@ const AddQuiz = ({ c }) => {
               <thead>
                 <tr className="border-0">
                   <th className="border-0">Name</th>
-                  <th className="border-0">Subject</th>
-                  <th className="border-0">standard</th>
+                  <th className="border-0">Subject/Standard</th>
                   <th className="border-0">Test Duration</th>
                 </tr>
               </thead>
@@ -307,25 +306,8 @@ const AddQuiz = ({ c }) => {
                       <option value="0">Select</option>
                       {sub.map((obj, i) => {
                         return (
-                          <option key={i} value={obj.name}>
-                            {obj.name}
-                          </option>
-                        );
-                      })}
-                    </Input>
-                  </td>
-                  <td>
-                    <Input
-                      type="select"
-                      className="custom-select"
-                      value={standard}
-                      onChange={handleChange("standard")}
-                    >
-                      <option value="0">Select</option>
-                      {std.map((obj, i) => {
-                        return (
-                          <option key={i} value={obj.name}>
-                            {obj.name}
+                            <option key={i} value={obj._id}>
+                            {obj.name}({obj.standard})
                           </option>
                         );
                       })}
@@ -380,8 +362,7 @@ const AddQuiz = ({ c }) => {
                       return (
                         <tr key={index}>
                           <td>{obj.title}</td>
-                          <td>{obj.subject}</td>
-                          <td>{obj.standard}</td>
+                          <td>{obj.subject.name}({obj.subject.standard})</td>
                           <td>{obj.duration}</td>
                           <td>
                             <Link to={`/quiz/${obj._id}`}>Add Questions</Link>{" "}

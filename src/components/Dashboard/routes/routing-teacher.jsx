@@ -2,7 +2,7 @@ import Starter from "../views/starter/starter-teacher.jsx";
 // ui components
 import Cards from "../views/ui-components/cards.jsx";
 import TooltipComponent from "../views/ui-components/tooltip.jsx";
-import Questions from "../views/ui-components/questions.jsx";
+import Questions from "../views/ui-components/crud/questions.jsx";
 import Responses from "../views/ui-components/responses.jsx";
 import SingleResponse from "../views/ui-components/singleResponse.jsx";
 import ClassRoom from "../views/ui-components/ClassRoom.jsx";

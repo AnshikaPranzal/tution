@@ -6,7 +6,7 @@ const ImageHelper = ({id,hasimg})=> {
   
   const image =  `${API}/question/img/${id}`
   return (
-    <div className="" style={{height:"13em"}}>
+    <div className="" style={{maxHeight:"13em"}}>
             <img
               src={image}
               alt=""

@@ -124,24 +124,20 @@ import { Redirect, withRouter } from 'react-router-dom';
     }
   }
     // const {history} = useRouter();
-useEffect(() => {
+// useEffect(() => {
   
-  window.history.pushState(null, null, window.location.pathname);
-  window.addEventListener('popstate', onBackButtonEvent);
+//   window.history.pushState(null, null, window.location.pathname);
+//   window.addEventListener('popstate', onBackButtonEvent);
 
-  //logic for showing popup warning on page refresh
-  window.onbeforeunload = function () {
+//   //logic for showing popup warning on page refresh
+//   window.onbeforeunload = function () {
 
-    return "are you sure?";
-  };
-  return () => {
-    window.removeEventListener('popstate', onBackButtonEvent);
-  }
-}, [])
-
-    // useEffect(()=>{
-    //     check()
-    // })
+//     return "are you sure?";
+//   };
+//   return () => {
+//     window.removeEventListener('popstate', onBackButtonEvent);
+//   }
+// }, [])
 
     const onSubmit = ()=>{
         const totalMarks = dec()
@@ -189,7 +185,7 @@ useEffect(() => {
                     
                         <div>
                             <h2>{quiz.title}</h2>
-                            <h5>{quiz.subject}</h5>
+                            <h5>{quiz.subject.name}</h5>
                         </div>
                     
                    </Col>

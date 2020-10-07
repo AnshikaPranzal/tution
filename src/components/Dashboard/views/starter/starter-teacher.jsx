@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   classrooms,
   getAllStandards,
@@ -11,7 +11,7 @@ import {
   isAuthenticated,
   getAUser,
   getAllSubjects,
-} from "../../../helper/index";
+} from '../../../helper/index';
 import {
   Card,
   CardBody,
@@ -22,26 +22,23 @@ import {
   Col,
   Input,
   Table,
-} from "reactstrap";
-import {
-  SalesSummary,
-  Projects,
-  Feeds,
-} from "../../components/teacher-dashboard-components";
-import { useRef } from "react";
-// import AddDocument from '../ui-components/document'
-import AddDQuiz from "../ui-components/quiz";
+} from 'reactstrap';
 
+import { useRef } from 'react';
+// import AddDocument from '../ui-components/document'
+import AddDQuiz from '../ui-components/crud/quiz';
+import { toast } from 'react-toastify';
+import ClassLink from '../ui-components/crud/classlinkCRUD';
 const Starter = () => {
   const [file, setfile] = useState();
-  const [video, setvideo] = useState("");
+  const [video, setvideo] = useState('');
   const [classroomO, setclassroomO] = useState([]);
   const [update, setupdate] = useState(false);
-  const [uid, setuid] = useState("");
+  const [uid, setuid] = useState('');
   const [errorF, seterrorF] = useState(false);
   const [values, setvalues] = useState({
-    formData: "",
-    hello: "",
+    formData: '',
+    hello: '',
   });
   const [std, setstandard] = useState([]);
   const [errorS, seterrorS] = useState(false);
@@ -58,6 +55,7 @@ const Starter = () => {
       //   console.log(data)
       if (data)
         if (data.error) {
+          toast(data.error, { type: 'error' });
           seterrorF(data.error);
         } else {
           setsubject(data);
@@ -73,6 +71,7 @@ const Starter = () => {
       //   console.log(data)
       if (data)
         if (data.error) {
+          toast(data.error, { type: 'error' });
           seterrorS(data.error);
         } else {
           setstandard(data);
@@ -88,6 +87,7 @@ const Starter = () => {
       console.log(data);
       if (data)
         if (data.error) {
+          toast(data.error, { type: 'error' });
           seterrorF(data.error);
         } else {
           setclassroomO(data);
@@ -99,11 +99,11 @@ const Starter = () => {
   }, []);
 
   const successMessage = () => (
-    <div className="row ">
-      <div className="col-md-6 offset-sm-3 text-left">
+    <div className='row '>
+      <div className='col-md-6 offset-sm-3 text-left'>
         <div
-          className="alert alert-success"
-          style={{ display: success ? "" : "none" }}
+          className='alert alert-success'
+          style={{ display: success ? '' : 'none' }}
         >
           Congratulations!!! Classroom is added.
         </div>
@@ -113,11 +113,11 @@ const Starter = () => {
 
   const errorMessage = () => {
     return (
-      <div className="row ">
-        <div className="col-md-6 offset-sm-3 text-left">
+      <div className='row '>
+        <div className='col-md-6 offset-sm-3 text-left'>
           <div
-            className="alert alert-danger"
-            style={{ display: error ? "" : "none" }}
+            className='alert alert-danger'
+            style={{ display: error ? '' : 'none' }}
           >
             {error}
           </div>
@@ -130,12 +130,12 @@ const Starter = () => {
   const Tid = user._id;
 
   const [project, setProject] = useState({
-    name: "",
-    description: "",
-    subject: "",
+    name: '',
+    description: '',
+    subject: '',
     owner: user._id,
     standard: 0,
-    error: "",
+    error: '',
     success: false,
   });
 
@@ -172,31 +172,33 @@ const Starter = () => {
         console.log(data);
         console.log(project);
         if (data.error) {
+          toast(data.error, { type: 'error' });
           setProject({
             ...project,
-            error: data.error,
+
             success: false,
           });
         } else {
           setProject({
             ...project,
-            name: "",
-            description: "",
-            subject: "",
+            name: '',
+            description: '',
+            subject: '',
             owner: user._id,
             standard: 0,
-            error: "",
-            success: true,
+            error: '',
           });
+          toast('Classroom Added', { type: 'success' });
           setrefresh(!refresh);
         }
       })
-      .catch(console.log("Error in Classrooms"));
+      .catch(console.log('Error in Classrooms'));
   };
   const deleteaClassroom = (catuctId) => {
     deleteClassroom(catuctId).then((data) => {
       console.log(data);
       if (data.error) {
+        toast(data.error, { type: 'error' });
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
@@ -207,6 +209,7 @@ const Starter = () => {
   const getClassroom = (catuctId) => {
     getAClassroom(catuctId).then((data) => {
       if (data.error) {
+        toast(data.error, { type: 'error' });
         console.log(data.error);
         // setValues({...values,error:data.error})
       } else {
@@ -233,18 +236,19 @@ const Starter = () => {
       (data) => {
         console.log(data);
         if (data.error) {
+          toast(data.error, { type: 'error' });
           console.log(data.error);
           // setValues({...values,error:data.error})
         } else {
           setProject({
             ...project,
-            name: "",
-            description: "",
-            subject: "",
+            name: '',
+            description: '',
+            subject: '',
             standard: 0,
-            error: "",
-            success: true,
+            error: '',
           });
+          toast('Classroom Updated', { type: 'success' });
           setrefresh(!refresh);
           setupdate(false);
         }
@@ -255,14 +259,14 @@ const Starter = () => {
     loadAllclassroooms();
   }, [refresh]);
   const handleChange2 = (name) => (event) => {
-    const v = name === "formData" ? event.target.files[0] : event.target.value;
+    const v = name === 'formData' ? event.target.files[0] : event.target.value;
 
     formData.set(name, v);
     setvalues({ ...values, [name]: v });
   };
   const [file2, setfile2] = useState([]);
   return (
-    <div className="mt-4">
+    <div className='mt-4'>
       {/* <Row>
                 <Col sm={6} lg={8}>
                     <SalesSummary />
@@ -271,16 +275,17 @@ const Starter = () => {
                     <Feeds />
                 </Col>
             </Row> */}
-      <Row className="align-items-center">
+      <Row className='align-items-center'>
         <Col>
-          <Projects />
+          <ClassLink />
+          {/* <Projects /> */}
         </Col>
       </Row>
 
       <Row>
-        <Card className="card-teacher">
+        <Card className='card-teacher'>
           <CardBody>
-            <div className="d-flex align-items-center">
+            <div className='d-flex align-items-center'>
               <div>
                 <CardTitle>Add Classroom</CardTitle>
                 <CardSubtitle>
@@ -290,41 +295,40 @@ const Starter = () => {
             </div>
             {successMessage()}
             {errorMessage()}
-            <Table className="no-wrap v-middle" responsive>
+            <Table className='no-wrap v-middle' responsive>
               <thead>
-                <tr className="border-0">
-                  <th className="border-0">Name</th>
-                  <th className="border-0">Description</th>
-                  <th className="border-0">Subject</th>
-                  <th className="border-0">Standard</th>
+                <tr className='border-0'>
+                  <th className='border-0'>Name</th>
+                  <th className='border-0'>Description</th>
+                  <th className='border-0'>Subject/Standard</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>
-                    <div className="d-flex no-block align-items-center">
-                      <div className="">
+                    <div className='d-flex no-block align-items-center'>
+                      <div className=''>
                         <Input
-                          type="text"
+                          type='text'
                           name={name}
                           id={name}
-                          placeholder="Name"
+                          placeholder='Name'
                           value={name}
-                          onChange={handleChange("name")}
+                          onChange={handleChange('name')}
                         ></Input>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <div className="d-flex no-block align-items-center">
-                      <div className="">
+                    <div className='d-flex no-block align-items-center'>
+                      <div className=''>
                         <Input
-                          type="text"
+                          type='text'
                           name={description}
                           id={description}
-                          placeholder="Description"
+                          placeholder='Description'
                           value={description}
-                          onChange={handleChange("description")}
+                          onChange={handleChange('description')}
                         ></Input>
                       </div>
                     </div>
@@ -332,39 +336,22 @@ const Starter = () => {
 
                   <td>
                     <Input
-                      type="select"
-                      className="custom-select"
+                      type='select'
+                      className='custom-select'
                       value={subject}
-                      onChange={handleChange("subject")}
+                      onChange={handleChange('subject')}
                     >
-                      <option value="0">Select</option>
+                      <option value='0'>Select</option>
                       {sub.map((obj, i) => {
                         return (
-                          <option key={i} value={obj.name}>
-                            {obj.name}
+                          <option key={i} value={obj._id}>
+                            {obj.name}({obj.standard})
                           </option>
                         );
                       })}
                     </Input>
                   </td>
 
-                  <td>
-                    <Input
-                      type="select"
-                      className="custom-select"
-                      value={standard}
-                      onChange={handleChange("standard")}
-                    >
-                      <option value="0">Select</option>
-                      {std.map((obj, i) => {
-                        return (
-                          <option key={i} value={obj.name}>
-                            {obj.name}
-                          </option>
-                        );
-                      })}
-                    </Input>
-                  </td>
                   <td>
                     {update === true ? (
                       <i
@@ -372,23 +359,23 @@ const Starter = () => {
                           updateaClassroom(e, uid);
                         }}
                         style={{
-                          cursor: "pointer",
-                          marginTop: "6px",
-                          fontSize: "20px",
+                          cursor: 'pointer',
+                          marginTop: '6px',
+                          fontSize: '20px',
                         }}
-                        className="fa fa-check text-success"
-                        aria-hidden="true"
+                        className='fa fa-check text-success'
+                        aria-hidden='true'
                       ></i>
                     ) : (
                       <i
                         onClick={onclassroomSubmit}
                         style={{
-                          cursor: "pointer",
-                          marginTop: "6px",
-                          fontSize: "20px",
+                          cursor: 'pointer',
+                          marginTop: '6px',
+                          fontSize: '20px',
                         }}
-                        className="fa fa-plus text-success"
-                        aria-hidden="true"
+                        className='fa fa-plus text-success'
+                        aria-hidden='true'
                       ></i>
                     )}
                   </td>
@@ -396,12 +383,12 @@ const Starter = () => {
               </tbody>
             </Table>
             {classroomO.length === 0 && (
-              <h3 className="text-center">No Classroom Found</h3>
+              <h3 className='text-center'>No Classroom Found</h3>
             )}
           </CardBody>
         </Card>
       </Row>
-      <Row>
+      {/* <Row>
         {classroomO.map((obj, i) => {
           if (Tid.toString() === obj.owner._id.toString()) {
             return (
@@ -421,8 +408,8 @@ const Starter = () => {
                     }}
                   ></div>
                   <CardTitle>{obj.name}</CardTitle>
-                  <CardSubtitle>{obj.subject}</CardSubtitle>
-                  <CardSubtitle>{obj.standard}</CardSubtitle>
+                  <CardSubtitle>{obj.subject.name}</CardSubtitle>
+                  <CardSubtitle>{obj.subject.standard}</CardSubtitle>
                   <CardBody>{obj.description}</CardBody>
                   <div>
                     {isAuthenticated() && isAuthenticated().user.role === 1 ? (
@@ -456,10 +443,10 @@ const Starter = () => {
             );
           }
         })}
-      </Row>
+      </Row> */}
 
       <Row>
-        <Col xs="12" md="12">
+        <Col xs='12' md='12'>
           <AddDQuiz></AddDQuiz>
         </Col>
       </Row>

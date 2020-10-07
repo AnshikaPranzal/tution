@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import img1 from "../../../assets/images/users/1.jpg";
-
+import { toast } from 'react-toastify';
 import {
   getAllClasses,
   subclassrooms,
@@ -34,10 +34,11 @@ const Projects = () => {
     subclasses({ user_id: user._id }).then((data) => {
       console.log(data);
       if (data) {
-        if (data.error) {
+        if (data.error) { toast(data.error,{type:"error"})
           seterror(data.error);
         } else {
           setclassO(data);
+          console.log(data,"kkkk")
         }
       }
     });
@@ -83,7 +84,7 @@ const Projects = () => {
                 <th className="border-0">Date</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody>            
               {classO.map((obj, index) => {
                 //    if(obj.subject === "Maths")
 
@@ -107,7 +108,7 @@ const Projects = () => {
                         </div>
                       </div>
                     </td>
-                    <td>{obj.subject}</td>
+                    <td>{obj.subject.name}</td>
                     <td>{obj.time}</td>
                     <td className="blue-grey-text  text-darken-4 font-medium">
                       {obj.date.substring(8, 10)}
