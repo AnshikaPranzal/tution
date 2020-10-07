@@ -29,7 +29,7 @@ const RegisterModal = () =>{
         setValues({
             ...values,error: false
         });
-        signup1({name,email,password,mob,standard})
+        signup1({name,email,password,mob})
             .then( (data) =>{
                 if(data){
                 if(data.error){
@@ -119,16 +119,6 @@ const RegisterModal = () =>{
                                 </div>
                                 <div className="col-12">
                                     <input type="password" className="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password" onChange={handleChange("password")} value={password}></input>
-                                </div>
-                                <div className="col-12">
-                                <Input type="select" className="custom-select" value={standard}
-                                    onChange={handleChange("standard")} >
-                                <option value="0">Standard</option>
-                                {std.map((obj,i) => {
-                                    return(<option key={i} value={obj.name} >{obj.name}</option>)
-                                })
-                                }
-                            </Input>
                                 </div>
                                 
                                 <div className="col-12">
