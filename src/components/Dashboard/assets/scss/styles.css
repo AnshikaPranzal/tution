@@ -13926,7 +13926,7 @@ User Profile
   top: 0;
   left: 0;
   background: #ffffff94;
-  z-index: 9999;
+  z-index: 9;
 }
 .overlay-graph::after {
   content: 'coming soon';

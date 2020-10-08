@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.3ed1cb5b.chunk.css",
+    "main.css": "/static/css/main.41491891.chunk.css",
     "main.js": "/static/js/main.49f83d8b.chunk.js",
     "main.js.map": "/static/js/main.49f83d8b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.0aa9ee10.js",
@@ -9,10 +9,10 @@
     "static/js/2.7ab0a96f.chunk.js": "/static/js/2.7ab0a96f.chunk.js",
     "static/js/2.7ab0a96f.chunk.js.map": "/static/js/2.7ab0a96f.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.6c8bb7517a06427d2cd2245e78626ba1.js": "/precache-manifest.6c8bb7517a06427d2cd2245e78626ba1.js",
+    "precache-manifest.bb82c6db795a7b38a0e4544e0351b8a4.js": "/precache-manifest.bb82c6db795a7b38a0e4544e0351b8a4.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.26029f9a.chunk.css.map": "/static/css/2.26029f9a.chunk.css.map",
-    "static/css/main.3ed1cb5b.chunk.css.map": "/static/css/main.3ed1cb5b.chunk.css.map",
+    "static/css/main.41491891.chunk.css.map": "/static/css/main.41491891.chunk.css.map",
     "static/js/2.7ab0a96f.chunk.js.LICENSE.txt": "/static/js/2.7ab0a96f.chunk.js.LICENSE.txt",
     "static/media/1.jpg": "/static/media/1.f33d9178.jpg",
     "static/media/style.css": "/static/media/Futura-Bold.b2a934c5.woff",
@@ -39,7 +39,7 @@
     "static/js/runtime-main.0aa9ee10.js",
     "static/css/2.26029f9a.chunk.css",
     "static/js/2.7ab0a96f.chunk.js",
-    "static/css/main.3ed1cb5b.chunk.css",
+    "static/css/main.41491891.chunk.css",
     "static/js/main.49f83d8b.chunk.js"
   ]
 }

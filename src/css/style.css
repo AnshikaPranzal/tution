@@ -668,6 +668,7 @@ textarea.form-control {
 .navigation {
   background: #68d8d6;
   transition: 0.2s ease;
+  z-index: 99;
 }
 
 @media (max-width: 991px) {
