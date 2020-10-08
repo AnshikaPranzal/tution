@@ -99,3 +99,28 @@ th {
   left: -0.8rem;
   bottom: 0;
 }
+
+.course-card-title {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  line-height: 1.6rem;
+  font-weight: bold !important;
+  min-height: 6rem;
+}
+
+@keyframes breathe {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.breathe-animation {
+  animation: breathe 2s infinite;
+}

@@ -131,7 +131,10 @@ const LoginModal = () => {
             </div>
             <div className='col-12'>
               {loading ? (
-                <button disabled className='hvr-bounce-to-top'>
+                <button
+                  disabled
+                  className='hvr-bounce-to-top breathe-animation'
+                >
                   Loading
                 </button>
               ) : (

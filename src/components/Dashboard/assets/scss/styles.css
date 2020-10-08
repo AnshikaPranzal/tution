@@ -12706,6 +12706,7 @@ Preloader
 .feed-widget .feed-body .feed-item {
   padding: 12px 0;
   display: flex;
+  align-self: stretch;
   align-items: center;
 }
 
@@ -12726,6 +12727,22 @@ Preloader
 
 .feed-widget .feed-body .feed-item > .feed-icon i {
   line-height: 40px;
+}
+.feed-item table td,
+.feed-item table th {
+  padding: 0.5rem !important;
+  font-size: 0.9rem !important;
+  font-weight: bold !important;
+  text-align: left !important;
+}
+
+.feed-item table tr td:nth-child(1) {
+  padding: 0.5rem !important;
+}
+
+.feed-item table {
+  height: 25vh;
+  overflow: auto;
 }
 
 /* #main-wrapper[data-layout='vertical'],
@@ -13900,4 +13917,26 @@ User Profile
 .create-btn {
   height: 40px;
   background: #32325d;
+}
+
+.overlay-graph {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #ffffff94;
+  z-index: 9999;
+}
+.overlay-graph::after {
+  content: 'coming soon';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-size: 2rem;
+  color: #222326;
 }

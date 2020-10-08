@@ -72,18 +72,21 @@ const CourseItem = (props) => {
   console.log(props);
   return (
     <React.Fragment>
-      <div className='col-lg-3 col-sm-6 p-3'>
-        <div className='card p-0 hover-shadow course-card-custom'>
-          <div className='card-header'>
-            <h4 className='card-title py-2'>{props.topic}</h4>
-            <p className=' ribbon-course'>Class {props.standard}</p>
-          </div>
-          <div className='card-body'>
-            <p className='small mb-3'> {props.des}</p>
-            <p className='list-inline-item badge text-white bg-primary font-weight-bold rounded'>
+      <div className='col-lg-3 p-3 col-sm-6 p-3'>
+        <div className='card p-0 hover-shadow course-card-custom '>
+          <div className='card-header py-0 pt-2'>
+            <h4 className='card-title py-2 course-card-title'>{props.topic}</h4>
+            <p className=' '>Class {props.standard}</p>
+            {/* <p className=' ribbon-course'>Class {props.standard}</p> */}
+            <p className='list-inline-item p-2 px-3 badge text-white bg-primary font-weight-bold rounded'>
               Rs.{props.price}
             </p>
-            <hr></hr>
+          </div>
+          <div className='card-body pt-0'>
+            {/* <p className='list-inline-item badge text-white bg-primary font-weight-bold rounded'>
+              Rs.{props.price}
+            </p> */}
+            <hr className='mt-0'></hr>
             <a
               data-toggle='modal'
               data-target='#signinModal'
