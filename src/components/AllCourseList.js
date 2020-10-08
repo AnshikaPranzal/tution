@@ -66,6 +66,7 @@ const AllCourseList = () => {
                     subjectid={obj._id}
                     product={product}
                     price={obj.price}
+                    standard={obj.standard}
                     topic={obj.name}
                     des=' Lorem ipsum dolor sit amet, consectetur adipisicing elit'
                   ></CourseItem>

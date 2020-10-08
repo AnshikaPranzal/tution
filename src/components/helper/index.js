@@ -371,6 +371,7 @@ export const signout = async (next) => {
       method: 'GET',
     });
     console.log('SignOut Successful');
+    return Promise.resolve(true);
   } catch (err) {
     return console.log(err);
   }

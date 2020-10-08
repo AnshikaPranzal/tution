@@ -5,6 +5,7 @@ import ResgisterModal from './RegisterModal';
 import LoginModal from './LoginModal';
 import { isAuthenticated, signout } from './helper';
 import Navbar from './Navbar';
+import { withRouter, Redirect } from 'react-router-dom';
 
 const TopHeader = () => {
   const [show, setShow] = useState(false);
@@ -15,9 +16,9 @@ const TopHeader = () => {
 
   const handleCloselogin = () => setshowlogin(false);
   const handleShowlogin = () => setshowlogin(true);
-  const logout = () => {
-    signout();
-    setreload(true);
+  const logout = async () => {
+    await signout();
+    window.location = '/';
   };
   useEffect(() => {
     return () => {
@@ -127,4 +128,4 @@ const TopHeader = () => {
     </React.Fragment>
   );
 };
-export default TopHeader;
+export default withRouter(TopHeader);

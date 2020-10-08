@@ -80,7 +80,7 @@ const Fulllayout = (props) => {
         {/*--------------------------------------------------------------------------------*/}
         {/* Page Main-Content                                                              */}
         {/*--------------------------------------------------------------------------------*/}
-        <div className='page-wrapper d-block' style={{ paddingTop: '10vh' }}>
+        <div className='page-wrapper d-block' style={{ paddingTop: '14vh' }}>
           <div
             className='
           page-content 
