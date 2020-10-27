@@ -1,32 +1,36 @@
 import React from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle, Col, Row } from 'reactstrap';
+import{ getAUserQuizResult, isAuthenticated } from '../../../../helper/index'
 import { Line } from 'react-chartjs-2';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-//Line chart
-let lineData = {
-  labels: [1, 2, 3, 4, 5, 6, 7, 8],
-  datasets: [
-    {
-      label: 'Income',
-      borderWidth: 1,
-      backgroundColor: 'rgba(94,114,228,.1)',
-      borderColor: 'rgb(94,114,228)',
-      pointBorderColor: 'rgb(94,114,228)',
-      pointBackgroundColor: 'rgb(94,114,228)',
-      data: [0, 15, 6, 11, 25, 9, 18, 24],
-    },
-  ],
-};
 
 const SalesSummary = () => {
+  const { user, token } = isAuthenticated();
+  const [result, setResult] = useState();
+  const [call, setCall] = useState(true)
+  const loadQuizResult = () => {
+    getAUserQuizResult(user._id, token)
+      .then((data) => {
+        if (data) {
+          console.log(data)
+          setResult(data);
+        } else {
+          console.log('no result');
+        }
+      })
+      .catch((err) => console.log(err));
+      setCall(false)
+  };
+  useEffect(loadQuizResult, call);
   return (
     <Card style={{ height: '60vh' }}>
-      <div className='overlay-graph'></div>
       <CardBody>
         <div className='d-flex align-items-center'>
           <div>
             <CardTitle>Performance Summary</CardTitle>
-            <CardSubtitle>summary of the month</CardSubtitle>
+            <CardSubtitle>Quiz Percentages</CardSubtitle>
           </div>
         </div>
         <Row>
@@ -37,7 +41,20 @@ const SalesSummary = () => {
                 style={{ width: '100%', margin: '0 auto', height: 250 }}
               >
                 <Line
-                  data={lineData}
+                  data={result === undefined? {} :{
+                    labels: result.Quiznames,
+                    datasets: [
+                      {
+                        label: 'Quiz Percentage',
+                        borderWidth: 1,
+                        backgroundColor: '#A0E9DA',
+                        borderColor: 'rgb(94,114,228)',
+                        pointBorderColor: 'rgb(94,114,228)',
+                        pointBackgroundColor: 'rgb(94,114,228)',
+                        data: result.QuizPercentage,
+                      },
+                    ],
+                  }}
                   options={{
                     maintainAspectRatio: false,
                     legend: {

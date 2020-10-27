@@ -564,6 +564,23 @@ export const getAUser = async (userId, token) => {
   }
 };
 
+export const getAUserQuizResult = async (userId, token) => {
+  try {
+    const response = await fetch(`${API}/user/quiz/result/${userId}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response);
+    return response.json();
+  } catch (err) {
+    console.log('Error in getting the User Quiz Result', err);
+  }
+};
+
 export const updateUser = async (userId, token, user) => {
   try {
     const response = await fetch(`${API}/update/${userId}`, {
